@@ -1,6 +1,5 @@
 import ast
 
-loop = ""
 '''
     TODO 
     * Currently everything within functions is directly added to the loop function instead of consider adding it to 
@@ -11,16 +10,15 @@ loop = ""
 '''
 
 class MyVisitor(ast.NodeVisitor):
-    def visit_Str(self, node, depth):
-        global loop
+    def visit_Str(self, node, depth, isLoop=False):
         global function
         depth += 1
         for index, text in enumerate(node):
             if isinstance(text, ast.Call):
                 self.visit_Call(text, depth)
             elif isinstance(text, ast.Num):
-                self.visit_Num(text, depth)
-                if index < len(node) - 1:
+                self.visit_Num(text, depth, isLoop)
+                if isLoop:
                     loop += ', '
             elif isinstance(text, ast.Str):
                 function += text.s
@@ -50,6 +48,8 @@ class MyVisitor(ast.NodeVisitor):
                 self.visit_Expr(nod)
             elif isinstance(nod, ast.Return):
                 self.visit_Return(nod, depth)
+            elif isinstance(nod, ast.If):
+                self.visit_If(nod, depth)
             else:
                 print(nod)
         function += '}\n'
@@ -62,54 +62,67 @@ class MyVisitor(ast.NodeVisitor):
             function = 'void ' + function
             output.write(function)
 
-    def visit_Expr(self, node, depth=None):
+    def visit_Expr(self, node, depth=None, isLoop=False):
         if depth is None:
-            self.general_visit_Expr(node)
+            self.general_visit_Expr(node, isLoop)
         else:
-            self.depth_visit_Expr(node, depth)
+            self.depth_visit_Expr(node, depth, isLoop)
 
-    def general_visit_Expr(self, node):
+    def general_visit_Expr(self, node, isLoop=False):
         if isinstance(node, list):
             for nod in node:
                 print(' Expression: ' + str(nod.value))
-                self.visit_Call(nod.value, 0)
+                self.visit_Call(nod.value, 0, isLoop)
         else:
             print(' Expression: ' + str(node.value))
-            self.visit_Call(node.value, 0)
+            self.visit_Call(node.value, 0, isLoop)
 
-    def depth_visit_Expr(self, node, depth):
+    def depth_visit_Expr(self, node, depth, isLoop=False):
         depth += 1
         separator = ' ' + depth * '-'
         if isinstance(node, list):
             for nod in node:
                 print(separator + ' Expression: ' + str(nod.value))
-                self.visit_Call(nod.value, depth)
+                self.visit_Call(nod.value, depth, isLoop)
         else:
             print(separator + ' Expression: ' + str(node.value))
-            self.visit_Call(node.value, depth)
+            self.visit_Call(node.value, depth, isLoop)
 
-    def visit_Call(self, node, depth):
+    def visit_Call(self, node, depth, isLoop=False):
         global function
+        global loop
         depth += 1
         separator = ' ' + depth * '-'
         print(separator + ' Call: ' + str(node.func))
+        if isLoop is True:
+            loop += node.func.id + '('
         function += node.func.id + '('
         self.visit_Name(node.func, depth, True)
         self.visit_Str(node.args, depth)
+        if isLoop is True:
+            loop += ');\n   '
         function += ');\n   '
 
-    def visit_Num(self, node, depth):
+    def visit_Num(self, node, depth, isLoop=False):
         global loop
+        global function
         depth += 1
         separator = ' ' + depth * '-'
         if isinstance(node, list):
             for nod in node:
                 print(separator + ' Num: ' + str(nod.n))
+                if isLoop is True:
+                    loop += str(nod.n)
+                function += str(nod.n)
         elif isinstance(node, ast.UnaryOp):
             print(separator + ' UnaryOp: ')
         else:
-            loop += str(node.n)
+            if isLoop != False:
+                loop += str(node.n)
             print(separator + ' Num: ' + str(node.n))
+            if isLoop is True:
+                loop += str(node.n)
+            function += str(node.n)
 
     def visit_arguments(self, node, depth):
         global function
@@ -142,7 +155,6 @@ class MyVisitor(ast.NodeVisitor):
         function += ';\n'
 
     def visit_BinOp(self, node, depth):
-        global function
         depth += 1
         separator = ' ' + depth * '-'
         print(separator + ' BinOp')
@@ -156,12 +168,14 @@ class MyVisitor(ast.NodeVisitor):
         else:
             self.depth_visit_While(node, depth)
 
-
+    # This is the main loop
     def general_visit_While(self, node):
+        global loop
+        loop = ""
         print('LOOP While: ' + str(node.test))
         self.visit_NameConstant(node.test, 0)
         print('LOOP While: ' + str(node.body))
-        self.visit_If(node.body[0], 0)
+        self.visit_If(node.body[0], 0, True)
 
 
     def depth_visit_While(self, node, depth):
@@ -174,33 +188,82 @@ class MyVisitor(ast.NodeVisitor):
         separator = ' ' + depth * '-'
         print(separator + 'Name Constant: ' + str(node.value))
 
-    def visit_If(self, node, depth):
+    def visit_If(self, node, depth, isLoop=False):
+        global loop
+        global function
         depth += 1
         separator = ' ' + depth * '-'
-        self.visit_Compare(node.test, depth)
+        if isLoop != False:
+            loop += 'if('
+        function += '   if ('
+        self.visit_Compare(node.test, depth, isLoop)
+        if isLoop != False:
+            loop += ') {\n  '
+        function += ') {\n  '
         for body_part in node.body:
             if isinstance(body_part, ast.Expr):
-                self.visit_Expr(body_part, depth)
+                self.visit_Expr(body_part, depth, isLoop)
         for or_else_part in node.orelse:
             if isinstance(or_else_part, ast.If):
                 print(separator + ' ElIf')
-                self.visit_If(or_else_part, depth)
+                if isLoop != False:
+                    loop += '} else '
+                function += '} else '
+                self.visit_If(or_else_part, depth, isLoop)
             elif isinstance(or_else_part, ast.Expr):
                 print(separator + ' Else')
-                self.visit_Expr(or_else_part, depth)
+                if isLoop != False:
+                    loop += '} else {'
+                function += '} else {'
+                self.visit_Expr(or_else_part, depth, isLoop)
+                if isLoop != False:
+                    loop += '}'
+                function += '}'
+        function += '}\n'
 
-    def visit_Compare(self, node, depth):
+    def visit_Compare(self, node, depth, isLoop=False):
         depth += 1
         separator = ' ' + depth * '-'
         print(separator + ' Comparision')
-        self.visit_Call(node.left, depth)
-        self.visitGt(depth)
-        self.visit_Num(node.comparators, depth)
+        # LEFT PART
+        if isinstance(node.left, ast.Call):
+            self.visit_Call(node.left, depth, isLoop)
+        elif isinstance(node.left, ast.Name):
+            self.visit_Name(node.left, depth, isLoop)
+        # OPERATOR
+        if isinstance(node.ops[0], ast.Gt):
+            self.visit_Gt(depth)
+        elif isinstance(node.ops[0], ast.Lt):
+            self.visit_Lt(depth, isLoop)
+        elif isinstance(node.ops[0], ast.Eq):
+            self.visit_Eq(depth)
+        # COMPARATORS
+        self.visit_Num(node.comparators, depth, isLoop)
 
-    def visitGt(self, depth):
+
+    def visit_Gt(self, depth):
+        global function
+        function += ' > '
         depth += 1
         separator = ' ' + depth * '-'
         print(separator + ' Greater than')
+
+    def visit_Lt(self, depth, isLoop=False):
+        global function
+        global loop
+        if isLoop != False:
+            loop += ' < '
+        function += ' < '
+        depth += 1
+        separator = ' ' + depth * '-'
+        print(separator + ' Lower than')
+
+    def visit_Eq(self, depth):
+        global function
+        function += ' == '
+        depth += 1
+        separator = ' ' + depth * '-'
+        print(separator + ' Equal')
 
 
 class MyTransformer(ast.NodeTransformer):
