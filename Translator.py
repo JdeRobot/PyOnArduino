@@ -13,6 +13,9 @@ class MyVisitor(ast.NodeVisitor):
                 self.visit_Num(text, depth)
                 if index < len(node) - 1:
                     loop += ', '
+            elif isinstance(text, ast.Str):
+                loop += text.s
+                print(' Found String: "' + text.s + '"')
 
     def visit_Name(self, node, depth, isCall=False):
         global function
@@ -47,7 +50,7 @@ class MyVisitor(ast.NodeVisitor):
             output.write(function)
             self.visit_Name(node.returns, depth)
         except AttributeError:
-            function = ' ' + function
+            function = 'void ' + function
             output.write(function)
 
     def visit_Expr(self, node):
@@ -70,7 +73,7 @@ class MyVisitor(ast.NodeVisitor):
         loop += node.func.id + '('
         self.visit_Name(node.func, depth, True)
         self.visit_Str(node.args, depth)
-        loop += ');'
+        loop += ');\n   '
 
     def visit_Num(self, node, depth):
         global loop
@@ -132,7 +135,7 @@ class MyTransformer(ast.NodeTransformer):
 
 output = open('output.ino', 'w')
 output.write('''void setup() {
-  // put your setup code here, to run once:
+    // put your setup code here, to run once:
 
 }\n''')
 controller_file = open('example.py').read()
@@ -142,8 +145,8 @@ MyVisitor().visit(car_controller)
 
 
 output.write('''\nvoid loop() {
-  // put your main code here, to run repeatedly:
-  ''' + loop +
+    // put your main code here, to run repeatedly:
+   ''' + loop +
 '''\n}\n''')
 print()
 output.close()
