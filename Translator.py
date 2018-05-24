@@ -1,16 +1,5 @@
-'''
-    This is an small example that aims to show how the workflow of ast is so we can study the suitability of this
-    library for the project we will be working on
-
-    On this example, we take the previous CarController.py development and we work over it.
-    We have defined two classes here:
-        - MyVisitor: When calling, visit takes the nodes that have been previously parsed using ast and print them
-        - MyTransformer: Once visit in called, uses the parsed nodes and transform them as specified
-        in the visit_Str function. This is useful to add prefixes or suffixes on featured nodes for example
-'''
 import ast
 
-global loop
 loop = ""
 
 class MyVisitor(ast.NodeVisitor):
@@ -52,10 +41,14 @@ class MyVisitor(ast.NodeVisitor):
             else:
                 print(nod)
         function += '}\n'
-        function = str(node.returns.id) + ' ' + function
-        output.write(function)
-        print ('RETURNS -> ' + str(node.returns.id))
-        self.visit_Name(node.returns, depth)
+        try:
+            function = str(node.returns.id) + ' ' + function
+            print('RETURNS -> ' + str(node.returns.id))
+            output.write(function)
+            self.visit_Name(node.returns, depth)
+        except AttributeError:
+            function = ' ' + function
+            output.write(function)
 
     def visit_Expr(self, node):
         self.general_visit_Expr(node)
@@ -137,7 +130,6 @@ class MyTransformer(ast.NodeTransformer):
         return ast.Str('str: ' + node.s)
 
 
-# First part: prints the nodes retrieved by the parsed after transform them
 output = open('output.ino', 'w')
 output.write('''void setup() {
   // put your setup code here, to run once:
