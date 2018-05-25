@@ -8,9 +8,12 @@ import ast
     content to the former.
     * The sign ";" should be added just when the final statement comes
 '''
+parenthesis = 0
+brackets = 0
 
 class MyVisitor(ast.NodeVisitor):
     def visit_Str(self, node, depth, isLoop=False):
+        global loop
         global function
         depth += 1
         for index, text in enumerate(node):
@@ -18,8 +21,6 @@ class MyVisitor(ast.NodeVisitor):
                 self.visit_Call(text, depth)
             elif isinstance(text, ast.Num):
                 self.visit_Num(text, depth, isLoop)
-                if isLoop:
-                    loop += ', '
             elif isinstance(text, ast.Str):
                 function += text.s
                 print(' Found String: "' + text.s + '"')
@@ -40,6 +41,7 @@ class MyVisitor(ast.NodeVisitor):
     def visit_FunctionDef(self, node):
         depth = 0
         global function
+        global brackets
         function = node.name + '('
         print('Function Definition: ' + str(node.name))
         self.visit_arguments(node.args, depth)
@@ -52,6 +54,7 @@ class MyVisitor(ast.NodeVisitor):
                 self.visit_If(nod, depth)
             else:
                 print(nod)
+        brackets -= 1
         function += '}\n'
         try:
             function = str(node.returns.id) + ' ' + function
@@ -91,17 +94,29 @@ class MyVisitor(ast.NodeVisitor):
     def visit_Call(self, node, depth, isLoop=False):
         global function
         global loop
+        global parenthesis
         depth += 1
         separator = ' ' + depth * '-'
         print(separator + ' Call: ' + str(node.func))
+        function_name = node.func.id
+        if function_name == 'print':
+            function_name = 'Serial.' + function_name
         if isLoop is True:
-            loop += node.func.id + '('
-        function += node.func.id + '('
+            loop += function_name + '('
+        function += function_name + '('
+        parenthesis += 1
         self.visit_Name(node.func, depth, True)
-        self.visit_Str(node.args, depth)
+        self.visit_Str(node.args, depth, isLoop)
+        parenthesis -= 1
         if isLoop is True:
-            loop += ');\n   '
-        function += ');\n   '
+            if parenthesis == 0:
+                loop += ');\n   '
+            else:
+                loop += ')'
+        if parenthesis == 0:
+            function += ');\n   '
+        else:
+            function += ')'
 
     def visit_Num(self, node, depth, isLoop=False):
         global loop
@@ -110,22 +125,21 @@ class MyVisitor(ast.NodeVisitor):
         separator = ' ' + depth * '-'
         if isinstance(node, list):
             for nod in node:
-                print(separator + ' Num: ' + str(nod.n))
+                print(separator + ' Num 1: ' + str(nod.n))
                 if isLoop is True:
                     loop += str(nod.n)
                 function += str(nod.n)
         elif isinstance(node, ast.UnaryOp):
             print(separator + ' UnaryOp: ')
         else:
-            if isLoop != False:
-                loop += str(node.n)
-            print(separator + ' Num: ' + str(node.n))
+            print(separator + ' Num 2: ' + str(isLoop) + str(node.n))
             if isLoop is True:
                 loop += str(node.n)
             function += str(node.n)
 
     def visit_arguments(self, node, depth):
         global function
+        global brackets
         depth += 1
         separator = ' ' + depth * '-'
         for index, arg in enumerate(node.args):
@@ -133,6 +147,7 @@ class MyVisitor(ast.NodeVisitor):
             self.visit_arg(arg, depth)
             if index < len(node.args) - 1:
                 function += ', '
+        brackets += 1
         function += ') {\n'
         print(separator + ' arguments: ' + str(node.args))
 
@@ -152,7 +167,7 @@ class MyVisitor(ast.NodeVisitor):
             self.visit_Call(node.value, depth)
         else:
             print(separator + node.value)
-        function += ';\n'
+        # function += ';\n'
 
     def visit_BinOp(self, node, depth):
         depth += 1
@@ -191,35 +206,47 @@ class MyVisitor(ast.NodeVisitor):
     def visit_If(self, node, depth, isLoop=False):
         global loop
         global function
+        global parenthesis
+        global brackets
         depth += 1
         separator = ' ' + depth * '-'
         if isLoop != False:
-            loop += 'if('
-        function += '   if ('
+            loop += 'if ('
+        function += 'if ('
+        parenthesis += 1
         self.visit_Compare(node.test, depth, isLoop)
+        brackets += 1
         if isLoop != False:
             loop += ') {\n  '
         function += ') {\n  '
+        parenthesis -= 1
         for body_part in node.body:
             if isinstance(body_part, ast.Expr):
                 self.visit_Expr(body_part, depth, isLoop)
         for or_else_part in node.orelse:
             if isinstance(or_else_part, ast.If):
                 print(separator + ' ElIf')
+                brackets -= 1
                 if isLoop != False:
                     loop += '} else '
                 function += '} else '
                 self.visit_If(or_else_part, depth, isLoop)
             elif isinstance(or_else_part, ast.Expr):
                 print(separator + ' Else')
+                brackets += 1
                 if isLoop != False:
-                    loop += '} else {'
-                function += '} else {'
+                    loop += '} else {\n   '
+                function += '} else {\n   '
                 self.visit_Expr(or_else_part, depth, isLoop)
+                brackets -= 1
                 if isLoop != False:
-                    loop += '}'
-                function += '}'
-        function += '}\n'
+                    if brackets >= 0:
+                        loop += '}'
+                if brackets >= 0:
+                    function += '}'
+        brackets -= 1
+        if brackets > 0:
+            function += '}\n'
 
     def visit_Compare(self, node, depth, isLoop=False):
         depth += 1
