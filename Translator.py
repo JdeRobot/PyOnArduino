@@ -66,6 +66,10 @@ class MyVisitor(ast.NodeVisitor):
             print(separator + ' Add: ' + str(node))
             if function is not None:
                 function += ' + '
+        elif isinstance(node, ast.Div):
+            self.visit_Div(node, depth)
+        elif isinstance(node, ast.Num):
+            self.visit_Num(node, depth)
         else:
             if isCall is False and function is not None:
                 function += node.id
@@ -112,12 +116,12 @@ class MyVisitor(ast.NodeVisitor):
         if isinstance(node, list):
             for nod in node:
                 print(' Expression: ' + str(nod.value))
-                self.visit_Call(nod.value, 0, is_loop)
+                self.visit_Call(nod.value, 1, is_loop)
         elif isinstance(node.value, ast.Str):
-            self.visit_Str(node.value, 0, is_loop)
+            self.visit_Str(node.value, 1, is_loop)
         else:
             print(' Expression: ' + str(node.value))
-            self.visit_Call(node.value, 0, is_loop)
+            self.visit_Call(node.value, 1, is_loop)
 
     def depth_visit_Expr(self, node, depth, is_loop=False):
         depth += 1
@@ -318,13 +322,13 @@ class MyVisitor(ast.NodeVisitor):
         # COMPARATORS
         self.visit_Num(node.comparators, depth, is_loop)
 
-    def visit_Assign(self, node, depth=None):
+    def visit_Assign(self, node, depth=None, inFunction=False):
         if depth:
-            self.depth_visit_Assign(node, depth)
+            self.depth_visit_Assign(node, depth, inFunction)
         else:
-            self.general_visit_Assign(node)
+            self.general_visit_Assign(node, inFunction)
 
-    def general_visit_Assign(self, node):
+    def general_visit_Assign(self, node, inFunction=False):
         self.visit_Name(node.targets)
         print('Assign: ' + str(node.value))
         if isinstance(node.value, ast.List):
@@ -336,9 +340,16 @@ class MyVisitor(ast.NodeVisitor):
         elif isinstance(node.value, list):
             for value in node.value:
                 print('Assign: ' + value)
+        elif isinstance(node.value, ast.Call):
+            self.visit_Call(node.value, 0)
+        elif isinstance(node.value, ast.Name):
+            self.visit_Call(node.value, 0)
+        elif isinstance(node.value, ast.BinOp):
+            self.visit_BinOp(node.value, 0)
+            print()
         print('Assign ' + str(node.targets) + ' ' + str(node.value))
 
-    def depth_visit_Assign(self, node, depth):
+    def depth_visit_Assign(self, node, depth, inFunction=False):
         print('Assign ' + str(node.targets) + ' ' + str(node.value))
 
     def visit_Gt(self, depth):
@@ -364,6 +375,9 @@ class MyVisitor(ast.NodeVisitor):
         depth += 1
         separator = ' ' + depth * '-'
         print(separator + ' Equal')
+
+    def visit_Div(self, node, depth):
+        print('DIV!')
 
 
 class MyTransformer(ast.NodeTransformer):
