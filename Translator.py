@@ -1,18 +1,28 @@
 import ast
 
-'''
-    TODO 
-    * Currently everything within functions is directly added to the loop function instead of consider adding it to 
-    as a function itself.
-    * Instead of adding just the return statement to the function as it's done now, we should add the whole function's
-    content to the former.
-    * The sign ";" should be added just when the final statement comes
-'''
 parenthesis = 0
 brackets = 0
+variable_declaration = ''
+setup = ''
 
 class MyVisitor(ast.NodeVisitor):
-    def visit_Str(self, node, depth, isLoop=False):
+    def visit_Str(self, node, depth=None, isLoop=False):
+        if depth != None:
+            self.depth_visit_Str(node, depth, isLoop)
+        else:
+            self.general_visit_Str(node)
+
+    def general_visit_Str(self, node):
+        global variable_declaration
+        global setup
+        parts = node.s.split('"')
+        if parts[1] != 'INPUT' and parts[1] != 'OUTPUT':
+            variable_declaration += parts[1] + ';\n'
+        else:
+            setup += parts[1] + ');\n'
+        print('Found String: "' + node.s + '"')
+
+    def depth_visit_Str(self, node, depth, isLoop=False):
         global loop
         global function
         depth += 1
@@ -25,7 +35,21 @@ class MyVisitor(ast.NodeVisitor):
                 function += text.s
                 print(' Found String: "' + text.s + '"')
 
-    def visit_Name(self, node, depth, isCall=False):
+    def visit_Name(self, node, depth=None, isCall=False):
+        if depth != None:
+            self.depth_visit_Name(node, depth, isCall)
+        else:
+            self.general_visit_Name(node)
+
+   # This is used on the top variable declaration
+    def general_visit_Name(self, node):
+        global variable_declaration
+        global setup
+        variable_declaration += 'int ' + node.id + ' = '
+        setup += 'pinMode('+node.id+','
+        print('Name: ' + node.id)
+
+    def depth_visit_Name(self, node, depth, isCall=False):
         global function
         depth += 1
         separator = ' ' + depth * '-'
@@ -118,21 +142,33 @@ class MyVisitor(ast.NodeVisitor):
         else:
             function += ')'
 
-    def visit_Num(self, node, depth, isLoop=False):
+    def visit_Num(self, node, depth=None, isLoop=False):
+        if depth != None:
+            self.depth_visit_Num(node, depth, isLoop)
+        else:
+            self.general_visit_Num(node)
+
+    def general_visit_Num(self, node):
+        global variable_declaration
+        global setup
+        variable_declaration += str(node.n) + ';\n'
+        print('Num: ' + str(node.n))
+
+    def depth_visit_Num(self, node, depth, isLoop=False):
         global loop
         global function
         depth += 1
         separator = ' ' + depth * '-'
         if isinstance(node, list):
             for nod in node:
-                print(separator + ' Num 1: ' + str(nod.n))
+                print(separator + ' Num: ' + str(nod.n))
                 if isLoop is True:
                     loop += str(nod.n)
                 function += str(nod.n)
         elif isinstance(node, ast.UnaryOp):
             print(separator + ' UnaryOp: ')
         else:
-            print(separator + ' Num 2: ' + str(isLoop) + str(node.n))
+            print(separator + ' Num: ' + str(node.n))
             if isLoop is True:
                 loop += str(node.n)
             function += str(node.n)
@@ -177,7 +213,7 @@ class MyVisitor(ast.NodeVisitor):
         self.visit_Name(node.op, depth)
         self.visit_Name(node.right, depth)
 
-    def visit_While(self, node=None, depth=None):
+    def visit_While(self, node, depth=None):
         if depth is None:
             self.general_visit_While(node)
         else:
@@ -299,16 +335,16 @@ class MyTransformer(ast.NodeTransformer):
 
 
 output = open('output.ino', 'w')
-output.write('''void setup() {
-    // put your setup code here, to run once:
-
-}\n''')
 controller_file = open('StopnGo.py').read()
 car_controller = ast.parse(controller_file)
 MyTransformer().visit(car_controller)
 MyVisitor().visit(car_controller)
 
-
+output.write(variable_declaration + '\n')
+output.write('''void setup() {
+    // put your setup code here, to run once:
+''' + setup + '''
+}\n''')
 output.write('''\nvoid loop() {
     // put your main code here, to run repeatedly:
    ''' + loop +

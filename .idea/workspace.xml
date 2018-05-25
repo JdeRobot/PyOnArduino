@@ -4,6 +4,7 @@
     <list default="true" id="e72936ae-374a-42ae-8588-539f897332c5" name="Default" comment="">
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CarController.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/StopnGo.py" afterPath="$PROJECT_DIR$/StopnGo.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Translator.py" afterPath="$PROJECT_DIR$/Translator.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output.ino" afterPath="$PROJECT_DIR$/output.ino" />
     </list>
@@ -17,11 +18,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Translator.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Translator.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Translator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-779">
-              <caret line="139" column="43" lean-forward="true" selection-start-line="139" selection-start-column="43" selection-end-line="139" selection-end-column="43" />
+            <state relative-caret-position="180">
+              <caret line="12" column="33" lean-forward="false" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -30,18 +31,18 @@
       <file leaf-file-name="output.ino" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/output.ino">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="21" lean-forward="true" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
+            <state relative-caret-position="75">
+              <caret line="5" column="20" lean-forward="false" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StopnGo.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="StopnGo.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/StopnGo.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="13" column="11" lean-forward="false" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="11" />
+            <state relative-caret-position="45">
+              <caret line="3" column="27" lean-forward="false" selection-start-line="3" selection-start-column="27" selection-end-line="3" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -52,16 +53,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_ast.py" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/Library/Caches/PyCharmCE2017.1/python_stubs/-2010535109/_ast.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7770">
-              <caret line="518" column="8" lean-forward="false" selection-start-line="518" selection-start-column="6" selection-end-line="518" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -78,9 +69,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Lt(</find>
-      <find>Eq(</find>
-      <find>OPS</find>
       <find>loop</find>
       <find>LOOP</find>
       <find>loop=None</find>
@@ -108,6 +96,9 @@
       <find>Serial</find>
       <find>Num 2</find>
       <find>braces</find>
+      <find>visit</find>
+      <find>visit_Num</find>
+      <find>variable_declaration</find>
     </findStrings>
     <replaceStrings>
       <replace>&gt;</replace>
@@ -121,9 +112,9 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/StopnGo.py" />
         <option value="$PROJECT_DIR$/output.ino" />
         <option value="$PROJECT_DIR$/Translator.py" />
+        <option value="$PROJECT_DIR$/StopnGo.py" />
       </list>
     </option>
   </component>
@@ -132,7 +123,7 @@
     <option name="height" value="900" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
+    <navigator proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -145,24 +136,7 @@
       <manualOrder />
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes>
-      <pane id="Scratches" />
-      <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PyOnArduino" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PyOnArduino" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="Scope" />
-    </panes>
+    <panes />
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
@@ -344,7 +318,14 @@
       <option name="project" value="LOCAL" />
       <updated>1527173136166</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Stop&amp;Go example completely cover except the keyboard input">
+      <created>1527236642753</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1527236642753</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -353,7 +334,7 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19241774" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5036145" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27108434" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26987952" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -399,7 +380,8 @@
     <MESSAGE value="Stop &amp; Go basic functionality that should match the actual Arduino behaviour" />
     <MESSAGE value="Detection of functions with return types" />
     <MESSAGE value="WIP Arduino loop Stop&amp;Go basic functionality" />
-    <option name="LAST_COMMIT_MESSAGE" value="WIP Arduino loop Stop&amp;Go basic functionality" />
+    <MESSAGE value="Stop&amp;Go example completely cover except the keyboard input" />
+    <option name="LAST_COMMIT_MESSAGE" value="Stop&amp;Go example completely cover except the keyboard input" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -410,7 +392,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="5" />
+      <option name="time" value="8" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -596,14 +578,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/ast.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="265" column="6" lean-forward="false" selection-start-line="265" selection-start-column="6" selection-end-line="265" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/CarController.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="167">
@@ -627,26 +601,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/StopnGo.py">
+    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/ast.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="11" lean-forward="false" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="11" />
+        <state relative-caret-position="121">
+          <caret line="252" column="0" lean-forward="false" selection-start-line="252" selection-start-column="0" selection-end-line="252" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/output.ino">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="21" lean-forward="true" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
+        <state relative-caret-position="75">
+          <caret line="5" column="20" lean-forward="false" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Translator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-779">
-          <caret line="139" column="43" lean-forward="true" selection-start-line="139" selection-start-column="43" selection-end-line="139" selection-end-column="43" />
+        <state relative-caret-position="180">
+          <caret line="12" column="33" lean-forward="false" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/StopnGo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="27" lean-forward="false" selection-start-line="3" selection-start-column="27" selection-end-line="3" selection-end-column="27" />
           <folding />
         </state>
       </provider>

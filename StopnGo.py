@@ -1,3 +1,8 @@
+left_front_forward = [5, 'OUTPUT']
+left_front_backward = [4, 'OUTPUT']
+echoUS = ['A5', 'INPUT']
+triggerUS= ['A4', 'OUTPUT']
+
 def get_US() -> int:
     #   Instead of reading the distance from keyboard we should get the measurement from the actual ultrasonic
     #   sensor
