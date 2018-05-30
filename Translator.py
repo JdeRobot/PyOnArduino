@@ -55,7 +55,8 @@ class MyVisitor(ast.NodeVisitor):
                 self.visit_Name(nod)
         else:
             variable_declaration += 'int ' + node.id + ' = '
-            setup += 'pinMode(' + node.id + ','
+            if node.id != 'timeUS' and node.id != 'distanceUS':
+                setup += 'pinMode(' + node.id + ','
             print('Name: ' + node.id)
 
     def depth_visit_Name(self, node, depth, isCall=False):
@@ -329,6 +330,7 @@ class MyVisitor(ast.NodeVisitor):
             self.general_visit_Assign(node, inFunction)
 
     def general_visit_Assign(self, node, inFunction=False):
+        global variable_declaration
         self.visit_Name(node.targets)
         print('Assign: ' + str(node.value))
         if isinstance(node.value, ast.List):
@@ -341,12 +343,16 @@ class MyVisitor(ast.NodeVisitor):
             for value in node.value:
                 print('Assign: ' + value)
         elif isinstance(node.value, ast.Call):
+            variable_declaration += '0;\n'
             self.visit_Call(node.value, 0)
         elif isinstance(node.value, ast.Name):
             self.visit_Call(node.value, 0)
         elif isinstance(node.value, ast.BinOp):
+            variable_declaration += '0;\n'
             self.visit_BinOp(node.value, 0)
             print()
+        elif isinstance(node.value, ast.Num):
+            variable_declaration += str(node.value) + ';\n'
         print('Assign ' + str(node.targets) + ' ' + str(node.value))
 
     def depth_visit_Assign(self, node, depth, inFunction=False):
@@ -377,7 +383,8 @@ class MyVisitor(ast.NodeVisitor):
         print(separator + ' Equal')
 
     def visit_Div(self, node, depth):
-        print('DIV!')
+        global function
+        function += ' / '
 
 
 class MyTransformer(ast.NodeTransformer):
