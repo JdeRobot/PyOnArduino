@@ -50,6 +50,7 @@ class MyVisitor(ast.NodeVisitor):
     def general_visit_Name(self, node):
         global variable_declaration
         global setup
+        global function
         if isinstance(node, list):
             for nod in node:
                 self.visit_Name(nod)
@@ -57,6 +58,8 @@ class MyVisitor(ast.NodeVisitor):
             variable_declaration += 'int ' + node.id + ' = '
             if node.id != 'timeUS' and node.id != 'distanceUS':
                 setup += 'pinMode(' + node.id + ','
+            else:
+                function += node.id + ' = '
             print('Name: ' + node.id)
 
     def depth_visit_Name(self, node, depth, isCall=False):
@@ -98,7 +101,7 @@ class MyVisitor(ast.NodeVisitor):
         brackets -= 1
         function += '}\n'
         try:
-            function = str(node.returns.id) + ' ' + function
+            function = str(node.returns.id) + ' ' + function + '\n'
             print('RETURNS -> ' + str(node.returns.id))
             # Add the function string to a list
             functions.append(function)
@@ -225,14 +228,17 @@ class MyVisitor(ast.NodeVisitor):
             self.visit_Name(node.value, depth)
         else:
             print(separator + node.value)
+        function += ';\n'
 
     def visit_BinOp(self, node, depth):
+        global function
         depth += 1
         separator = ' ' + depth * '-'
         print(separator + ' BinOp')
         self.visit_Name(node.left, depth)
         self.visit_Name(node.op, depth)
         self.visit_Name(node.right, depth)
+        function += ';'
 
     def visit_While(self, node, depth=None):
         if depth is None:
@@ -353,6 +359,8 @@ class MyVisitor(ast.NodeVisitor):
             print()
         elif isinstance(node.value, ast.Num):
             variable_declaration += str(node.value) + ';\n'
+        else:
+            print('Assign: ' + node.value)
         print('Assign ' + str(node.targets) + ' ' + str(node.value))
 
     def depth_visit_Assign(self, node, depth, inFunction=False):
