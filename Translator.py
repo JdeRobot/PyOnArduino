@@ -1,3 +1,4 @@
+import sys
 import ast
 
 parenthesis = 0
@@ -399,9 +400,26 @@ class MyTransformer(ast.NodeTransformer):
     def visit_Str(self, node):
         return ast.Str('\"' + node.s + '\"')
 
+input_filename = ""
+output_filename = ""
 
+print('ARGS: ' + str(len(sys.argv)))
+
+if len(sys.argv) == 2:
+    input_filename = sys.argv[1]
+elif len(sys.argv) > 2:
+    input_filename = sys.argv[1]
+    output_filename = sys.argv[2]
+else:
+    print('Usage: ')
+    print('python3 Translator.py [input-file] [output-file]')
+    print('python3 Translator.py [input-file]')
+    sys.exit(0)
+
+print('FILENAME: ' + input_filename)
+print('OUTPUT FILENAME: ' + output_filename)
 output = open('output.ino', 'w')
-controller_file = open('StopnGo.py').read()
+controller_file = open(input_filename).read()
 car_controller = ast.parse(controller_file)
 MyTransformer().visit(car_controller)
 MyVisitor().visit(car_controller)
@@ -421,3 +439,4 @@ output.write('''\nvoid loop() {
              '''\n}\n''')
 print()
 output.close()
+
