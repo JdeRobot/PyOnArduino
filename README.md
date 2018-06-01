@@ -14,17 +14,16 @@ To execute the project
 ## Demo video
 ## Features
 ### Sensors and actuators supported [WIP]
-+ DC Engines
-+ Ultrasonic sensors
-
-Basic built-in Arduino functions:
-+ digitalWrite
-+ delayMicroseconds
-+ pulseIn
+Sensor/Actuator | Supported functions
+----------------|---------------------
+ DC Engines      | digitalWrite
+Ultrasonic sensors | delayMicroseconds, pulseIn
 ### Python features supported [WIP]
-+ Variable declaration
-+ Function definition with return type. If no return type is provided, void is expected. This is 
-made to be easier to understand by the translator
+Feature | Limitations/Comments
+----------------|---------------------
+Variable declaration      | INPUT/OUTPUT variables have to be declared on top
+Function definition with return type | If no return type is provided, void is expected. This is made to be easier to understand by the translator
+
 ### Example
 For the translator to better understand the problem, we divide the code in 3 sections. 
 + Variable declaration
