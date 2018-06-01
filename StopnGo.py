@@ -1,5 +1,11 @@
 left_front_forward = [5, 'OUTPUT']
 left_front_backward = [4, 'OUTPUT']
+right_front_forward = [2, 'OUTPUT']
+right_front_backward = [6, 'OUTPUT']
+left_back_forward = [9, 'OUTPUT']
+left_back_backward = [10, 'OUTPUT']
+right_back_forward = [11, 'OUTPUT']
+right_back_backward = [12, 'OUTPUT']
 echoUS = ['A5', 'INPUT']
 triggerUS = ['A4', 'OUTPUT']
 
@@ -21,10 +27,22 @@ def set_engine(direction):
     if direction == 0:
         digitalWrite(left_front_forward, 0)
         digitalWrite(left_front_backward, 0)
+        digitalWrite(right_front_forward, 0)
+        digitalWrite(right_front_backward, 0)
+        digitalWrite(left_back_forward, 0)
+        digitalWrite(left_back_backward, 0)
+        digitalWrite(right_back_forward, 0)
+        digitalWrite(right_back_backward, 0)
         print('STOP! ')
     elif direction == 1:
         digitalWrite(left_front_forward, 0)
         digitalWrite(left_front_backward, 1)
+        digitalWrite(right_front_forward, 0)
+        digitalWrite(right_front_backward, 1)
+        digitalWrite(left_back_forward, 0)
+        digitalWrite(left_back_backward, 1)
+        digitalWrite(right_back_forward, 0)
+        digitalWrite(right_back_backward, 1)
         print('Forward')
 
 # This is the part that should go inside loop

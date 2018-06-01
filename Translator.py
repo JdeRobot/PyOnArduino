@@ -418,7 +418,7 @@ else:
 
 print('FILENAME: ' + input_filename)
 print('OUTPUT FILENAME: ' + output_filename)
-output = open('output.ino', 'w')
+output = open(output_filename, 'w+')
 controller_file = open(input_filename).read()
 car_controller = ast.parse(controller_file)
 MyTransformer().visit(car_controller)
