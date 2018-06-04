@@ -1,3 +1,5 @@
+import HALduino.halduino as api
+
 left_front_forward = [5, 'OUTPUT']
 left_front_backward = [4, 'OUTPUT']
 right_front_forward = [2, 'OUTPUT']
