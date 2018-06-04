@@ -401,7 +401,7 @@ class MyTransformer(ast.NodeTransformer):
 
 
 input_filename = ""
-output_filename = ""
+output_filename = "output.ino"
 
 print('ARGS: ' + str(len(sys.argv)))
 
