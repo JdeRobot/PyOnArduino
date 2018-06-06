@@ -5,7 +5,7 @@ parenthesis = 0
 brackets = 0
 variable_declaration = ''
 setup = ''
-functions = []
+functions = {}
 
 
 class MyVisitor(ast.NodeVisitor):
@@ -54,7 +54,7 @@ class MyVisitor(ast.NodeVisitor):
         if isinstance(node, list):
             for nod in node:
                 self.visit_Name(nod)
-        else:
+        elif node.id != 'halduino':
             variable_declaration += 'int ' + node.id + ' = '
             if node.id != 'timeUS' and node.id != 'distanceUS':
                 setup += 'pinMode(' + node.id + ','
@@ -84,6 +84,7 @@ class MyVisitor(ast.NodeVisitor):
         global function_def
         global brackets
         global functions
+
         function_def = node.name + '('
         print('Function Definition: ' + str(node.name))
         self.visit_arguments(node.args, depth)
@@ -104,11 +105,11 @@ class MyVisitor(ast.NodeVisitor):
             function_def = str(node.returns.id) + ' ' + function_def + '\n'
             print('RETURNS -> ' + str(node.returns.id))
             # Add the function definition to a functions list
-            functions.append(function_def)
+            functions[node.name] = function_def
             self.visit_Name(node.returns, depth)
         except AttributeError:
             function_def = 'void ' + function_def
-            functions.append(function_def)
+            functions[node.name] = function_def
 
     def visit_Expr(self, node, depth=None, is_loop=False):
         if depth is None:
@@ -145,14 +146,18 @@ class MyVisitor(ast.NodeVisitor):
         depth += 1
         separator = ' ' + depth * '-'
         print(separator + ' Call: ' + str(node.func))
-        function_name = node.func.id
-        if function_name == 'print':
-            function_name = 'Serial.' + function_name
-        if is_loop is True:
-            loop += function_name + '('
-        function_def += function_name + '('
-        parenthesis += 1
-        self.visit_Name(node.func, depth, True)
+        if isinstance(node.func, ast.Attribute):
+            parenthesis += 1
+            self.visit_Attribute(node.func, is_loop)
+        else:
+            function_name = node.func.id
+            if function_name == 'print':
+                function_name = 'Serial.' + function_name
+            if is_loop is True:
+                loop += function_name + '('
+            function_def += function_name + '('
+            parenthesis += 1
+            self.visit_Name(node.func, depth, True)
         self.visit_Str(node.args, depth, is_loop)
         parenthesis -= 1
         if is_loop:
@@ -366,6 +371,44 @@ class MyVisitor(ast.NodeVisitor):
     def depth_visit_Assign(self, node, depth):
         print('Assign ' + str(node.targets) + ' ' + str(node.value))
 
+    def visit_Attribute(self, node, is_loop=False):
+        print(' Attribute: ' + str(node.value) + str(node.ctx) + str(node.attr))
+        global function_def
+        global functions
+        global loop
+        if isinstance(node.value, ast.Name):
+            self.visit_Name(node.value)
+            if node.value.id == 'halduino':
+                if is_loop:
+                    loop += node.attr + '('
+                else:
+                    function_def += node.attr + '('
+                print('Halduino found with call to function ' + node.attr)
+                halduino = open('./HALduino/halduino.ino', 'r')
+                notFound = True
+                notEOF = True
+                line = ''
+                while notFound and notEOF:
+                    line = halduino.readline()
+                    if len(line) > 0:
+                        parts = line.split(' ')  # +|\([^\)]*\)
+                        if len(parts) > 1:
+                            if parts[1].split('(')[0] == node.attr:
+                                notFound = False
+                    else:
+                        notEOF = False
+                if notFound == False:
+                    function = ''
+                    endOfFunction = False
+                    while not endOfFunction:
+                        function += line
+                        line = halduino.readline()
+                        l = line.rstrip()
+                        if not l or len(line) <= 0:
+                            endOfFunction = True
+                    functions[node.attr] = function
+        print('Attribute: ' + str(node.value) + node.attr)
+
     def visit_Gt(self, depth):
         global function_def
         function_def += ' > '
@@ -430,8 +473,8 @@ output.write('''void setup() {
 ''' + setup + '''
 }\n''')
 
-for function_def in functions:
-    output.write(function_def)
+for key, value in functions.items():
+    output.write(value)
 
 output.write('''\nvoid loop() {
     // put your main code here, to run repeatedly:
