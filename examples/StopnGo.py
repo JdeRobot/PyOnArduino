@@ -27,7 +27,7 @@ def set_engine(direction):
         print('Forward')
 
 # This is the part that should go inside loop
-while True:
+def loop():
     if halduino.getUS() < 10:
         set_engine(0)
     else:
