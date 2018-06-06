@@ -40,6 +40,8 @@ class MyVisitor(ast.NodeVisitor):
             elif isinstance(text, ast.Str):
                 function_def += text.s
                 print(' Found String: "' + text.s + '"')
+            elif isinstance(text, ast.BinOp):
+                self.visit_BinOp(text, depth)
 
     def visit_Name(self, node, depth=None, is_call=False):
         if depth is not None:
@@ -76,7 +78,10 @@ class MyVisitor(ast.NodeVisitor):
             self.visit_Num(node, depth)
         else:
             if is_call is False and function_def is not None:
-                function_def += node.id
+                if node.id == 'str':
+                    function_def += 'String'
+                else:
+                    function_def += node.id
             print(separator + ' Name: ' + node.id)
 
     def visit_FunctionDef(self, node):
@@ -152,9 +157,13 @@ class MyVisitor(ast.NodeVisitor):
             function_name = node.func.id
             if function_name == 'print':
                 function_name = 'Serial.' + function_name
-            function_def += function_name + '('
+            if function_name == 'sleep':
+                function_def += 'delay('
+            else:
+                function_def += function_name + '('
             parenthesis += 1
             self.visit_Name(node.func, depth, True)
+        # ARGUMENTS
         self.visit_Str(node.args, depth)
         parenthesis -= 1
         if parenthesis == 0:
@@ -227,10 +236,12 @@ class MyVisitor(ast.NodeVisitor):
         depth += 1
         separator = ' ' + depth * '-'
         print(separator + ' BinOp')
-        self.visit_Name(node.left, depth)
+        if isinstance(node.left, ast.BinOp):
+            self.visit_BinOp(node.left, depth)
+        else:
+            self.visit_Name(node.left, depth)
         self.visit_Name(node.op, depth)
         self.visit_Name(node.right, depth)
-        function_def += ';'
 
     def visit_While(self, node, depth=None):
         if depth is None:
