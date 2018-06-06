@@ -194,7 +194,6 @@ class MyVisitor(ast.NodeVisitor):
         depth += 1
         separator = ' ' + depth * '-'
         for index, arg in enumerate(node.args):
-            function_def += 'int '
             self.visit_arg(arg, depth)
             if index < len(node.args) - 1:
                 function_def += ', '
@@ -206,8 +205,9 @@ class MyVisitor(ast.NodeVisitor):
         global function_def
         depth += 1
         separator = ' ' + depth * '-'
-        function_def += node.arg
-        print(separator + 'arg: ' + node.arg)
+        self.visit_Name(node.annotation, depth)
+        function_def += ' ' + node.arg
+        print(separator + 'arg: ' + node.arg + ' ' + node.annotation.id)
 
     def visit_Return(self, node, depth):
         global function_def
