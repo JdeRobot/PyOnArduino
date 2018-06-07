@@ -1,3 +1,5 @@
+from time import sleep
+
 import HALduino.halduino as halduino
 
 left_front_forward = [5, 'OUTPUT']
@@ -11,7 +13,7 @@ right_back_backward = [12, 'OUTPUT']
 echoUS = ['A5', 'INPUT']
 triggerUS = ['A4', 'OUTPUT']
 
-def set_engine(direction):
+def set_engine(direction: int):
     #   Instead of just printing the direction the engines will have, we should actually set it within this function
     if direction == 0:
         halduino.setVEngine1(0, 0)
@@ -28,7 +30,19 @@ def set_engine(direction):
 
 # This is the part that should go inside loop
 def loop():
+    sleep(100)
     if halduino.getUS() < 10:
         set_engine(0)
     else:
         set_engine(1)
+
+
+    if True:
+        print('HELLO')
+    elif halduino.getUS() <= 10:
+        set_engine(0)
+    else:
+        set_engine(1)
+
+def print_name_surname(name: str, surname: str, second: str, another: str):
+    print(name + surname + second + another)

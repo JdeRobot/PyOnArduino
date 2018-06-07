@@ -261,6 +261,9 @@ class MyVisitor(ast.NodeVisitor):
         print(separator + ' While: ' + str(node.test))
 
     def visit_NameConstant(self, node, depth):
+        global function_def
+        if node.value is True:
+            function_def += 'true'
         depth += 1
         separator = ' ' + depth * '-'
         print(separator + 'Name Constant: ' + str(node.value))
@@ -273,7 +276,11 @@ class MyVisitor(ast.NodeVisitor):
         separator = ' ' + depth * '-'
         function_def += 'if ('
         parenthesis += 1
-        self.visit_Compare(node.test, depth)
+        # TEST PART OF IF
+        if isinstance(node.test, ast.Compare):
+            self.visit_Compare(node.test, depth)
+        else:
+            self.visit_NameConstant(node.test, depth)
         brackets += 1
         function_def += ') {\n  '
         parenthesis -= 1
@@ -314,6 +321,8 @@ class MyVisitor(ast.NodeVisitor):
             self.visit_Lt(depth)
         elif isinstance(node.ops[0], ast.Eq):
             self.visit_Eq(depth)
+        elif isinstance(node.ops[0], ast.LtE):
+            self.visit_LtE(depth)
         # COMPARATORS
         self.visit_Num(node.comparators, depth)
 
@@ -401,6 +410,13 @@ class MyVisitor(ast.NodeVisitor):
         depth += 1
         separator = ' ' + depth * '-'
         print(separator + ' Lower than')
+
+    def visit_LtE(self, depth):
+        global function_def
+        function_def += ' <= '
+        depth += 1
+        separator = ' ' + depth * '-'
+        print(separator + ' Lower than equal')
 
     def visit_Eq(self, depth):
         global function_def
