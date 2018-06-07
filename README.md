@@ -32,10 +32,6 @@ sleep() | SUPPORTED
 If | If/elif/else
 Tuples | Future work
 
-
-
-
-
 ### Example
 For the translator to better understand the problem, we divide the code in 2 sections. 
 + Variable declaration
@@ -44,7 +40,6 @@ For the translator to better understand the problem, we divide the code in 2 sec
 import HALduino.halduino as halduino
 
 def set_engine(direction: int):
-    #   Instead of just printing the direction the engines will have, we should actually set it within this function
     if direction == 0:
         halduino.setVEngine1(0, 0)
         halduino.setVEngine2(0, 0)
@@ -58,7 +53,6 @@ def set_engine(direction: int):
         halduino.setVEngine4(0, 1)
         print('Forward')
 
-# This is the part that should go inside loop
 def loop():
     sleep(100)
     if halduino.getUS() < 10:

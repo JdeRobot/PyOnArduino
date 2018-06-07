@@ -1,7 +1,7 @@
 import sys
 import ast
 
-parenthesis = 0
+parentheses = 0
 brackets = 0
 variable_declaration = ''
 setup = ''
@@ -70,10 +70,22 @@ class MyVisitor(ast.NodeVisitor):
         separator = ' ' + depth * '-'
         if isinstance(node, ast.Add):
             print(separator + ' Add: ' + str(node))
-            if function_def is not None:
-                function_def += ' + '
+            self.visit_Add(node)
         elif isinstance(node, ast.Div):
+            print(separator + ' Div: ' + str(node))
             self.visit_Div(node)
+        elif isinstance(node, ast.Sub):
+            print(separator + ' Sub: ' + str(node))
+            self.visit_Sub(node)
+        elif isinstance(node, ast.Mult):
+            print(separator + ' Mult: ' + str(node))
+            self.visit_Mult(node)
+        elif isinstance(node, ast.Mod):
+            print(separator + ' Mod: ' + str(node))
+            self.visit_Mod(node)
+        elif isinstance(node, ast.BinOp):
+            print(separator + ' BinOp: ' + str(node))
+            self.visit_BinOp(node, depth)
         elif isinstance(node, ast.Num):
             self.visit_Num(node, depth)
         else:
@@ -89,7 +101,6 @@ class MyVisitor(ast.NodeVisitor):
         global function_def
         global brackets
         global functions
-
         function_def = node.name + '('
         print('Function Definition: ' + str(node.name))
         self.visit_arguments(node.args, depth)
@@ -146,12 +157,12 @@ class MyVisitor(ast.NodeVisitor):
 
     def visit_Call(self, node, depth):
         global function_def
-        global parenthesis
+        global parentheses
         depth += 1
         separator = ' ' + depth * '-'
         print(separator + ' Call: ' + str(node.func))
         if isinstance(node.func, ast.Attribute):
-            parenthesis += 1
+            parentheses += 1
             self.visit_Attribute(node.func)
         else:
             function_name = node.func.id
@@ -161,12 +172,12 @@ class MyVisitor(ast.NodeVisitor):
                 function_def += 'delay('
             else:
                 function_def += function_name + '('
-            parenthesis += 1
+            parentheses += 1
             self.visit_Name(node.func, depth, True)
         # ARGUMENTS
         self.visit_Str(node.args, depth)
-        parenthesis -= 1
-        if parenthesis == 0:
+        parentheses -= 1
+        if parentheses == 0:
             function_def += ');\n   '
         else:
             function_def += ')'
@@ -270,12 +281,12 @@ class MyVisitor(ast.NodeVisitor):
 
     def visit_If(self, node, depth):
         global function_def
-        global parenthesis
+        global parentheses
         global brackets
         depth += 1
         separator = ' ' + depth * '-'
         function_def += 'if ('
-        parenthesis += 1
+        parentheses += 1
         # TEST PART OF IF
         if isinstance(node.test, ast.Compare):
             self.visit_Compare(node.test, depth)
@@ -283,7 +294,7 @@ class MyVisitor(ast.NodeVisitor):
             self.visit_NameConstant(node.test, depth)
         brackets += 1
         function_def += ') {\n  '
-        parenthesis -= 1
+        parentheses -= 1
         for body_part in node.body:
             if isinstance(body_part, ast.Expr):
                 self.visit_Expr(body_part, depth)
@@ -428,6 +439,24 @@ class MyVisitor(ast.NodeVisitor):
     def visit_Div(self, node):
         global function_def
         function_def += ' / '
+
+    def visit_Sub(self, node):
+        global function_def
+        function_def += ' - '
+
+    def visit_Add(self, node):
+        global function_def
+        function_def += ' + '
+
+    def visit_Mult(self, node):
+        global function_def
+        function_def += ' * '
+
+    def visit_Mod(self, node):
+        global function_def
+        function_def += ' % '
+
+
 
 
 class MyTransformer(ast.NodeTransformer):
