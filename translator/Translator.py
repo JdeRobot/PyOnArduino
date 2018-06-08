@@ -3,8 +3,6 @@ import ast
 
 parentheses = 0
 brackets = 0
-variable_declaration = ''
-setup = ''
 functions = {}
 
 
@@ -16,13 +14,6 @@ class MyVisitor(ast.NodeVisitor):
             self.general_visit_Str(node)
 
     def general_visit_Str(self, node):
-        global variable_declaration
-        global setup
-        parts = node.s.split('"')
-        if parts[1] != 'INPUT' and parts[1] != 'OUTPUT':
-            variable_declaration += parts[1] + ';\n'
-        else:
-            setup += parts[1] + ');\n'
         print('Found String: "' + node.s + '"')
 
     def depth_visit_Str(self, node, depth):
@@ -50,18 +41,12 @@ class MyVisitor(ast.NodeVisitor):
             self.general_visit_Name(node)
 
     def general_visit_Name(self, node):
-        global variable_declaration
-        global setup
         global function_def
         if isinstance(node, list):
             for nod in node:
                 self.visit_Name(nod)
         elif node.id != 'halduino':
-            variable_declaration += 'int ' + node.id + ' = '
-            if node.id != 'timeUS' and node.id != 'distanceUS':
-                setup += 'pinMode(' + node.id + ','
-            else:
-                function_def += node.id + ' = '
+            function_def += 'int ' + node.id
             print('Name: ' + node.id)
 
     def depth_visit_Name(self, node, depth, is_call=False):
@@ -113,8 +98,10 @@ class MyVisitor(ast.NodeVisitor):
                 self.visit_If(nod, depth)
             elif isinstance(nod, ast.Assign):
                 self.visit_Assign(nod, depth)
+            elif isinstance(nod, ast.For):
+                self.visit_For(nod, depth)
             else:
-                print(nod)
+                print('Function Def undefined node: ' + nod)
         brackets -= 1
         function_def += '}\n'
         try:
@@ -189,9 +176,8 @@ class MyVisitor(ast.NodeVisitor):
             self.general_visit_Num(node)
 
     def general_visit_Num(self, node):
-        global variable_declaration
-        global setup
-        variable_declaration += str(node.n) + ';\n'
+        global function_def
+        function_def += str(node.n)
         print('Num: ' + str(node.n))
 
     def depth_visit_Num(self, node, depth):
@@ -311,7 +297,7 @@ class MyVisitor(ast.NodeVisitor):
                 self.visit_Expr(or_else_part, depth)
                 brackets -= 1
                 if brackets >= 0:
-                    function_def += '}'
+                    function_def += '}\n'
         brackets -= 1
         if brackets > 0:
             function_def += '}\n'
@@ -344,29 +330,30 @@ class MyVisitor(ast.NodeVisitor):
             self.general_visit_Assign(node)
 
     def general_visit_Assign(self, node):
-        global variable_declaration
+        global function_def
         self.visit_Name(node.targets)
         print('Assign: ' + str(node.value))
         if isinstance(node.value, ast.List):
-            if isinstance(node.value.elts[0], ast.Num):
-                self.visit_Num(node.value.elts[0])
-            else:
-                self.visit_Str(node.value.elts[0])
-            self.visit_Str(node.value.elts[1])
+            function_def += '[] = {'
+            print('List! ' + str(len(node.value.elts)))
+            for index, element in enumerate(node.value.elts):
+                if index >= 1:
+                    function_def += ','
+                if isinstance(element, ast.Num):
+                    self.visit_Num(element)
+                else:
+                    self.visit_Str(element)
+            function_def += '};\n'
         elif isinstance(node.value, list):
             for val in node.value:
                 print('Assign: ' + val)
         elif isinstance(node.value, ast.Call):
-            variable_declaration += '0;\n'
             self.visit_Call(node.value, 0)
         elif isinstance(node.value, ast.Name):
             self.visit_Call(node.value, 0)
         elif isinstance(node.value, ast.BinOp):
-            variable_declaration += '0;\n'
             self.visit_BinOp(node.value, 0)
             print()
-        elif isinstance(node.value, ast.Num):
-            variable_declaration += str(node.value) + ';\n'
         else:
             print('Assign: ' + node.value)
         print('Assign ' + str(node.targets) + ' ' + str(node.value))
@@ -407,6 +394,20 @@ class MyVisitor(ast.NodeVisitor):
                             endOfFunction = True
                     functions[node.attr] = function
         print('Attribute: ' + str(node.value) + node.attr)
+
+    def visit_For(self, node, depth):
+        global function_def
+        print('FOR!')
+        print('Target: ' + str(node.target))
+        function_def += 'for(int '
+        self.visit_Name(node.target, depth)
+        function_def += ' = 0; sizeof('
+        print('Iterator: ' + str(node.iter))
+        self.visit_Name(node.iter, depth)
+        function_def += '); x++) {\n'
+        print('Body: ' + str(node.body))
+        self.visit_Expr(node.body, depth)
+        function_def += '}\n'
 
     def visit_Gt(self, depth):
         global function_def
@@ -488,10 +489,7 @@ car_controller = ast.parse(controller_file)
 MyTransformer().visit(car_controller)
 MyVisitor().visit(car_controller)
 
-output.write(variable_declaration + '\n')
 output.write('''void setup() {
-    // put your setup code here, to run once:
-''' + setup + '''
 }\n''')
 
 for key, value in functions.items():
