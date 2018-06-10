@@ -489,8 +489,13 @@ car_controller = ast.parse(controller_file)
 MyTransformer().visit(car_controller)
 MyVisitor().visit(car_controller)
 
-output.write('''void setup() {
-}\n''')
+if 'setup' not in functions:
+    output.write('''void setup() {
+    }\n''')
+
+if 'loop' not in functions:
+    output.write('''void loop() {
+        }\n''')
 
 for key, value in functions.items():
     output.write(value)

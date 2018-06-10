@@ -54,6 +54,12 @@ void setVEngine4(int forward, int  backward) {
 #define IR1PIN 3
 IRrecv irrecv(IR1PIN);
 
+void setupIR1() {
+  Serial.begin(9600) ;
+  Serial.println("NEC IR1 code reception") ;
+  irrecv.enableIRIn();
+}
+
 int getIR1() {
     decode_results resultsIR1;
     if (irrecv.decode(&resultsIR1)) { // have we received an IR signal
@@ -61,6 +67,12 @@ int getIR1() {
         irrecv.resume();
         return resultsIR1.value;
     }
+}
+
+void setupIR2() {
+  Serial.begin(9600) ;
+  Serial.println("NEC IR2 code reception") ;
+  irrecv.enableIRIn();
 }
 
 #define IR2PIN 4
