@@ -50,3 +50,27 @@ void setVEngine4(int forward, int  backward) {
     digitalWrite(right_back_forward, forward);
     digitalWrite(right_back_backward, backward);
 }
+
+#define IR1PIN 3
+IRrecv irrecv(IR1PIN);
+
+int getIR1() {
+    decode_results resultsIR1;
+    if (irrecv.decode(&resultsIR1)) { // have we received an IR signal
+        Serial.println(resultsIR1.value);
+        irrecv.resume();
+        return resultsIR1.value;
+    }
+}
+
+#define IR2PIN 4
+IRrecv irrecv(IR2PIN);
+
+int getIR2() {
+    decode_results resultsIR2;
+    if (irrecv.decode(&resultsIR2)) { // have we received an IR signal
+        Serial.println(resultsIR2.value);
+        irrecv.resume();
+        return resultsIR2.value;
+    }
+}
