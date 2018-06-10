@@ -2,12 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e72936ae-374a-42ae-8588-539f897332c5" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/HALduino/halduino.ino" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/HALduino/halduino.py" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output.ino" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/examples/IRtest.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/examples/test.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/HALduino/halduino.ino" afterPath="$PROJECT_DIR$/HALduino/halduino.ino" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/HALduino/halduino.py" afterPath="$PROJECT_DIR$/HALduino/halduino.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/examples/StopnGo.py" afterPath="$PROJECT_DIR$/examples/StopnGo.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/translator/Translator.py" afterPath="$PROJECT_DIR$/translator/Translator.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output.ino" afterPath="$PROJECT_DIR$/output.ino" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,9 +23,33 @@
       <file leaf-file-name="StopnGo.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/examples/StopnGo.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="112">
-              <caret line="11" column="23" lean-forward="true" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="20" selection-end-column="21" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/examples/test.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="660">
+              <caret line="44" column="8" lean-forward="false" selection-start-line="44" selection-start-column="8" selection-end-line="44" selection-end-column="8" />
+              <folding>
+                <element signature="e#0#22#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IRtest.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/examples/IRtest.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="5" column="8" lean-forward="true" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="8" />
+              <folding>
+                <element signature="e#0#22#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -32,38 +57,8 @@
       <file leaf-file-name="output.ino" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/output.ino">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="14" lean-forward="true" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="14" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Translator.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/translator/Translator.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="296">
-              <caret line="67" column="37" lean-forward="true" selection-start-line="67" selection-start-column="37" selection-end-line="67" selection-end-column="37" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_ast.py" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/Library/Caches/PyCharmCE2017.1/python_stubs/-2010535109/_ast.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="146">
-              <caret line="864" column="10" lean-forward="false" selection-start-line="864" selection-start-column="6" selection-end-line="864" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="halduino.ino" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/HALduino/halduino.ino">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="3" lean-forward="false" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
+            <state relative-caret-position="210">
+              <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -72,8 +67,51 @@
       <file leaf-file-name="halduino.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/HALduino/halduino.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+            <state relative-caret-position="270">
+              <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="halduino.ino" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/HALduino/halduino.ino">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="550">
+              <caret line="52" column="0" lean-forward="true" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Translator.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/translator/Translator.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="720">
+              <caret line="299" column="40" lean-forward="false" selection-start-line="299" selection-start-column="40" selection-end-line="299" selection-end-column="40" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="435">
+                <caret line="29" column="18" lean-forward="true" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="18" />
+                <folding />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_ast.py" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/Library/Caches/PyCharmCE2017.1/python_stubs/-2010535109/_ast.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="9405">
+              <caret line="627" column="17" lean-forward="false" selection-start-line="624" selection-start-column="8" selection-end-line="627" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -90,36 +128,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>distance</find>
-      <find>Name: timeUS</find>
-      <find>Name:</find>
-      <find>58</find>
-      <find>--- Num:</find>
-      <find>Num:</find>
-      <find>BinOp</find>
-      <find>timeUS</find>
-      <find>isCall</find>
-      <find>visit_Assign</find>
-      <find>print</find>
-      <find>print(</find>
-      <find>serial.</find>
-      <find>Serial.</find>
-      <find>api.</find>
-      <find>api</find>
-      <find>ast.</find>
-      <find>Att</find>
-      <find>functions.</find>
-      <find>getUS</find>
-      <find>Attribut</find>
-      <find>Attribute</find>
-      <find>global function</find>
-      <find>direction</find>
-      <find>functions</find>
-      <find>functionsDict</find>
-      <find>global loop</find>
-      <find>Load</find>
-      <find>loop</find>
       <find>int</find>
+      <find>Serial.</find>
+      <find>ARGUMENTS</find>
+      <find>argUMENTS</find>
+      <find>Bin</find>
+      <find>Name</find>
+      <find>Name:</find>
+      <find>delay</find>
+      <find>arg(</find>
+      <find>visit_Compare</find>
+      <find>sleep</find>
+      <find>NameCo</find>
+      <find>left_front_forward</find>
+      <find>Mod(</find>
+      <find>BitXor</find>
+      <find>add</find>
+      <find>BinOp</find>
+      <find>Par</find>
+      <find>parenthesis</find>
+      <find>'('</find>
+      <find>For(</find>
+      <find>For</find>
+      <find>visit_For</find>
+      <find>separa</find>
+      <find>general_visit_Assign</find>
+      <find>setup</find>
+      <find>self.general_visit_Assign</find>
+      <find>write</find>
+      <find>variable_declaration</find>
+      <find>Assign:</find>
     </findStrings>
     <replaceStrings>
       <replace>&gt;</replace>
@@ -128,33 +166,39 @@
       <replace>is_call</replace>
       <replace>halduino</replace>
       <replace>functions</replace>
+      <replace>parentheses</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="halduino" />
       </map>
     </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/StopnGo.py" />
         <option value="$PROJECT_DIR$/Translator.py" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/output2.ino" />
+        <option value="$PROJECT_DIR$/translator/Translator.py" />
+        <option value="$PROJECT_DIR$/examples/test.py" />
         <option value="$PROJECT_DIR$/examples/StopnGo.py" />
         <option value="$PROJECT_DIR$/HALduino/halduino.py" />
         <option value="$PROJECT_DIR$/HALduino/halduino.ino" />
+        <option value="$PROJECT_DIR$/examples/IRtest.py" />
         <option value="$PROJECT_DIR$/output.ino" />
-        <option value="$PROJECT_DIR$/translator/Translator.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="width" value="1440" />
-    <option name="height" value="900" />
+    <option name="x" value="-582" />
+    <option name="y" value="-1080" />
+    <option name="width" value="2560" />
+    <option name="height" value="1080" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -172,8 +216,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -186,14 +228,47 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PyOnArduino" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PyOnArduino" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="HALduino" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PyOnArduino" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PyOnArduino" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="examples" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="FullScreen" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/examples" />
       <recent name="$PROJECT_DIR$/translator" />
@@ -400,7 +475,56 @@
       <option name="project" value="LOCAL" />
       <updated>1527846332235</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Fixed #4 Halduino directories added">
+      <created>1528292525900</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1528292525900</updated>
+    </task>
+    <task id="LOCAL-00018" summary="loop() generified to be a function without distinction">
+      <created>1528293871726</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1528293871726</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Function arguments types get from their definition">
+      <created>1528296482535</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1528296482535</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Python's sleep function is translated to delay directly">
+      <created>1528299385679</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1528299385679</updated>
+    </task>
+    <task id="LOCAL-00021" summary="README.md updated with the functionality we're working on supporting">
+      <created>1528384360759</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1528384360759</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Add, Sub, Mult, Mod support added">
+      <created>1528391485191</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1528391485191</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Integer array, new setup definition pattern and variable declaration &#10;section deleted">
+      <created>1528479821005</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1528479821005</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TodoView">
@@ -413,16 +537,16 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <frame x="-582" y="-1080" width="2560" height="1080" extended-state="0" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14806867" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.08935663" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891566" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4493976" sideWeight="0.50572246" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37831324" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26987952" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2089109" sideWeight="0.49713877" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891566" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37831324" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2752475" sideWeight="0.49427754" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35060242" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -477,7 +601,14 @@
     <MESSAGE value="Translator refactored" />
     <MESSAGE value="README.md updated" />
     <MESSAGE value="Create file if non exists. StopnGo 4 engines" />
-    <option name="LAST_COMMIT_MESSAGE" value="Create file if non exists. StopnGo 4 engines" />
+    <MESSAGE value="Fixed #4 Halduino directories added" />
+    <MESSAGE value="loop() generified to be a function without distinction" />
+    <MESSAGE value="Function arguments types get from their definition" />
+    <MESSAGE value="Python's sleep function is translated to delay directly" />
+    <MESSAGE value="README.md updated with the functionality we're working on supporting" />
+    <MESSAGE value="Add, Sub, Mult, Mod support added" />
+    <MESSAGE value="Integer array, new setup definition pattern and variable declaration &#10;section deleted" />
+    <option name="LAST_COMMIT_MESSAGE" value="Integer array, new setup definition pattern and variable declaration &#10;section deleted" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -493,15 +624,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/output.ino" />
-    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/ast.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3900">
-          <caret line="260" column="0" lean-forward="false" selection-start-line="260" selection-start-column="0" selection-end-line="260" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/examples/StopnGo.py" />
     <entry file="file://$PROJECT_DIR$/example.py" />
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
@@ -565,21 +687,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="268">
           <caret line="265" column="6" lean-forward="false" selection-start-line="265" selection-start-column="6" selection-end-line="265" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="345">
-            <caret line="23" column="77" lean-forward="false" selection-start-line="23" selection-start-column="77" selection-end-line="23" selection-end-column="77" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/output2.ino" />
     <entry file="file://$PROJECT_DIR$/example.py" />
     <entry file="file://$PROJECT_DIR$/examples/CarController.py" />
     <entry file="file://$PROJECT_DIR$/docs/prototype.png">
@@ -599,54 +709,91 @@
         <state relative-caret-position="139">
           <caret line="4981" column="8" lean-forward="false" selection-start-line="4981" selection-start-column="8" selection-end-line="4981" selection-end-column="8" />
           <caret line="4981" column="10" lean-forward="true" selection-start-line="4981" selection-start-column="10" selection-end-line="4981" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/output2.ino">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Caches/PyCharmCE2017.1/python_stubs/-2010535109/_ast.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9405">
+          <caret line="627" column="17" lean-forward="false" selection-start-line="624" selection-start-column="8" selection-end-line="627" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="435">
+            <caret line="29" column="18" lean-forward="true" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="18" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="660">
+          <caret line="44" column="8" lean-forward="false" selection-start-line="44" selection-start-column="8" selection-end-line="44" selection-end-column="8" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/translator/Translator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="720">
+          <caret line="299" column="40" lean-forward="false" selection-start-line="299" selection-start-column="40" selection-end-line="299" selection-end-column="40" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/HALduino/halduino.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Library/Caches/PyCharmCE2017.1/python_stubs/-2010535109/_ast.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="864" column="10" lean-forward="false" selection-start-line="864" selection-start-column="6" selection-end-line="864" selection-end-column="10" />
+        <state relative-caret-position="270">
+          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/examples/StopnGo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="11" column="23" lean-forward="true" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="20" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/IRtest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="8" lean-forward="true" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="8" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/output.ino">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/HALduino/halduino.ino">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="3" lean-forward="false" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/output.ino">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="14" lean-forward="true" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/translator/Translator.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="67" column="37" lean-forward="true" selection-start-line="67" selection-start-column="37" selection-end-line="67" selection-end-column="37" />
+        <state relative-caret-position="550">
+          <caret line="52" column="0" lean-forward="true" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
           <folding />
         </state>
       </provider>

@@ -1,18 +1,6 @@
 import HALduino.halduino as halduino
 
-left_front_forward = [5, 'OUTPUT']
-left_front_backward = [4, 'OUTPUT']
-right_front_forward = [2, 'OUTPUT']
-right_front_backward = [6, 'OUTPUT']
-left_back_forward = [9, 'OUTPUT']
-left_back_backward = [10, 'OUTPUT']
-right_back_forward = [11, 'OUTPUT']
-right_back_backward = [12, 'OUTPUT']
-echoUS = ['A5', 'INPUT']
-triggerUS = ['A4', 'OUTPUT']
-
-def set_engine(direction):
-    #   Instead of just printing the direction the engines will have, we should actually set it within this function
+def set_engine(direction: int):
     if direction == 0:
         halduino.setVEngine1(0, 0)
         halduino.setVEngine2(0, 0)
@@ -26,8 +14,7 @@ def set_engine(direction):
         halduino.setVEngine4(0, 1)
         print('Forward')
 
-# This is the part that should go inside loop
-while True:
+def loop():
     if halduino.getUS() < 10:
         set_engine(0)
     else:
