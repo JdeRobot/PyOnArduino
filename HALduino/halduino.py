@@ -20,11 +20,11 @@ def setVEngine4(forward, backward):
 def setupIR1():
     pass
 
-def getIR1():
+def getIR1() -> int:
     pass
 
 def setupIR2():
     pass
 
-def getIR2():
+def getIR2() -> int:
     pass

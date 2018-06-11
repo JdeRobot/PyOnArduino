@@ -42,11 +42,12 @@ class MyVisitor(ast.NodeVisitor):
 
     def general_visit_Name(self, node):
         global function_def
+        global variable_def
         if isinstance(node, list):
             for nod in node:
                 self.visit_Name(nod)
         elif node.id != 'halduino':
-            function_def += 'int ' + node.id
+            variable_def = node.id
             print('Name: ' + node.id)
 
     def depth_visit_Name(self, node, depth, is_call=False):
@@ -182,6 +183,7 @@ class MyVisitor(ast.NodeVisitor):
 
     def depth_visit_Num(self, node, depth):
         global function_def
+        global variable_def
         depth += 1
         separator = ' ' + depth * '-'
         if isinstance(node, list):
@@ -192,7 +194,14 @@ class MyVisitor(ast.NodeVisitor):
             print(separator + ' UnaryOp: ')
         else:
             print(separator + ' Num: ' + str(node.n))
-            function_def += str(node.n)
+            try:
+                if variable_def != '':
+                    variable_def += str(node.n)
+                    variable_def = str(type(node.n).__name__) + ' ' + variable_def
+                else:
+                    function_def += str(node.n)
+            except:
+                function_def += str(node.n)
 
     def visit_arguments(self, node, depth):
         global function_def
@@ -259,8 +268,17 @@ class MyVisitor(ast.NodeVisitor):
 
     def visit_NameConstant(self, node, depth):
         global function_def
+        global variable_def
+        boolean_var = ''
         if node.value is True:
-            function_def += 'true'
+            boolean_var = 'true'
+        elif node.value is False:
+            boolean_var = 'false'
+        if variable_def != '':
+            variable_def += boolean_var
+            variable_def = 'boolean ' + variable_def
+        else:
+            function_def += boolean_var
         depth += 1
         separator = ' ' + depth * '-'
         print(separator + 'Name Constant: ' + str(node.value))
@@ -331,9 +349,11 @@ class MyVisitor(ast.NodeVisitor):
 
     def general_visit_Assign(self, node):
         global function_def
+        global variable_def
         self.visit_Name(node.targets)
         print('Assign: ' + str(node.value))
         if isinstance(node.value, ast.List):
+            function_def += 'int ' + variable_def
             function_def += '[] = {'
             print('List! ' + str(len(node.value.elts)))
             for index, element in enumerate(node.value.elts):
@@ -344,6 +364,7 @@ class MyVisitor(ast.NodeVisitor):
                 else:
                     self.visit_Str(element)
             function_def += '};\n'
+            variable_def = ''
         elif isinstance(node.value, list):
             for val in node.value:
                 print('Assign: ' + val)
@@ -353,9 +374,20 @@ class MyVisitor(ast.NodeVisitor):
             self.visit_Call(node.value, 0)
         elif isinstance(node.value, ast.BinOp):
             self.visit_BinOp(node.value, 0)
-            print()
+        elif isinstance(node.value, ast.NameConstant):
+            variable_def += ' = '
+            self.visit_NameConstant(node.value, 0)
+            variable_def += ';\n'
+            function_def += variable_def
+            variable_def = ''
+        elif isinstance(node.value, ast.Num):
+            variable_def += ' = '
+            self.visit_Num(node.value, 0)
+            variable_def += ';\n'
+            function_def += variable_def
+            variable_def = ''
         else:
-            print('Assign: ' + node.value)
+            print('Assign: ' + str(node.value))
         print('Assign ' + str(node.targets) + ' ' + str(node.value))
 
     def depth_visit_Assign(self, node):
