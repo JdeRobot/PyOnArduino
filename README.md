@@ -30,6 +30,7 @@ Operators | + - / * ^ %
 Loops | for, while
 sleep() | SUPPORTED
 If | If/elif/else
+Arrays | Arrays can be defined given the types we already supported
 Tuples | Future work
 
 ### Example
