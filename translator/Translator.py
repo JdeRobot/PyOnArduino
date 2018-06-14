@@ -25,6 +25,11 @@ class MyVisitor(ast.NodeVisitor):
                     print(' Found String: "' + text.s + '"')
                 elif isinstance(text, ast.BinOp):
                     self.visit_BinOp(text)
+                elif isinstance(text, ast.Subscript):
+                    self.visit_Name(text.value)
+                    function_def += '['
+                    self.visit_Slice(text.slice)
+                    function_def += ']'
         else:
             if index == 0 and str(type(node.s).__name__) == 'str':
                 variable_def = 'String ' + variable_def
@@ -170,9 +175,13 @@ class MyVisitor(ast.NodeVisitor):
 
     def visit_arg(self, node):
         global function_def
-        self.visit_Name(node.annotation)
-        function_def += ' ' + node.arg
-        print('arg: ' + node.arg + ' ' + node.annotation.id)
+        if node.annotation is not None:
+            self.visit_Name(node.annotation)
+            function_def += ' ' + node.arg
+            print('arg: ' + node.arg + ' ' + node.annotation.id)
+        else:
+            function_def += 'int ' + node.arg
+            print('arg: ' + node.arg)
 
     def visit_Return(self, node):
         global function_def
@@ -367,6 +376,9 @@ class MyVisitor(ast.NodeVisitor):
         print('Body: ' + str(node.body))
         self.visit_Expr(node.body)
         function_def += '}\n'
+
+    def visit_Slice(self, node):
+        self.visit_Num(node.value)
 
     def visit_Gt(self):
         global function_def
