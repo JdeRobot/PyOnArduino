@@ -127,12 +127,16 @@ class MyVisitor(ast.NodeVisitor):
             self.visit_Attribute(node.func)
         else:
             function_name = node.func.id
+            print(function_name)
             if function_name == 'print':
                 function_name = 'Serial.' + function_name
-            if function_name == 'sleep':
-                function_def += 'delay('
-            else:
+            elif function_name == 'sleep':
+                function_name = 'delay'
+            try:
                 function_def += function_name + '('
+            except:
+                print('Code must be within a function')
+                exit(1)
             parentheses += 1
             self.visit_Name(node.func, is_call=True)
         # ARGUMENTS
@@ -304,7 +308,7 @@ class MyVisitor(ast.NodeVisitor):
         elif isinstance(node.value, ast.Call):
             self.visit_Call(node.value)
         elif isinstance(node.value, ast.Name):
-            self.visit_Call(node.value)
+            self.visit_Name(node.value)
         elif isinstance(node.value, ast.BinOp):
             self.visit_BinOp(node.value)
         elif isinstance(node.value, ast.NameConstant):
@@ -343,12 +347,6 @@ class MyVisitor(ast.NodeVisitor):
                 else:
                     searched_node = node.attr.split('set')[1]
                 print(searched_node)
-                '''
-                    Instead of just searching for the node once, keep doing it until the end of the file
-                    We have to distinguish two cases
-                        - Function declaration 
-                        - Line that contains something related to the searched_node
-                '''
                 halduino = open('./HALduino/halduino.ino', 'r')
                 notFound = True
                 notEOF = True
@@ -374,9 +372,6 @@ class MyVisitor(ast.NodeVisitor):
                             l = line.rstrip()
                             if not l or len(line) <= 0:
                                 endOfFunction = True
-                        '''
-                            Llega hasta aquí pero se sobreescribe en este punto al tener la misma key
-                        '''
                         functions[declaration_name] = function
                         notFound = True
         print('Attribute: ' + str(node.value) + node.attr)
