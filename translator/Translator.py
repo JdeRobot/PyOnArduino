@@ -338,29 +338,47 @@ class MyVisitor(ast.NodeVisitor):
             if node.value.id == 'halduino':
                 function_def += node.attr + '('
                 print('Halduino found with call to function ' + node.attr)
+                if len(node.attr.split('get')) > 1:
+                    searched_node = node.attr.split('get')[1]
+                else:
+                    searched_node = node.attr.split('set')[1]
+                print(searched_node)
+                '''
+                    Instead of just searching for the node once, keep doing it until the end of the file
+                    We have to distinguish two cases
+                        - Function declaration 
+                        - Line that contains something related to the searched_node
+                '''
                 halduino = open('./HALduino/halduino.ino', 'r')
                 notFound = True
                 notEOF = True
                 line = ''
-                while notFound and notEOF:
-                    line = halduino.readline()
-                    if len(line) > 0:
-                        parts = line.split(' ')  # +|\([^\)]*\)
-                        if len(parts) > 1:
-                            if parts[1].split('(')[0] == node.attr:
-                                notFound = False
-                    else:
-                        notEOF = False
-                if notFound == False:
-                    function = ''
-                    endOfFunction = False
-                    while not endOfFunction:
-                        function += line
+                declaration_name = ''
+                while notEOF:
+                    while notFound and notEOF:
                         line = halduino.readline()
-                        l = line.rstrip()
-                        if not l or len(line) <= 0:
-                            endOfFunction = True
-                    functions[node.attr] = function
+                        if len(line) > 0:
+                            if len(line.split(searched_node)) > 1:
+                                parts = line.split(' ')  # +|\([^\)]*\)
+                                declaration_name = parts[1].split('(')[0]
+                                notFound = False
+                        else:
+                            notEOF = False
+
+                    if notFound == False:
+                        function = ''
+                        endOfFunction = False
+                        while not endOfFunction:
+                            function += line
+                            line = halduino.readline()
+                            l = line.rstrip()
+                            if not l or len(line) <= 0:
+                                endOfFunction = True
+                        '''
+                            Llega hasta aquí pero se sobreescribe en este punto al tener la misma key
+                        '''
+                        functions[declaration_name] = function
+                        notFound = True
         print('Attribute: ' + str(node.value) + node.attr)
 
     def visit_For(self, node):

@@ -17,14 +17,10 @@ def setVEngine3(forward, backward):
 def setVEngine4(forward, backward):
     pass
 
-def setupIR1():
-    pass
 
 def getIR1() -> int:
     pass
 
-def setupIR2():
-    pass
 
 def getIR2() -> int:
     pass
