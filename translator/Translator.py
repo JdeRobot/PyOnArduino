@@ -7,7 +7,7 @@ functions = {}
 
 
 class MyVisitor(ast.NodeVisitor):
-    def visit_Str(self, node, index=0):
+    def visit_Str(self, node, index=0, variable_declaration=False):
         global variable_def
         global function_def
         if isinstance(node, list):
@@ -22,18 +22,23 @@ class MyVisitor(ast.NodeVisitor):
                     self.visit_Name(text)
                 elif isinstance(text, ast.Str):
                     function_def += text.s
-                    print(' Found String: "' + text.s + '"')
+                    print('Found String: "' + text.s + '"')
                 elif isinstance(text, ast.BinOp):
+                    function_def_no_parentheses = function_def
                     self.visit_BinOp(text)
+                    self.addParentheses(text, function_def_no_parentheses)
                 elif isinstance(text, ast.Subscript):
                     self.visit_Name(text.value)
                     function_def += '['
                     self.visit_Slice(text.slice)
                     function_def += ']'
-        else:
+        elif variable_declaration:
             if index == 0 and str(type(node.s).__name__) == 'str':
                 variable_def = 'String ' + variable_def
             variable_def += node.s
+            print('Found String: "' + node.s + '"')
+        else:
+            function_def += node.s
             print('Found String: "' + node.s + '"')
 
     def visit_Name(self, node, is_call=False, variable_declaration=False):
@@ -62,6 +67,8 @@ class MyVisitor(ast.NodeVisitor):
             self.visit_BinOp(node)
         elif isinstance(node, ast.Num):
             self.visit_Num(node, variable_declaration=False)
+        elif isinstance(node, ast.Str):
+            self.visit_Str(node)
         else:
             if variable_declaration is False:
                 if is_call is False and function_def is not None and node.id != 'halduino':
@@ -208,6 +215,91 @@ class MyVisitor(ast.NodeVisitor):
         self.visit_Name(node.op)
         self.visit_Name(node.right)
 
+    def addParentheses(self, node, function_def_no_parentheses):
+        # Add Parentheses
+        global function_def
+        lines = open(input_filename).readlines()
+        target_line = lines[node.lineno - 1]
+        transformed_line = ''
+        notFound = True
+        line_index = 0
+        while notFound:
+            if target_line[line_index] == '(':
+                notFound = False
+            line_index += 1
+        notFound = True
+        while notFound:
+            if target_line[line_index] == ')' and target_line[line_index + 1] == '\n':
+                notFound = False
+            else:
+                transformed_line += target_line[line_index]
+            line_index += 1
+        line_to_transform = function_def.splitlines()[len(function_def.splitlines()) - 1]
+        if len(line_to_transform.split(transformed_line)) == 1:
+            line_index = 0
+            copy_index = 0
+            new_line = ''
+            while line_index < len(transformed_line):
+                character = transformed_line[line_index]
+                if character == '(':
+                    previous_index = line_index
+                    following_index = line_index
+                    previous_index -= 1
+                    following_index += 1
+                    if previous_index > 0:
+                        previous_char = transformed_line[previous_index]
+                        following_char = transformed_line[following_index]
+                        copy_index = 0
+                        notFound = True
+                        while notFound and copy_index < len(line_to_transform) - 1:
+                            if line_to_transform[copy_index] == previous_char and line_to_transform[copy_index + 1] == following_char:
+                                new_line += '('
+                                notFound = False
+                            else:
+                                new_line += line_to_transform[copy_index]
+                            copy_index += 1
+                    else:
+                        following_char = transformed_line[following_index]
+                        copy_index = 0
+                        notFound = True
+                        while notFound and copy_index < len(line_to_transform) - 1:
+                            if line_to_transform[copy_index + 1] == following_char:
+                                new_line += '('
+                                notFound = False
+                            else:
+                                new_line += line_to_transform[copy_index]
+                            copy_index += 1
+                        new_line += '('
+                if character == ')':
+                    previous_index = line_index
+                    following_index = line_index
+                    previous_index -= 1
+                    try:
+                        following_index += 1
+                        following_char = transformed_line[following_index]
+                    except:
+                        following_char = None
+                    previous_char = transformed_line[previous_index]
+                    notFound = True
+                    while notFound and copy_index < len(line_to_transform):
+                        if following_char is not None:
+                            if line_to_transform[copy_index - 1] == previous_char and line_to_transform[copy_index] == following_char:
+                                new_line += ')'
+                                notFound = False
+                            else:
+                                new_line += line_to_transform[copy_index]
+                        else:
+                            new_line += line_to_transform[copy_index]
+                        copy_index += 1
+                    if following_char is None:
+                        new_line += ')'
+                line_index += 1
+            while copy_index < len(line_to_transform):
+                new_line += line_to_transform[copy_index]
+                copy_index += 1
+            if new_line != '':
+                function_def = function_def[:function_def.rfind('\n')] + ' \n' +  new_line
+
     def visit_While(self, node):
         print('While: ' + str(node.test))
         self.visit_NameConstant(node.test)
@@ -299,7 +391,7 @@ class MyVisitor(ast.NodeVisitor):
                 elif isinstance(element, ast.NameConstant):
                     self.visit_NameConstant(element, index)
                 else:
-                    self.visit_Str(element, index=index)
+                    self.visit_Str(element, index=index, variable_declaration=True)
             function_def += variable_def + '};\n'
             variable_def = ''
         elif isinstance(node.value, list):
@@ -325,7 +417,7 @@ class MyVisitor(ast.NodeVisitor):
             variable_def = ''
         elif isinstance(node.value, ast.Str):
             variable_def += ' = '
-            self.visit_Str(node.value)
+            self.visit_Str(node.value, variable_declaration=True)
             variable_def += ';\n'
             function_def += variable_def
             variable_def = ''
@@ -459,9 +551,9 @@ print('FILENAME: ' + input_filename)
 print('OUTPUT FILENAME: ' + output_filename)
 output = open(output_filename, 'w+')
 controller_file = open(input_filename).read()
-car_controller = ast.parse(controller_file)
-MyTransformer().visit(car_controller)
-MyVisitor().visit(car_controller)
+parsed_file = ast.parse(controller_file)
+MyTransformer().visit(parsed_file)
+MyVisitor().visit(parsed_file)
 
 if 'setup' not in functions:
     output.write('''void setup() {
