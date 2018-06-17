@@ -24,3 +24,12 @@ def getIR1() -> int:
 
 def getIR2() -> int:
     pass
+
+def getIR3() -> int:
+    pass
+
+def getIR4() -> int:
+    pass
+
+def getIR5() -> int:
+    pass
