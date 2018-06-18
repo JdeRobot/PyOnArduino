@@ -17,11 +17,14 @@ def setSpeedEngine3(speed):
 def setSpeedEngine4(speed):
     pass
 
+
 def setSpeedEngines(speed1, speed2):
     pass
 
+
 def stopEngines():
     pass
+
 
 def getIR1() -> int:
     pass
@@ -30,11 +33,18 @@ def getIR1() -> int:
 def getIR2() -> int:
     pass
 
+
 def getIR3() -> int:
     pass
+
 
 def getIR4() -> int:
     pass
 
+
 def getIR5() -> int:
+    pass
+
+
+def lineFollow(KP, KD, robotSpeed, integrationTime):
     pass

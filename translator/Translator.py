@@ -442,6 +442,8 @@ class MyVisitor(ast.NodeVisitor):
                     searched_node = node.attr.split('get')[1]
                 elif len(node.attr.split('set')) > 1:
                     searched_node = node.attr.split('set')[1]
+                elif len(node.attr.split('line')) > 1:
+                    searched_node = node.attr.split('line')[1]
                 else:
                     searched_node = node.attr.split('stop')[1]
                 print(searched_node)
@@ -588,11 +590,12 @@ if 'loop' not in functions:
 
 if robot == 'Complubot':
     # Modify setup to include Robot.begin()
-    setup = ''
+    setup = '\n'
     for index, line in enumerate(functions['setup'].splitlines()):
         if index == 1:
-            setup += '   Robot.begin();\n'
+            setup += '\n   Robot.begin();\n'
         setup += line
+    setup += '\n'
     functions['setup'] = setup
     output.write('#include <ArduinoRobot.h> // include the robot library\n')
 

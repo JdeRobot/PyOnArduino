@@ -45,3 +45,10 @@ void setSpeedEngines(int speedLeft, int  speedRight) {
 void stopEngines() {
     Robot.motorsStop();
 }
+
+void lineFollow(int KP, int KD, int robotSpeed, int integrationTime) {
+    Robot.lineFollowConfig(KP,KD,robotSpeed,integrationTime);//set PID parameters
+    Robot.setMode(MODE_LINE_FOLLOW);
+    while(!Robot.isActionDone()){
+    }
+}
