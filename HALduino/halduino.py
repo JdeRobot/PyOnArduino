@@ -2,21 +2,23 @@ def getUS() -> int:
     pass
 
 
-def setVEngine1(forward, backward):
+def setSpeedEngine1(speed):
     pass
 
 
-def setVEngine2(forward, backward):
+def setSpeedEngine2(speed):
     pass
 
 
-def setVEngine3(forward, backward):
+def setSpeedEngine3(speed):
     pass
 
 
-def setVEngine4(forward, backward):
+def setSpeedEngine4(speed):
     pass
 
+def setSpeedEngines(speed1, speed2):
+    pass
 
 def getIR1() -> int:
     pass

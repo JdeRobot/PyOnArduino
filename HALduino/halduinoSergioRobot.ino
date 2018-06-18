@@ -14,41 +14,53 @@ int getUS() {
     return distanceUS;
 }
 
-void setVEngine1(int forward, int  backward) {
+void setSpeedEngine1(int speed) {
     int left_front_forward = 5;
     int left_front_backward = 4;
     pinMode(left_front_forward,OUTPUT);
     pinMode(left_front_backward,OUTPUT);
-    digitalWrite(left_front_forward, forward);
-    digitalWrite(left_front_backward, backward);
+    if (speed < 0) {
+        analogWrite(left_front_forward, speed);
+    } else {
+        analogWrite(left_front_backward, speed);
+    }
 }
 
-void setVEngine2(int forward, int  backward) {
+void setSpeedEngine2(int speed) {
     int right_front_forward = 2;
     int right_front_backward = 6;
     pinMode(right_front_forward,OUTPUT);
     pinMode(right_front_backward,OUTPUT);
-    digitalWrite(right_front_forward, forward);
-    digitalWrite(right_front_backward, backward);
+    if (speed < 0) {
+        analogWrite(right_front_forward, speed);
+    } else {
+        analogWrite(right_front_backward, speed);
+    }
 }
 
 }
-void setVEngine3(int forward, int  backward) {
+void setSpeedEngine3(int speed) {
     int left_back_forward = 9;
     int left_back_backward = 10;
     pinMode(left_back_forward,OUTPUT);
     pinMode(left_back_backward,OUTPUT);
-    digitalWrite(left_back_forward, forward);
-    digitalWrite(left_back_backward, backward);
+    if (speed < 0) {
+        analogWrite(left_back_forward, speed);
+    } else {
+        analogWrite(left_back_backward, speed);
+    }
 }
 
-void setVEngine4(int forward, int  backward) {
+void setSpeedEngine4(int speed) {
     int right_back_forward = 11;
     int right_back_backward = 12;
     pinMode(right_back_forward,OUTPUT);
     pinMode(right_back_backward,OUTPUT);
-    digitalWrite(right_back_forward, forward);
-    digitalWrite(right_back_backward, backward);
+    if (speed < 0) {
+        analogWrite(right_back_forward, speed);
+    } else {
+        analogWrite(right_back_backward, speed);
+    }
 }
 
 #define IR1PIN 3
