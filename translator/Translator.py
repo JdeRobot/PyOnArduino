@@ -579,12 +579,22 @@ MyTransformer().visit(parsed_file)
 MyVisitor().visit(parsed_file)
 
 if 'setup' not in functions:
-    output.write('''void setup() {
-    }\n''')
+    functions['setup'] = '''void setup() {
+    }\n'''
 
 if 'loop' not in functions:
-    output.write('''void loop() {
-        }\n''')
+    functions['loop'] = '''void loop() {
+        }\n'''
+
+if robot == 'Complubot':
+    # Modify setup to include Robot.begin()
+    setup = ''
+    for index, line in enumerate(functions['setup'].splitlines()):
+        if index == 1:
+            setup += '   Robot.begin();\n'
+        setup += line
+    functions['setup'] = setup
+    output.write('#include <ArduinoRobot.h> // include the robot library\n')
 
 for key, value in functions.items():
     output.write(value)
