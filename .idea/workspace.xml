@@ -2,15 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e72936ae-374a-42ae-8588-539f897332c5" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/HALduino/halduinoArduinoRobot.ino" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/HALduino/halduinoRobotMotor.ino" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/HALduino/halduinoSergio.ino" afterPath="$PROJECT_DIR$/HALduino/halduinoSergioRobot.ino" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/examples/IRtest.py" afterPath="$PROJECT_DIR$/examples/SergioRobot/IRtest.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/examples/IRtestRobotMotor.py" afterPath="$PROJECT_DIR$/examples/ArduinoRobot/IRtest.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/examples/StopnGo.py" afterPath="$PROJECT_DIR$/examples/SergioRobot/StopnGo.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/examples/StopnGoRobotMotor.py" afterPath="$PROJECT_DIR$/examples/ArduinoRobot/StopnGo.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/HALduino/halduinoArduinoRobot.ino" afterPath="$PROJECT_DIR$/HALduino/halduinoComplubot.ino" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/examples/ArduinoRobot/IRtest.py" afterPath="$PROJECT_DIR$/examples/CompluBot/IRtest.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/examples/ArduinoRobot/StopnGo.py" afterPath="$PROJECT_DIR$/examples/CompluBot/StopnGo.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/HALduino/halduino.py" afterPath="$PROJECT_DIR$/HALduino/halduino.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -62,8 +57,8 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="halduinoArduinoRobot.ino" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/HALduino/halduinoArduinoRobot.ino">
+      <file leaf-file-name="halduinoComplubot.ino" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/HALduino/halduinoComplubot.ino">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="390">
               <caret line="40" column="20" lean-forward="false" selection-start-line="40" selection-start-column="20" selection-end-line="40" selection-end-column="20" />
@@ -93,7 +88,7 @@
         </entry>
       </file>
       <file leaf-file-name="StopnGo.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/examples/ArduinoRobot/StopnGo.py">
+        <entry file="file://$PROJECT_DIR$/examples/CompluBot/StopnGo.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="90">
               <caret line="6" column="24" lean-forward="true" selection-start-line="6" selection-start-column="24" selection-end-line="6" selection-end-column="24" />
@@ -115,8 +110,8 @@
       <file leaf-file-name="test.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/examples/SergioRobot/test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-348">
-              <caret line="18" column="11" lean-forward="true" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="11" />
+            <state relative-caret-position="616">
+              <caret line="61" column="0" lean-forward="true" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -303,7 +298,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="ArduinoRobot" />
+              <option name="myItemId" value="CompluBot" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -640,7 +635,14 @@
       <option name="project" value="LOCAL" />
       <updated>1529254505418</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="New directories distribution. Arduino Robot US, IR and Engines support">
+      <created>1529311581681</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1529311581681</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TodoView">
@@ -701,7 +703,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Functions section moved to down part of the code" />
     <MESSAGE value="Translator extended to recognise Div and more instances" />
     <MESSAGE value="Div sign recognition" />
     <MESSAGE value="Stop&amp;Go completed!" />
@@ -726,7 +727,8 @@
     <MESSAGE value="Raise error in case the statements are not part of a function" />
     <MESSAGE value="Parentheses support added" />
     <MESSAGE value="Arduino Robot support started with engines support and negative numbers support" />
-    <option name="LAST_COMMIT_MESSAGE" value="Arduino Robot support started with engines support and negative numbers support" />
+    <MESSAGE value="New directories distribution. Arduino Robot US, IR and Engines support" />
+    <option name="LAST_COMMIT_MESSAGE" value="New directories distribution. Arduino Robot US, IR and Engines support" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -837,7 +839,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/examples/ArduinoRobot/IRtest.py">
+    <entry file="file://$PROJECT_DIR$/examples/CompluBot/IRtest.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="15" column="10" lean-forward="false" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
@@ -857,14 +859,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/examples/SergioRobot/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-348">
-          <caret line="18" column="11" lean-forward="true" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="11" />
           <folding />
         </state>
       </provider>
@@ -901,7 +895,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/HALduino/halduinoArduinoRobot.ino">
+    <entry file="file://$PROJECT_DIR$/HALduino/halduinoComplubot.ino">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
           <caret line="40" column="20" lean-forward="false" selection-start-line="40" selection-start-column="20" selection-end-line="40" selection-end-column="20" />
@@ -909,10 +903,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/examples/ArduinoRobot/StopnGo.py">
+    <entry file="file://$PROJECT_DIR$/examples/CompluBot/StopnGo.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="6" column="24" lean-forward="true" selection-start-line="6" selection-start-column="24" selection-end-line="6" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/SergioRobot/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="616">
+          <caret line="61" column="0" lean-forward="true" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
           <folding />
         </state>
       </provider>
