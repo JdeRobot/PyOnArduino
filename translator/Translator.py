@@ -32,6 +32,10 @@ class MyVisitor(ast.NodeVisitor):
                     function_def += '['
                     self.visit_Slice(text.slice)
                     function_def += ']'
+                elif isinstance(text, ast.UnaryOp):
+                    self.visit_UnaryOp(text)
+                else:
+                    print(text)
         elif variable_declaration:
             if index == 0 and str(type(node.s).__name__) == 'str':
                 variable_def = 'String ' + variable_def
@@ -436,10 +440,14 @@ class MyVisitor(ast.NodeVisitor):
                 print('Halduino found with call to function ' + node.attr)
                 if len(node.attr.split('get')) > 1:
                     searched_node = node.attr.split('get')[1]
-                else:
+                elif len(node.attr.split('set')) > 1:
                     searched_node = node.attr.split('set')[1]
+                elif len(node.attr.split('line')) > 1:
+                    searched_node = node.attr.split('line')[1]
+                else:
+                    searched_node = node.attr.split('stop')[1]
                 print(searched_node)
-                halduino = open('./HALduino/halduino.ino', 'r')
+                halduino = open('./HALduino/halduino' + robot + '.ino', 'r')
                 notFound = True
                 notEOF = True
                 line = ''
@@ -481,6 +489,20 @@ class MyVisitor(ast.NodeVisitor):
         print('Body: ' + str(node.body))
         self.visit_Expr(node.body)
         function_def += '}\n'
+
+    def visit_UnaryOp(self, node):
+        global function_def
+        if isinstance(node.op, ast.UAdd):
+            function_def += '+'
+        elif isinstance(node.op, ast.USub):
+            function_def += '-'
+        self.visit_Num(node.operand)
+        print('OP: ' + str(node.op))
+        print('OPERAND: ' + str(node.operand))
+        '''
+        'op',
+        'operand',
+        '''
 
     def visit_Slice(self, node):
         self.visit_Num(node.value)
@@ -530,24 +552,27 @@ class MyTransformer(ast.NodeTransformer):
     def visit_Str(self, node):
         return ast.Str('\"' + node.s + '\"')
 
-
-input_filename = ""
-output_filename = "output.ino"
+robot=''
+input_filename = ''
+output_filename = 'output.ino'
 
 print('ARGS: ' + str(len(sys.argv)))
 
-if len(sys.argv) == 2:
+if len(sys.argv) == 3:
     input_filename = sys.argv[1]
-elif len(sys.argv) > 2:
+    robot = sys.argv[2]
+elif len(sys.argv) > 4:
     input_filename = sys.argv[1]
-    output_filename = sys.argv[2]
+    robot = sys.argv[2]
+    output_filename = sys.argv[3]
 else:
     print('Usage: ')
-    print('python3 Translator.py [input-file] [output-file]')
-    print('python3 Translator.py [input-file]')
+    print('python3 Translator.py [input-file] [robot] [output-file]')
+    print('python3 Translator.py [input-file] [robot]')
     sys.exit(0)
 
 print('FILENAME: ' + input_filename)
+print('ROBOT: ' + robot)
 print('OUTPUT FILENAME: ' + output_filename)
 output = open(output_filename, 'w+')
 controller_file = open(input_filename).read()
@@ -556,12 +581,23 @@ MyTransformer().visit(parsed_file)
 MyVisitor().visit(parsed_file)
 
 if 'setup' not in functions:
-    output.write('''void setup() {
-    }\n''')
+    functions['setup'] = '''void setup() {
+    }\n'''
 
 if 'loop' not in functions:
-    output.write('''void loop() {
-        }\n''')
+    functions['loop'] = '''void loop() {
+        }\n'''
+
+if robot == 'Complubot':
+    # Modify setup to include Robot.begin()
+    setup = '\n'
+    for index, line in enumerate(functions['setup'].splitlines()):
+        if index == 1:
+            setup += '\n   Robot.begin();\n'
+        setup += line
+    setup += '\n'
+    functions['setup'] = setup
+    output.write('#include <ArduinoRobot.h> // include the robot library\n')
 
 for key, value in functions.items():
     output.write(value)
