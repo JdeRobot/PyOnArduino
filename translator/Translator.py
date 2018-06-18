@@ -440,8 +440,10 @@ class MyVisitor(ast.NodeVisitor):
                 print('Halduino found with call to function ' + node.attr)
                 if len(node.attr.split('get')) > 1:
                     searched_node = node.attr.split('get')[1]
-                else:
+                elif len(node.attr.split('set')) > 1:
                     searched_node = node.attr.split('set')[1]
+                else:
+                    searched_node = node.attr.split('stop')[1]
                 print(searched_node)
                 halduino = open('./HALduino/halduino' + robot + '.ino', 'r')
                 notFound = True

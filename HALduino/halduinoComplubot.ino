@@ -41,3 +41,7 @@ int getIR5() {
 void setSpeedEngines(int speedLeft, int  speedRight) {
     Robot.motorsWrite(speedLeft, speedRight);
 }
+
+void stopEngines() {
+    Robot.motorsStop();
+}
