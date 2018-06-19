@@ -7,12 +7,18 @@ functions = {}
 
 
 class MyVisitor(ast.NodeVisitor):
+    def generic_visit(self, node):
+        print('NODE generic: ' + str(type(node)))
+        ast.NodeVisitor.generic_visit(self, node)
+
     def visit_Str(self, node, index=0, variable_declaration=False):
         global variable_def
         global function_def
         if isinstance(node, list):
             for index, text in enumerate(node):
-                if len(node) > index > 0:
+                print('NODE Str: ' + str(type(text)))
+                ast.NodeVisitor.generic_visit(self, text)
+                '''if len(node) > index > 0:
                     function_def += ', '
                 if isinstance(text, ast.Call):
                     self.visit_Call(text)
@@ -35,7 +41,7 @@ class MyVisitor(ast.NodeVisitor):
                 elif isinstance(text, ast.UnaryOp):
                     self.visit_UnaryOp(text)
                 else:
-                    print(text)
+                    print(text)'''
         elif variable_declaration:
             if index == 0 and str(type(node.s).__name__) == 'str':
                 variable_def = 'String ' + variable_def
@@ -48,7 +54,8 @@ class MyVisitor(ast.NodeVisitor):
     def visit_Name(self, node, is_call=False, variable_declaration=False):
         global function_def
         global variable_def
-        if isinstance(node, list):
+
+        '''if isinstance(node, list):
             for nod in node:
                 self.visit_Name(nod, is_call=is_call, variable_declaration=variable_declaration)
         elif isinstance(node, ast.Add):
@@ -73,16 +80,19 @@ class MyVisitor(ast.NodeVisitor):
             self.visit_Num(node, variable_declaration=False)
         elif isinstance(node, ast.Str):
             self.visit_Str(node)
+        else:'''
+        if variable_declaration is False:
+            if is_call is False and function_def is not None and node.id != 'halduino':
+                if node.id == 'str':
+                    function_def += 'String'
+                else:
+                    function_def += node.id
         else:
-            if variable_declaration is False:
-                if is_call is False and function_def is not None and node.id != 'halduino':
-                    if node.id == 'str':
-                        function_def += 'String'
-                    else:
-                        function_def += node.id
-            else:
-                variable_def = node.id
-            print('Name: ' + node.id)
+            variable_def = node.id
+        print('Name: ' + node.id)
+
+        print('NODE Name: ' + str(type(node)))
+        ast.NodeVisitor.generic_visit(self, node)
 
     def visit_FunctionDef(self, node):
         global function_def
@@ -94,6 +104,9 @@ class MyVisitor(ast.NodeVisitor):
         print('Function Definition: ' + str(node.name))
         self.visit_arguments(node.args)
         for nod in node.body:
+            print('NODE function_def: ' + str(type(node)))
+            ast.NodeVisitor.generic_visit(self, nod)
+        '''for nod in node.body:
             if isinstance(nod, ast.Expr):
                 self.visit_Expr(nod)
             elif isinstance(nod, ast.Return):
@@ -106,6 +119,7 @@ class MyVisitor(ast.NodeVisitor):
                 self.visit_For(nod)
             else:
                 print('Function Def undefined node: ' + nod)
+        '''
         brackets -= 1
         function_def += '}\n'
         try:
@@ -119,21 +133,27 @@ class MyVisitor(ast.NodeVisitor):
             functions[node.name] = function_def
 
     def visit_Expr(self, node):
-        if isinstance(node, list):
-            for nod in node:
+        for nod in node:
+            print('Expression: ' + str(nod.value))
+            print('NODE Expr: ' + str(type(node)))
+            ast.NodeVisitor.generic_visit(self, node)
+        '''if isinstance(node, list):
+            
                 print('Expression: ' + str(nod.value))
                 self.visit_Call(nod.value)
         elif isinstance(node.value, ast.Str):
             self.visit_Str(node.value)
         else:
             print('Expression: ' + str(node.value))
-            self.visit_Call(node.value)
+            self.visit_Call(node.value)'''
 
     def visit_Call(self, node):
         global function_def
         global parentheses
         print('Call: ' + str(node.func))
-        if isinstance(node.func, ast.Attribute):
+        print('NODE Call: ' + str(type(node)))
+        ast.NodeVisitor.generic_visit(self, node)
+        ''' if isinstance(node.func, ast.Attribute):
             parentheses += 1
             self.visit_Attribute(node.func)
         else:
@@ -149,7 +169,7 @@ class MyVisitor(ast.NodeVisitor):
                 print('Code must be within a function')
                 exit(1)
             parentheses += 1
-            self.visit_Name(node.func, is_call=True)
+            self.visit_Name(node.func, is_call=True)'''
         # ARGUMENTS
         self.visit_Str(node.args)
         parentheses -= 1
@@ -166,16 +186,18 @@ class MyVisitor(ast.NodeVisitor):
                 variable_def = str(type(node.n).__name__) + ' ' + variable_def
             variable_def += str(node.n)
             print('Num: ' + str(node.n))
-        else:
+        '''else:
             if isinstance(node, list):
                 for nod in node:
                     print('Num: ' + str(nod.n))
                     function_def += str(nod.n)
             elif isinstance(node, ast.UnaryOp):
                 print('UnaryOp: ')
-            else:
-                print('Num: ' + str(node.n))
-                function_def += str(node.n)
+            else:'''
+        print('Num: ' + str(node.n))
+        function_def += str(node.n)
+        print('NODE Num: ' + str(type(node)))
+        ast.NodeVisitor.generic_visit(self, node)
 
     def visit_arguments(self, node):
         global function_def
@@ -201,13 +223,15 @@ class MyVisitor(ast.NodeVisitor):
     def visit_Return(self, node):
         global function_def
         function_def += '  return '
-        if isinstance(node.value, ast.Call):
+        '''if isinstance(node.value, ast.Call):
             self.visit_Call(node.value)
         elif isinstance(node.value, ast.Name):
             self.visit_Name(node.value)
-        else:
-            print(node.value)
+        else:'''
+        print(node.value)
         function_def += ';\n'
+        print('NODE Return: ' + str(type(node)))
+        ast.NodeVisitor.generic_visit(self, node)
 
     def visit_BinOp(self, node):
         global function_def
@@ -363,28 +387,37 @@ class MyVisitor(ast.NodeVisitor):
     def visit_Compare(self, node):
         print('Comparision')
         # LEFT PART
-        if isinstance(node.left, ast.Call):
+        print('NODE Compare 1: ' + str(type(node.left)))
+        ast.NodeVisitor.generic_visit(self, node.left)
+        '''if isinstance(node.left, ast.Call):
             self.visit_Call(node.left)
         elif isinstance(node.left, ast.Name):
-            self.visit_Name(node.left)
+            self.visit_Name(node.left)'''
         # OPERATOR
-        if isinstance(node.ops[0], ast.Gt):
+        print('NODE Compare 2: ' + str(type(node.ops[0])))
+        ast.NodeVisitor.generic_visit(self, node.ops[0])
+        '''if isinstance(node.ops[0], ast.Gt):
             self.visit_Gt()
         elif isinstance(node.ops[0], ast.Lt):
             self.visit_Lt()
         elif isinstance(node.ops[0], ast.Eq):
             self.visit_Eq()
         elif isinstance(node.ops[0], ast.LtE):
-            self.visit_LtE()
+            self.visit_LtE()'''
         # COMPARATORS
-        self.visit_Num(node.comparators, variable_declaration=False)
+        print('NODE Compare 3: ' + str(type(node.comparators)))
+        for nod in node.comparators:
+            ast.NodeVisitor.generic_visit(self, nod)
+        # self.visit_Num(node.comparators, variable_declaration=False)
 
     def visit_Assign(self, node):
         global function_def
         global variable_def
         self.visit_Name(node.targets, variable_declaration=True)
         print('Assign: ' + str(node.value))
-        if isinstance(node.value, ast.List):
+        print('NODE Assign: ' + str(type(node.value)))
+        ast.NodeVisitor.generic_visit(self, node.value)
+        '''if isinstance(node.value, ast.List):
             variable_def += '[] = {'
             print('List! ' + str(len(node.value.elts)))
             for index, element in enumerate(node.value.elts):
@@ -426,7 +459,7 @@ class MyVisitor(ast.NodeVisitor):
             function_def += variable_def
             variable_def = ''
         else:
-            print('Assign: ' + str(node.value))
+            print('Assign: ' + str(node.value))'''
         print('Assign ' + str(node.targets) + ' ' + str(node.value))
 
     def visit_Attribute(self, node):
@@ -492,17 +525,17 @@ class MyVisitor(ast.NodeVisitor):
 
     def visit_UnaryOp(self, node):
         global function_def
-        if isinstance(node.op, ast.UAdd):
+        print('NODE Unary 1: ' + str(type(node.op)))
+        ast.NodeVisitor.generic_visit(self, node.op)
+        '''if isinstance(node.op, ast.UAdd):
             function_def += '+'
         elif isinstance(node.op, ast.USub):
             function_def += '-'
-        self.visit_Num(node.operand)
+        self.visit_Num(node.operand)'''
+        print('NODE Unray 2: ' + str(type(node.operand)))
+        ast.NodeVisitor.generic_visit(self, node.operand)
         print('OP: ' + str(node.op))
         print('OPERAND: ' + str(node.operand))
-        '''
-        'op',
-        'operand',
-        '''
 
     def visit_Slice(self, node):
         self.visit_Num(node.value)
