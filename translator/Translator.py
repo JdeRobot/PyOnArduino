@@ -11,87 +11,18 @@ class MyVisitor(ast.NodeVisitor):
         print('NODE generic: ' + str(type(node)))
         ast.NodeVisitor.generic_visit(self, node)
 
-    def visit_Str(self, node, index=0, variable_declaration=False):
+    def visit_Str(self, node):
         global variable_def
         global function_def
-        if isinstance(node, list):
-            for index, text in enumerate(node):
-                print('NODE Str: ' + str(type(text)))
-                ast.NodeVisitor.generic_visit(self, text)
-                '''if len(node) > index > 0:
-                    function_def += ', '
-                if isinstance(text, ast.Call):
-                    self.visit_Call(text)
-                elif isinstance(text, ast.Num):
-                    self.visit_Num(text, variable_declaration=False)
-                elif isinstance(text, ast.Name):
-                    self.visit_Name(text)
-                elif isinstance(text, ast.Str):
-                    function_def += text.s
-                    print('Found String: "' + text.s + '"')
-                elif isinstance(text, ast.BinOp):
-                    function_def_no_parentheses = function_def
-                    self.visit_BinOp(text)
-                    self.addParentheses(text, function_def_no_parentheses)
-                elif isinstance(text, ast.Subscript):
-                    self.visit_Name(text.value)
-                    function_def += '['
-                    self.visit_Slice(text.slice)
-                    function_def += ']'
-                elif isinstance(text, ast.UnaryOp):
-                    self.visit_UnaryOp(text)
-                else:
-                    print(text)'''
-        elif variable_declaration:
-            if index == 0 and str(type(node.s).__name__) == 'str':
-                variable_def = 'String ' + variable_def
-            variable_def += node.s
-            print('Found String: "' + node.s + '"')
-        else:
-            function_def += node.s
-            print('Found String: "' + node.s + '"')
+        print('NODE Str: ' + str(type(node.s)))
+        function_def += node.s
 
-    def visit_Name(self, node, is_call=False, variable_declaration=False):
+    def visit_Name(self, node):
         global function_def
         global variable_def
-
-        '''if isinstance(node, list):
-            for nod in node:
-                self.visit_Name(nod, is_call=is_call, variable_declaration=variable_declaration)
-        elif isinstance(node, ast.Add):
-            print('Add: ' + str(node))
-            self.visit_Add()
-        elif isinstance(node, ast.Div):
-            print('Div: ' + str(node))
-            self.visit_Div()
-        elif isinstance(node, ast.Sub):
-            print('Sub: ' + str(node))
-            self.visit_Sub()
-        elif isinstance(node, ast.Mult):
-            print('Mult: ' + str(node))
-            self.visit_Mult()
-        elif isinstance(node, ast.Mod):
-            print('Mod: ' + str(node))
-            self.visit_Mod()
-        elif isinstance(node, ast.BinOp):
-            print('BinOp: ' + str(node))
-            self.visit_BinOp(node)
-        elif isinstance(node, ast.Num):
-            self.visit_Num(node, variable_declaration=False)
-        elif isinstance(node, ast.Str):
-            self.visit_Str(node)
-        else:'''
-        if variable_declaration is False:
-            if is_call is False and function_def is not None and node.id != 'halduino':
-                if node.id == 'str':
-                    function_def += 'String'
-                else:
-                    function_def += node.id
-        else:
-            variable_def = node.id
-        print('Name: ' + node.id)
-
-        print('NODE Name: ' + str(type(node)))
+        if node.id != 'halduino':
+            function_def += node.id
+        print('NODE Name: ' + str(type(node)) + ' ' + node.id)
         ast.NodeVisitor.generic_visit(self, node)
 
     def visit_FunctionDef(self, node):
@@ -102,24 +33,8 @@ class MyVisitor(ast.NodeVisitor):
         variable_def = ''
         function_def = node.name + '('
         print('Function Definition: ' + str(node.name))
-        self.visit_arguments(node.args)
-        for nod in node.body:
-            print('NODE function_def: ' + str(type(node)))
-            ast.NodeVisitor.generic_visit(self, nod)
-        '''for nod in node.body:
-            if isinstance(nod, ast.Expr):
-                self.visit_Expr(nod)
-            elif isinstance(nod, ast.Return):
-                self.visit_Return(nod)
-            elif isinstance(nod, ast.If):
-                self.visit_If(nod)
-            elif isinstance(nod, ast.Assign):
-                self.visit_Assign(nod)
-            elif isinstance(nod, ast.For):
-                self.visit_For(nod)
-            else:
-                print('Function Def undefined node: ' + nod)
-        '''
+        print('NODE arguments: ' + str(type(node.args)))
+        ast.NodeVisitor.generic_visit(self, node)
         brackets -= 1
         function_def += '}\n'
         try:
@@ -127,74 +42,30 @@ class MyVisitor(ast.NodeVisitor):
             print('Returns -> ' + str(node.returns.id))
             # Add the function definition to a functions list
             functions[node.name] = function_def
-            self.visit_Name(node.returns)
+            print('NODE function_def: ' + str(type(node.returns)))
         except AttributeError:
             function_def = 'void ' + function_def
             functions[node.name] = function_def
 
     def visit_Expr(self, node):
-        for nod in node:
-            print('Expression: ' + str(nod.value))
-            print('NODE Expr: ' + str(type(node)))
-            ast.NodeVisitor.generic_visit(self, node)
-        '''if isinstance(node, list):
-            
-                print('Expression: ' + str(nod.value))
-                self.visit_Call(nod.value)
-        elif isinstance(node.value, ast.Str):
-            self.visit_Str(node.value)
-        else:
-            print('Expression: ' + str(node.value))
-            self.visit_Call(node.value)'''
+        ast.NodeVisitor.generic_visit(self, node)
 
     def visit_Call(self, node):
         global function_def
         global parentheses
-        print('Call: ' + str(node.func))
+        parentheses += 1
         print('NODE Call: ' + str(type(node)))
         ast.NodeVisitor.generic_visit(self, node)
-        ''' if isinstance(node.func, ast.Attribute):
-            parentheses += 1
-            self.visit_Attribute(node.func)
-        else:
-            function_name = node.func.id
-            print(function_name)
-            if function_name == 'print':
-                function_name = 'Serial.' + function_name
-            elif function_name == 'sleep':
-                function_name = 'delay'
-            try:
-                function_def += function_name + '('
-            except:
-                print('Code must be within a function')
-                exit(1)
-            parentheses += 1
-            self.visit_Name(node.func, is_call=True)'''
-        # ARGUMENTS
-        self.visit_Str(node.args)
         parentheses -= 1
         if parentheses == 0:
             function_def += ');\n   '
         else:
+            print('PARENTHESES ' + str(parentheses))
             function_def += ')'
 
     def visit_Num(self, node, index=0, variable_declaration=False):
         global variable_def
         global function_def
-        if variable_declaration == True:
-            if index == 0:
-                variable_def = str(type(node.n).__name__) + ' ' + variable_def
-            variable_def += str(node.n)
-            print('Num: ' + str(node.n))
-        '''else:
-            if isinstance(node, list):
-                for nod in node:
-                    print('Num: ' + str(nod.n))
-                    function_def += str(nod.n)
-            elif isinstance(node, ast.UnaryOp):
-                print('UnaryOp: ')
-            else:'''
-        print('Num: ' + str(node.n))
         function_def += str(node.n)
         print('NODE Num: ' + str(type(node)))
         ast.NodeVisitor.generic_visit(self, node)
@@ -213,8 +84,9 @@ class MyVisitor(ast.NodeVisitor):
     def visit_arg(self, node):
         global function_def
         if node.annotation is not None:
-            self.visit_Name(node.annotation)
-            function_def += ' ' + node.arg
+            print('NODE Return: ' + str(type(node.annotation)))
+            ast.NodeVisitor.generic_visit(self, node.annotation)
+            function_def += node.annotation.id + ' ' + node.arg
             print('arg: ' + node.arg + ' ' + node.annotation.id)
         else:
             function_def += 'int ' + node.arg
@@ -223,25 +95,20 @@ class MyVisitor(ast.NodeVisitor):
     def visit_Return(self, node):
         global function_def
         function_def += '  return '
-        '''if isinstance(node.value, ast.Call):
-            self.visit_Call(node.value)
-        elif isinstance(node.value, ast.Name):
-            self.visit_Name(node.value)
-        else:'''
         print(node.value)
         function_def += ';\n'
-        print('NODE Return: ' + str(type(node)))
-        ast.NodeVisitor.generic_visit(self, node)
+        print('NODE Return: ' + str(type(node.value)))
+        ast.NodeVisitor.generic_visit(self, node.value)
 
     def visit_BinOp(self, node):
         global function_def
         print('BinOp')
-        if isinstance(node.left, ast.BinOp):
-            self.visit_BinOp(node.left)
-        else:
-            self.visit_Name(node.left)
-        self.visit_Name(node.op)
-        self.visit_Name(node.right)
+        print('NODE Return: ' + str(type(node.left)))
+        ast.NodeVisitor.generic_visit(self, node.left)
+        print('NODE Return: ' + str(type(node.op)))
+        ast.NodeVisitor.generic_visit(self, node.op)
+        print('NODE Return: ' + str(type(node.right)))
+        ast.NodeVisitor.generic_visit(self, node.right)
 
     def addParentheses(self, node, function_def_no_parentheses):
         # Add Parentheses
@@ -329,10 +196,11 @@ class MyVisitor(ast.NodeVisitor):
                 function_def = function_def[:function_def.rfind('\n')] + ' \n' +  new_line
 
     def visit_While(self, node):
-        print('While: ' + str(node.test))
-        self.visit_NameConstant(node.test)
-        print(' While: ' + str(node.body))
-        self.visit_If(node.body[0])
+        print('NODE While 1: ' + str(type(node.test)))
+        ast.NodeVisitor.generic_visit(self, node.test)
+        for body_part in node.body:
+            print('NODE While 2: ' + str(type(body_part)))
+            ast.NodeVisitor.generic_visit(self, body_part)
 
     def visit_NameConstant(self, node, index=0):
         global function_def
@@ -354,236 +222,143 @@ class MyVisitor(ast.NodeVisitor):
         global parentheses
         global brackets
         function_def += 'if ('
-        parentheses += 1
-        # TEST PART OF IF
-        if isinstance(node.test, ast.Compare):
-            self.visit_Compare(node.test)
-        else:
-            self.visit_NameConstant(node.test)
+        print('NODE If: ' + str(type(node)))
+        ast.NodeVisitor.generic_visit(self, node)
         brackets += 1
-        function_def += ') {\n  '
         parentheses -= 1
-        for body_part in node.body:
-            if isinstance(body_part, ast.Expr):
-                self.visit_Expr(body_part)
-        for or_else_part in node.orelse:
-            if isinstance(or_else_part, ast.If):
-                print('ElIf')
-                brackets -= 1
-                function_def += '} else '
-                self.visit_If(or_else_part)
-            elif isinstance(or_else_part, ast.Expr):
-                print('Else')
-                brackets += 1
-                function_def += '} else {\n   '
-                self.visit_Expr(or_else_part)
-                brackets -= 1
-                if brackets >= 0:
-                    function_def += '}\n'
         brackets -= 1
         if brackets > 0:
             function_def += '}\n'
 
     def visit_Compare(self, node):
+        global function_def
         print('Comparision')
         # LEFT PART
         print('NODE Compare 1: ' + str(type(node.left)))
-        ast.NodeVisitor.generic_visit(self, node.left)
-        '''if isinstance(node.left, ast.Call):
-            self.visit_Call(node.left)
-        elif isinstance(node.left, ast.Name):
-            self.visit_Name(node.left)'''
-        # OPERATOR
         print('NODE Compare 2: ' + str(type(node.ops[0])))
-        ast.NodeVisitor.generic_visit(self, node.ops[0])
-        '''if isinstance(node.ops[0], ast.Gt):
-            self.visit_Gt()
-        elif isinstance(node.ops[0], ast.Lt):
-            self.visit_Lt()
-        elif isinstance(node.ops[0], ast.Eq):
-            self.visit_Eq()
-        elif isinstance(node.ops[0], ast.LtE):
-            self.visit_LtE()'''
-        # COMPARATORS
         print('NODE Compare 3: ' + str(type(node.comparators)))
-        for nod in node.comparators:
-            ast.NodeVisitor.generic_visit(self, nod)
-        # self.visit_Num(node.comparators, variable_declaration=False)
+        ast.NodeVisitor.generic_visit(self, node)
+        function_def += ') {\n'
 
     def visit_Assign(self, node):
         global function_def
         global variable_def
-        self.visit_Name(node.targets, variable_declaration=True)
-        print('Assign: ' + str(node.value))
-        print('NODE Assign: ' + str(type(node.value)))
-        ast.NodeVisitor.generic_visit(self, node.value)
-        '''if isinstance(node.value, ast.List):
-            variable_def += '[] = {'
-            print('List! ' + str(len(node.value.elts)))
-            for index, element in enumerate(node.value.elts):
-                if index >= 1:
-                    variable_def += ','
-                if isinstance(element, ast.Num):
-                    self.visit_Num(element, index=index, variable_declaration=True)
-                elif isinstance(element, ast.NameConstant):
-                    self.visit_NameConstant(element, index)
-                else:
-                    self.visit_Str(element, index=index, variable_declaration=True)
-            function_def += variable_def + '};\n'
-            variable_def = ''
-        elif isinstance(node.value, list):
-            for val in node.value:
-                print('Assign: ' + val)
-        elif isinstance(node.value, ast.Call):
-            self.visit_Call(node.value)
-        elif isinstance(node.value, ast.Name):
-            self.visit_Name(node.value)
-        elif isinstance(node.value, ast.BinOp):
-            self.visit_BinOp(node.value)
-        elif isinstance(node.value, ast.NameConstant):
-            variable_def += ' = '
-            self.visit_NameConstant(node.value, 0)
-            variable_def += ';\n'
-            function_def += variable_def
-            variable_def = ''
-        elif isinstance(node.value, ast.Num):
-            variable_def += ' = '
-            self.visit_Num(node.value, 0, variable_declaration=True)
-            variable_def += ';\n'
-            function_def += variable_def
-            variable_def = ''
-        elif isinstance(node.value, ast.Str):
-            variable_def += ' = '
-            self.visit_Str(node.value, variable_declaration=True)
-            variable_def += ';\n'
-            function_def += variable_def
-            variable_def = ''
-        else:
-            print('Assign: ' + str(node.value))'''
+        print('NODE Assign: ' + str(type(node)))
+        ast.NodeVisitor.generic_visit(self, node)
         print('Assign ' + str(node.targets) + ' ' + str(node.value))
 
     def visit_Attribute(self, node):
         print('Attribute: ' + str(node.value) + str(node.ctx) + str(node.attr))
         global function_def
         global functions
-        if isinstance(node.value, ast.Name):
-            self.visit_Name(node.value)
-            if node.value.id == 'halduino':
-                function_def += node.attr + '('
-                print('Halduino found with call to function ' + node.attr)
-                if len(node.attr.split('get')) > 1:
-                    searched_node = node.attr.split('get')[1]
-                elif len(node.attr.split('set')) > 1:
-                    searched_node = node.attr.split('set')[1]
-                elif len(node.attr.split('line')) > 1:
-                    searched_node = node.attr.split('line')[1]
-                else:
-                    searched_node = node.attr.split('stop')[1]
-                print(searched_node)
-                halduino = open('./HALduino/halduino' + robot + '.ino', 'r')
-                notFound = True
-                notEOF = True
-                line = ''
-                declaration_name = ''
-                while notEOF:
-                    while notFound and notEOF:
-                        line = halduino.readline()
-                        if len(line) > 0:
-                            if len(line.split(searched_node)) > 1:
-                                parts = line.split(' ')  # +|\([^\)]*\)
-                                declaration_name = parts[1].split('(')[0]
-                                notFound = False
-                        else:
-                            notEOF = False
+        global parentheses
 
-                    if notFound == False:
-                        function = ''
-                        endOfFunction = False
-                        while not endOfFunction:
-                            function += line
-                            line = halduino.readline()
-                            l = line.rstrip()
-                            if not l or len(line) <= 0:
-                                endOfFunction = True
-                        functions[declaration_name] = function
-                        notFound = True
-        print('Attribute: ' + str(node.value) + node.attr)
+        if node.value.id == 'halduino':
+            function_def += node.attr + '('
+            print('Halduino found with call to function ' + node.attr)
+            if len(node.attr.split('get')) > 1:
+                searched_node = node.attr.split('get')[1]
+            elif len(node.attr.split('set')) > 1:
+                searched_node = node.attr.split('set')[1]
+            elif len(node.attr.split('line')) > 1:
+                searched_node = node.attr.split('line')[1]
+            else:
+                searched_node = node.attr.split('stop')[1]
+            print(searched_node)
+            halduino = open('./HALduino/halduino' + robot + '.ino', 'r')
+            notFound = True
+            notEOF = True
+            line = ''
+            declaration_name = ''
+            while notEOF:
+                while notFound and notEOF:
+                    line = halduino.readline()
+                    if len(line) > 0:
+                        if len(line.split(searched_node)) > 1:
+                            parts = line.split(' ')  # +|\([^\)]*\)
+                            declaration_name = parts[1].split('(')[0]
+                            notFound = False
+                    else:
+                        notEOF = False
+
+                if notFound == False:
+                    function = ''
+                    endOfFunction = False
+                    while not endOfFunction:
+                        function += line
+                        line = halduino.readline()
+                        l = line.rstrip()
+                        if not l or len(line) <= 0:
+                            endOfFunction = True
+                    functions[declaration_name] = function
+                    notFound = True
+
+        print('NODE Atribute 1: ' + str(type(node)))
+        ast.NodeVisitor.generic_visit(self, node)
 
     def visit_For(self, node):
         global function_def
         print('For!')
         print('Target: ' + str(node.target))
         function_def += 'for(int '
-        self.visit_Name(node.target)
+        print('NODE For : ' + str(type(node)))
+        ast.NodeVisitor.generic_visit(self, node)
         function_def += ' = 0; sizeof('
-        print('Iterator: ' + str(node.iter))
-        self.visit_Name(node.iter)
         function_def += '); x++) {\n'
-        print('Body: ' + str(node.body))
-        self.visit_Expr(node.body)
         function_def += '}\n'
 
     def visit_UnaryOp(self, node):
         global function_def
         print('NODE Unary 1: ' + str(type(node.op)))
         ast.NodeVisitor.generic_visit(self, node.op)
-        '''if isinstance(node.op, ast.UAdd):
-            function_def += '+'
-        elif isinstance(node.op, ast.USub):
-            function_def += '-'
-        self.visit_Num(node.operand)'''
         print('NODE Unray 2: ' + str(type(node.operand)))
         ast.NodeVisitor.generic_visit(self, node.operand)
         print('OP: ' + str(node.op))
         print('OPERAND: ' + str(node.operand))
 
     def visit_Slice(self, node):
-        self.visit_Num(node.value)
+        print('NODE Unray 2: ' + str(type(node.value)))
+        ast.NodeVisitor.generic_visit(self, node)
 
     def visit_Gt(self):
         global function_def
         function_def += ' > '
         print('Greater than')
 
-    def visit_Lt(self):
+    def visit_Lt(self, node):
         global function_def
         function_def += ' < '
         print('Lower than')
 
-    def visit_LtE(self):
+    def visit_LtE(self, node):
         global function_def
         function_def += ' <= '
         print('Lower than equal')
 
-    def visit_Eq(self):
+    def visit_Eq(self, node):
         global function_def
         function_def += ' == '
         print('Equal')
 
-    def visit_Div(self):
+    def visit_Div(self, node):
         global function_def
         function_def += ' / '
 
-    def visit_Sub(self):
+    def visit_Sub(self, node):
         global function_def
         function_def += ' - '
 
-    def visit_Add(self):
+    def visit_Add(self, node):
         global function_def
         function_def += ' + '
 
-    def visit_Mult(self):
+    def visit_Mult(self, node):
         global function_def
         function_def += ' * '
 
-    def visit_Mod(self):
+    def visit_Mod(self, node):
         global function_def
         function_def += ' % '
-
-
-class MyTransformer(ast.NodeTransformer):
-    def visit_Str(self, node):
-        return ast.Str('\"' + node.s + '\"')
 
 robot=''
 input_filename = ''
@@ -610,7 +385,6 @@ print('OUTPUT FILENAME: ' + output_filename)
 output = open(output_filename, 'w+')
 controller_file = open(input_filename).read()
 parsed_file = ast.parse(controller_file)
-MyTransformer().visit(parsed_file)
 MyVisitor().visit(parsed_file)
 
 if 'setup' not in functions:
