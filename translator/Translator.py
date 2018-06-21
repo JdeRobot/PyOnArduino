@@ -4,6 +4,8 @@ import ast
 parentheses = 0
 brackets = 0
 functions = {}
+has_else_part = False
+direction = ''
 
 
 class MyVisitor(ast.NodeVisitor):
@@ -15,12 +17,14 @@ class MyVisitor(ast.NodeVisitor):
         global variable_def
         global function_def
         print('NODE Str: ' + str(type(node.s)))
-        function_def += node.s
+        function_def += '\"' + node.s + '\"'
 
     def visit_Name(self, node):
         global function_def
         global variable_def
-        if node.id != 'halduino':
+        if node.id == 'print':
+            function_def += 'Serial.' + node.id + '('
+        elif node.id != 'halduino':
             function_def += node.id
         print('NODE Name: ' + str(type(node)) + ' ' + node.id)
         ast.NodeVisitor.generic_visit(self, node)
@@ -48,6 +52,10 @@ class MyVisitor(ast.NodeVisitor):
             functions[node.name] = function_def
 
     def visit_Expr(self, node):
+        global direction
+        global function_def
+        if node == direction:
+            function_def += '} else {\n'
         ast.NodeVisitor.generic_visit(self, node)
 
     def visit_Call(self, node):
@@ -221,13 +229,24 @@ class MyVisitor(ast.NodeVisitor):
         global function_def
         global parentheses
         global brackets
+        global has_else_part
+        global direction
+        global_if = True
+        if has_else_part:
+            global_if = False
+            function_def += '} else '
         function_def += 'if ('
-        print('NODE If: ' + str(type(node)))
-        ast.NodeVisitor.generic_visit(self, node)
         brackets += 1
+        if len(node.orelse) > 0:
+            has_else_part = True
+            direction = node.orelse[0]
+        else:
+            has_else_part = False
+        print('NODE If: ' + str(type(node)) + ' ' + str(brackets) + ' ' + str(node.orelse) + ' ' + str(has_else_part))
+        ast.NodeVisitor.generic_visit(self, node)
         parentheses -= 1
         brackets -= 1
-        if brackets > 0:
+        if global_if:
             function_def += '}\n'
 
     def visit_Compare(self, node):
