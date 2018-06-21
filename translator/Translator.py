@@ -94,11 +94,14 @@ class MyVisitor(ast.NodeVisitor):
         if node.annotation is not None:
             print('NODE Return: ' + str(type(node.annotation)))
             ast.NodeVisitor.generic_visit(self, node.annotation)
-            function_def += node.annotation.id + ' ' + node.arg
-            print('arg: ' + node.arg + ' ' + node.annotation.id)
+            var_type = node.annotation.id
+            if str(type(node.annotation.id).__name__) == 'str':
+                var_type = 'String'
+            function_def += var_type + ' ' + node.arg
+            print('arg 1: ' + node.arg + ' ' + node.annotation.id)
         else:
             function_def += 'int ' + node.arg
-            print('arg: ' + node.arg)
+            print('arg 2: ' + node.arg)
 
     def visit_Return(self, node):
         global function_def
@@ -111,12 +114,8 @@ class MyVisitor(ast.NodeVisitor):
     def visit_BinOp(self, node):
         global function_def
         print('BinOp')
-        print('NODE Return: ' + str(type(node.left)))
-        ast.NodeVisitor.generic_visit(self, node.left)
-        print('NODE Return: ' + str(type(node.op)))
-        ast.NodeVisitor.generic_visit(self, node.op)
-        print('NODE Return: ' + str(type(node.right)))
-        ast.NodeVisitor.generic_visit(self, node.right)
+        print('NODE Return: ' + str(type(node.left)) + ' ' + str(type(node.op)) + ' ' + str(type(node.right)))
+        ast.NodeVisitor.generic_visit(self, node)
 
     def addParentheses(self, node, function_def_no_parentheses):
         # Add Parentheses
