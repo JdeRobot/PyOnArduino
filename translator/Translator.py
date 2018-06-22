@@ -6,8 +6,9 @@ brackets = 0
 functions = {}
 has_else_part = False
 direction = ''
-is_Call = False
+is_call = False
 is_Comparision = False
+is_var_declaration = False
 
 class MyVisitor(ast.NodeVisitor):
     def generic_visit(self, node):
@@ -18,22 +19,32 @@ class MyVisitor(ast.NodeVisitor):
         global variable_def
         global function_def
         print('NODE Str: ' + str(type(node.s)))
-        function_def += '\"' + node.s + '\"'
+        str_var = '\"' + node.s + '\"'
+        if variable_def != '':
+            variable_def = 'String '  + variable_def + str_var
+            function_def += variable_def
+        else:
+            function_def += str_var
+        variable_def = ''
 
     def visit_Name(self, node):
         global function_def
         global variable_def
-        global is_Call
+        global is_call
+        global is_var_declaration
         if node.id == 'print':
             function_def += 'Serial.' + node.id
         elif node.id == 'sleep':
             function_def += 'delay'
-        elif node.id != 'halduino':
+        elif node.id != 'halduino' and is_var_declaration == False:
             function_def += node.id
 
-        if is_Call:
+        if is_call:
             function_def += '('
-            is_Call = False
+            is_call = False
+        elif is_var_declaration:
+            variable_def += node.id + ' = '
+            is_var_declaration = False
 
         print('NODE Name: ' + str(type(node)) + ' ' + node.id)
         ast.NodeVisitor.generic_visit(self, node)
@@ -70,13 +81,13 @@ class MyVisitor(ast.NodeVisitor):
     def visit_Call(self, node):
         global function_def
         global parentheses
-        global is_Call
+        global is_call
         global is_Comparision
-        is_Call = True
+        is_call = True
         parentheses += 1
         print('NODE Call: ' + str(type(node)))
         ast.NodeVisitor.generic_visit(self, node)
-        is_Call = False
+        is_call = False
         parentheses -= 1
         if parentheses == 0 and is_Comparision == False:
             print('PARENTHESES ' + str(parentheses))
@@ -89,8 +100,14 @@ class MyVisitor(ast.NodeVisitor):
     def visit_Num(self, node):
         global variable_def
         global function_def
-        function_def += str(node.n)
         print('NODE Num: ' + str(type(node)))
+        num_var = str(node.n)
+        if variable_def != '':
+            variable_def = type(node.n).__name__ + ' ' + variable_def + num_var
+            function_def += variable_def
+        else:
+            function_def += num_var
+        variable_def = ''
         ast.NodeVisitor.generic_visit(self, node)
 
     def visit_arguments(self, node):
@@ -234,10 +251,11 @@ class MyVisitor(ast.NodeVisitor):
             boolean_var = 'false'
         if variable_def != '':
             variable_def += boolean_var
-            if index == 0:
-                variable_def = 'boolean ' + variable_def
+            variable_def = 'boolean ' + variable_def
         else:
             function_def += boolean_var
+        print('NODE NameConstant: ' + str(type(node)))
+        ast.NodeVisitor.generic_visit(self, node)
 
     def visit_If(self, node):
         global function_def
@@ -281,8 +299,13 @@ class MyVisitor(ast.NodeVisitor):
     def visit_Assign(self, node):
         global function_def
         global variable_def
+        global is_var_declaration
         print('NODE Assign: ' + str(type(node)))
+        is_var_declaration = True
         ast.NodeVisitor.generic_visit(self, node)
+        variable_def += ';\n'
+        function_def += variable_def
+        variable_def = ''
         print('Assign ' + str(node.targets) + ' ' + str(node.value))
 
     def visit_Attribute(self, node):
