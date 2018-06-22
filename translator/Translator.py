@@ -6,7 +6,8 @@ brackets = 0
 functions = {}
 has_else_part = False
 direction = ''
-
+is_Call = False
+is_Comparision = False
 
 class MyVisitor(ast.NodeVisitor):
     def generic_visit(self, node):
@@ -22,10 +23,18 @@ class MyVisitor(ast.NodeVisitor):
     def visit_Name(self, node):
         global function_def
         global variable_def
+        global is_Call
         if node.id == 'print':
-            function_def += 'Serial.' + node.id + '('
+            function_def += 'Serial.' + node.id
+        elif node.id == 'sleep':
+            function_def += 'delay'
         elif node.id != 'halduino':
             function_def += node.id
+
+        if is_Call:
+            function_def += '('
+            is_Call = False
+
         print('NODE Name: ' + str(type(node)) + ' ' + node.id)
         ast.NodeVisitor.generic_visit(self, node)
 
@@ -61,17 +70,23 @@ class MyVisitor(ast.NodeVisitor):
     def visit_Call(self, node):
         global function_def
         global parentheses
+        global is_Call
+        global is_Comparision
+        is_Call = True
         parentheses += 1
         print('NODE Call: ' + str(type(node)))
         ast.NodeVisitor.generic_visit(self, node)
+        is_Call = False
         parentheses -= 1
-        if parentheses == 0:
+        if parentheses == 0 and is_Comparision == False:
+            print('PARENTHESES ' + str(parentheses))
             function_def += ');\n   '
         else:
             print('PARENTHESES ' + str(parentheses))
             function_def += ')'
+            is_Comparision = False
 
-    def visit_Num(self, node, index=0, variable_declaration=False):
+    def visit_Num(self, node):
         global variable_def
         global function_def
         function_def += str(node.n)
@@ -95,7 +110,7 @@ class MyVisitor(ast.NodeVisitor):
             print('NODE Return: ' + str(type(node.annotation)))
             ast.NodeVisitor.generic_visit(self, node.annotation)
             var_type = node.annotation.id
-            if str(type(node.annotation.id).__name__) == 'str':
+            if node.annotation.id == 'str':
                 var_type = 'String'
             function_def += var_type + ' ' + node.arg
             print('arg 1: ' + node.arg + ' ' + node.annotation.id)
@@ -117,7 +132,7 @@ class MyVisitor(ast.NodeVisitor):
         print('NODE Return: ' + str(type(node.left)) + ' ' + str(type(node.op)) + ' ' + str(type(node.right)))
         ast.NodeVisitor.generic_visit(self, node)
 
-    def addParentheses(self, node, function_def_no_parentheses):
+    def addParentheses(self, node):
         # Add Parentheses
         global function_def
         lines = open(input_filename).readlines()
@@ -200,7 +215,7 @@ class MyVisitor(ast.NodeVisitor):
                 new_line += line_to_transform[copy_index]
                 copy_index += 1
             if new_line != '':
-                function_def = function_def[:function_def.rfind('\n')] + ' \n' +  new_line
+                function_def = function_def[:function_def.rfind('\n')] + ' \n' + new_line
 
     def visit_While(self, node):
         print('NODE While 1: ' + str(type(node.test)))
@@ -209,7 +224,7 @@ class MyVisitor(ast.NodeVisitor):
             print('NODE While 2: ' + str(type(body_part)))
             ast.NodeVisitor.generic_visit(self, body_part)
 
-    def visit_NameConstant(self, node, index=0):
+    def visit_NameConstant(self, node):
         global function_def
         global variable_def
         boolean_var = ''
@@ -235,6 +250,7 @@ class MyVisitor(ast.NodeVisitor):
             global_if = False
             function_def += '} else '
         function_def += 'if ('
+        # parentheses += 1
         brackets += 1
         if len(node.orelse) > 0:
             has_else_part = True
@@ -243,16 +259,20 @@ class MyVisitor(ast.NodeVisitor):
             has_else_part = False
         print('NODE If: ' + str(type(node)) + ' ' + str(brackets) + ' ' + str(node.orelse) + ' ' + str(has_else_part))
         ast.NodeVisitor.generic_visit(self, node)
-        parentheses -= 1
+        # parentheses -= 1
+        has_else_part = False
         brackets -= 1
         if global_if:
             function_def += '}\n'
 
     def visit_Compare(self, node):
         global function_def
+        global is_Comparision
         print('Comparision')
         # LEFT PART
         print('NODE Compare 1: ' + str(type(node.left)))
+        if isinstance(node.left, ast.Call):
+            is_Comparision = True
         print('NODE Compare 2: ' + str(type(node.ops[0])))
         print('NODE Compare 3: ' + str(type(node.comparators)))
         ast.NodeVisitor.generic_visit(self, node)
@@ -272,7 +292,7 @@ class MyVisitor(ast.NodeVisitor):
         global parentheses
 
         if node.value.id == 'halduino':
-            function_def += node.attr + '('
+            function_def += node.attr
             print('Halduino found with call to function ' + node.attr)
             if len(node.attr.split('get')) > 1:
                 searched_node = node.attr.split('get')[1]
@@ -378,7 +398,8 @@ class MyVisitor(ast.NodeVisitor):
         global function_def
         function_def += ' % '
 
-robot=''
+
+robot = ''
 input_filename = ''
 output_filename = 'output.ino'
 
