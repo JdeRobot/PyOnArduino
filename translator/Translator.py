@@ -9,6 +9,11 @@ direction = ''
 is_call = False
 is_Comparision = False
 is_var_declaration = False
+is_array = False
+array_index = 0
+array_length = 0
+variable_def = ''
+
 
 class MyVisitor(ast.NodeVisitor):
     def generic_visit(self, node):
@@ -18,10 +23,23 @@ class MyVisitor(ast.NodeVisitor):
     def visit_Str(self, node):
         global variable_def
         global function_def
+        global is_array
+        global array_index
+        global array_length
         print('NODE Str: ' + str(type(node.s)))
         str_var = '\"' + node.s + '\"'
+        if is_array:
+            if array_index == 0:
+                str_var = '{' + str_var
+            if array_index < array_length - 1:
+                str_var += ','
+            array_index += 1
+
         if variable_def != '':
-            variable_def = 'String '  + variable_def + str_var
+            if is_array:
+                variable_def = 'String ' + variable_def + str_var
+            else:
+                variable_def = 'String ' + variable_def + ' = ' + str_var
             function_def += variable_def
         else:
             function_def += str_var
@@ -32,6 +50,7 @@ class MyVisitor(ast.NodeVisitor):
         global variable_def
         global is_call
         global is_var_declaration
+        global is_array
         if node.id == 'print':
             function_def += 'Serial.' + node.id
         elif node.id == 'sleep':
@@ -43,7 +62,7 @@ class MyVisitor(ast.NodeVisitor):
             function_def += '('
             is_call = False
         elif is_var_declaration:
-            variable_def += node.id + ' = '
+            variable_def += node.id
             is_var_declaration = False
 
         print('NODE Name: ' + str(type(node)) + ' ' + node.id)
@@ -103,7 +122,7 @@ class MyVisitor(ast.NodeVisitor):
         print('NODE Num: ' + str(type(node)))
         num_var = str(node.n)
         if variable_def != '':
-            variable_def = type(node.n).__name__ + ' ' + variable_def + num_var
+            variable_def = type(node.n).__name__ + ' ' + variable_def + ' = ' + num_var
             function_def += variable_def
         else:
             function_def += num_var
@@ -186,7 +205,8 @@ class MyVisitor(ast.NodeVisitor):
                         copy_index = 0
                         notFound = True
                         while notFound and copy_index < len(line_to_transform) - 1:
-                            if line_to_transform[copy_index] == previous_char and line_to_transform[copy_index + 1] == following_char:
+                            if line_to_transform[copy_index] == previous_char and line_to_transform[
+                                        copy_index + 1] == following_char:
                                 new_line += '('
                                 notFound = False
                             else:
@@ -217,7 +237,8 @@ class MyVisitor(ast.NodeVisitor):
                     notFound = True
                     while notFound and copy_index < len(line_to_transform):
                         if following_char is not None:
-                            if line_to_transform[copy_index - 1] == previous_char and line_to_transform[copy_index] == following_char:
+                            if line_to_transform[copy_index - 1] == previous_char and line_to_transform[
+                                copy_index] == following_char:
                                 new_line += ')'
                                 notFound = False
                             else:
@@ -241,6 +262,23 @@ class MyVisitor(ast.NodeVisitor):
             print('NODE While 2: ' + str(type(body_part)))
             ast.NodeVisitor.generic_visit(self, body_part)
 
+    def visit_List(self, node):
+        global function_def
+        global is_array
+        global array_index
+        global array_length
+        global is_var_declaration
+        global variable_def
+        print('NODE List: ' + str(type(node)) + ' ' + str(type(node.elts)) + ' ' + str(type(node.ctx)) + ' ')
+        is_array = True
+        array_index = 0
+        array_length = len(node.elts)
+        variable_def += '[] = '
+        ast.NodeVisitor.generic_visit(self, node)
+        array_index = 0
+        is_array = False
+        function_def += '}'
+
     def visit_NameConstant(self, node):
         global function_def
         global variable_def
@@ -250,7 +288,7 @@ class MyVisitor(ast.NodeVisitor):
         elif node.value is False:
             boolean_var = 'false'
         if variable_def != '':
-            variable_def += boolean_var
+            variable_def += ' = ' + boolean_var
             variable_def = 'boolean ' + variable_def
         else:
             function_def += boolean_var
@@ -268,7 +306,6 @@ class MyVisitor(ast.NodeVisitor):
             global_if = False
             function_def += '} else '
         function_def += 'if ('
-        # parentheses += 1
         brackets += 1
         if len(node.orelse) > 0:
             has_else_part = True
@@ -277,7 +314,6 @@ class MyVisitor(ast.NodeVisitor):
             has_else_part = False
         print('NODE If: ' + str(type(node)) + ' ' + str(brackets) + ' ' + str(node.orelse) + ' ' + str(has_else_part))
         ast.NodeVisitor.generic_visit(self, node)
-        # parentheses -= 1
         has_else_part = False
         brackets -= 1
         if global_if:
@@ -300,13 +336,12 @@ class MyVisitor(ast.NodeVisitor):
         global function_def
         global variable_def
         global is_var_declaration
-        print('NODE Assign: ' + str(type(node)))
+        print('Assign ' + str(node.targets) + ' ' + str(node.value))
         is_var_declaration = True
         ast.NodeVisitor.generic_visit(self, node)
         variable_def += ';\n'
         function_def += variable_def
         variable_def = ''
-        print('Assign ' + str(node.targets) + ' ' + str(node.value))
 
     def visit_Attribute(self, node):
         print('Attribute: ' + str(node.value) + str(node.ctx) + str(node.attr))
