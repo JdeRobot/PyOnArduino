@@ -119,10 +119,23 @@ class MyVisitor(ast.NodeVisitor):
     def visit_Num(self, node):
         global variable_def
         global function_def
+        global is_array
+        global array_index
+        global array_length
         print('NODE Num: ' + str(type(node)))
         num_var = str(node.n)
+        if is_array:
+            if array_index == 0:
+                num_var = '{' + num_var
+            if array_index < array_length - 1:
+                num_var += ','
+            array_index += 1
+
         if variable_def != '':
-            variable_def = type(node.n).__name__ + ' ' + variable_def + ' = ' + num_var
+            if is_array:
+                variable_def = type(node.n).__name__ + ' ' + variable_def + num_var
+            else:
+                variable_def = type(node.n).__name__ + ' ' + variable_def + ' = ' + num_var
             function_def += variable_def
         else:
             function_def += num_var
@@ -277,18 +290,32 @@ class MyVisitor(ast.NodeVisitor):
         ast.NodeVisitor.generic_visit(self, node)
         array_index = 0
         is_array = False
-        function_def += '}'
+        variable_def += '}'
 
     def visit_NameConstant(self, node):
         global function_def
         global variable_def
+        global is_array
+        global array_index
+        global array_length
         boolean_var = ''
         if node.value is True:
             boolean_var = 'true'
         elif node.value is False:
             boolean_var = 'false'
+
+        if is_array:
+            if array_index == 0:
+                boolean_var = '{' + boolean_var
+            if array_index < array_length - 1:
+                boolean_var += ','
+            array_index += 1
+
         if variable_def != '':
-            variable_def += ' = ' + boolean_var
+            if is_array:
+                variable_def += boolean_var
+            else:
+                variable_def += ' = ' + boolean_var
             variable_def = 'boolean ' + variable_def
         else:
             function_def += boolean_var
