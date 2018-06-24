@@ -307,6 +307,7 @@ class MyVisitor(ast.NodeVisitor):
         if is_array:
             if array_index == 0:
                 boolean_var = '{' + boolean_var
+                variable_def = 'boolean ' + variable_def
             if array_index < array_length - 1:
                 boolean_var += ','
             array_index += 1
@@ -316,11 +317,18 @@ class MyVisitor(ast.NodeVisitor):
                 variable_def += boolean_var
             else:
                 variable_def += ' = ' + boolean_var
-            variable_def = 'boolean ' + variable_def
+                variable_def = 'boolean ' + variable_def
         else:
             function_def += boolean_var
         print('NODE NameConstant: ' + str(type(node)))
         ast.NodeVisitor.generic_visit(self, node)
+
+    def visit_Index(self, node):
+        global function_def
+        function_def += '['
+        print('NODE Index: ' + str(type(node)))
+        ast.NodeVisitor.generic_visit(self, node)
+        function_def += ']'
 
     def visit_If(self, node):
         global function_def
