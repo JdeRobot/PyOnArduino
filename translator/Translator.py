@@ -13,6 +13,8 @@ is_array = False
 array_index = 0
 array_length = 0
 variable_def = ''
+is_for = False
+for_index = 0
 
 
 class MyVisitor(ast.NodeVisitor):
@@ -51,6 +53,8 @@ class MyVisitor(ast.NodeVisitor):
         global is_call
         global is_var_declaration
         global is_array
+        global is_for
+        global for_index
         if node.id == 'print':
             function_def += 'Serial.' + node.id
         elif node.id == 'sleep':
@@ -64,6 +68,12 @@ class MyVisitor(ast.NodeVisitor):
         elif is_var_declaration:
             variable_def += node.id
             is_var_declaration = False
+        elif is_for:
+            if for_index == 0:
+                function_def += ' = 0; sizeof('
+            elif for_index == 1:
+                function_def += '); x++) {\n'
+            for_index += 1
 
         print('NODE Name: ' + str(type(node)) + ' ' + node.id)
         ast.NodeVisitor.generic_visit(self, node)
@@ -429,14 +439,18 @@ class MyVisitor(ast.NodeVisitor):
 
     def visit_For(self, node):
         global function_def
+        global is_for
+        global for_index
         print('For!')
         print('Target: ' + str(node.target))
         function_def += 'for(int '
+        is_for = True
+        for_index = 0
         print('NODE For : ' + str(type(node)))
         ast.NodeVisitor.generic_visit(self, node)
-        function_def += ' = 0; sizeof('
-        function_def += '); x++) {\n'
         function_def += '}\n'
+        for_index = 0
+        is_for = False
 
     def visit_UnaryOp(self, node):
         global function_def
