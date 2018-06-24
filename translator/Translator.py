@@ -15,6 +15,7 @@ array_length = 0
 variable_def = ''
 is_for = False
 for_index = 0
+is_if = True
 
 
 class MyVisitor(ast.NodeVisitor):
@@ -308,11 +309,15 @@ class MyVisitor(ast.NodeVisitor):
         global is_array
         global array_index
         global array_length
+        global is_if
         boolean_var = ''
         if node.value is True:
             boolean_var = 'true'
         elif node.value is False:
             boolean_var = 'false'
+
+        if is_if:
+            boolean_var += ') {\n'
 
         if is_array:
             if array_index == 0:
@@ -346,6 +351,8 @@ class MyVisitor(ast.NodeVisitor):
         global brackets
         global has_else_part
         global direction
+        global is_if
+        is_if = True
         global_if = True
         if has_else_part:
             global_if = False
@@ -361,6 +368,7 @@ class MyVisitor(ast.NodeVisitor):
         ast.NodeVisitor.generic_visit(self, node)
         has_else_part = False
         brackets -= 1
+        is_if = False
         if global_if:
             function_def += '}\n'
 
