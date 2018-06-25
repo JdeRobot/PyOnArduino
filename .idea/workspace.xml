@@ -18,8 +18,8 @@
       <file leaf-file-name="Translator.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/translator/Translator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="558" column="37" lean-forward="false" selection-start-line="558" selection-start-column="37" selection-end-line="558" selection-end-column="37" />
+            <state relative-caret-position="97">
+              <caret line="426" column="27" lean-forward="false" selection-start-line="426" selection-start-column="27" selection-end-line="426" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -28,8 +28,8 @@
       <file leaf-file-name="output.ino" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/output.ino">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="31" column="5" lean-forward="true" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
+            <state relative-caret-position="345">
+              <caret line="23" column="13" lean-forward="false" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -38,18 +38,8 @@
       <file leaf-file-name="test.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/examples/SergioRobot/test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="421">
+            <state relative-caret-position="630">
               <caret line="62" column="55" lean-forward="false" selection-start-line="62" selection-start-column="55" selection-end-line="62" selection-end-column="55" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test2.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/examples/SergioRobot/test2.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="413">
-              <caret line="59" column="60" lean-forward="false" selection-start-line="59" selection-start-column="60" selection-end-line="59" selection-end-column="60" />
               <folding />
             </state>
           </provider>
@@ -66,12 +56,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>variable_def</find>
-      <find>'}'</find>
-      <find>boolean</find>
-      <find>if variable_def != '':</find>
-      <find>is_for</find>
-      <find>for(</find>
       <find>= 0; sizeof(</find>
       <find>);</find>
       <find>}</find>
@@ -96,6 +80,12 @@
       <find>+ '</find>
       <find>add(</find>
       <find>if function_def[-1:] == ',':</find>
+      <find>print(</find>
+      <find>node</find>
+      <find>visit_Bin</find>
+      <find>notEOF</find>
+      <find>endOfFunction</find>
+      <find>visit_Eq</find>
     </findStrings>
     <replaceStrings>
       <replace>&gt;</replace>
@@ -108,6 +98,9 @@
       <replace>transformed_line</replace>
       <replace>is_call</replace>
       <replace>self.check_last_comma()</replace>
+      <replace>not_found</replace>
+      <replace>not_eof</replace>
+      <replace>end_of_function</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -170,6 +163,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -210,28 +204,9 @@
               <option name="myItemId" value="examples" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SergioRobot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PyOnArduino" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PyOnArduino" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="examples" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -340,20 +315,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1526995742446</updated>
-    </task>
-    <task id="LOCAL-00001" summary="Comments delete and miscellaneous improvements">
-      <created>1527149837333</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1527149837333</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Strings support">
-      <created>1527152355050</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1527152355050</updated>
     </task>
     <task id="LOCAL-00003" summary="Stop &amp; Go basic functionality that should match the actual Arduino behaviour">
       <created>1527154472425</created>
@@ -684,7 +645,21 @@
       <option name="project" value="LOCAL" />
       <updated>1529913022738</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="Check last comma transformed into a function">
+      <created>1529913396648</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1529913396649</updated>
+    </task>
+    <task id="LOCAL-00051" summary="Unnecessary code removed">
+      <created>1529913508936</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1529913508936</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TodoView">
@@ -699,7 +674,7 @@
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18383405" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18383405" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891566" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41686746" sideWeight="0.5114449" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37831324" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -745,8 +720,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Variable declaration type defined in translator" />
-    <MESSAGE value="Arrays declaration support" />
     <MESSAGE value="Depth support deleted" />
     <MESSAGE value="Array access by position support" />
     <MESSAGE value="Setup functions deleted from halduino.py and instead given support on &#10;halduino.ino and the translator directly" />
@@ -770,7 +743,9 @@
     <MESSAGE value="For refactored" />
     <MESSAGE value="If without comparision refactored" />
     <MESSAGE value="Function call refactored" />
-    <option name="LAST_COMMIT_MESSAGE" value="Function call refactored" />
+    <MESSAGE value="Check last comma transformed into a function" />
+    <MESSAGE value="Unnecessary code removed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Unnecessary code removed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -948,14 +923,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/examples/SergioRobot/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="421">
-          <caret line="62" column="55" lean-forward="false" selection-start-line="62" selection-start-column="55" selection-end-line="62" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/examples/SergioRobot/test2.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="413">
@@ -964,18 +931,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/examples/SergioRobot/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="62" column="55" lean-forward="false" selection-start-line="62" selection-start-column="55" selection-end-line="62" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/translator/Translator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="558" column="37" lean-forward="false" selection-start-line="558" selection-start-column="37" selection-end-line="558" selection-end-column="37" />
+        <state relative-caret-position="97">
+          <caret line="426" column="27" lean-forward="false" selection-start-line="426" selection-start-column="27" selection-end-line="426" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/output.ino">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="31" column="5" lean-forward="true" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
+        <state relative-caret-position="345">
+          <caret line="23" column="13" lean-forward="false" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
           <folding />
         </state>
       </provider>

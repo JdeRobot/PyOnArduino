@@ -1,6 +1,7 @@
 import sys
 import ast
 
+function_def = ''
 parentheses = 0
 brackets = 0
 functions = {}
@@ -73,7 +74,7 @@ class MyVisitor(ast.NodeVisitor):
             function_def += 'Serial.' + node.id
         elif node.id == 'sleep':
             function_def += 'delay'
-        elif node.id != 'halduino' and is_var_declaration == False:
+        elif node.id != 'halduino' and is_var_declaration is False:
             if is_call_parameter:
                 if call_index >= 0:
                     node.id += ','
@@ -188,9 +189,9 @@ class MyVisitor(ast.NodeVisitor):
     def visit_arguments(self, node):
         global function_def
         global brackets
-        for index, arg in enumerate(node.args):
+        for list_index, arg in enumerate(node.args):
             self.visit_arg(arg)
-            if index < len(node.args) - 1:
+            if list_index < len(node.args) - 1:
                 function_def += ', '
         brackets += 1
         function_def += ') {\n'
@@ -221,95 +222,11 @@ class MyVisitor(ast.NodeVisitor):
     def visit_BinOp(self, node):
         global function_def
         print('BinOp')
+        function_def += '('
         print('NODE Return: ' + str(type(node.left)) + ' ' + str(type(node.op)) + ' ' + str(type(node.right)))
         ast.NodeVisitor.generic_visit(self, node)
-
-    def addParentheses(self, node):
-        # Add Parentheses
-        global function_def
-        lines = open(input_filename).readlines()
-        target_line = lines[node.lineno - 1]
-        transformed_line = ''
-        notFound = True
-        line_index = 0
-        while notFound:
-            if target_line[line_index] == '(':
-                notFound = False
-            line_index += 1
-        notFound = True
-        while notFound:
-            if target_line[line_index] == ')' and target_line[line_index + 1] == '\n':
-                notFound = False
-            else:
-                transformed_line += target_line[line_index]
-            line_index += 1
-        line_to_transform = function_def.splitlines()[len(function_def.splitlines()) - 1]
-        if len(line_to_transform.split(transformed_line)) == 1:
-            line_index = 0
-            copy_index = 0
-            new_line = ''
-            while line_index < len(transformed_line):
-                character = transformed_line[line_index]
-                if character == '(':
-                    previous_index = line_index
-                    following_index = line_index
-                    previous_index -= 1
-                    following_index += 1
-                    if previous_index > 0:
-                        previous_char = transformed_line[previous_index]
-                        following_char = transformed_line[following_index]
-                        copy_index = 0
-                        notFound = True
-                        while notFound and copy_index < len(line_to_transform) - 1:
-                            if line_to_transform[copy_index] == previous_char and line_to_transform[
-                                        copy_index + 1] == following_char:
-                                new_line += '('
-                                notFound = False
-                            else:
-                                new_line += line_to_transform[copy_index]
-                            copy_index += 1
-                    else:
-                        following_char = transformed_line[following_index]
-                        copy_index = 0
-                        notFound = True
-                        while notFound and copy_index < len(line_to_transform) - 1:
-                            if line_to_transform[copy_index + 1] == following_char:
-                                new_line += '('
-                                notFound = False
-                            else:
-                                new_line += line_to_transform[copy_index]
-                            copy_index += 1
-                        new_line += '('
-                if character == ')':
-                    previous_index = line_index
-                    following_index = line_index
-                    previous_index -= 1
-                    try:
-                        following_index += 1
-                        following_char = transformed_line[following_index]
-                    except:
-                        following_char = None
-                    previous_char = transformed_line[previous_index]
-                    notFound = True
-                    while notFound and copy_index < len(line_to_transform):
-                        if following_char is not None:
-                            if line_to_transform[copy_index - 1] == previous_char and line_to_transform[
-                                copy_index] == following_char:
-                                new_line += ')'
-                                notFound = False
-                            else:
-                                new_line += line_to_transform[copy_index]
-                        else:
-                            new_line += line_to_transform[copy_index]
-                        copy_index += 1
-                    if following_char is None:
-                        new_line += ')'
-                line_index += 1
-            while copy_index < len(line_to_transform):
-                new_line += line_to_transform[copy_index]
-                copy_index += 1
-            if new_line != '':
-                function_def = function_def[:function_def.rfind('\n')] + ' \n' + new_line
+        self.check_last_comma()
+        function_def += ')'
 
     def visit_While(self, node):
         print('NODE While 1: ' + str(type(node.test)))
@@ -449,32 +366,32 @@ class MyVisitor(ast.NodeVisitor):
                 searched_node = node.attr.split('stop')[1]
             print(searched_node)
             halduino = open('./HALduino/halduino' + robot + '.ino', 'r')
-            notFound = True
-            notEOF = True
-            line = ''
+            not_found = True
+            not_eof = True
+            function_line = ''
             declaration_name = ''
-            while notEOF:
-                while notFound and notEOF:
-                    line = halduino.readline()
-                    if len(line) > 0:
-                        if len(line.split(searched_node)) > 1:
-                            parts = line.split(' ')  # +|\([^\)]*\)
+            while not_eof:
+                while not_found and not_eof:
+                    function_line = halduino.readline()
+                    if len(function_line) > 0:
+                        if len(function_line.split(searched_node)) > 1:
+                            parts = function_line.split(' ')  # +|\([^\)]*\)
                             declaration_name = parts[1].split('(')[0]
-                            notFound = False
+                            not_found = False
                     else:
-                        notEOF = False
+                        not_eof = False
 
-                if notFound == False:
-                    function = ''
-                    endOfFunction = False
-                    while not endOfFunction:
-                        function += line
-                        line = halduino.readline()
-                        l = line.rstrip()
-                        if not l or len(line) <= 0:
-                            endOfFunction = True
-                    functions[declaration_name] = function
-                    notFound = True
+                if not_found is False:
+                    function_string = ''
+                    end_of_function = False
+                    while not end_of_function:
+                        function_string += function_line
+                        function_line = halduino.readline()
+                        l = function_line.rstrip()
+                        if not l or len(function_line) <= 0:
+                            end_of_function = True
+                    functions[declaration_name] = function_string
+                    not_found = True
 
         print('NODE Atribute 1: ' + str(type(node)))
         ast.NodeVisitor.generic_visit(self, node)
@@ -507,7 +424,7 @@ class MyVisitor(ast.NodeVisitor):
         print('NODE Unray 2: ' + str(type(node.value)))
         ast.NodeVisitor.generic_visit(self, node)
 
-    def visit_Gt(self):
+    def visit_Gt(self, node):
         global function_def
         function_def += ' > '
         print('Greater than')
@@ -556,6 +473,7 @@ class MyVisitor(ast.NodeVisitor):
         global function_def
         if function_def[-1:] == ',':
             function_def = function_def[:-1]
+
 
 robot = ''
 input_filename = ''
