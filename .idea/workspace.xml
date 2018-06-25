@@ -18,8 +18,8 @@
       <file leaf-file-name="Translator.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/translator/Translator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="203">
-              <caret line="544" column="44" lean-forward="false" selection-start-line="544" selection-start-column="44" selection-end-line="544" selection-end-column="44" />
+            <state relative-caret-position="171">
+              <caret line="558" column="37" lean-forward="false" selection-start-line="558" selection-start-column="37" selection-end-line="558" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -28,8 +28,8 @@
       <file leaf-file-name="output.ino" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/output.ino">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="32" lean-forward="true" selection-start-line="12" selection-start-column="32" selection-end-line="12" selection-end-column="32" />
+            <state relative-caret-position="465">
+              <caret line="31" column="5" lean-forward="true" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -66,7 +66,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>' =</find>
       <find>variable_def</find>
       <find>'}'</find>
       <find>boolean</find>
@@ -96,6 +95,7 @@
       <find>visit_In</find>
       <find>+ '</find>
       <find>add(</find>
+      <find>if function_def[-1:] == ',':</find>
     </findStrings>
     <replaceStrings>
       <replace>&gt;</replace>
@@ -107,6 +107,7 @@
       <replace>logging.info</replace>
       <replace>transformed_line</replace>
       <replace>is_call</replace>
+      <replace>self.check_last_comma()</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -676,7 +677,14 @@
       <option name="project" value="LOCAL" />
       <updated>1529870327063</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="Function call refactored">
+      <created>1529913022738</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1529913022738</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TodoView">
@@ -737,7 +745,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Setup IR sensors updated" />
     <MESSAGE value="Variable declaration type defined in translator" />
     <MESSAGE value="Arrays declaration support" />
     <MESSAGE value="Depth support deleted" />
@@ -762,7 +769,8 @@
     <MESSAGE value="Boolean arrays and arrays index refactored" />
     <MESSAGE value="For refactored" />
     <MESSAGE value="If without comparision refactored" />
-    <option name="LAST_COMMIT_MESSAGE" value="If without comparision refactored" />
+    <MESSAGE value="Function call refactored" />
+    <option name="LAST_COMMIT_MESSAGE" value="Function call refactored" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -958,16 +966,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/translator/Translator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="544" column="44" lean-forward="false" selection-start-line="544" selection-start-column="44" selection-end-line="544" selection-end-column="44" />
+        <state relative-caret-position="171">
+          <caret line="558" column="37" lean-forward="false" selection-start-line="558" selection-start-column="37" selection-end-line="558" selection-end-column="37" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/output.ino">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="32" lean-forward="true" selection-start-line="12" selection-start-column="32" selection-end-line="12" selection-end-column="32" />
+        <state relative-caret-position="465">
+          <caret line="31" column="5" lean-forward="true" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
           <folding />
         </state>
       </provider>

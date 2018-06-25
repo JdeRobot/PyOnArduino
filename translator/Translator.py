@@ -145,8 +145,7 @@ class MyVisitor(ast.NodeVisitor):
         call_index = 0
         parentheses -= 1
         if parentheses == 0 and is_Comparision == False:
-            if function_def[-1:] == ',':
-                function_def = function_def[:-1]
+            self.check_last_comma()
             print('PARENTHESES ' + str(parentheses))
             function_def += ');\n   '
         else:
@@ -374,13 +373,11 @@ class MyVisitor(ast.NodeVisitor):
 
     def visit_Index(self, node):
         global function_def
-        if function_def[-1:] == ',':
-            function_def = function_def[:-1]
+        self.check_last_comma()
         function_def += '['
         print('NODE Index: ' + str(type(node)))
         ast.NodeVisitor.generic_visit(self, node)
-        if function_def[-1:] == ',':
-            function_def = function_def[:-1]
+        self.check_last_comma()
         function_def += ']'
 
     def visit_If(self, node):
@@ -533,26 +530,33 @@ class MyVisitor(ast.NodeVisitor):
 
     def visit_Div(self, node):
         global function_def
+        self.check_last_comma()
         function_def += ' / '
 
     def visit_Sub(self, node):
         global function_def
+        self.check_last_comma()
         function_def += ' - '
 
     def visit_Add(self, node):
         global function_def
-        if function_def[-1:] == ',':
-            function_def = function_def[:-1]
+        self.check_last_comma()
         function_def += ' + '
 
     def visit_Mult(self, node):
         global function_def
+        self.check_last_comma()
         function_def += ' * '
 
     def visit_Mod(self, node):
         global function_def
+        self.check_last_comma()
         function_def += ' % '
 
+    def check_last_comma(self):
+        global function_def
+        if function_def[-1:] == ',':
+            function_def = function_def[:-1]
 
 robot = ''
 input_filename = ''
