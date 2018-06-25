@@ -75,7 +75,6 @@ class MyVisitor(ast.NodeVisitor):
             function_def += 'delay'
         elif node.id != 'halduino' and is_var_declaration == False:
             if is_call_parameter:
-                print('ENTRA!')
                 if call_index >= 0:
                     node.id += ','
                 call_index += 1
