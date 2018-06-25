@@ -82,6 +82,7 @@ class MyVisitor(ast.NodeVisitor):
             function_def += node.id
 
         if is_call:
+            self.check_last_comma()
             function_def += '('
             is_call = False
             is_call_parameter = True
