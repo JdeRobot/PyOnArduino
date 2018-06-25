@@ -349,52 +349,62 @@ class MyVisitor(ast.NodeVisitor):
 
     def visit_Attribute(self, node):
         print('Attribute: ' + str(node.value) + str(node.ctx) + str(node.attr))
-        global function_def
-        global functions
-        global parentheses
-
         if node.value.id == 'halduino':
-            function_def += node.attr
-            print('Halduino found with call to function ' + node.attr)
-            if len(node.attr.split('get')) > 1:
-                searched_node = node.attr.split('get')[1]
-            elif len(node.attr.split('set')) > 1:
-                searched_node = node.attr.split('set')[1]
-            elif len(node.attr.split('line')) > 1:
-                searched_node = node.attr.split('line')[1]
-            else:
-                searched_node = node.attr.split('stop')[1]
-            print(searched_node)
-            halduino = open('./HALduino/halduino' + robot + '.ino', 'r')
-            not_found = True
-            not_eof = True
-            function_line = ''
-            declaration_name = ''
-            while not_eof:
-                while not_found and not_eof:
-                    function_line = halduino.readline()
-                    if len(function_line) > 0:
-                        if len(function_line.split(searched_node)) > 1:
-                            parts = function_line.split(' ')  # +|\([^\)]*\)
-                            declaration_name = parts[1].split('(')[0]
-                            not_found = False
-                    else:
-                        not_eof = False
-
-                if not_found is False:
-                    function_string = ''
-                    end_of_function = False
-                    while not end_of_function:
-                        function_string += function_line
-                        function_line = halduino.readline()
-                        l = function_line.rstrip()
-                        if not l or len(function_line) <= 0:
-                            end_of_function = True
-                    functions[declaration_name] = function_string
-                    not_found = True
-
+            self.add_halduino_function(node)
         print('NODE Atribute 1: ' + str(type(node)))
         ast.NodeVisitor.generic_visit(self, node)
+
+    def add_halduino_function(self, node):
+        global function_def
+        function_def += node.attr
+        print('Halduino found with call to function ' + node.attr)
+        halduino = open('./HALduino/halduino' + robot + '.ino', 'r')
+        searched_node = ''
+        not_eof = True
+        try:
+            searched_node = self.get_searched_node(node)
+            print('SEARCHED NODE: ' + searched_node)
+        except IndexError:
+            not_eof = False
+        self.search_for_function(halduino, True, not_eof, '', '', searched_node)
+
+    def get_searched_node(self, node):
+        if len(node.attr.split('get')) > 1:
+            searched_node = node.attr.split('get')[1]
+        elif len(node.attr.split('set')) > 1:
+            searched_node = node.attr.split('set')[1]
+        elif len(node.attr.split('line')) > 1:
+            searched_node = node.attr.split('line')[1]
+        else:
+            searched_node = node.attr.split('stop')[1]
+
+        return searched_node
+
+    def search_for_function(self, halduino, not_found, not_eof, function_line, declaration_name, searched_node):
+        global functions
+        while not_eof:
+            while not_found and not_eof:
+                function_line = halduino.readline()
+                if len(function_line) > 0:
+                    if len(function_line.split(searched_node)) > 1:
+                        parts = function_line.split(' ')  # +|\([^\)]*\)
+                        declaration_name = parts[1].split('(')[0]
+                        not_found = False
+                        not_eof = False
+                else:
+                    not_eof = False
+
+            if not_found is False:
+                function_string = ''
+                end_of_function = False
+                while not end_of_function:
+                    function_string += function_line
+                    function_line = halduino.readline()
+                    l = function_line.rstrip()
+                    if not l or len(function_line) <= 0:
+                        end_of_function = True
+                functions[declaration_name] = function_string
+                not_found = True
 
     def visit_For(self, node):
         global function_def
