@@ -7,6 +7,8 @@ functions = {}
 has_else_part = False
 direction = ''
 is_call = False
+is_call_parameter = False
+call_index = 0
 is_Comparision = False
 is_var_declaration = False
 is_array = False
@@ -29,6 +31,8 @@ class MyVisitor(ast.NodeVisitor):
         global is_array
         global array_index
         global array_length
+        global call_index
+        global is_call_parameter
         print('NODE Str: ' + str(type(node.s)))
         str_var = '\"' + node.s + '\"'
         if is_array:
@@ -37,6 +41,11 @@ class MyVisitor(ast.NodeVisitor):
             if array_index < array_length - 1:
                 str_var += ','
             array_index += 1
+
+        if is_call_parameter:
+            if call_index >= 0:
+                str_var += ','
+            call_index += 1
 
         if variable_def != '':
             if is_array:
@@ -56,16 +65,26 @@ class MyVisitor(ast.NodeVisitor):
         global is_array
         global is_for
         global for_index
+        global is_call_parameter
+        global call_index
+        global is_call_parameter
+
         if node.id == 'print':
             function_def += 'Serial.' + node.id
         elif node.id == 'sleep':
             function_def += 'delay'
         elif node.id != 'halduino' and is_var_declaration == False:
+            if is_call_parameter:
+                print('ENTRA!')
+                if call_index >= 0:
+                    node.id += ','
+                call_index += 1
             function_def += node.id
 
         if is_call:
             function_def += '('
             is_call = False
+            is_call_parameter = True
         elif is_var_declaration:
             variable_def += node.id
             is_var_declaration = False
@@ -113,13 +132,21 @@ class MyVisitor(ast.NodeVisitor):
         global parentheses
         global is_call
         global is_Comparision
+        global call_index
+        global is_call_parameter
+        is_call_parameter = True
         is_call = True
+        call_index = 0
         parentheses += 1
         print('NODE Call: ' + str(type(node)))
         ast.NodeVisitor.generic_visit(self, node)
         is_call = False
+        is_call_parameter = False
+        call_index = 0
         parentheses -= 1
         if parentheses == 0 and is_Comparision == False:
+            if function_def[-1:] == ',':
+                function_def = function_def[:-1]
             print('PARENTHESES ' + str(parentheses))
             function_def += ');\n   '
         else:
@@ -133,6 +160,8 @@ class MyVisitor(ast.NodeVisitor):
         global is_array
         global array_index
         global array_length
+        global is_call_parameter
+        global call_index
         print('NODE Num: ' + str(type(node)))
         num_var = str(node.n)
         if is_array:
@@ -141,6 +170,11 @@ class MyVisitor(ast.NodeVisitor):
             if array_index < array_length - 1:
                 num_var += ','
             array_index += 1
+
+        if is_call_parameter:
+            if call_index >= 0:
+                num_var += ','
+            call_index += 1
 
         if variable_def != '':
             if is_array:
@@ -340,9 +374,13 @@ class MyVisitor(ast.NodeVisitor):
 
     def visit_Index(self, node):
         global function_def
+        if function_def[-1:] == ',':
+            function_def = function_def[:-1]
         function_def += '['
         print('NODE Index: ' + str(type(node)))
         ast.NodeVisitor.generic_visit(self, node)
+        if function_def[-1:] == ',':
+            function_def = function_def[:-1]
         function_def += ']'
 
     def visit_If(self, node):
@@ -503,6 +541,8 @@ class MyVisitor(ast.NodeVisitor):
 
     def visit_Add(self, node):
         global function_def
+        if function_def[-1:] == ',':
+            function_def = function_def[:-1]
         function_def += ' + '
 
     def visit_Mult(self, node):
