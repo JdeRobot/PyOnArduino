@@ -2,7 +2,8 @@ import sys
 import ast
 from subprocess import call
 from os import chdir, getcwd, remove
-from shutil import move, copy2
+from shutil import move
+import platform
 
 function_def = ''
 parentheses = 0
@@ -541,16 +542,32 @@ for key, value in functions.items():
 print()
 output.close()
 
+
+operating_system = platform.system()
+if operating_system == 'Darwin':
+    arduino_dir = '/Applications/Arduino.app/Contents/Java'
+    print('macOS')
+elif operating_system == 'Windows':
+    arduino_dir = 'C:/Arduino'
+    print('Windows')
+else:
+    arduino_dir = '/home/sudar/apps/arduino-1.0.5'
+    print('Linux')
+
+if robot == 'Complubot':
+   board = 'atamega32u4'
+else:
+    board = 'uno'
+
 file_directory = getcwd()+'/'
 call(['mkdir', 'output'])
 chdir('output/')
 move(file_directory+output_filename, getcwd() + '/' + output_filename)
-print(file_directory+'Makefile')
-print(getcwd() + '/' + output_filename)
-copy2(file_directory+'Makefile', getcwd() + '/')
-try:
-    remove(getcwd()+'/sketch.ino')
-except FileNotFoundError:
-    print('File already deleted')
+makefile = open(getcwd() + '/' + 'Makefile', 'w+')
+makefile.write('ARDUINO_DIR   = ' + arduino_dir + '\n')
+makefile.write('MONITOR_PORT  = /dev/tty*\n')
+makefile.write('BOARD_TAG = ' + board + '\n')
+makefile.write('include /usr/local/opt/arduino-mk/Arduino.mk')
+makefile.close()
 call(['make'])
 call(['make', 'upload'])
