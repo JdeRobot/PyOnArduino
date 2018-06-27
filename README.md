@@ -5,11 +5,12 @@ Python.
 
 ## Requirements and installation
 + Python 3.6 [Download](https://www.python.org/downloads/)
++ Arduino Makefile [Download and installation](https://github.com/sudar/Arduino-Makefile)
 
 To execute the project 
 ```
-    python3 Translator.py [input-file] [output-file]
-    python3 Translator.py [input-file]
+    python3 translator/Translator.py [input-file] [robot] [output-file]
+    python3 translator/Translator.py [input-file] [robot]
 ```
 ## Demo video
 ## Features
@@ -34,30 +35,5 @@ Arrays | Arrays can be defined given the types we already supported
 Tuples | Future work
 
 ### Example
-For the translator to better understand the problem, we divide the code in 2 sections. 
-+ Variable declaration
-+ Functions
-```
-import HALduino.halduino as halduino
 
-def set_engine(direction: int):
-    if direction == 0:
-        halduino.setVEngine1(0, 0)
-        halduino.setVEngine2(0, 0)
-        halduino.setVEngine3(0, 0)
-        halduino.setVEngine4(0, 0)
-        print('STOP!')
-    elif direction == 1:
-        halduino.setVEngine1(0, 1)
-        halduino.setVEngine2(0, 1)
-        halduino.setVEngine3(0, 1)
-        halduino.setVEngine4(0, 1)
-        print('Forward')
-
-def loop():
-    sleep(100)
-    if halduino.getUS() < 10:
-        set_engine(0)
-    else:
-        set_engine(1)
-```
+Examples available in the repo, check them out!
