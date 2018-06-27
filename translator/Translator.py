@@ -1,5 +1,8 @@
 import sys
 import ast
+from subprocess import call
+from os import chdir, getcwd, remove
+from shutil import move, copy2
 
 function_def = ''
 parentheses = 0
@@ -501,8 +504,8 @@ elif len(sys.argv) > 4:
     output_filename = sys.argv[3]
 else:
     print('Usage: ')
-    print('python3 Translator.py [input-file] [robot] [output-file]')
-    print('python3 Translator.py [input-file] [robot]')
+    print('python3 translator/Translator.py [input-file] [robot] [output-file]')
+    print('python3 translator/Translator.py [input-file] [robot]')
     sys.exit(0)
 
 print('FILENAME: ' + input_filename)
@@ -537,3 +540,17 @@ for key, value in functions.items():
 
 print()
 output.close()
+
+file_directory = getcwd()+'/'
+call(['mkdir', 'output'])
+chdir('output/')
+move(file_directory+output_filename, getcwd() + '/' + output_filename)
+print(file_directory+'Makefile')
+print(getcwd() + '/' + output_filename)
+copy2(file_directory+'Makefile', getcwd() + '/')
+try:
+    remove(getcwd()+'/sketch.ino')
+except FileNotFoundError:
+    print('File already deleted')
+call(['make'])
+call(['make', 'upload'])
