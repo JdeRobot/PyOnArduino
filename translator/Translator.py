@@ -1,8 +1,8 @@
 import sys
 import ast
 from subprocess import call
-from os import chdir, getcwd, remove
-from shutil import move
+from os import chdir, getcwd
+from shutil import move, rmtree
 import platform
 
 function_def = ''
@@ -525,7 +525,7 @@ if 'loop' not in functions:
     functions['loop'] = '''void loop() {
         }\n'''
 
-if robot == 'Complubot':
+if robot == 'CompluBot' or robot == 'Complubot':
     # Modify setup to include Robot.begin()
     setup = '\n'
     for index, line in enumerate(functions['setup'].splitlines()):
@@ -554,18 +554,27 @@ else:
     arduino_dir = '/home/sudar/apps/arduino-1.0.5'
     print('Linux')
 
-if robot == 'Complubot':
-   board = 'atamega32u4'
+arduino_libs =''
+if robot == 'CompluBot' or robot == 'Complubot':
+    board = 'robotControl'
+    arduino_libs = 'Robot_Control Wire SPI'
 else:
     board = 'uno'
 
 file_directory = getcwd()+'/'
+try:
+    rmtree('output')
+except FileNotFoundError:
+    print('Folder doesn\'t exists')
+
 call(['mkdir', 'output'])
 chdir('output/')
 move(file_directory+output_filename, getcwd() + '/' + output_filename)
 makefile = open(getcwd() + '/' + 'Makefile', 'w+')
 makefile.write('ARDUINO_DIR   = ' + arduino_dir + '\n')
-makefile.write('MONITOR_PORT  = /dev/tty*\n')
+if arduino_libs:
+    makefile.write('ARDUINO_LIBS= '+arduino_libs+'\n')
+makefile.write('MONITOR_PORT  = /dev/cu.usbmodem*\n')
 makefile.write('BOARD_TAG = ' + board + '\n')
 makefile.write('include /usr/local/opt/arduino-mk/Arduino.mk')
 makefile.close()
