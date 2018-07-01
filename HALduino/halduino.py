@@ -48,3 +48,7 @@ def getIR5() -> int:
 
 def lineFollow(KP, KD, robotSpeed, integrationTime):
     pass
+
+
+def setBeep(type):
+    pass

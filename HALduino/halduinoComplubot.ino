@@ -52,3 +52,7 @@ void lineFollow(int KP, int KD, int robotSpeed, int integrationTime) {
     while(!Robot.isActionDone()){
     }
 }
+
+void setBeep(int type) {
+    Robot.beep(type);
+}

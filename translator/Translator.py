@@ -382,7 +382,6 @@ class MyVisitor(ast.NodeVisitor):
             searched_node = node.attr.split('line')[1]
         else:
             searched_node = node.attr.split('stop')[1]
-
         return searched_node
 
     def search_for_function(self, halduino, not_found, not_eof, function_line, declaration_name, searched_node):
@@ -428,12 +427,8 @@ class MyVisitor(ast.NodeVisitor):
 
     def visit_UnaryOp(self, node):
         global function_def
-        print('NODE Unary 1: ' + str(type(node.op)))
-        ast.NodeVisitor.generic_visit(self, node.op)
-        print('NODE Unray 2: ' + str(type(node.operand)))
-        ast.NodeVisitor.generic_visit(self, node.operand)
-        print('OP: ' + str(node.op))
-        print('OPERAND: ' + str(node.operand))
+        print('NODE UnaryOp: ' + str(type(node)))
+        ast.NodeVisitor.generic_visit(self, node)
 
     def visit_Slice(self, node):
         print('NODE Unray 2: ' + str(type(node.value)))
@@ -489,94 +484,98 @@ class MyVisitor(ast.NodeVisitor):
         if function_def[-1:] == ',':
             function_def = function_def[:-1]
 
+if __name__ == "__main__":
+    robot = ''
+    input_filename = ''
+    output_filename = 'output.ino'
 
-robot = ''
-input_filename = ''
-output_filename = 'output.ino'
+    print('ARGS: ' + str(len(sys.argv)))
 
-print('ARGS: ' + str(len(sys.argv)))
+    if len(sys.argv) == 3:
+        input_filename = sys.argv[1]
+        robot = sys.argv[2]
+    elif len(sys.argv) > 4:
+        input_filename = sys.argv[1]
+        robot = sys.argv[2]
+        output_filename = sys.argv[3]
+    else:
+        print('Usage: ')
+        print('python3 translator/Translator.py [input-file] [robot] [output-file]')
+        print('python3 translator/Translator.py [input-file] [robot]')
+        sys.exit(0)
 
-if len(sys.argv) == 3:
-    input_filename = sys.argv[1]
-    robot = sys.argv[2]
-elif len(sys.argv) > 4:
-    input_filename = sys.argv[1]
-    robot = sys.argv[2]
-    output_filename = sys.argv[3]
-else:
-    print('Usage: ')
-    print('python3 translator/Translator.py [input-file] [robot] [output-file]')
-    print('python3 translator/Translator.py [input-file] [robot]')
-    sys.exit(0)
+    print('FILENAME: ' + input_filename)
+    print('ROBOT: ' + robot)
+    print('OUTPUT FILENAME: ' + output_filename)
+    output = open(output_filename, 'w+')
+    controller_file = open(input_filename).read()
+    parsed_file = ast.parse(controller_file)
+    MyVisitor().visit(parsed_file)
 
-print('FILENAME: ' + input_filename)
-print('ROBOT: ' + robot)
-print('OUTPUT FILENAME: ' + output_filename)
-output = open(output_filename, 'w+')
-controller_file = open(input_filename).read()
-parsed_file = ast.parse(controller_file)
-MyVisitor().visit(parsed_file)
-
-if 'setup' not in functions:
-    functions['setup'] = '''void setup() {
-    }\n'''
-
-if 'loop' not in functions:
-    functions['loop'] = '''void loop() {
+    if 'setup' not in functions:
+        functions['setup'] = '''void setup() {
         }\n'''
 
-if robot == 'CompluBot' or robot == 'Complubot':
-    # Modify setup to include Robot.begin()
-    setup = '\n'
-    for index, line in enumerate(functions['setup'].splitlines()):
-        if index == 1:
-            setup += '\n   Robot.begin();\n'
-        setup += line
-    setup += '\n'
-    functions['setup'] = setup
-    output.write('#include <ArduinoRobot.h> // include the robot library\n')
+    if 'loop' not in functions:
+        functions['loop'] = '''void loop() {
+            }\n'''
 
-for key, value in functions.items():
-    output.write(value)
+    if robot == 'Complubot' or robot == 'CompluBot':
+        # Modify setup to include Robot.begin()
+        setup = '\n'
+        for index, line in enumerate(functions['setup'].splitlines()):
+            if index == 1:
+                setup += '\n   Robot.begin();\n'
+                try:
+                    if functions['setBeep'] is not None:
+                        setup += '\n   Robot.beginSpeaker();\n'
+                except:
+                    print('No Beep function')
+            setup += line
 
-print()
-output.close()
+        setup += '\n'''
+        functions['setup'] = setup
+        output.write('#include <ArduinoRobot.h> // include the robot library\n')
 
+    for key, value in functions.items():
+        output.write(value)
 
-operating_system = platform.system()
-if operating_system == 'Darwin':
-    arduino_dir = '/Applications/Arduino.app/Contents/Java'
-    print('macOS')
-elif operating_system == 'Windows':
-    arduino_dir = 'C:/Arduino'
-    print('Windows')
-else:
-    arduino_dir = '/home/sudar/apps/arduino-1.0.5'
-    print('Linux')
+    print()
+    output.close()
+    operating_system = platform.system()
+    if operating_system == 'Darwin':
+        arduino_dir = '/Applications/Arduino.app/Contents/Java'
+        print('macOS')
+    elif operating_system == 'Windows':
+        arduino_dir = 'C:/Arduino'
+        print('Windows')
+    else:
+        arduino_dir = '/home/sudar/apps/arduino-1.0.5'
+        print('Linux')
 
-arduino_libs =''
-if robot == 'CompluBot' or robot == 'Complubot':
-    board = 'robotControl'
-    arduino_libs = 'Robot_Control Wire SPI'
-else:
-    board = 'uno'
+    arduino_libs =''
+    if robot == 'Complubot'  or robot == 'CompluBot':
+        board = 'robotControl'
+        arduino_libs = 'Robot_Control Wire SPI'
+    else:
+        board = 'uno'
 
-file_directory = getcwd()+'/'
-try:
-    rmtree('output')
-except FileNotFoundError:
-    print('Folder doesn\'t exists')
+    file_directory = getcwd()+'/'
+    try:
+        rmtree('output')
+    except FileNotFoundError:
+        print('Folder doesn\'t exists')
 
-call(['mkdir', 'output'])
-chdir('output/')
-move(file_directory+output_filename, getcwd() + '/' + output_filename)
-makefile = open(getcwd() + '/' + 'Makefile', 'w+')
-makefile.write('ARDUINO_DIR   = ' + arduino_dir + '\n')
-if arduino_libs:
-    makefile.write('ARDUINO_LIBS= '+arduino_libs+'\n')
-makefile.write('MONITOR_PORT  = /dev/cu.usbmodem*\n')
-makefile.write('BOARD_TAG = ' + board + '\n')
-makefile.write('include /usr/local/opt/arduino-mk/Arduino.mk')
-makefile.close()
-call(['make'])
-call(['make', 'upload'])
+    call(['mkdir', 'output'])
+    chdir('output/')
+    move(file_directory+output_filename, getcwd() + '/' + output_filename)
+    makefile = open(getcwd() + '/' + 'Makefile', 'w+')
+    makefile.write('ARDUINO_DIR   = ' + arduino_dir + '\n')
+    if arduino_libs:
+        makefile.write('ARDUINO_LIBS= '+arduino_libs+'\n')
+    makefile.write('MONITOR_PORT  = /dev/cu.usbmodem*\n')
+    makefile.write('BOARD_TAG = ' + board + '\n')
+    makefile.write('include /usr/local/opt/arduino-mk/Arduino.mk')
+    makefile.close()
+    call(['make'])
+    call(['make', 'upload'])
