@@ -380,6 +380,8 @@ class MyVisitor(ast.NodeVisitor):
             searched_node = node.attr.split('set')[1]
         elif len(node.attr.split('line')) > 1:
             searched_node = node.attr.split('line')[1]
+        elif len(node.attr.split('play')) > 1:
+            searched_node = node.attr.split('play')[1]
         else:
             searched_node = node.attr.split('stop')[1]
         return searched_node
@@ -526,11 +528,8 @@ if __name__ == "__main__":
         for index, line in enumerate(functions['setup'].splitlines()):
             if index == 1:
                 setup += '\n   Robot.begin();\n'
-                try:
-                    if functions['setBeep'] is not None:
-                        setup += '\n   Robot.beginSpeaker();\n'
-                except:
-                    print('No Beep function')
+                if 'playBeep' in functions or 'playMelody' in functions:
+                    setup += '\n   Robot.beginSpeaker();\n'
             setup += line
 
         setup += '\n'''

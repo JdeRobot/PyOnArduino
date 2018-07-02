@@ -53,6 +53,12 @@ void lineFollow(int KP, int KD, int robotSpeed, int integrationTime) {
     }
 }
 
-void setBeep(int type) {
+void playBeep(int type) {
     Robot.beep(type);
+}
+
+void playMelody(String melody) {
+    char buffer[melody.length()];
+    melody.toCharArray(buffer, melody.length());
+    Robot.playMelody(buffer);
 }

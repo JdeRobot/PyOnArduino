@@ -3,9 +3,9 @@ import HALduino.halduino as halduino
 
 
 def loop():
-    halduino.setBeep(0)
+    halduino.playBeep(0)
     sleep(100)
-    halduino.setBeep(1)
+    halduino.playBeep(1)
     sleep(100)
-    halduino.setBeep(2)
+    halduino.playBeep(2)
     sleep(100)
