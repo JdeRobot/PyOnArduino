@@ -70,6 +70,6 @@ void setScreenText(String text, int x, int y) {
     Robot.text(buffer, x, y);
 }
 
-void clearIt() {
+void clearScreen() {
     Robot.clearScreen();
 }

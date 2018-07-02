@@ -62,5 +62,5 @@ def setScreenText(text, x, y):
     pass
 
 
-def clearIt():
+def clearScreen():
     pass
