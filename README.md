@@ -17,9 +17,12 @@ To execute the project
 ### Sensors and actuators supported [WIP]
 Sensor/Actuator | Supported functions
 ----------------|---------------------
-DC Engines      | digitalWrite
-Ultrasonic sensors | delayMicroseconds, pulseIn
-Infrared sensors | Not yet supported
+DC Engines      | setSpeedEngine[1,2,3,4,5] (speed), setSpeedEngines(right,left)
+Ultrasonic sensors | getUS()
+Infrared sensors | getIR[1,2,3,4,5]
+Beep emitter | playBeep(type)
+Sound emitter | playMelody(melody)
+Screen write | setScreenText(text), clearScreen()
 ### Python features supported [WIP]
 Functionality we are currently working on giving support to
 
