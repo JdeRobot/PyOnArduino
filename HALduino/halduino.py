@@ -22,10 +22,6 @@ def setSpeedEngines(speed1, speed2):
     pass
 
 
-def stopEngines():
-    pass
-
-
 def getIR1() -> int:
     pass
 

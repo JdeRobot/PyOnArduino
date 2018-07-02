@@ -509,7 +509,10 @@ if __name__ == "__main__":
         setup = '\n'
         for index, line in enumerate(functions['setup'].splitlines()):
             if index == 1:
-                setup += '\n   Robot.begin();\n'
+                if 'setSpeedEngines' in functions or 'getIR1' in functions or 'getIR2' in functions or 'getIR3' in functions or 'getIR4' in functions or 'getIR5' in functions:
+                    setup += '\n   RobotMotor.begin();\n'
+                else:
+                    setup += '\n   Robot.begin();\n'
                 if 'playBeep' in functions or 'playMelody' in functions:
                     setup += '\n   Robot.beginSpeaker();\n'
                 if 'clearIt' in functions or 'setScreenText' in functions:
@@ -518,7 +521,10 @@ if __name__ == "__main__":
 
         setup += '\n'''
         functions['setup'] = setup
-        output.write('#include <ArduinoRobot.h> // include the robot library\n')
+        if 'setSpeedEngines' in functions or 'getIR1' in functions or 'getIR2' in functions or 'getIR3' in functions or 'getIR4' in functions or 'getIR5' in functions:
+            output.write('#include <ArduinoRobotMotorBoard.h> // include the robot library\n')
+        else:
+            output.write('#include <ArduinoRobot.h> // include the robot library\n')
 
     for key, value in functions.items():
         output.write(value)

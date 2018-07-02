@@ -39,11 +39,7 @@ int getIR5() {
 }
 
 void setSpeedEngines(int speedLeft, int  speedRight) {
-    Robot.motorsWrite(speedLeft, speedRight);
-}
-
-void stopEngines() {
-    Robot.motorsStop();
+    RobotMotor.motorsWrite(speedLeft, speedRight);
 }
 
 void lineFollow(int KP, int KD, int robotSpeed, int integrationTime) {
