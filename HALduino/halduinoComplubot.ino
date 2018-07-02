@@ -52,3 +52,24 @@ void lineFollow(int KP, int KD, int robotSpeed, int integrationTime) {
     while(!Robot.isActionDone()){
     }
 }
+
+void playBeep(int type) {
+    Robot.beep(type);
+}
+
+void playMelody(String melody) {
+    char buffer[melody.length()];
+    melody.toCharArray(buffer, melody.length());
+    Robot.playMelody(buffer);
+}
+
+void setScreenText(String text, int x, int y) {
+    Robot.stroke(0, 0, 0);
+    char buffer[text.length()];
+    text.toCharArray(buffer, text.length());
+    Robot.text(buffer, x, y);
+}
+
+void clearScreen() {
+    Robot.clearScreen();
+}

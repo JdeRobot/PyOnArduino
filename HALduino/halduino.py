@@ -48,3 +48,19 @@ def getIR5() -> int:
 
 def lineFollow(KP, KD, robotSpeed, integrationTime):
     pass
+
+
+def playBeep(type):
+    pass
+
+
+def playMelody(melody):
+    pass
+
+
+def setScreenText(text, x, y):
+    pass
+
+
+def clearScreen():
+    pass
