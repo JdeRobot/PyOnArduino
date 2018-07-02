@@ -382,6 +382,8 @@ class MyVisitor(ast.NodeVisitor):
             searched_node = node.attr.split('line')[1]
         elif len(node.attr.split('play')) > 1:
             searched_node = node.attr.split('play')[1]
+        elif len(node.attr.split('clear')) > 1:
+            searched_node = node.attr.split('clear')[1]
         else:
             searched_node = node.attr.split('stop')[1]
         return searched_node
@@ -530,6 +532,8 @@ if __name__ == "__main__":
                 setup += '\n   Robot.begin();\n'
                 if 'playBeep' in functions or 'playMelody' in functions:
                     setup += '\n   Robot.beginSpeaker();\n'
+                if 'clearIt' in functions or 'setScreenText' in functions:
+                    setup += '\n   Robot.beginTFT();\n'
             setup += line
 
         setup += '\n'''

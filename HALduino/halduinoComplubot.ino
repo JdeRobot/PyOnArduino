@@ -62,3 +62,14 @@ void playMelody(String melody) {
     melody.toCharArray(buffer, melody.length());
     Robot.playMelody(buffer);
 }
+
+void setScreenText(String text, int x, int y) {
+    Robot.stroke(0, 0, 0);
+    char buffer[text.length()];
+    text.toCharArray(buffer, text.length());
+    Robot.text(buffer, x, y);
+}
+
+void clearIt() {
+    Robot.clearScreen();
+}

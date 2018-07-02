@@ -53,5 +53,14 @@ def lineFollow(KP, KD, robotSpeed, integrationTime):
 def playBeep(type):
     pass
 
+
 def playMelody(melody):
+    pass
+
+
+def setScreenText(text, x, y):
+    pass
+
+
+def clearIt():
     pass
