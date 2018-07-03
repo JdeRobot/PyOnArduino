@@ -23,6 +23,7 @@ variable_def = ''
 is_for = False
 for_index = 0
 is_if = True
+boolOp = ''
 
 
 class MyVisitor(ast.NodeVisitor):
@@ -139,6 +140,7 @@ class MyVisitor(ast.NodeVisitor):
         global is_Comparision
         global call_index
         global is_call_parameter
+        global boolOp
         is_call_parameter = True
         is_call = True
         call_index = 0
@@ -149,7 +151,7 @@ class MyVisitor(ast.NodeVisitor):
         is_call_parameter = False
         call_index = 0
         parentheses -= 1
-        if parentheses == 0 and is_Comparision == False:
+        if parentheses == 0 and is_Comparision == False and not boolOp:
             self.check_last_comma()
             print('PARENTHESES ' + str(parentheses))
             function_def += ');\n   '
@@ -303,7 +305,6 @@ class MyVisitor(ast.NodeVisitor):
 
     def visit_If(self, node):
         global function_def
-        global parentheses
         global brackets
         global has_else_part
         global direction
@@ -331,6 +332,7 @@ class MyVisitor(ast.NodeVisitor):
     def visit_Compare(self, node):
         global function_def
         global is_Comparision
+        global boolOp
         print('Comparision')
         # LEFT PART
         print('NODE Compare 1: ' + str(type(node.left)))
@@ -338,8 +340,14 @@ class MyVisitor(ast.NodeVisitor):
             is_Comparision = True
         print('NODE Compare 2: ' + str(type(node.ops[0])))
         print('NODE Compare 3: ' + str(type(node.comparators)))
+        function_def += '('
         ast.NodeVisitor.generic_visit(self, node)
-        function_def += ') {\n'
+        function_def += ')'
+        if boolOp:
+            function_def += boolOp
+            boolOp = ''
+        else:
+            function_def += ') {\n'
 
     def visit_Assign(self, node):
         global function_def
@@ -462,6 +470,24 @@ class MyVisitor(ast.NodeVisitor):
         global function_def
         self.check_last_comma()
         function_def += ' % '
+
+    def visit_And(self, node):
+        global boolOp
+        boolOp = ' && '
+        print('NODE And: ' + str(type(node)))
+        ast.NodeVisitor.generic_visit(self, node)
+
+    def visit_Or(self, node):
+        global boolOp
+        boolOp = ' || '
+        print('NODE Or: ' + str(type(node)))
+        ast.NodeVisitor.generic_visit(self, node)
+
+    def visit_BoolOp(self, node):
+        global function_def
+        print('NODE BoolOp: ' + str(type(node)))
+        ast.NodeVisitor.generic_visit(self, node)
+
 
     def check_last_comma(self):
         global function_def

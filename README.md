@@ -35,6 +35,7 @@ Loops | for, while
 sleep() | SUPPORTED
 If | If/elif/else
 Arrays | Arrays can be defined given the types we already supported
+Boolean operations | and or
 Tuples | Future work
 
 ### Example
