@@ -24,6 +24,8 @@ is_for = False
 for_index = 0
 is_if = True
 boolOp = ''
+bin_op = False
+global_vars = ''
 
 
 class MyVisitor(ast.NodeVisitor):
@@ -39,8 +41,12 @@ class MyVisitor(ast.NodeVisitor):
         global array_length
         global call_index
         global is_call_parameter
+        global bin_op
+        global global_vars
         print('NODE Str: ' + str(type(node.s)))
         str_var = '\"' + node.s + '\"'
+        if bin_op:
+            global_vars += 'String ' + node.s + ' = ' + str_var + ';\n'
         if is_array:
             if array_index == 0:
                 str_var = '{' + str_var
@@ -60,7 +66,10 @@ class MyVisitor(ast.NodeVisitor):
                 variable_def = 'String ' + variable_def + ' = ' + str_var
             function_def += variable_def
         else:
-            function_def += str_var
+            if bin_op:
+                function_def += node.s
+            else:
+                function_def += str_var
         variable_def = ''
 
     def visit_Name(self, node):
@@ -141,6 +150,7 @@ class MyVisitor(ast.NodeVisitor):
         global call_index
         global is_call_parameter
         global boolOp
+        global bin_op
         is_call_parameter = True
         is_call = True
         call_index = 0
@@ -159,6 +169,8 @@ class MyVisitor(ast.NodeVisitor):
             print('PARENTHESES ' + str(parentheses))
             function_def += ')'
             is_Comparision = False
+        if bin_op:
+            bin_op = False
 
     def visit_Num(self, node):
         global variable_def
@@ -228,9 +240,12 @@ class MyVisitor(ast.NodeVisitor):
 
     def visit_BinOp(self, node):
         global function_def
+        global variable_def
+        global bin_op
         print('BinOp')
+        bin_op = True
         function_def += '('
-        print('NODE Return: ' + str(type(node.left)) + ' ' + str(type(node.op)) + ' ' + str(type(node.right)))
+        print('NODE BinOp: ' + str(type(node.left)) + ' ' + str(type(node.op)) + ' ' + str(type(node.right)))
         ast.NodeVisitor.generic_visit(self, node)
         self.check_last_comma()
         function_def += ')'
@@ -565,10 +580,10 @@ if __name__ == "__main__":
             output.write('#include <ArduinoRobotMotorBoard.h> // include the robot library\n')
         else:
             output.write('#include <ArduinoRobot.h> // include the robot library\n')
-
+    output.write(global_vars)
     for key, value in functions.items():
         output.write(value)
-
+    '''
     print()
     output.close()
     operating_system = platform.system()
@@ -611,4 +626,4 @@ if __name__ == "__main__":
     makefile.write('include /usr/local/opt/arduino-mk/Arduino.mk')
     makefile.close()
     call(['make'])
-    call(['make', 'upload'])
+    call(['make', 'upload'])'''
