@@ -584,8 +584,12 @@ if __name__ == "__main__":
 
     arduino_libs =''
     if robot == 'Complubot'  or robot == 'CompluBot':
-        board = 'robotControl'
-        arduino_libs = 'Robot_Control Wire SPI'
+        if has_motor_functions():
+            board = 'robotMotor'
+            arduino_libs = 'Robot_Motor Wire SPI'
+        else:
+            board = 'robotControl'
+            arduino_libs = 'Robot_Control Wire SPI'
     else:
         board = 'uno'
 

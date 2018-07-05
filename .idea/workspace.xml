@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e72936ae-374a-42ae-8588-539f897332c5" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/examples/Complubot/LineFollowNoLibraryTest.py" afterPath="$PROJECT_DIR$/examples/Complubot/LineFollowNoLibraryTest.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/translator/Translator.py" afterPath="$PROJECT_DIR$/translator/Translator.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,32 +19,40 @@
       <file leaf-file-name="Translator.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/translator/Translator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1134">
-              <caret line="563" column="33" lean-forward="false" selection-start-line="563" selection-start-column="33" selection-end-line="563" selection-end-column="33" />
+            <state relative-caret-position="194">
+              <caret line="588" column="39" lean-forward="false" selection-start-line="588" selection-start-column="39" selection-end-line="588" selection-end-column="39" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
-                <marker date="1530794320165" expanded="true" signature="16112:18114" ph="..." />
-                <marker date="1530794320165" expanded="true" signature="18116:19391" ph="'''...'''" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LineFollowNoLibraryTest.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="LineFollowNoLibraryTest.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/examples/Complubot/LineFollowNoLibraryTest.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="60">
-              <caret line="4" column="43" lean-forward="false" selection-start-line="4" selection-start-column="43" selection-end-line="4" selection-end-column="43" />
+              <caret line="4" column="8" lean-forward="false" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="8" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="output.ino" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/output.ino">
+      <file leaf-file-name="output.ino" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/output/output.ino">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+            <state relative-caret-position="315">
+              <caret line="21" column="14" lean-forward="false" selection-start-line="21" selection-start-column="14" selection-end-line="21" selection-end-column="14" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Makefile" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/output/Makefile">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="3" column="22" lean-forward="false" selection-start-line="3" selection-start-column="22" selection-end-line="3" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -140,7 +149,6 @@
         <option value="$PROJECT_DIR$/examples/SergioRobot/test2.py" />
         <option value="$PROJECT_DIR$/examples/SergioRobot/test.py" />
         <option value="$PROJECT_DIR$/Makefile" />
-        <option value="$PROJECT_DIR$/output/Makefile" />
         <option value="$PROJECT_DIR$/translator/PyToArduino.py" />
         <option value="$PROJECT_DIR$/examples/CompluBot/beepTest.py" />
         <option value="$PROJECT_DIR$/examples/CompluBot/BeepTest.py" />
@@ -153,10 +161,11 @@
         <option value="$PROJECT_DIR$/examples/Complubot/lineFollowNoLibraryTest.py" />
         <option value="$PROJECT_DIR$/examples/Complubot/BeepTest.py" />
         <option value="$PROJECT_DIR$/examples/Complubot/MelodyTest.py" />
-        <option value="$PROJECT_DIR$/examples/Complubot/LineFollowNoLibraryTest.py" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/translator/Translator.py" />
         <option value="$PROJECT_DIR$/output.ino" />
+        <option value="$PROJECT_DIR$/output/Makefile" />
+        <option value="$PROJECT_DIR$/translator/Translator.py" />
+        <option value="$PROJECT_DIR$/examples/Complubot/LineFollowNoLibraryTest.py" />
       </list>
     </option>
   </component>
@@ -180,8 +189,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -204,30 +211,14 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="examples" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PyOnArduino" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PyOnArduino" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="examples" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Complubot" />
+              <option name="myItemId" value="output" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -336,13 +327,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1526995742446</updated>
-    </task>
-    <task id="LOCAL-00016" summary="Create file if non exists. StopnGo 4 engines">
-      <created>1527846332235</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1527846332235</updated>
     </task>
     <task id="LOCAL-00017" summary="Fixed #4 Halduino directories added">
       <created>1528292525900</created>
@@ -680,7 +664,14 @@
       <option name="project" value="LOCAL" />
       <updated>1530634669849</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="Reformat translator">
+      <created>1530794332275</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1530794332276</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TodoView">
@@ -695,7 +686,7 @@
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20100144" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20386267" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891566" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41686746" sideWeight="0.5114449" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37831324" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -759,7 +750,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Arguments refactored" />
     <MESSAGE value="Arguments and BinOp refactored" />
     <MESSAGE value="Comparision refactored" />
     <MESSAGE value="Variable declaration refactored" />
@@ -784,7 +774,8 @@
     <MESSAGE value="README.md UPDATED" />
     <MESSAGE value="LineFollow renamed" />
     <MESSAGE value="Boolean operations and or supported" />
-    <option name="LAST_COMMIT_MESSAGE" value="Boolean operations and or supported" />
+    <MESSAGE value="Reformat translator" />
+    <option name="LAST_COMMIT_MESSAGE" value="Reformat translator" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -877,7 +868,6 @@
     <entry file="file://$PROJECT_DIR$/platform.txt" />
     <entry file="file://$PROJECT_DIR$/Makefile" />
     <entry file="file://$PROJECT_DIR$/ArduinoRobot.h" />
-    <entry file="file://$PROJECT_DIR$/output/Makefile" />
     <entry file="file://$PROJECT_DIR$/translator/PyToArduino.py" />
     <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/ast.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -912,13 +902,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="3" column="20" lean-forward="false" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/output/output.ino">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -984,36 +967,42 @@
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="254">
             <caret line="28" column="30" lean-forward="false" selection-start-line="28" selection-start-column="30" selection-end-line="28" selection-end-column="30" />
-            <folding />
           </first_editor>
           <second_editor />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/examples/Complubot/LineFollowNoLibraryTest.py">
+    <entry file="file://$PROJECT_DIR$/output.ino" />
+    <entry file="file://$PROJECT_DIR$/output/output.ino">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="43" lean-forward="false" selection-start-line="4" selection-start-column="43" selection-end-line="4" selection-end-column="43" />
+        <state relative-caret-position="315">
+          <caret line="21" column="14" lean-forward="false" selection-start-line="21" selection-start-column="14" selection-end-line="21" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/output/Makefile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="22" lean-forward="false" selection-start-line="3" selection-start-column="22" selection-end-line="3" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/translator/Translator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1134">
-          <caret line="563" column="33" lean-forward="false" selection-start-line="563" selection-start-column="33" selection-end-line="563" selection-end-column="33" />
+        <state relative-caret-position="194">
+          <caret line="588" column="39" lean-forward="false" selection-start-line="588" selection-start-column="39" selection-end-line="588" selection-end-column="39" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
-            <marker date="1530794320165" expanded="true" signature="16112:18114" ph="..." />
-            <marker date="1530794320165" expanded="true" signature="18116:19391" ph="'''...'''" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/output.ino">
+    <entry file="file://$PROJECT_DIR$/examples/Complubot/LineFollowNoLibraryTest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+        <state relative-caret-position="60">
+          <caret line="4" column="8" lean-forward="false" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="8" />
           <folding />
         </state>
       </provider>
