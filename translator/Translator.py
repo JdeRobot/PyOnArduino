@@ -23,7 +23,7 @@ variable_def = ''
 is_for = False
 for_index = 0
 is_if = False
-bool_op = ''
+bool_op = []
 bin_op = False
 global_vars = ''
 
@@ -286,6 +286,7 @@ class MyVisitor(ast.NodeVisitor):
         global array_index
         global array_length
         global is_if
+        global bool_op
         boolean_var = ''
         if node.value is True:
             boolean_var = 'true'
@@ -311,15 +312,22 @@ class MyVisitor(ast.NodeVisitor):
             function_def += boolean_var
         print('NODE NameConstant: ' + str(type(node)))
         ast.NodeVisitor.generic_visit(self, node)
+        if len(bool_op) > 0:
+            function_def += bool_op[len(bool_op)-1]
+            bool_op = bool_op[:-1]
 
     def visit_Index(self, node):
         global function_def
+        global bool_op
         self.check_last_comma()
         function_def += '['
         print('NODE Index: ' + str(type(node)))
         ast.NodeVisitor.generic_visit(self, node)
         self.check_last_comma()
         function_def += ']'
+        if len(bool_op) > 0:
+            function_def += bool_op[len(bool_op)-1]
+            bool_op = bool_op[:-1]
 
     def visit_If(self, node):
         global function_def
@@ -361,9 +369,9 @@ class MyVisitor(ast.NodeVisitor):
         function_def += '('
         ast.NodeVisitor.generic_visit(self, node)
         function_def += ')'
-        if bool_op:
-            function_def += bool_op
-            bool_op = ''
+        if len(bool_op) > 0:
+            function_def += bool_op[len(bool_op)-1]
+            bool_op = bool_op[:-1]
 
     def visit_Assign(self, node):
         global function_def
@@ -489,14 +497,14 @@ class MyVisitor(ast.NodeVisitor):
 
     def visit_And(self, node):
         global bool_op
-        bool_op = ' && '
-        print('NODE And: ' + str(type(node)))
+        bool_op.append(' && ')
+        print('NODE And: ' + str(type(node)) + str(len(bool_op)))
         ast.NodeVisitor.generic_visit(self, node)
 
     def visit_Or(self, node):
         global bool_op
-        bool_op = ' || '
-        print('NODE Or: ' + str(type(node)))
+        bool_op.append(' || ')
+        print('NODE Or: ' + str(type(node)) + str(len(bool_op)))
         ast.NodeVisitor.generic_visit(self, node)
 
     def visit_BoolOp(self, node):

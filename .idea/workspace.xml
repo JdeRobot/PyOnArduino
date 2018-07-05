@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e72936ae-374a-42ae-8588-539f897332c5" name="Default" comment="">
+    <list default="true" id="e72936ae-374a-42ae-8588-539f897332c5" name="Default" comment="Support">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/translator/Translator.py" afterPath="$PROJECT_DIR$/translator/Translator.py" />
     </list>
@@ -15,14 +15,27 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Translator.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Translator.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/translator/Translator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="309">
-              <caret line="231" column="30" lean-forward="false" selection-start-line="231" selection-start-column="30" selection-end-line="231" selection-end-column="30" />
+            <state relative-caret-position="174">
+              <caret line="500" column="64" lean-forward="false" selection-start-line="500" selection-start-column="64" selection-end-line="500" selection-end-column="64" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
+                <marker date="1530810305362" expanded="true" signature="8838:9950" ph="..." />
+                <marker date="1530810305362" expanded="true" signature="9862:9950" ph="..." />
+                <marker date="1530810305362" expanded="true" signature="19114:20529" ph="'''...'''" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="output.ino" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/output.ino">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="120" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -32,16 +45,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="201">
               <caret line="701" column="10" lean-forward="true" selection-start-line="701" selection-start-column="0" selection-end-line="702" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="output.ino" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/output.ino">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -57,11 +60,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="operations.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="operations.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/examples/SergioRobot/operations.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="30">
-              <caret line="2" column="27" lean-forward="false" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
+              <caret line="2" column="21" lean-forward="false" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -88,22 +91,12 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>'setSpeedEngines' in functions or 'getIR1' in functions or 'getIR2' in functions or 'getIR3' in functions or 'getIR4' in functions or 'getIR5' in functions</find>
-      <find>Bin</find>
-      <find>variable_def</find>
-      <find>BinOp</find>
-      <find>bin_Op</find>
-      <find>str_var</find>
-      <find>bin</find>
-      <find>binO</find>
-      <find>void</find>
       <find>function_def</find>
       <find>output</find>
       <find>bin_op</find>
       <find>hkfjdhkfjhsd</find>
       <find>Call:</find>
       <find>boolOp</find>
-      <find>bool_op</find>
       <find>if bool_op</find>
       <find>visit_N</find>
       <find>[</find>
@@ -118,6 +111,16 @@
       <find>else if ((direction == 1))</find>
       <find>) {</find>
       <find>void set_engine(</find>
+      <find>visit_NAme</find>
+      <find>visit_Lo</find>
+      <find>if bool_op:</find>
+      <find>visit_Inde</find>
+      <find>visit_Ex</find>
+      <find>NameCon</find>
+      <find>if boo</find>
+      <find>bool_op =</find>
+      <find>boolOp:</find>
+      <find>bool_op</find>
     </findStrings>
     <replaceStrings>
       <replace>&gt;</replace>
@@ -183,9 +186,9 @@
         <option value="$PROJECT_DIR$/examples/Complubot/LineFollowNoLibraryTest.py" />
         <option value="$PROJECT_DIR$/output/output.ino" />
         <option value="$PROJECT_DIR$/examples/SergioRobot/test.py" />
+        <option value="$PROJECT_DIR$/translator/Translator.py" />
         <option value="$PROJECT_DIR$/examples/SergioRobot/operations.py" />
         <option value="$PROJECT_DIR$/output.ino" />
-        <option value="$PROJECT_DIR$/translator/Translator.py" />
       </list>
     </option>
   </component>
@@ -347,13 +350,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1526995742446</updated>
-    </task>
-    <task id="LOCAL-00019" summary="Function arguments types get from their definition">
-      <created>1528296482535</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1528296482535</updated>
     </task>
     <task id="LOCAL-00020" summary="Python's sleep function is translated to delay directly">
       <created>1528299385679</created>
@@ -691,7 +687,14 @@
       <option name="project" value="LOCAL" />
       <updated>1530797615979</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="Better management of expression ending">
+      <created>1530803542540</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1530803542541</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="TodoView">
@@ -705,12 +708,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2067239" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891566" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41686746" sideWeight="0.5114449" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37831324" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36506024" sideWeight="0.49713877" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36506024" sideWeight="0.49713877" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891566" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38554215" sideWeight="0.48855507" order="10" side_tool="false" content_ui="tabs" />
@@ -770,7 +774,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Variable declaration refactored" />
     <MESSAGE value="Array support refactored" />
     <MESSAGE value="Array support refactored for more vari typess" />
     <MESSAGE value="Boolean arrays and arrays index refactored" />
@@ -795,7 +798,8 @@
     <MESSAGE value="Reformat translator" />
     <MESSAGE value="Support for Robot Motor libraries in Complubot" />
     <MESSAGE value="Concat Strings translation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Concat Strings translation" />
+    <MESSAGE value="Better management of expression ending" />
+    <option name="LAST_COMMIT_MESSAGE" value="Better management of expression ending" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -859,6 +863,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -985,10 +990,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/examples/Complubot/LineFollowNoLibraryTest.py">
+    <entry file="file://$USER_HOME$/Library/Caches/PyCharmCE2017.1/python_stubs/-2010535109/_ast.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="31" lean-forward="false" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="31" />
+        <state relative-caret-position="201">
+          <caret line="701" column="10" lean-forward="true" selection-start-line="701" selection-start-column="0" selection-end-line="702" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1001,10 +1006,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Library/Caches/PyCharmCE2017.1/python_stubs/-2010535109/_ast.py">
+    <entry file="file://$PROJECT_DIR$/examples/Complubot/LineFollowNoLibraryTest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="701" column="10" lean-forward="true" selection-start-line="701" selection-start-column="0" selection-end-line="702" selection-end-column="0" />
+        <state relative-caret-position="90">
+          <caret line="6" column="31" lean-forward="false" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/translator/Translator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="500" column="64" lean-forward="false" selection-start-line="500" selection-start-column="64" selection-end-line="500" selection-end-column="64" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+            <marker date="1530810305362" expanded="true" signature="8838:9950" ph="..." />
+            <marker date="1530810305362" expanded="true" signature="9862:9950" ph="..." />
+            <marker date="1530810305362" expanded="true" signature="19114:20529" ph="'''...'''" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/output.ino">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="120" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1012,26 +1038,8 @@
     <entry file="file://$PROJECT_DIR$/examples/SergioRobot/operations.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
-          <caret line="2" column="27" lean-forward="false" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
+          <caret line="2" column="21" lean-forward="false" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/output.ino">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/translator/Translator.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="231" column="30" lean-forward="false" selection-start-line="231" selection-start-column="30" selection-end-line="231" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
