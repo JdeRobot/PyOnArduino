@@ -488,11 +488,23 @@ class MyVisitor(ast.NodeVisitor):
         print('NODE BoolOp: ' + str(type(node)))
         ast.NodeVisitor.generic_visit(self, node)
 
-
     def check_last_comma(self):
         global function_def
         if function_def[-1:] == ',':
             function_def = function_def[:-1]
+
+
+def has_motor_functions():
+    return 'setSpeedEngines' in functions or 'getIR1' in functions or 'getIR2' in functions or 'getIR3' in functions or 'getIR4' in functions or 'getIR5' in functions
+
+
+def uses_speaker():
+    return 'playBeep' in functions or 'playMelody' in functions
+
+
+def uses_screen():
+    return 'clearIt' in functions or 'setScreenText' in functions
+
 
 if __name__ == "__main__":
     robot = ''
@@ -535,19 +547,21 @@ if __name__ == "__main__":
         setup = '\n'
         for index, line in enumerate(functions['setup'].splitlines()):
             if index == 1:
-                if 'setSpeedEngines' in functions or 'getIR1' in functions or 'getIR2' in functions or 'getIR3' in functions or 'getIR4' in functions or 'getIR5' in functions:
+                if has_motor_functions():
                     setup += '\n   RobotMotor.begin();\n'
                 else:
                     setup += '\n   Robot.begin();\n'
-                if 'playBeep' in functions or 'playMelody' in functions:
+
+                if uses_speaker():
                     setup += '\n   Robot.beginSpeaker();\n'
-                if 'clearIt' in functions or 'setScreenText' in functions:
+
+                if uses_screen():
                     setup += '\n   Robot.beginTFT();\n'
             setup += line
 
         setup += '\n'''
         functions['setup'] = setup
-        if 'setSpeedEngines' in functions or 'getIR1' in functions or 'getIR2' in functions or 'getIR3' in functions or 'getIR4' in functions or 'getIR5' in functions:
+        if has_motor_functions():
             output.write('#include <ArduinoRobotMotorBoard.h> // include the robot library\n')
         else:
             output.write('#include <ArduinoRobot.h> // include the robot library\n')
