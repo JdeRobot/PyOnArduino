@@ -22,8 +22,8 @@ array_length = 0
 variable_def = ''
 is_for = False
 for_index = 0
-is_if = True
-boolOp = ''
+is_if = False
+bool_op = ''
 bin_op = False
 global_vars = ''
 
@@ -138,8 +138,13 @@ class MyVisitor(ast.NodeVisitor):
     def visit_Expr(self, node):
         global direction
         global function_def
+        global is_if
         if node == direction:
             function_def += '} else {\n'
+        if is_if:
+            function_def += ') {\n'
+            is_if = False
+        print('NODE Expr: ' + str(type(node)))
         ast.NodeVisitor.generic_visit(self, node)
 
     def visit_Call(self, node):
@@ -149,7 +154,7 @@ class MyVisitor(ast.NodeVisitor):
         global is_Comparision
         global call_index
         global is_call_parameter
-        global boolOp
+        global bool_op
         global bin_op
         is_call_parameter = True
         is_call = True
@@ -161,7 +166,7 @@ class MyVisitor(ast.NodeVisitor):
         is_call_parameter = False
         call_index = 0
         parentheses -= 1
-        if parentheses == 0 and is_Comparision == False and not boolOp:
+        if parentheses == 0 and is_Comparision == False and not bool_op:
             self.check_last_comma()
             print('PARENTHESES ' + str(parentheses))
             function_def += ');\n   '
@@ -287,8 +292,6 @@ class MyVisitor(ast.NodeVisitor):
         elif node.value is False:
             boolean_var = 'false'
 
-        if is_if:
-            boolean_var += ') {\n'
 
         if is_array:
             if array_index == 0:
@@ -336,7 +339,7 @@ class MyVisitor(ast.NodeVisitor):
             direction = node.orelse[0]
         else:
             has_else_part = False
-        print('NODE If: ' + str(type(node)) + ' ' + str(brackets) + ' ' + str(node.orelse) + ' ' + str(has_else_part))
+        print('NODE If: ' + str(type(node)) + ' ' + str(brackets) + ' ' + str(node.orelse) + ' ' + str(has_else_part)+ ' ' + str(node.body))
         ast.NodeVisitor.generic_visit(self, node)
         has_else_part = False
         brackets -= 1
@@ -347,7 +350,7 @@ class MyVisitor(ast.NodeVisitor):
     def visit_Compare(self, node):
         global function_def
         global is_Comparision
-        global boolOp
+        global bool_op
         print('Comparision')
         # LEFT PART
         print('NODE Compare 1: ' + str(type(node.left)))
@@ -358,11 +361,9 @@ class MyVisitor(ast.NodeVisitor):
         function_def += '('
         ast.NodeVisitor.generic_visit(self, node)
         function_def += ')'
-        if boolOp:
-            function_def += boolOp
-            boolOp = ''
-        else:
-            function_def += ') {\n'
+        if bool_op:
+            function_def += bool_op
+            bool_op = ''
 
     def visit_Assign(self, node):
         global function_def
@@ -487,26 +488,31 @@ class MyVisitor(ast.NodeVisitor):
         function_def += ' % '
 
     def visit_And(self, node):
-        global boolOp
-        boolOp = ' && '
+        global bool_op
+        bool_op = ' && '
         print('NODE And: ' + str(type(node)))
         ast.NodeVisitor.generic_visit(self, node)
 
     def visit_Or(self, node):
-        global boolOp
-        boolOp = ' || '
+        global bool_op
+        bool_op = ' || '
         print('NODE Or: ' + str(type(node)))
         ast.NodeVisitor.generic_visit(self, node)
 
     def visit_BoolOp(self, node):
         global function_def
-        print('NODE BoolOp: ' + str(type(node)))
+        print('NODE boolOp: ' + str(type(node)))
         ast.NodeVisitor.generic_visit(self, node)
 
     def check_last_comma(self):
         global function_def
         if function_def[-1:] == ',':
             function_def = function_def[:-1]
+
+    def visit_Load(self, node):
+        print('NODE Load: ' + str(type(node)))
+        ast.NodeVisitor.generic_visit(self, node)
+
 
 
 def has_motor_functions():
@@ -583,7 +589,7 @@ if __name__ == "__main__":
     output.write(global_vars)
     for key, value in functions.items():
         output.write(value)
-    '''
+
     print()
     output.close()
     operating_system = platform.system()
@@ -626,4 +632,4 @@ if __name__ == "__main__":
     makefile.write('include /usr/local/opt/arduino-mk/Arduino.mk')
     makefile.close()
     call(['make'])
-    call(['make', 'upload'])'''
+    call(['make', 'upload'])
