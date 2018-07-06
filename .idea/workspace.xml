@@ -18,7 +18,7 @@
       <file leaf-file-name="Translator.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/translator/Translator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
+            <state relative-caret-position="0">
               <caret line="397" column="26" lean-forward="false" selection-start-line="397" selection-start-column="26" selection-end-line="397" selection-end-column="26" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
@@ -40,8 +40,8 @@
       <file leaf-file-name="LineFollowNoLibraryTest.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/examples/Complubot/LineFollowNoLibraryTest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="31" lean-forward="false" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="31" />
+            <state relative-caret-position="75">
+              <caret line="5" column="9" lean-forward="true" selection-start-line="5" selection-start-column="9" selection-end-line="5" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -50,8 +50,8 @@
       <file leaf-file-name="operations.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/examples/SergioRobot/operations.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="5" selection-end-column="22" />
+            <state relative-caret-position="60">
+              <caret line="4" column="20" lean-forward="false" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -60,8 +60,8 @@
       <file leaf-file-name="translator_tests.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tests/translator_tests.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="20" column="69" lean-forward="false" selection-start-line="20" selection-start-column="69" selection-end-line="20" selection-end-column="69" />
+            <state relative-caret-position="364">
+              <caret line="78" column="2" lean-forward="false" selection-start-line="78" selection-start-column="2" selection-end-line="78" selection-end-column="2" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -72,8 +72,8 @@
       <file leaf-file-name="test.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/examples/SergioRobot/test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="21" column="21" lean-forward="false" selection-start-line="20" selection-start-column="4" selection-end-line="21" selection-end-column="21" />
+            <state relative-caret-position="344">
+              <caret line="40" column="16" lean-forward="true" selection-start-line="31" selection-start-column="4" selection-end-line="40" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -212,6 +212,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -254,7 +255,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -285,7 +285,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.Unittests for translator_tests.MyTest.test_if_simple">
+  <component name="RunManager" selected="Python tests.Unittests in translator_tests.py">
     <configuration default="false" name="Unittests in translator_tests.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -386,8 +386,8 @@
     </list>
     <recent_temporary>
       <list size="2">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests for translator_tests.MyTest.test_if_simple" />
-        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in translator_tests.py" />
+        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in translator_tests.py" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests for translator_tests.MyTest.test_if_simple" />
       </list>
     </recent_temporary>
   </component>
@@ -404,13 +404,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1526995742446</updated>
-    </task>
-    <task id="LOCAL-00022" summary="Add, Sub, Mult, Mod support added">
-      <created>1528391485191</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1528391485191</updated>
     </task>
     <task id="LOCAL-00023" summary="Integer array, new setup definition pattern and variable declaration &#10;section deleted">
       <created>1528479821005</created>
@@ -748,38 +741,45 @@
       <option name="project" value="LOCAL" />
       <updated>1530816537876</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="SetUp method override in the tests file">
+      <created>1530869620904</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1530869620904</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittests_for_translator_tests_MyTest_test_if_simple - 2018.07.06 at 11h 21m 13s.xml">
-      <configuration name="Unittests for translator_tests.MyTest.test_if_simple" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_translator_tests_MyTest_test_if_simple - 2018.07.06 at 11h 23m 40s.xml">
-      <configuration name="Unittests for translator_tests.MyTest.test_if_simple" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_translator_tests_MyTest_test_if_simple - 2018.07.06 at 11h 24m 10s.xml">
-      <configuration name="Unittests for translator_tests.MyTest.test_if_simple" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_translator_tests_MyTest_test_if_simple - 2018.07.06 at 11h 24m 36s.xml">
-      <configuration name="Unittests for translator_tests.MyTest.test_if_simple" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_translator_tests_MyTest_test_if_simple - 2018.07.06 at 11h 24m 44s.xml">
-      <configuration name="Unittests for translator_tests.MyTest.test_if_simple" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_translator_tests_MyTest_test_if_simple - 2018.07.06 at 11h 31m 40s.xml">
-      <configuration name="Unittests for translator_tests.MyTest.test_if_simple" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_translator_tests_MyTest_test_if_simple - 2018.07.06 at 11h 32m 37s.xml">
-      <configuration name="Unittests for translator_tests.MyTest.test_if_simple" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_translator_tests_MyTest_test_if_simple - 2018.07.06 at 11h 32m 54s.xml">
-      <configuration name="Unittests for translator_tests.MyTest.test_if_simple" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_in_translator_tests_py - 2018.07.06 at 11h 18m 16s.xml">
+    <history-entry file="Unittests_in_translator_tests_py - 2018.07.06 at 13h 23m 56s.xml">
       <configuration name="Unittests in translator_tests.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_translator_tests_py - 2018.07.06 at 11h 18m 35s.xml">
+    <history-entry file="Unittests_in_translator_tests_py - 2018.07.06 at 13h 24m 06s.xml">
+      <configuration name="Unittests in translator_tests.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_translator_tests_py - 2018.07.06 at 13h 24m 09s.xml">
+      <configuration name="Unittests in translator_tests.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_translator_tests_py - 2018.07.06 at 13h 25m 38s.xml">
+      <configuration name="Unittests in translator_tests.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_translator_tests_py - 2018.07.06 at 13h 26m 11s.xml">
+      <configuration name="Unittests in translator_tests.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_translator_tests_py - 2018.07.06 at 13h 29m 07s.xml">
+      <configuration name="Unittests in translator_tests.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_translator_tests_py - 2018.07.06 at 13h 29m 53s.xml">
+      <configuration name="Unittests in translator_tests.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_translator_tests_py - 2018.07.06 at 13h 30m 09s.xml">
+      <configuration name="Unittests in translator_tests.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_translator_tests_py - 2018.07.06 at 13h 30m 24s.xml">
+      <configuration name="Unittests in translator_tests.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_translator_tests_py - 2018.07.06 at 13h 30m 57s.xml">
       <configuration name="Unittests in translator_tests.py" configurationId="tests" />
     </history-entry>
   </component>
@@ -795,7 +795,7 @@
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21530758" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22103004" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891566" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41686746" sideWeight="0.5114449" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37831324" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -859,7 +859,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Boolean arrays and arrays index refactored" />
     <MESSAGE value="For refactored" />
     <MESSAGE value="If without comparision refactored" />
     <MESSAGE value="Function call refactored" />
@@ -884,7 +883,8 @@
     <MESSAGE value="Better management of expression ending" />
     <MESSAGE value="Better support for and or statements" />
     <MESSAGE value="Print Hello World test and sleep test" />
-    <option name="LAST_COMMIT_MESSAGE" value="Print Hello World test and sleep test" />
+    <MESSAGE value="SetUp method override in the tests file" />
+    <option name="LAST_COMMIT_MESSAGE" value="SetUp method override in the tests file" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1072,22 +1072,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/output.ino" />
-    <entry file="file://$PROJECT_DIR$/examples/SergioRobot/operations.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="5" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/unittest/case.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="815" column="8" lean-forward="false" selection-start-line="815" selection-start-column="8" selection-end-line="815" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1095,17 +1079,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/examples/SergioRobot/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="21" column="21" lean-forward="false" selection-start-line="20" selection-start-column="4" selection-end-line="21" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/translator/Translator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
+        <state relative-caret-position="0">
           <caret line="397" column="26" lean-forward="false" selection-start-line="397" selection-start-column="26" selection-end-line="397" selection-end-column="26" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
@@ -1115,16 +1091,40 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/examples/Complubot/LineFollowNoLibraryTest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="31" lean-forward="false" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="31" />
+        <state relative-caret-position="75">
+          <caret line="5" column="9" lean-forward="true" selection-start-line="5" selection-start-column="9" selection-end-line="5" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/SergioRobot/operations.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="20" lean-forward="false" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/SergioRobot/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="344">
+          <caret line="40" column="16" lean-forward="true" selection-start-line="31" selection-start-column="4" selection-end-line="40" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/unittest/case.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="1193" column="0" lean-forward="false" selection-start-line="1193" selection-start-column="0" selection-end-line="1193" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/translator_tests.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="69" lean-forward="false" selection-start-line="20" selection-start-column="69" selection-end-line="20" selection-end-column="69" />
+        <state relative-caret-position="364">
+          <caret line="78" column="2" lean-forward="false" selection-start-line="78" selection-start-column="2" selection-end-line="78" selection-end-column="2" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
