@@ -161,3 +161,22 @@ set_engine(1);
    }
 '''
         self.assertEqual(expected_statement, translator.function_def)
+
+    def test_and_or_if(self):
+        self.translate_string('''def loop():
+    array = [True, False, True]
+    if True and False:
+        print('Hello')
+    if array[0] and array[1]:
+        print('Hello')''')
+        expected_statement = '''void loop() {
+boolean array[] = {true,false,true};
+if (true && false) {
+Serial.print("Hello");
+   }
+if (array[0] && array[1]) {
+Serial.print("Hello");
+   }
+}
+'''
+        self.assertEqual(expected_statement, translator.function_def)
