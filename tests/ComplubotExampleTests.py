@@ -174,7 +174,7 @@ setScreenText("Hello World!",5,5);
 '''
         self.assertEqual(expected_statement, translator.function_def)
 
-    def test_stop_n_go_test(self):
+    def test_stopngo_test(self):
         self.translate_string('''import HALduino.halduino as halduino
 
 def set_engine(direction: int):
@@ -183,7 +183,19 @@ def set_engine(direction: int):
         print('STOP!')
     elif direction == 1:
         halduino.setSpeedEngines(100, 100)
-        print('Forward')
+        print('Forward')''')
+        expected_statement = '''void set_engine(int direction) {
+if ((direction == 0)) {
+setSpeedEngines(0,0);
+   Serial.print("STOP!");
+   } else if ((direction == 1)) {
+setSpeedEngines(100,100);
+   Serial.print("Forward");
+   }
+}
+'''
+        self.assertEqual(expected_statement, translator.function_def)
+        self.translate_string('''import HALduino.halduino as halduino
 
 def loop():
     if halduino.getUS() < 30:
