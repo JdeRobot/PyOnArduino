@@ -4,7 +4,7 @@ import HALduino.halduino as halduino
 
 def set_engine(direction: int):
     if direction == 0:
-        halduino.stopEngines()
+        halduino.setSpeedEngines(0, 0)
         sleep(500)
         halduino.setSpeedEngines(-100, -100)
         sleep(500)

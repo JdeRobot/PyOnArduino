@@ -7,6 +7,7 @@ class TranslatorTests(unittest.TestCase):
         global visitor
         translator.function_def = ''
         translator.robot = 'Complubot'
+        translator.halduino_directory = '../HALduino/halduino'
         visitor = translator.MyVisitor()
 
     def translate_string(self, text):
@@ -151,6 +152,12 @@ elif halduino.getUS() <= 10:
     set_engine(0)
 else:
     set_engine(1)''')
-        expected_statement = ''
-        function_def = translator.function_def
+        expected_statement = '''if (true) {
+Serial.print("HELLO");
+   } else if ((getUS() <= 10)) {
+set_engine(0);
+   } else {
+set_engine(1);
+   }
+'''
         self.assertEqual(expected_statement, translator.function_def)
