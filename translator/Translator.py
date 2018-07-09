@@ -601,14 +601,19 @@ if __name__ == "__main__":
     print()
     output.close()
     operating_system = platform.system()
+    makefile_parameters = []
     if operating_system == 'Darwin':
         arduino_dir = '/Applications/Arduino.app/Contents/Java'
+        makefile_parameters.append('include /usr/local/opt/arduino-mk/Arduino.mk')
         print('macOS')
     elif operating_system == 'Windows':
         arduino_dir = 'C:/Arduino'
+        makefile_parameters.append('ARDMK_DIR = path/to/mkfile')
         print('Windows')
     else:
         arduino_dir = '/home/sudar/apps/arduino-1.0.5'
+        makefile_parameters.append('ARDMK_DIR =  mk directory')
+        makefile_parameters.append('AVR_TOOLS_DIR =  avr tools directory')
         print('Linux')
 
     arduino_libs =''
@@ -637,7 +642,8 @@ if __name__ == "__main__":
         makefile.write('ARDUINO_LIBS= '+arduino_libs+'\n')
     makefile.write('MONITOR_PORT  = /dev/cu.usbmodem*\n')
     makefile.write('BOARD_TAG = ' + board + '\n')
-    makefile.write('include /usr/local/opt/arduino-mk/Arduino.mk')
+    for parameter in makefile_parameters:
+        makefile.write(parameter)
     makefile.close()
     call(['make'])
     call(['make', 'upload'])
