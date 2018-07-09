@@ -5,6 +5,7 @@ Python.
 
 ## Requirements and installation
 + Python 3.6 [Download](https://www.python.org/downloads/)
++ Arduino IDE [Download](https://www.arduino.cc/en/Main/Software)
 + Arduino Makefile [Download and installation](https://github.com/sudar/Arduino-Makefile)
 
 To execute the project 

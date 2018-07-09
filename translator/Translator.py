@@ -610,7 +610,7 @@ if __name__ == "__main__":
         print('macOS')
     elif operating_system == 'Windows':
         arduino_dir = 'C:/Arduino'
-        makefile_parameters.append('ARDMK_DIR = path/to/mkfile\n')
+        makefile_parameters.append('ARDMK_DIR = ../Makefile/Arduino.mk\n')
         print('Windows')
     else:
         arduino_dir = '/usr/share/arduino'
