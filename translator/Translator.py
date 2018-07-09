@@ -615,7 +615,7 @@ if __name__ == "__main__":
     else:
         arduino_dir = '/usr/share/arduino'
         makefile_parameters.append('ARDMK_DIR =  /usr/share/arduino\n')
-        makefile_parameters.append('AVR_TOOLS_DIR =  /usr/bin\n')
+        makefile_parameters.append('AVR_TOOLS_DIR =  /usr/\n')
         makefile_parameters.append('include $(ARDMK_DIR)/Arduino.mk\n')
         print('Linux')
 
@@ -643,7 +643,7 @@ if __name__ == "__main__":
     makefile.write('ARDUINO_DIR   = ' + arduino_dir + '\n')
     if arduino_libs:
         makefile.write('ARDUINO_LIBS= '+arduino_libs+'\n')
-    makefile.write('MONITOR_PORT  = /dev/cu.usbmodem*\n')
+    makefile.write('MONITOR_PORT  = /dev/tty.usbmodem*\n')
     makefile.write('BOARD_TAG = ' + board + '\n')
     for parameter in makefile_parameters:
         makefile.write(parameter)
