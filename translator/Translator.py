@@ -26,6 +26,7 @@ is_if = False
 bool_op = []
 bin_op = False
 global_vars = ''
+halduino_directory = './HALduino/halduino'
 
 
 class MyVisitor(ast.NodeVisitor):
@@ -395,7 +396,7 @@ class MyVisitor(ast.NodeVisitor):
         global function_def
         function_def += node.attr
         print('Halduino found with call to function ' + node.attr)
-        halduino = open('./HALduino/halduino' + robot + '.ino', 'r')
+        halduino = open(halduino_directory + robot + '.ino', 'r')
         print('NODE: ' + node.attr)
         self.search_for_function(halduino, True, '', '', node.attr)
 
@@ -425,6 +426,7 @@ class MyVisitor(ast.NodeVisitor):
                         end_of_function = True
                 functions[declaration_name] = function_string
                 not_found = True
+        halduino.close()
 
     def visit_For(self, node):
         global function_def

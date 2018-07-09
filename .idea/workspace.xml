@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e72936ae-374a-42ae-8588-539f897332c5" name="Default" comment="Support">
+    <list default="true" id="e72936ae-374a-42ae-8588-539f897332c5" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/translator/Translator.py" afterPath="$PROJECT_DIR$/translator/Translator.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/TranslatorTests.py" afterPath="$PROJECT_DIR$/tests/TranslatorTests.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -15,66 +15,107 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Translator.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/translator/Translator.py">
+      <file leaf-file-name="LineFollowNoLibraryTest.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/examples/Complubot/LineFollowNoLibraryTest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="174">
-              <caret line="500" column="64" lean-forward="false" selection-start-line="500" selection-start-column="64" selection-end-line="500" selection-end-column="64" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="6" selection-end-column="40" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MelodyTest.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/examples/Complubot/MelodyTest.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="4" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LineFollowTest.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/examples/Complubot/LineFollowTest.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="3" selection-end-column="35" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TranslatorTests.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tests/TranslatorTests.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="676">
+              <caret line="181" column="0" lean-forward="false" selection-start-line="181" selection-start-column="0" selection-end-line="181" selection-end-column="0" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
-                <marker date="1530810305362" expanded="true" signature="8838:9950" ph="..." />
-                <marker date="1530810305362" expanded="true" signature="9862:9950" ph="..." />
-                <marker date="1530810305362" expanded="true" signature="19114:20529" ph="'''...'''" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="output.ino" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/output.ino">
+      <file leaf-file-name="ComplubotExampleTests.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/ComplubotExampleTests.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="120" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="424">
+              <caret line="196" column="0" lean-forward="false" selection-start-line="196" selection-start-column="0" selection-end-line="196" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_ast.py" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/Library/Caches/PyCharmCE2017.1/python_stubs/-2010535109/_ast.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="201">
-              <caret line="701" column="10" lean-forward="true" selection-start-line="701" selection-start-column="0" selection-end-line="702" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LineFollowNoLibraryTest.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/examples/Complubot/LineFollowNoLibraryTest.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="31" lean-forward="false" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="31" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="operations.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="operations.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/examples/SergioRobot/operations.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="21" lean-forward="false" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="5" selection-end-column="22" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/examples/SergioRobot/test.py">
+      <file leaf-file-name="SergioRobotExampleTests.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/SergioRobotExampleTests.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="164">
-              <caret line="16" column="24" lean-forward="true" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="24" />
+            <state relative-caret-position="1185">
+              <caret line="81" column="0" lean-forward="false" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StopnGo.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/examples/SergioRobot/StopnGo.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="20" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StopnGoTest.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/examples/Complubot/StopnGoTest.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="14" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ScreenTextTest.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/examples/Complubot/ScreenTextTest.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -91,18 +132,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>function_def</find>
-      <find>output</find>
-      <find>bin_op</find>
-      <find>hkfjdhkfjhsd</find>
-      <find>Call:</find>
-      <find>boolOp</find>
-      <find>if bool_op</find>
-      <find>visit_N</find>
-      <find>[</find>
-      <find>', '</find>
-      <find>is_if</find>
-      <find>is_if</find>
       <find>ast.C</find>
       <find>If(</find>
       <find>node.bo</find>
@@ -121,6 +150,18 @@
       <find>bool_op =</find>
       <find>boolOp:</find>
       <find>bool_op</find>
+      <find>Halduino found</find>
+      <find>'./HALduino/halduino'</find>
+      <find>halduino_directory</find>
+      <find>close</find>
+      <find>Attu</find>
+      <find>halduino =</find>
+      <find>halduino.</find>
+      <find>Halduino found with call to function</find>
+      <find>Sergio</find>
+      <find>functions</find>
+      <find>complubot</find>
+      <find>stop</find>
     </findStrings>
     <replaceStrings>
       <replace>&gt;</replace>
@@ -143,7 +184,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="trasnlator_testing" />
       </map>
     </option>
   </component>
@@ -185,10 +226,17 @@
         <option value="$PROJECT_DIR$/output/Makefile" />
         <option value="$PROJECT_DIR$/examples/Complubot/LineFollowNoLibraryTest.py" />
         <option value="$PROJECT_DIR$/output/output.ino" />
-        <option value="$PROJECT_DIR$/examples/SergioRobot/test.py" />
-        <option value="$PROJECT_DIR$/translator/Translator.py" />
         <option value="$PROJECT_DIR$/examples/SergioRobot/operations.py" />
         <option value="$PROJECT_DIR$/output.ino" />
+        <option value="$PROJECT_DIR$/examples/SergioRobot/test.py" />
+        <option value="$PROJECT_DIR$/translator/Translator.py" />
+        <option value="$PROJECT_DIR$/examples/Complubot/HitnRotateTest.py" />
+        <option value="$PROJECT_DIR$/tests/translator_tests.py" />
+        <option value="$PROJECT_DIR$/tests/ComplubotExamplesTests.py" />
+        <option value="$PROJECT_DIR$/tests/SergioRobotExamplesTests.py" />
+        <option value="$PROJECT_DIR$/tests/SergioRobotExampleTests.py" />
+        <option value="$PROJECT_DIR$/tests/ComplubotExampleTests.py" />
+        <option value="$PROJECT_DIR$/tests/TranslatorTests.py" />
       </list>
     </option>
   </component>
@@ -212,6 +260,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -238,10 +287,27 @@
               <option name="myItemId" value="examples" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SergioRobot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PyOnArduino" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PyOnArduino" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="examples" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -271,7 +337,82 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python tests.Unittests for TranslatorTests.TranslatorTests.test_and_or_if">
+    <configuration default="false" name="Unittests for tests.ComplubotExampleTests.ComplubotExamplesTests.test_stop_n_go_test" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="PyOnArduino" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;tests.ComplubotExampleTests.ComplubotExamplesTests.test_stop_n_go_test&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittests for SergioRobotExampleTests.ComplubotExamplesTests.test_ir_test" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="PyOnArduino" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;SergioRobotExampleTests.ComplubotExamplesTests.test_ir_test&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittests for SergioRobotExampleTests.ComplubotExamplesTests.test_stopngo_test" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="PyOnArduino" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;SergioRobotExampleTests.ComplubotExamplesTests.test_stopngo_test&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittests for ComplubotExampleTests.ComplubotExamplesTests.test_stopngo_test" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="PyOnArduino" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;ComplubotExampleTests.ComplubotExamplesTests.test_stopngo_test&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittests for TranslatorTests.TranslatorTests.test_and_or_if" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="PyOnArduino" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;TranslatorTests.TranslatorTests.test_and_or_if&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method />
+    </configuration>
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -336,6 +477,22 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method />
     </configuration>
+    <list size="5">
+      <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests for tests.ComplubotExampleTests.ComplubotExamplesTests.test_stop_n_go_test" />
+      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests for SergioRobotExampleTests.ComplubotExamplesTests.test_ir_test" />
+      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests for SergioRobotExampleTests.ComplubotExamplesTests.test_stopngo_test" />
+      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests for ComplubotExampleTests.ComplubotExamplesTests.test_stopngo_test" />
+      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests for TranslatorTests.TranslatorTests.test_and_or_if" />
+    </list>
+    <recent_temporary>
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests for TranslatorTests.TranslatorTests.test_and_or_if" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests for ComplubotExampleTests.ComplubotExamplesTests.test_stopngo_test" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests for SergioRobotExampleTests.ComplubotExamplesTests.test_stopngo_test" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests for SergioRobotExampleTests.ComplubotExamplesTests.test_ir_test" />
+        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests for tests.ComplubotExampleTests.ComplubotExamplesTests.test_stop_n_go_test" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
@@ -350,55 +507,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1526995742446</updated>
-    </task>
-    <task id="LOCAL-00020" summary="Python's sleep function is translated to delay directly">
-      <created>1528299385679</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1528299385679</updated>
-    </task>
-    <task id="LOCAL-00021" summary="README.md updated with the functionality we're working on supporting">
-      <created>1528384360759</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1528384360759</updated>
-    </task>
-    <task id="LOCAL-00022" summary="Add, Sub, Mult, Mod support added">
-      <created>1528391485191</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1528391485191</updated>
-    </task>
-    <task id="LOCAL-00023" summary="Integer array, new setup definition pattern and variable declaration &#10;section deleted">
-      <created>1528479821005</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1528479821005</updated>
-    </task>
-    <task id="LOCAL-00024" summary="Setup IR sensors updated">
-      <created>1528656616290</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1528656616290</updated>
-    </task>
-    <task id="LOCAL-00025" summary="Variable declaration type defined in translator">
-      <created>1528738689698</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1528738689698</updated>
-    </task>
-    <task id="LOCAL-00026" summary="Arrays declaration support">
-      <created>1528799474846</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1528799474846</updated>
     </task>
     <task id="LOCAL-00027" summary="Depth support deleted">
       <created>1528964870012</created>
@@ -694,8 +802,89 @@
       <option name="project" value="LOCAL" />
       <updated>1530803542541</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="Better support for and or statements">
+      <created>1530810328546</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1530810328547</updated>
+    </task>
+    <task id="LOCAL-00070" summary="Print Hello World test and sleep test">
+      <created>1530816537875</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1530816537876</updated>
+    </task>
+    <task id="LOCAL-00071" summary="SetUp method override in the tests file">
+      <created>1530869620904</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1530869620904</updated>
+    </task>
+    <task id="LOCAL-00072" summary="Variables declarations and operations with parentheses tests">
+      <created>1530876792002</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1530876792003</updated>
+    </task>
+    <task id="LOCAL-00073" summary="Array variables definition, function definitions and calls tests">
+      <created>1530881678927</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1530881678928</updated>
+    </task>
+    <task id="LOCAL-00074" summary="Complubot examples tests added and more test coverage to the translator itself">
+      <created>1530978714567</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1530978714569</updated>
+    </task>
+    <task id="LOCAL-00075" summary="SergioRobot examples tests added and complubot tests improved">
+      <created>1530979756001</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1530979756002</updated>
+    </task>
+    <option name="localTasksCounter" value="76" />
     <servers />
+  </component>
+  <component name="TestHistory">
+    <history-entry file="Unittests_for_ComplubotExampleTests_ComplubotExamplesTests_test_stopngo_test - 2018.07.07 at 18h 08m 07s.xml">
+      <configuration name="Unittests for ComplubotExampleTests.ComplubotExamplesTests.test_stopngo_test" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_ComplubotExamplesTests_ComplubotExamplesTests_test_screen_test_test - 2018.07.07 at 17h 43m 01s.xml">
+      <configuration name="Unittests for ComplubotExamplesTests.ComplubotExamplesTests.test_screen_test_test" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_ComplubotExamplesTests_ComplubotExamplesTests_test_stop_n_go_test - 2018.07.07 at 17h 49m 13s.xml">
+      <configuration name="Unittests for ComplubotExamplesTests.ComplubotExamplesTests.test_stop_n_go_test" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_SergioRobotExampleTests_ComplubotExamplesTests_test_ir_test - 2018.07.07 at 17h 59m 36s.xml">
+      <configuration name="Unittests for SergioRobotExampleTests.ComplubotExamplesTests.test_ir_test" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_SergioRobotExampleTests_ComplubotExamplesTests_test_stopngo_test - 2018.07.07 at 18h 00m 15s.xml">
+      <configuration name="Unittests for SergioRobotExampleTests.ComplubotExamplesTests.test_stopngo_test" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_SergioRobotExampleTests_ComplubotExamplesTests_test_stopngo_test - 2018.07.07 at 18h 03m 12s.xml">
+      <configuration name="Unittests for SergioRobotExampleTests.ComplubotExamplesTests.test_stopngo_test" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_SergioRobotExampleTests_ComplubotExamplesTests_test_stopngo_test - 2018.07.07 at 18h 07m 09s.xml">
+      <configuration name="Unittests for SergioRobotExampleTests.ComplubotExamplesTests.test_stopngo_test" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_TranslatorTests_TranslatorTests_test_and_or_if - 2018.07.07 at 18h 18m 01s.xml">
+      <configuration name="Unittests for TranslatorTests.TranslatorTests.test_and_or_if" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_ComplubotExamplesTests_py - 2018.07.07 at 17h 39m 38s.xml">
+      <configuration name="Unittests in ComplubotExamplesTests.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_TranslatorTests_py - 2018.07.07 at 17h 40m 53s.xml">
+      <configuration name="Unittests in TranslatorTests.py" configurationId="tests" />
+    </history-entry>
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -708,17 +897,16 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2067239" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27539343" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891566" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41686746" sideWeight="0.5114449" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37831324" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36506024" sideWeight="0.49713877" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36506024" sideWeight="0.49713877" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891566" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38554215" sideWeight="0.48855507" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35060242" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37951806" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -774,13 +962,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Array support refactored" />
-    <MESSAGE value="Array support refactored for more vari typess" />
-    <MESSAGE value="Boolean arrays and arrays index refactored" />
-    <MESSAGE value="For refactored" />
-    <MESSAGE value="If without comparision refactored" />
-    <MESSAGE value="Function call refactored" />
-    <MESSAGE value="Check last comma transformed into a function" />
     <MESSAGE value="Unnecessary code removed" />
     <MESSAGE value="Parentheses addition in operations refactored" />
     <MESSAGE value="Halduino functions addition refactored and divided into small functions" />
@@ -799,7 +980,14 @@
     <MESSAGE value="Support for Robot Motor libraries in Complubot" />
     <MESSAGE value="Concat Strings translation" />
     <MESSAGE value="Better management of expression ending" />
-    <option name="LAST_COMMIT_MESSAGE" value="Better management of expression ending" />
+    <MESSAGE value="Better support for and or statements" />
+    <MESSAGE value="Print Hello World test and sleep test" />
+    <MESSAGE value="SetUp method override in the tests file" />
+    <MESSAGE value="Variables declarations and operations with parentheses tests" />
+    <MESSAGE value="Array variables definition, function definitions and calls tests" />
+    <MESSAGE value="Complubot examples tests added and more test coverage to the translator itself" />
+    <MESSAGE value="SergioRobot examples tests added and complubot tests improved" />
+    <option name="LAST_COMMIT_MESSAGE" value="SergioRobot examples tests added and complubot tests improved" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -810,22 +998,11 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="31" />
+      <option name="time" value="53" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/example.py" />
-    <entry file="file://$USER_HOME$/Library/Caches/PyCharmCE2017.1/python_stubs/-2010535109/_ast.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="10500">
-          <caret line="700" column="0" lean-forward="false" selection-start-line="700" selection-start-column="0" selection-end-line="702" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/output.ino" />
-    <entry file="file://$PROJECT_DIR$/translator/Translator.py" />
-    <entry file="file://$PROJECT_DIR$/output.ino" />
     <entry file="file://$PROJECT_DIR$/examples/CarController.py" />
     <entry file="file://$PROJECT_DIR$/example.py" />
     <entry file="file://$PROJECT_DIR$/examples/SergioRobot/StopnGo.py" />
@@ -863,14 +1040,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/examples/SergioRobot/StopnGo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="36" lean-forward="false" selection-start-line="13" selection-start-column="36" selection-end-line="13" selection-end-column="36" />
         </state>
       </provider>
     </entry>
@@ -891,42 +1060,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-103">
           <caret line="228" column="12" lean-forward="false" selection-start-line="228" selection-start-column="6" selection-end-line="228" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/examples/SergioRobot/IRtest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/examples/Complubot/HitnRotateTest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/examples/Complubot/StopnGoTest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="20" lean-forward="false" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/examples/Complubot/IRTest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="5" column="14" lean-forward="false" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/examples/Complubot/LineFollowTest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="3" selection-end-column="35" />
         </state>
       </provider>
     </entry>
@@ -937,32 +1070,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/examples/Complubot/ScreenTextTest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="24" lean-forward="false" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/examples/Complubot/BeepTest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="14" lean-forward="false" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/examples/Complubot/MelodyTest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="31" lean-forward="false" selection-start-line="4" selection-start-column="31" selection-end-line="4" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/HALduino/halduino.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="373">
           <caret line="60" column="15" lean-forward="false" selection-start-line="60" selection-start-column="4" selection-end-line="60" selection-end-column="15" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -992,54 +1103,154 @@
     </entry>
     <entry file="file://$USER_HOME$/Library/Caches/PyCharmCE2017.1/python_stubs/-2010535109/_ast.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="701" column="10" lean-forward="true" selection-start-line="701" selection-start-column="0" selection-end-line="702" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="10515">
+          <caret line="701" column="10" lean-forward="false" selection-start-line="701" selection-start-column="0" selection-end-line="702" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/unittest/case.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="1193" column="0" lean-forward="false" selection-start-line="1193" selection-start-column="0" selection-end-line="1193" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/examples/SergioRobot/test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="16" column="24" lean-forward="true" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="24" />
-          <folding />
+        <state relative-caret-position="193">
+          <caret line="55" column="12" lean-forward="false" selection-start-line="55" selection-start-column="12" selection-end-line="55" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/Complubot/BeepTest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="10" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/output.ino" />
+    <entry file="file://$PROJECT_DIR$/translator/Translator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6345">
+          <caret line="428" column="0" lean-forward="false" selection-start-line="428" selection-start-column="0" selection-end-line="428" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/Complubot/HitnRotateTest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="21" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/Complubot/IRTest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/examples/Complubot/LineFollowNoLibraryTest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="31" lean-forward="false" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="31" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="6" selection-end-column="40" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/translator/Translator.py">
+    <entry file="file://$PROJECT_DIR$/examples/Complubot/LineFollowTest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="500" column="64" lean-forward="false" selection-start-line="500" selection-start-column="64" selection-end-line="500" selection-end-column="64" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="3" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/Complubot/MelodyTest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="4" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/Complubot/ScreenTextTest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/Complubot/StopnGoTest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="14" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/SergioRobot/IRtest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/SergioRobot/StopnGo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="20" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/SergioRobotExampleTests.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1185">
+          <caret line="81" column="0" lean-forward="false" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
-            <marker date="1530810305362" expanded="true" signature="8838:9950" ph="..." />
-            <marker date="1530810305362" expanded="true" signature="9862:9950" ph="..." />
-            <marker date="1530810305362" expanded="true" signature="19114:20529" ph="'''...'''" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/output.ino">
+    <entry file="file://$PROJECT_DIR$/tests/ComplubotExampleTests.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="120" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="424">
+          <caret line="196" column="0" lean-forward="false" selection-start-line="196" selection-start-column="0" selection-end-line="196" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/examples/SergioRobot/operations.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="21" lean-forward="false" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="5" selection-end-column="22" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/TranslatorTests.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="676">
+          <caret line="181" column="0" lean-forward="false" selection-start-line="181" selection-start-column="0" selection-end-line="181" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
