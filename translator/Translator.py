@@ -606,16 +606,17 @@ if __name__ == "__main__":
     makefile_parameters = []
     if operating_system == 'Darwin':
         arduino_dir = '/Applications/Arduino.app/Contents/Java'
-        makefile_parameters.append('include /usr/local/opt/arduino-mk/Arduino.mk')
+        makefile_parameters.append('include /usr/local/opt/arduino-mk/Arduino.mk\n')
         print('macOS')
     elif operating_system == 'Windows':
         arduino_dir = 'C:/Arduino'
-        makefile_parameters.append('ARDMK_DIR = path/to/mkfile')
+        makefile_parameters.append('ARDMK_DIR = path/to/mkfile\n')
         print('Windows')
     else:
-        arduino_dir = '/home/sudar/apps/arduino-1.0.5'
-        makefile_parameters.append('ARDMK_DIR =  mk directory')
-        makefile_parameters.append('AVR_TOOLS_DIR =  avr tools directory')
+        arduino_dir = '/usr/share/arduino'
+        makefile_parameters.append('ARDMK_DIR =  /usr/bin\n')
+        makefile_parameters.append('AVR_TOOLS_DIR =  /usr/bin\n')
+        makefile_parameters.append('include $(ARDMK_DIR)/Arduino.mk\n')
         print('Linux')
 
     arduino_libs =''
