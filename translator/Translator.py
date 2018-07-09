@@ -1,7 +1,7 @@
 import sys
 import ast
 from subprocess import call
-from os import chdir, getcwd
+from os import chdir, getcwd, makedirs
 from shutil import move, rmtree
 import platform
 
@@ -636,8 +636,8 @@ if __name__ == "__main__":
     except FileNotFoundError:
         print('Folder doesn\'t exists')
 
-    call(['mkdir', 'output'])
-    chdir('output/')
+    makedirs('output')
+    chdir('output')
     move(file_directory+output_filename, getcwd() + '/' + output_filename)
     makefile = open(getcwd() + '/' + 'Makefile', 'w+')
     makefile.write('ARDUINO_DIR   = ' + arduino_dir + '\n')

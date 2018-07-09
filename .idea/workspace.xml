@@ -25,32 +25,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Makefile" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/output/Makefile">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="17" lean-forward="false" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Translator.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/translator/Translator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="645" column="54" lean-forward="false" selection-start-line="645" selection-start-column="54" selection-end-line="645" selection-end-column="54" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="output.ino" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/output/output.ino">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="76">
+              <caret line="632" column="14" lean-forward="false" selection-start-line="632" selection-start-column="14" selection-end-line="632" selection-end-column="14" />
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -341,13 +323,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1526995742446</updated>
-    </task>
-    <task id="LOCAL-00023" summary="Integer array, new setup definition pattern and variable declaration &#10;section deleted">
-      <created>1528479821005</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1528479821005</updated>
     </task>
     <task id="LOCAL-00024" summary="Setup IR sensors updated">
       <created>1528656616290</created>
@@ -685,7 +660,14 @@
       <option name="project" value="LOCAL" />
       <updated>1531133579296</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL-00072" summary="Makefile improved support for Linux">
+      <created>1531134391708</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1531134391708</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="TodoView">
@@ -775,7 +757,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Boolean arrays and arrays index refactored" />
     <MESSAGE value="For refactored" />
     <MESSAGE value="If without comparision refactored" />
     <MESSAGE value="Function call refactored" />
@@ -800,7 +781,8 @@
     <MESSAGE value="Better management of expression ending" />
     <MESSAGE value="Makefile improved support for Linus and Windows" />
     <MESSAGE value="Makefile improved support for Linux and Windows" />
-    <option name="LAST_COMMIT_MESSAGE" value="Makefile improved support for Linux and Windows" />
+    <MESSAGE value="Makefile improved support for Linux" />
+    <option name="LAST_COMMIT_MESSAGE" value="Makefile improved support for Linux" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1015,9 +997,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/translator/Translator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="645" column="54" lean-forward="false" selection-start-line="645" selection-start-column="54" selection-end-line="645" selection-end-column="54" />
-          <folding />
+        <state relative-caret-position="76">
+          <caret line="632" column="14" lean-forward="false" selection-start-line="632" selection-start-column="14" selection-end-line="632" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
