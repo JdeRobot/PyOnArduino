@@ -614,7 +614,7 @@ if __name__ == "__main__":
         print('Windows')
     else:
         arduino_dir = '/usr/share/arduino'
-        makefile_parameters.append('ARDMK_DIR =  /usr/bin\n')
+        makefile_parameters.append('ARDMK_DIR =  /usr/share/arduino\n')
         makefile_parameters.append('AVR_TOOLS_DIR =  /usr/bin\n')
         makefile_parameters.append('include $(ARDMK_DIR)/Arduino.mk\n')
         print('Linux')
