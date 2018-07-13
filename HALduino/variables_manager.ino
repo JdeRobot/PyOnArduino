@@ -46,9 +46,8 @@ int typeSZ(DynType *d) {
     }
 }
 
-// IN arrays add size after (a short), etc.
+// In arrays add size after (a short), etc.
 // think records and so on for different types
-
 inline void assign(DynType *d1, DynType *d2) {
     int sz;
     char *p1, *p2;
@@ -56,42 +55,10 @@ inline void assign(DynType *d1, DynType *d2) {
     p2 = (char *)d2;
     checktype(d1, d2);
     sz = typeSZ(d1);
-    memmove(d1, d2, sz+1);
+    memmove(p1, p2, sz+1);
 }
 
-// Hay que hacer otro para literales que reciba un void * y el tipo
-// Entonces todas las variables y parámetros son de tipo DynType.
-
-// Por ejemplo:
-int a;
-
-// Ahora sería:
-DynType a:
-a.tvar = INT;
-
-// Para las funciones de la librería habría que hacer trampolines.
-// Los trampolines reciben una lista de tipos (INT, STR,....), un puntero
-//a functions (la funcion de halduino a llamar) y los argumentos,
-//una lista de DynTypes. Se comprueban los tipos, se desempaquetan y luego se
-//llama a la función. La función puede ser la función como ya era antes.
-
-
-//El caso de las strings, es especial porque las strings serán punteros y
-//habrá que
-//reservar su espacio (y hacer free al final del ámbito, a menos que se
-//retorne, Escape Analysis).
-
-//Si tengo una string de tamaño 32, por ejemplo:
-
-DynType *s;
-
-s = (DynType *)malloc(sizeof(DynType)-MinTypeSz+32);
-
-// Se puede empezar con cosas intermedias, como por ejemplo un MinTypeSz gordo.
-// Y luego ir arreglando
-
-
-// This function is call to stop the robot
+// This function is called to stop the robot
 void stopMachine() {
     char *p, q;
 
