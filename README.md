@@ -50,4 +50,4 @@ Examples available in [examples](https://github.com/JdeRobot/PyOnArduino/tree/ma
 There is a problem with Arduino Robot(Complubot). Sometimes when you upload a project it can make 
 the usb port stop working. If you ever get to this point, the solution is quite simple. Write an 
 empty sketch and upload it. While it's being uploaded press the reset button on the board two times.
-This should fix the problem!
+This should fix the problem! [Source](http://forum.arduino.cc/index.php?topic=269822.0)
