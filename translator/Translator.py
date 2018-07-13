@@ -547,20 +547,14 @@ if __name__ == "__main__":
     if len(sys.argv) == 3:
         input_filename = sys.argv[1]
         robot = sys.argv[2]
-    elif len(sys.argv) > 4:
-        input_filename = sys.argv[1]
-        robot = sys.argv[2]
-        output_filename = sys.argv[3]
     else:
         print('Usage: ')
-        print('python3 translator/Translator.py [input-file] [robot] [output-file]')
         print('python3 translator/Translator.py [input-file] [robot]')
         sys.exit(0)
 
     print('FILENAME: ' + input_filename)
     print('ROBOT: ' + robot)
-    print('OUTPUT FILENAME: ' + output_filename)
-    output = open(output_filename, 'w+')
+    output = open('output.ino', 'w+')
     controller_file = open(input_filename).read()
     parsed_file = ast.parse(controller_file)
     MyVisitor().visit(parsed_file)
