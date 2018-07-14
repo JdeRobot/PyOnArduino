@@ -590,6 +590,8 @@ if __name__ == "__main__":
             output.write('#include <ArduinoRobotMotorBoard.h> // include the robot library\n')
         else:
             output.write('#include <ArduinoRobot.h> // include the robot library\n')
+    for line in open('Halduino/variables_manager.ino', 'r'):
+        output.write(line)
     output.write(global_vars)
     for key, value in functions.items():
         output.write(value)

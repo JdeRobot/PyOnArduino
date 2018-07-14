@@ -11,7 +11,7 @@ struct DynType {
 
 inline void checktype (DynType *d1, DynType *d2) {
     if(d1->tvar != d2->tvar) {
-        stopMachine();
+        // stopMachine();
         Serial.print("Stops giving the line");
     }
 }
@@ -72,3 +72,4 @@ void stopMachine() {
     Serial.print(q, HEX); //use it, bc the optimizer deletes q if not
     for(;;){}//will stop here for sure
 }
+
