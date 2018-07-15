@@ -27,6 +27,11 @@ bool_op = []
 bin_op = False
 global_vars = ''
 halduino_directory = './HALduino/halduino'
+is_variable = False
+call_def = ''
+variables_counter = 0
+is_built_in_func = False
+var_sign = ''
 
 
 class MyVisitor(ast.NodeVisitor):
@@ -44,6 +49,7 @@ class MyVisitor(ast.NodeVisitor):
         global is_call_parameter
         global bin_op
         global global_vars
+        global call_def
         print('NODE Str: ' + str(type(node.s)))
         str_var = '\"' + node.s + '\"'
         if bin_op:
@@ -56,7 +62,7 @@ class MyVisitor(ast.NodeVisitor):
             array_index += 1
 
         if is_call_parameter:
-            if call_index >= 0:
+            if call_index > 0:
                 str_var += ','
             call_index += 1
 
@@ -70,7 +76,10 @@ class MyVisitor(ast.NodeVisitor):
             if bin_op:
                 function_def += node.s
             else:
-                function_def += str_var
+                if is_call_parameter:
+                    call_def += str_var
+                else:
+                    function_def += str_var
         variable_def = ''
 
     def visit_Name(self, node):
@@ -83,22 +92,31 @@ class MyVisitor(ast.NodeVisitor):
         global for_index
         global is_call_parameter
         global call_index
-        global is_call_parameter
+        global is_variable
+        global call_def
+        global is_built_in_func
 
         if node.id == 'print':
-            function_def += 'Serial.' + node.id
+            call_def += 'Serial.' + node.id
+            is_built_in_func = True
         elif node.id == 'sleep':
-            function_def += 'delay'
+            call_def += 'delay'
+            is_built_in_func = True
         elif node.id != 'halduino' and is_var_declaration is False:
             if is_call_parameter:
-                if call_index >= 0:
+                if call_index > 0:
                     node.id += ','
-                call_index += 1
-            function_def += node.id
+            if is_variable:
+                function_def += 'atoi(' + node.id +'.data)'
+                is_variable = False
+            else:
+                call_def += node.id
+
 
         if is_call:
-            self.check_last_comma()
-            function_def += '('
+            if call_def != '':
+                call_def = self.check_last_comma(text=call_def)
+            call_def += '('
             is_call = False
             is_call_parameter = True
         elif is_var_declaration:
@@ -157,12 +175,15 @@ class MyVisitor(ast.NodeVisitor):
         global is_call_parameter
         global bool_op
         global bin_op
+        global call_def
         is_call_parameter = True
         is_call = True
         call_index = 0
         parentheses += 1
         print('NODE Call: ' + str(type(node)))
         ast.NodeVisitor.generic_visit(self, node)
+        function_def += call_def
+        call_def = ''
         is_call = False
         is_call_parameter = False
         call_index = 0
@@ -186,6 +207,11 @@ class MyVisitor(ast.NodeVisitor):
         global array_length
         global is_call_parameter
         global call_index
+        global call_def
+        global is_call
+        global variables_counter
+        global is_built_in_func
+        global var_sign
         print('NODE Num: ' + str(type(node)))
         num_var = str(node.n)
         if is_array:
@@ -196,8 +222,12 @@ class MyVisitor(ast.NodeVisitor):
             array_index += 1
 
         if is_call_parameter:
-            if call_index >= 0:
-                num_var += ','
+            if not is_built_in_func:
+                function_def += 'DynType var'+str(variables_counter)+';var'+str(variables_counter)+'.tvar = INT;String har'+str(variables_counter)+' = "' + var_sign + str(node.n) + '";har'+str(variables_counter)+'.toCharArray(var'+str(variables_counter)+'.data, MinTypeSz);\n'
+                var_sign = ''
+            variables_counter += 1
+            if call_index > 0:
+                call_def += ','
             call_index += 1
 
         if variable_def != '':
@@ -207,7 +237,14 @@ class MyVisitor(ast.NodeVisitor):
                 variable_def = type(node.n).__name__ + ' ' + variable_def + ' = ' + num_var
             function_def += variable_def
         else:
-            function_def += num_var
+            if is_call_parameter:
+                if not is_built_in_func:
+                    call_def += 'var' + str(variables_counter-1)
+                else:
+                    call_def += num_var
+            else:
+                function_def += num_var
+        is_built_in_func = False
         variable_def = ''
         ast.NodeVisitor.generic_visit(self, node)
 
@@ -224,17 +261,8 @@ class MyVisitor(ast.NodeVisitor):
 
     def visit_arg(self, node):
         global function_def
-        if node.annotation is not None:
-            print('NODE Return: ' + str(type(node.annotation)))
-            ast.NodeVisitor.generic_visit(self, node.annotation)
-            var_type = node.annotation.id
-            if node.annotation.id == 'str':
-                var_type = 'String'
-            function_def += var_type + ' ' + node.arg
-            print('arg 1: ' + node.arg + ' ' + node.annotation.id)
-        else:
-            function_def += 'int ' + node.arg
-            print('arg 2: ' + node.arg)
+        function_def += 'DynType ' + node.arg
+        print('NODE ARG: ' + str(type(node.annotation)))
 
     def visit_Return(self, node):
         global function_def
@@ -360,11 +388,14 @@ class MyVisitor(ast.NodeVisitor):
         global function_def
         global is_Comparision
         global bool_op
+        global is_variable
         print('Comparision')
         # LEFT PART
         print('NODE Compare 1: ' + str(type(node.left)))
         if isinstance(node.left, ast.Call):
             is_Comparision = True
+        else:
+            is_variable = True
         print('NODE Compare 2: ' + str(type(node.ops[0])))
         print('NODE Compare 3: ' + str(type(node.comparators)))
         function_def += '('
@@ -394,7 +425,8 @@ class MyVisitor(ast.NodeVisitor):
 
     def add_halduino_function(self, node):
         global function_def
-        function_def += node.attr
+        global call_def
+        call_def += node.attr
         print('Halduino found with call to function ' + node.attr)
         halduino = open(halduino_directory + robot + '.ino', 'r')
         print('NODE: ' + node.attr)
@@ -514,19 +546,34 @@ class MyVisitor(ast.NodeVisitor):
         print('NODE boolOp: ' + str(type(node)))
         ast.NodeVisitor.generic_visit(self, node)
 
-    def check_last_comma(self):
-        global function_def
-        if function_def[-1:] == ',':
-            function_def = function_def[:-1]
-
     def visit_Load(self, node):
         print('NODE Load: ' + str(type(node)))
         ast.NodeVisitor.generic_visit(self, node)
 
+    def visit_USub(self, node):
+        global var_sign
+        var_sign += '-'
+        print('NODE USub: ' + str(type(node)))
+        ast.NodeVisitor.generic_visit(self, node)
+
+    def check_last_comma(self, text=None):
+        global function_def
+        if text is not None:
+            print('TEXT ' + text)
+            if text[-1:] == ',':
+                return text[:-1]
+            return text
+        else:
+            if function_def[-1:] == ',':
+                function_def = function_def[:-1]
+
+
+
+
 
 
 def has_motor_functions():
-    return 'setSpeedEngines' in functions or 'getIR1' in functions or 'getIR2' in functions or 'getIR3' in functions or 'getIR4' in functions or 'getIR5' in functions
+    return 'setSpeedEnginesMotor' in functions or 'getIR1' in functions or 'getIR2' in functions or 'getIR3' in functions or 'getIR4' in functions or 'getIR5' in functions
 
 
 def uses_speaker():
