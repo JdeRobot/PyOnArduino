@@ -52,22 +52,22 @@ class TranslatorTests(unittest.TestCase):
 
     def test_boolean_true_var_declaration(self):
         self.translate_string('var = True')
-        expected_statement = 'boolean var = true;\n'
+        expected_statement = 'DynType var0;var0.tvar = BOOL;String har0 = "true";har0.toCharArray(var0.data, MinTypeSz);\n'
         self.assertEqual(expected_statement, translator.function_def)
 
     def test_boolean_false_var_declaration(self):
         self.translate_string('var = False')
-        expected_statement = 'boolean var = false;\n'
+        expected_statement = 'DynType var0;var0.tvar = BOOL;String har0 = "false";har0.toCharArray(var0.data, MinTypeSz);\n'
         self.assertEqual(expected_statement, translator.function_def)
 
     def test_integer_var_declaration(self):
         self.translate_string('var = 9')
-        expected_statement = 'int var = 9;\n'
+        expected_statement = 'DynType var0;var0.tvar = INT;String har0 = "9";har0.toCharArray(var0.data, MinTypeSz);\n'
         self.assertEqual(expected_statement, translator.function_def)
 
     def test_float_var_declaration(self):
         self.translate_string('var = 0.1')
-        expected_statement = 'float var = 0.1;\n'
+        expected_statement = 'DynType var0;var0.tvar = FLOAT;String har0 = "0.1";har0.toCharArray(var0.data, MinTypeSz);\n'
         self.assertEqual(expected_statement, translator.function_def)
 
     def test_char_var_declaration(self):

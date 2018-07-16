@@ -117,20 +117,20 @@ def loop():
     print(halduino.getIR4())
     print(' ')
     print(halduino.getIR5())
-    print()
+    print(' ')
 ''')
         expected_statement = '''void loop() {
 delay(100);
    Serial.print(getIR1());
-   Serial.print(" ");
+   Serial.print(' ');
    Serial.print(getIR2());
-   Serial.print(" ");
+   Serial.print(' ');
    Serial.print(getIR3());
-   Serial.print(" ");
+   Serial.print(' ');
    Serial.print(getIR4());
-   Serial.print(" ");
+   Serial.print(' ');
    Serial.print(getIR5());
-   Serial.print();
+   Serial.print(' ');
    }
 '''
         self.assertEqual(expected_statement, translator.function_def)

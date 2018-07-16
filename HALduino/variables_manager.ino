@@ -19,6 +19,8 @@ inline void checktype (DynType *d1, DynType *d2) {
 enum VarTypes{
     CHAR,
     INT,
+    FLOAT,
+    BOOL,
     STR,
     TUP,
     ARRAY
@@ -27,6 +29,8 @@ enum VarTypes{
 int VarTypesSz[] = {
     [CHAR] = 8,
     [INT] = 64,
+    [FLOAT] = 64,
+    [BOOL] = 1,
     [STR] = -1,
     [TUP]= -1,
     [ARRAY]= -1

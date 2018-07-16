@@ -119,7 +119,6 @@ class MyVisitor(ast.NodeVisitor):
             else:
                 function_def += node.id
 
-
         if is_call:
             if call_def != '':
                 call_def = self.check_last_comma(text=call_def)
@@ -244,7 +243,11 @@ class MyVisitor(ast.NodeVisitor):
             if is_array:
                 variable_def = type(node.n).__name__ + ' ' + variable_def + num_var
             else:
-                variable_def = type(node.n).__name__ + ' ' + variable_def + ' = ' + num_var
+                variable_def = 'DynType var' + str(variables_counter) + ';'
+                variable_def += 'var' + str(variables_counter) + '.tvar = ' + str(type(node.n).__name__).upper() + ';'
+                variable_def += 'String har' + str(variables_counter) + ' = "' + var_sign + str(node.n) + '";'
+                variable_def += 'har' + str(variables_counter) + '.toCharArray(var' + str(variables_counter) + '.data, MinTypeSz)'
+                variables_counter += 1
             function_def += variable_def
         else:
             if is_call_parameter:
@@ -335,12 +338,14 @@ class MyVisitor(ast.NodeVisitor):
         global array_length
         global is_if
         global bool_op
+        global variables_counter
+        global call_index
+        global call_def
         boolean_var = ''
         if node.value is True:
             boolean_var = 'true'
         elif node.value is False:
             boolean_var = 'false'
-
 
         if is_array:
             if array_index == 0:
@@ -354,10 +359,24 @@ class MyVisitor(ast.NodeVisitor):
             if is_array:
                 variable_def += boolean_var
             else:
-                variable_def += ' = ' + boolean_var
-                variable_def = 'boolean ' + variable_def
+                variable_def = 'DynType var' + str(variables_counter) + ';'
+                variable_def += 'var' + str(variables_counter) + '.tvar = BOOL;'
+                variable_def += 'String har' + str(variables_counter) + ' = "' + var_sign + boolean_var + '";'
+                variable_def += 'har' + str(variables_counter) + '.toCharArray(var' + str(variables_counter) + '.data, MinTypeSz)'
+                variables_counter += 1
+            function_def += variable_def
         else:
-            function_def += boolean_var
+            if is_call_parameter:
+                if not is_built_in_func:
+                    if call_index > 0:
+                        call_def += ','
+                    call_index += 1
+                    call_def += 'var' + str(variables_counter-1)
+                else:
+                    call_def += boolean_var
+            else:
+                function_def += boolean_var
+        variable_def = ''
         print('NODE NameConstant: ' + str(type(node)))
         ast.NodeVisitor.generic_visit(self, node)
         if len(bool_op) > 0:
