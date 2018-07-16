@@ -51,9 +51,14 @@ class MyVisitor(ast.NodeVisitor):
         global global_vars
         global call_def
         print('NODE Str: ' + str(type(node.s)))
-        str_var = '\"' + node.s + '\"'
+        var_type = 'String '
+        if len(node.s) == 1:
+            str_var = '\'' + node.s + '\''
+            var_type = 'char '
+        else:
+            str_var = '\"' + node.s + '\"'
         if bin_op:
-            global_vars += 'String ' + node.s + ' = ' + str_var + ';\n'
+            global_vars += var_type + node.s + ' = ' + str_var + ';\n'
         if is_array:
             if array_index == 0:
                 str_var = '{' + str_var
@@ -68,9 +73,9 @@ class MyVisitor(ast.NodeVisitor):
 
         if variable_def != '':
             if is_array:
-                variable_def = 'String ' + variable_def + str_var
+                variable_def = var_type + variable_def + str_var
             else:
-                variable_def = 'String ' + variable_def + ' = ' + str_var
+                variable_def = var_type + variable_def + ' = ' + str_var
             function_def += variable_def
         else:
             if bin_op:

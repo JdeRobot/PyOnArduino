@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e72936ae-374a-42ae-8588-539f897332c5" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/ComplubotExampleTests.py" afterPath="$PROJECT_DIR$/tests/ComplubotExampleTests.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/SergioRobotExampleTests.py" afterPath="$PROJECT_DIR$/tests/SergioRobotExampleTests.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/TranslatorTests.py" afterPath="$PROJECT_DIR$/tests/TranslatorTests.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/translator/Translator.py" afterPath="$PROJECT_DIR$/translator/Translator.py" />
     </list>
@@ -21,21 +19,31 @@
       <file leaf-file-name="Translator.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/translator/Translator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="236">
-              <caret line="229" column="0" lean-forward="false" selection-start-line="229" selection-start-column="0" selection-end-line="229" selection-end-column="0" />
+            <state relative-caret-position="579">
+              <caret line="77" column="39" lean-forward="false" selection-start-line="77" selection-start-column="39" selection-end-line="77" selection-end-column="39" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TranslatorTests.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TranslatorTests.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/TranslatorTests.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2970">
-              <caret line="198" column="0" lean-forward="false" selection-start-line="198" selection-start-column="0" selection-end-line="198" selection-end-column="0" />
+            <state relative-caret-position="120">
+              <caret line="8" column="33" lean-forward="false" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="33" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ComplubotExampleTests.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tests/ComplubotExampleTests.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="93">
+              <caret line="10" column="62" lean-forward="false" selection-start-line="10" selection-start-column="62" selection-end-line="10" selection-end-column="62" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -45,6 +53,16 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="806">
               <caret line="110" column="13" lean-forward="false" selection-start-line="110" selection-start-column="13" selection-end-line="110" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SergioRobotExampleTests.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/SergioRobotExampleTests.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="7" column="33" lean-forward="false" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -61,9 +79,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>visit_Num</find>
-      <find>if is_c</find>
-      <find>visit_Str</find>
       <find>if is_call_parameter:</find>
       <find>.data</find>
       <find>call_index =</find>
@@ -90,6 +105,10 @@
       <find>is_built_in_func = False</find>
       <find>is_built_in_func =</find>
       <find>Dyn</find>
+      <find>char</find>
+      <find>float</find>
+      <find>String</find>
+      <find>function_def =</find>
     </findStrings>
     <replaceStrings>
       <replace>&gt;</replace>
@@ -163,9 +182,9 @@
         <option value="$PROJECT_DIR$/HALduino/halduinoComplubot.ino" />
         <option value="$PROJECT_DIR$/tests/ComplubotExampleTests.py" />
         <option value="$PROJECT_DIR$/tests/SergioRobotExampleTests.py" />
-        <option value="$PROJECT_DIR$/tests/TranslatorTests.py" />
         <option value="$PROJECT_DIR$/output/output.ino" />
         <option value="$PROJECT_DIR$/translator/Translator.py" />
+        <option value="$PROJECT_DIR$/tests/TranslatorTests.py" />
       </list>
     </option>
   </component>
@@ -264,21 +283,6 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method />
     </configuration>
-    <configuration default="false" name="Unittests for TranslatorTests.TranslatorTests.test_operations_parentheses_1" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="PyOnArduino" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;TranslatorTests.TranslatorTests.test_operations_parentheses_1&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method />
-    </configuration>
     <configuration default="false" name="Unittests for TranslatorTests.TranslatorTests.test_if_true_else_if_else_statement" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -322,6 +326,21 @@
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/ComplubotExampleTests.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittests for TranslatorTests.TranslatorTests.test_char_var_declaration" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="PyOnArduino" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;TranslatorTests.TranslatorTests.test_char_var_declaration&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method />
     </configuration>
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
@@ -390,18 +409,18 @@
     </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in TranslatorTests.py" />
-      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests for TranslatorTests.TranslatorTests.test_operations_parentheses_1" />
-      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests for TranslatorTests.TranslatorTests.test_if_true_else_if_else_statement" />
-      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests in SergioRobotExampleTests.py" />
-      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests in ComplubotExampleTests.py" />
+      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests for TranslatorTests.TranslatorTests.test_if_true_else_if_else_statement" />
+      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in SergioRobotExampleTests.py" />
+      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests in ComplubotExampleTests.py" />
+      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests for TranslatorTests.TranslatorTests.test_char_var_declaration" />
     </list>
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in TranslatorTests.py" />
-        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in SergioRobotExampleTests.py" />
-        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in ComplubotExampleTests.py" />
-        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests for TranslatorTests.TranslatorTests.test_if_true_else_if_else_statement" />
-        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests for TranslatorTests.TranslatorTests.test_operations_parentheses_1" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests for TranslatorTests.TranslatorTests.test_char_var_declaration" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in SergioRobotExampleTests.py" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests in ComplubotExampleTests.py" />
+        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests for TranslatorTests.TranslatorTests.test_if_true_else_if_else_statement" />
       </list>
     </recent_temporary>
   </component>
@@ -418,13 +437,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1526995742446</updated>
-    </task>
-    <task id="LOCAL-00033" summary="New directories distribution. Arduino Robot US, IR and Engines support">
-      <created>1529311581681</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1529311581681</updated>
     </task>
     <task id="LOCAL-00034" summary="Robot name updated to Complubot">
       <created>1529311742615</created>
@@ -762,30 +774,34 @@
       <option name="project" value="LOCAL" />
       <updated>1531682036322</updated>
     </task>
-    <option name="localTasksCounter" value="82" />
+    <task id="LOCAL-00082" summary="Tests updated">
+      <created>1531745308603</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1531745308605</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="TestHistory">
+    <history-entry file="Unittests_for_TranslatorTests_TranslatorTests_test_char_var_declaration - 2018.07.16 at 14h 56m 19s.xml">
+      <configuration name="Unittests for TranslatorTests.TranslatorTests.test_char_var_declaration" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_TranslatorTests_TranslatorTests_test_char_var_declaration - 2018.07.16 at 15h 01m 41s.xml">
+      <configuration name="Unittests for TranslatorTests.TranslatorTests.test_char_var_declaration" configurationId="tests" />
+    </history-entry>
     <history-entry file="Unittests_in_ComplubotExampleTests_py - 2018.07.16 at 12h 52m 09s.xml">
       <configuration name="Unittests in ComplubotExampleTests.py" configurationId="tests" />
     </history-entry>
     <history-entry file="Unittests_in_ComplubotExampleTests_py - 2018.07.16 at 14h 47m 34s.xml">
       <configuration name="Unittests in ComplubotExampleTests.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_SergioRobotExampleTests_py - 2018.07.16 at 10h 32m 29s.xml">
-      <configuration name="Unittests in SergioRobotExampleTests.py" configurationId="tests" />
-    </history-entry>
     <history-entry file="Unittests_in_SergioRobotExampleTests_py - 2018.07.16 at 12h 53m 59s.xml">
       <configuration name="Unittests in SergioRobotExampleTests.py" configurationId="tests" />
     </history-entry>
     <history-entry file="Unittests_in_SergioRobotExampleTests_py - 2018.07.16 at 14h 47m 36s.xml">
       <configuration name="Unittests in SergioRobotExampleTests.py" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_in_TranslatorTests_py - 2018.07.16 at 10h 30m 44s.xml">
-      <configuration name="Unittests in TranslatorTests.py" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_in_TranslatorTests_py - 2018.07.16 at 10h 32m 01s.xml">
-      <configuration name="Unittests in TranslatorTests.py" configurationId="tests" />
     </history-entry>
     <history-entry file="Unittests_in_TranslatorTests_py - 2018.07.16 at 10h 32m 26s.xml">
       <configuration name="Unittests in TranslatorTests.py" configurationId="tests" />
@@ -794,6 +810,9 @@
       <configuration name="Unittests in TranslatorTests.py" configurationId="tests" />
     </history-entry>
     <history-entry file="Unittests_in_TranslatorTests_py - 2018.07.16 at 14h 47m 39s.xml">
+      <configuration name="Unittests in TranslatorTests.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_TranslatorTests_py - 2018.07.16 at 15h 01m 59s.xml">
       <configuration name="Unittests in TranslatorTests.py" configurationId="tests" />
     </history-entry>
   </component>
@@ -852,7 +871,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Halduino functions addition refactored and divided into small functions" />
     <MESSAGE value="MakeFile and commands to directly upload to the board. This version supports just the UNO board. More support coming" />
     <MESSAGE value="Makefile creation on runtime getting system variables." />
     <MESSAGE value="No IDE needed to compile and upload to the board for any board supported" />
@@ -877,7 +895,8 @@
     <MESSAGE value="README.md updated" />
     <MESSAGE value="Add variables_manager code to the output" />
     <MESSAGE value="Integer variables are now DynType" />
-    <option name="LAST_COMMIT_MESSAGE" value="Integer variables are now DynType" />
+    <MESSAGE value="Tests updated" />
+    <option name="LAST_COMMIT_MESSAGE" value="Tests updated" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -887,11 +906,6 @@
           <line>187</line>
           <option name="timeStamp" value="55" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/tests/TranslatorTests.py</url>
-          <line>81</line>
-          <option name="timeStamp" value="61" />
-        </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
@@ -900,7 +914,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="63" />
+      <option name="time" value="64" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1239,22 +1253,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/ComplubotExampleTests.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="10" column="62" lean-forward="false" selection-start-line="10" selection-start-column="62" selection-end-line="10" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/SergioRobotExampleTests.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="8" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/output/output.ino">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="806">
@@ -1265,19 +1263,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/translator/Translator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="229" column="0" lean-forward="false" selection-start-line="229" selection-start-column="0" selection-end-line="229" selection-end-column="0" />
+        <state relative-caret-position="579">
+          <caret line="77" column="39" lean-forward="false" selection-start-line="77" selection-start-column="39" selection-end-line="77" selection-end-column="39" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/TranslatorTests.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2970">
-          <caret line="198" column="0" lean-forward="false" selection-start-line="198" selection-start-column="0" selection-end-line="198" selection-end-column="0" />
+        <state relative-caret-position="120">
+          <caret line="8" column="33" lean-forward="false" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="33" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/SergioRobotExampleTests.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="7" column="33" lean-forward="false" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/ComplubotExampleTests.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="93">
+          <caret line="10" column="62" lean-forward="false" selection-start-line="10" selection-start-column="62" selection-end-line="10" selection-end-column="62" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -70,6 +70,11 @@ class TranslatorTests(unittest.TestCase):
         expected_statement = 'float var = 0.1;\n'
         self.assertEqual(expected_statement, translator.function_def)
 
+    def test_char_var_declaration(self):
+        self.translate_string('var = \'a\'')
+        expected_statement = 'char var = \'a\';\n'
+        self.assertEqual(expected_statement, translator.function_def)
+
     def test_string_var_declaration(self):
         self.translate_string('var = \'Hello World\'')
         expected_statement = 'String var = "Hello World";\n'
@@ -78,7 +83,6 @@ class TranslatorTests(unittest.TestCase):
     def test_operations_parentheses_1(self):
         self.translate_string('print(5 + 33 - 4 * 4)')
         expected_statement = 'Serial.print(((5 + 33) - (4 * 4)));\n   '
-        function_def = translator.function_def
         self.assertEqual(expected_statement, translator.function_def)
 
     def test_operations_parentheses_2(self):
@@ -155,7 +159,6 @@ class TranslatorTests(unittest.TestCase):
         self.translate_string('''for x in array:
         print(x)''')
         expected_statement =  '''for(int x = 0; sizeof(array); x++) {\nSerial.print(x);\n   }\n'''
-        function_def = translator.function_def
         '''
         for(int  = 0; sizeof(); x++) {
             Serial.print(x);
