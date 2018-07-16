@@ -63,7 +63,7 @@ class MyVisitor(ast.NodeVisitor):
 
         if is_call_parameter:
             if call_index > 0:
-                str_var += ','
+                call_def += ','
             call_index += 1
 
         if variable_def != '':
@@ -95,7 +95,7 @@ class MyVisitor(ast.NodeVisitor):
         global is_variable
         global call_def
         global is_built_in_func
-
+        print('NODE Name: ' + str(type(node)) + ' ' + node.id + str(is_call) + str(is_var_declaration) + str(is_for))
         if node.id == 'print':
             call_def += 'Serial.' + node.id
             is_built_in_func = True
@@ -105,12 +105,14 @@ class MyVisitor(ast.NodeVisitor):
         elif node.id != 'halduino' and is_var_declaration is False:
             if is_call_parameter:
                 if call_index > 0:
-                    node.id += ','
+                    call_def += ','
             if is_variable:
                 function_def += 'atoi(' + node.id +'.data)'
                 is_variable = False
-            else:
+            elif is_call or is_call_parameter:
                 call_def += node.id
+            else:
+                function_def += node.id
 
 
         if is_call:
@@ -129,7 +131,7 @@ class MyVisitor(ast.NodeVisitor):
                 function_def += '); x++) {\n'
             for_index += 1
 
-        print('NODE Name: ' + str(type(node)) + ' ' + node.id)
+        print('NODE Name: ' + str(type(node)) + ' ' + node.id+str(is_call)+str(is_var_declaration)+str(is_for))
         ast.NodeVisitor.generic_visit(self, node)
 
     def visit_FunctionDef(self, node):
@@ -176,6 +178,7 @@ class MyVisitor(ast.NodeVisitor):
         global bool_op
         global bin_op
         global call_def
+        global is_built_in_func
         is_call_parameter = True
         is_call = True
         call_index = 0
@@ -186,6 +189,7 @@ class MyVisitor(ast.NodeVisitor):
         call_def = ''
         is_call = False
         is_call_parameter = False
+        is_built_in_func = False
         call_index = 0
         parentheses -= 1
         if parentheses == 0 and is_Comparision == False and not bool_op:
@@ -223,12 +227,13 @@ class MyVisitor(ast.NodeVisitor):
 
         if is_call_parameter:
             if not is_built_in_func:
-                function_def += 'DynType var'+str(variables_counter)+';var'+str(variables_counter)+'.tvar = INT;String har'+str(variables_counter)+' = "' + var_sign + str(node.n) + '";har'+str(variables_counter)+'.toCharArray(var'+str(variables_counter)+'.data, MinTypeSz);\n'
+                function_def += 'DynType var'+str(variables_counter)+';'
+                function_def += 'var'+str(variables_counter)+'.tvar = '+str(type(node.n).__name__).upper()+';'
+                function_def += 'String har'+str(variables_counter)+' = "' + var_sign + str(node.n) + '";'
+                function_def += 'har'+str(variables_counter)+'.toCharArray(var'+str(variables_counter)+'.data, MinTypeSz);\n'
                 var_sign = ''
             variables_counter += 1
-            if call_index > 0:
-                call_def += ','
-            call_index += 1
+
 
         if variable_def != '':
             if is_array:
@@ -239,12 +244,14 @@ class MyVisitor(ast.NodeVisitor):
         else:
             if is_call_parameter:
                 if not is_built_in_func:
+                    if call_index > 0:
+                        call_def += ','
+                    call_index += 1
                     call_def += 'var' + str(variables_counter-1)
                 else:
                     call_def += num_var
             else:
                 function_def += num_var
-        is_built_in_func = False
         variable_def = ''
         ast.NodeVisitor.generic_visit(self, node)
 
@@ -276,13 +283,20 @@ class MyVisitor(ast.NodeVisitor):
         global function_def
         global variable_def
         global bin_op
+        global call_def
         print('BinOp')
         bin_op = True
-        function_def += '('
+        if call_def != '':
+            call_def += '('
+        else:
+            function_def += '('
         print('NODE BinOp: ' + str(type(node.left)) + ' ' + str(type(node.op)) + ' ' + str(type(node.right)))
         ast.NodeVisitor.generic_visit(self, node)
         self.check_last_comma()
-        function_def += ')'
+        if call_def != '':
+            call_def += ')'
+        else:
+            function_def += ')'
 
     def visit_While(self, node):
         print('NODE While 1: ' + str(type(node.test)))
@@ -348,12 +362,19 @@ class MyVisitor(ast.NodeVisitor):
     def visit_Index(self, node):
         global function_def
         global bool_op
+        global call_def
         self.check_last_comma()
-        function_def += '['
+        if call_def != '':
+            call_def += '['
+        else:
+            function_def += '['
         print('NODE Index: ' + str(type(node)))
         ast.NodeVisitor.generic_visit(self, node)
         self.check_last_comma()
-        function_def += ']'
+        if call_def != '':
+            call_def += ']'
+        else:
+            function_def += ']'
         if len(bool_op) > 0:
             function_def += bool_op[len(bool_op)-1]
             bool_op = bool_op[:-1]
@@ -486,48 +507,84 @@ class MyVisitor(ast.NodeVisitor):
 
     def visit_Gt(self, node):
         global function_def
-        function_def += ' > '
+        global call_def
+        if call_def != '':
+            call_def += ' > '
+        else:
+            function_def += ' > '
         print('Greater than')
 
     def visit_Lt(self, node):
         global function_def
-        function_def += ' < '
+        global call_def
+        if call_def != '':
+            call_def += ' < '
+        else:
+            function_def += ' < '
         print('Lower than')
 
     def visit_LtE(self, node):
         global function_def
-        function_def += ' <= '
+        global call_def
+        if call_def != '':
+            call_def += ' <= '
+        else:
+            function_def += ' <= '
         print('Lower than equal')
 
     def visit_Eq(self, node):
         global function_def
-        function_def += ' == '
+        global call_def
+        if call_def != '':
+            call_def += ' == '
+        else:
+            function_def += ' == '
         print('Equal')
 
     def visit_Div(self, node):
         global function_def
+        global call_def
         self.check_last_comma()
-        function_def += ' / '
+        if call_def != '':
+            call_def += ' / '
+        else:
+            function_def += ' / '
 
     def visit_Sub(self, node):
         global function_def
+        global call_def
         self.check_last_comma()
-        function_def += ' - '
+        if call_def != '':
+            call_def += ' - '
+        else:
+            function_def += ' - '
 
     def visit_Add(self, node):
         global function_def
+        global call_def
         self.check_last_comma()
-        function_def += ' + '
+        if call_def != '':
+            call_def += ' + '
+        else:
+            function_def += ' + '
 
     def visit_Mult(self, node):
         global function_def
+        global call_def
         self.check_last_comma()
-        function_def += ' * '
+        if call_def != '':
+            call_def += ' * '
+        else:
+            function_def += ' * '
 
     def visit_Mod(self, node):
         global function_def
+        global call_def
         self.check_last_comma()
-        function_def += ' % '
+        if call_def != '':
+            call_def += ' % '
+        else:
+            function_def += ' % '
 
     def visit_And(self, node):
         global bool_op
@@ -559,7 +616,6 @@ class MyVisitor(ast.NodeVisitor):
     def check_last_comma(self, text=None):
         global function_def
         if text is not None:
-            print('TEXT ' + text)
             if text[-1:] == ',':
                 return text[:-1]
             return text
