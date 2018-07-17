@@ -112,7 +112,7 @@ class MyVisitor(ast.NodeVisitor):
                 if call_index > 0:
                     call_def += ','
             if is_variable:
-                function_def += 'atoi(' + node.id +'.data)'
+                function_def += 'atoi(' + node.id + '.data)'
                 is_variable = False
             elif is_call or is_call_parameter:
                 call_def += node.id
@@ -135,7 +135,7 @@ class MyVisitor(ast.NodeVisitor):
                 function_def += '); x++) {\n'
             for_index += 1
 
-        print('NODE Name: ' + str(type(node)) + ' ' + node.id+str(is_call)+str(is_var_declaration)+str(is_for))
+        print('NODE Name: ' + str(type(node)))
         ast.NodeVisitor.generic_visit(self, node)
 
     def visit_FunctionDef(self, node):
@@ -231,13 +231,12 @@ class MyVisitor(ast.NodeVisitor):
 
         if is_call_parameter:
             if not is_built_in_func:
-                function_def += 'DynType var'+str(variables_counter)+';'
-                function_def += 'var'+str(variables_counter)+'.tvar = '+str(type(node.n).__name__).upper()+';'
-                function_def += 'String har'+str(variables_counter)+' = "' + var_sign + str(node.n) + '";'
-                function_def += 'har'+str(variables_counter)+'.toCharArray(var'+str(variables_counter)+'.data, MinTypeSz);\n'
+                function_def += 'DynType var' + str(variables_counter) + ';'
+                function_def += 'var' + str(variables_counter) + '.tvar = ' + str(type(node.n).__name__).upper() + ';'
+                function_def += 'String har' + str(variables_counter) + ' = "' + var_sign + str(node.n) + '";'
+                function_def += 'har' + str(variables_counter) + '.toCharArray(var' + str(variables_counter) + '.data, MinTypeSz);\n'
                 var_sign = ''
             variables_counter += 1
-
 
         if variable_def != '':
             if is_array:
@@ -255,7 +254,7 @@ class MyVisitor(ast.NodeVisitor):
                     if call_index > 0:
                         call_def += ','
                     call_index += 1
-                    call_def += 'var' + str(variables_counter-1)
+                    call_def += 'var' + str(variables_counter - 1)
                 else:
                     call_def += num_var
             else:
@@ -371,7 +370,7 @@ class MyVisitor(ast.NodeVisitor):
                     if call_index > 0:
                         call_def += ','
                     call_index += 1
-                    call_def += 'var' + str(variables_counter-1)
+                    call_def += 'var' + str(variables_counter - 1)
                 else:
                     call_def += boolean_var
             else:
@@ -380,7 +379,7 @@ class MyVisitor(ast.NodeVisitor):
         print('NODE NameConstant: ' + str(type(node)))
         ast.NodeVisitor.generic_visit(self, node)
         if len(bool_op) > 0:
-            function_def += bool_op[len(bool_op)-1]
+            function_def += bool_op[len(bool_op) - 1]
             bool_op = bool_op[:-1]
 
     def visit_Index(self, node):
@@ -400,7 +399,7 @@ class MyVisitor(ast.NodeVisitor):
         else:
             function_def += ']'
         if len(bool_op) > 0:
-            function_def += bool_op[len(bool_op)-1]
+            function_def += bool_op[len(bool_op) - 1]
             bool_op = bool_op[:-1]
 
     def visit_If(self, node):
@@ -421,7 +420,7 @@ class MyVisitor(ast.NodeVisitor):
             direction = node.orelse[0]
         else:
             has_else_part = False
-        print('NODE If: ' + str(type(node)) + ' ' + str(brackets) + ' ' + str(node.orelse) + ' ' + str(has_else_part)+ ' ' + str(node.body))
+        print('NODE If: ' + str(type(node)) + ' ' + str(brackets) + ' ' + str(node.orelse) + ' ' + str(has_else_part) + ' ' + str(node.body))
         ast.NodeVisitor.generic_visit(self, node)
         has_else_part = False
         brackets -= 1
@@ -447,7 +446,7 @@ class MyVisitor(ast.NodeVisitor):
         ast.NodeVisitor.generic_visit(self, node)
         function_def += ')'
         if len(bool_op) > 0:
-            function_def += bool_op[len(bool_op)-1]
+            function_def += bool_op[len(bool_op) - 1]
             bool_op = bool_op[:-1]
 
     def visit_Assign(self, node):
@@ -651,10 +650,6 @@ class MyVisitor(ast.NodeVisitor):
                 function_def = function_def[:-1]
 
 
-
-
-
-
 def has_motor_functions():
     return 'setSpeedEnginesMotor' in functions or 'getIR1' in functions or 'getIR2' in functions or 'getIR3' in functions or 'getIR4' in functions or 'getIR5' in functions
 
@@ -748,8 +743,8 @@ if __name__ == "__main__":
         makefile_parameters.append('include $(ARDMK_DIR)/Arduino.mk\n')
         print('Linux')
 
-    arduino_libs =''
-    if robot == 'Complubot'  or robot == 'CompluBot':
+    arduino_libs = ''
+    if robot == 'Complubot' or robot == 'CompluBot':
         if has_motor_functions():
             board = 'robotMotor'
             arduino_libs = 'Robot_Motor Wire SPI'
@@ -759,7 +754,7 @@ if __name__ == "__main__":
     else:
         board = 'uno'
 
-    file_directory = getcwd()+'/'
+    file_directory = getcwd() + '/'
     try:
         rmtree('output')
     except FileNotFoundError:
@@ -767,11 +762,11 @@ if __name__ == "__main__":
 
     makedirs('output')
     chdir('output')
-    move(file_directory+output_filename, getcwd() + '/' + output_filename)
+    move(file_directory + output_filename, getcwd() + '/' + output_filename)
     makefile = open(getcwd() + '/' + 'Makefile', 'w+')
     makefile.write('ARDUINO_DIR   = ' + arduino_dir + '\n')
     if arduino_libs:
-        makefile.write('ARDUINO_LIBS= '+arduino_libs+'\n')
+        makefile.write('ARDUINO_LIBS= ' + arduino_libs + '\n')
     makefile.write('MONITOR_PORT  = /dev/tty.usbmodem*\n')
     makefile.write('BOARD_TAG = ' + board + '\n')
     for parameter in makefile_parameters:
