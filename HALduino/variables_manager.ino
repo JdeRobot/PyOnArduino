@@ -64,16 +64,7 @@ inline void assign(DynType *d1, DynType *d2) {
 
 // This function is called to stop the robot
 void stopMachine() {
-    char *p, q;
-
-    p=(char *)0;
-    cli();//no interrupts
-    // sleep_enable();
-    // sleep_cpu();//should stop
-    exit(0);//should finish
-    *p=1; //crash, may require more
-    q=*p;
-    Serial.print(q, HEX); //use it, bc the optimizer deletes q if not
+    architecturalStop();
     for(;;){}//will stop here for sure
 }
 

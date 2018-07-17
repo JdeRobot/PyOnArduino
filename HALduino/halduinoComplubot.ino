@@ -1,4 +1,10 @@
 
+void architecturalStop() {
+    DynType errorX;errorX.tvar = INT;String x = "0";x.toCharArray(errorX.data, MinTypeSz);
+    DynType errorY;errorY.tvar = INT;String y = "0";y.toCharArray(errorY.data, MinTypeSz);
+    setScreenText("ERROR!!");
+}
+
 int getUS() {
   long anVolt, inches, cm;
   int sum = 0; //Create sum variable so it can be averaged

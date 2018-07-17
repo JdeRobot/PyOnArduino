@@ -475,10 +475,13 @@ class MyVisitor(ast.NodeVisitor):
         print('Halduino found with call to function ' + node.attr)
         halduino = open(halduino_directory + robot + '.ino', 'r')
         print('NODE: ' + node.attr)
-        self.search_for_function(halduino, True, '', '', node.attr)
+        self.search_for_function(halduino, node.attr)
 
-    def search_for_function(self, halduino, not_found, function_line, declaration_name, searched_node):
+    def search_for_function(self, halduino, searched_node):
         global functions
+        function_line = ''
+        declaration_name = ''
+        not_found = True
         not_eof = True
         while not_eof:
             while not_found and not_eof:
@@ -682,6 +685,9 @@ if __name__ == "__main__":
     print('FILENAME: ' + input_filename)
     print('ROBOT: ' + robot)
     output = open('output.ino', 'w+')
+    halduino = open(halduino_directory + robot + '.ino', 'r')
+    MyVisitor().search_for_function(halduino, 'architecturalStop')
+    halduino.close()
     controller_file = open(input_filename).read()
     parsed_file = ast.parse(controller_file)
     MyVisitor().visit(parsed_file)

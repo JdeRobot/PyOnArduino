@@ -1,4 +1,8 @@
 
+void architecturalStop() {
+    // Turn leds on
+}
+
 int getUS() {
     int echoUS = A5;
     int triggerUS = A4;
