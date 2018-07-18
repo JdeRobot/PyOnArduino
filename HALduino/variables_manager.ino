@@ -62,9 +62,5 @@ inline void assign(DynType *d1, DynType *d2) {
     memmove(p1, p2, sz+1);
 }
 
-// This function is called to stop the robot
-void stopMachine() {
-    architecturalStop();
-    for(;;){}//will stop here for sure
-}
+
 

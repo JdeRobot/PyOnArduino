@@ -2,7 +2,15 @@
 void architecturalStop() {
     DynType errorX;errorX.tvar = INT;String x = "0";x.toCharArray(errorX.data, MinTypeSz);
     DynType errorY;errorY.tvar = INT;String y = "0";y.toCharArray(errorY.data, MinTypeSz);
-    setScreenText("ERROR!!");
+    setScreenText("ERROR!", errorX, errorY);
+}
+
+void stopMachine() {
+    architecturalStop();
+    for(;;){
+        //will stop here for sure
+        delay(5000);
+    }
 }
 
 int getUS() {

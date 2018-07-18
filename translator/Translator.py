@@ -486,7 +486,7 @@ class MyVisitor(ast.NodeVisitor):
             while not_found and not_eof:
                 function_line = halduino.readline()
                 if len(function_line) > 0:
-                    if len(function_line.split(searched_node)) > 1:
+                    if len(function_line.split(searched_node)) > 1 and function_line.split(searched_node)[len(function_line.split(searched_node))-1][-2:] == "{\n":
                         parts = function_line.split(' ')  # +|\([^\)]*\)
                         declaration_name = parts[1].split('(')[0]
                         not_found = False
@@ -680,9 +680,6 @@ if __name__ == "__main__":
     print('FILENAME: ' + input_filename)
     print('ROBOT: ' + robot)
     output = open('output.ino', 'w+')
-    halduino = open(halduino_directory + robot + '.ino', 'r')
-    MyVisitor().search_for_function(halduino, 'architecturalStop')
-    halduino.close()
     controller_file = open(input_filename).read()
     parsed_file = ast.parse(controller_file)
     MyVisitor().visit(parsed_file)
@@ -697,6 +694,8 @@ if __name__ == "__main__":
 
     if robot == 'Complubot' or robot == 'CompluBot':
         # Modify setup to include Robot.begin()
+        halduino = open(halduino_directory + robot + '.ino', 'r')
+        MyVisitor().search_for_function(halduino, 'setScreenText')
         setup = '\n'
         for index, line in enumerate(functions['setup'].splitlines()):
             if index == 1:
@@ -711,7 +710,6 @@ if __name__ == "__main__":
                 if uses_screen():
                     setup += '\n   Robot.beginTFT();\n'
             setup += line
-
         setup += '\n'''
         functions['setup'] = setup
         if has_motor_functions():
@@ -723,6 +721,14 @@ if __name__ == "__main__":
     output.write(global_vars)
     for key, value in functions.items():
         output.write(value)
+
+    # Architectural stop declaration
+    halduino = open(halduino_directory + robot + '.ino', 'r')
+    MyVisitor().search_for_function(halduino, 'architecturalStop')
+    output.write(functions['architecturalStop'])
+    halduino = open(halduino_directory + robot + '.ino', 'r')
+    MyVisitor().search_for_function(halduino, 'stopMachine')
+    output.write(functions['stopMachine'])
 
     print()
     output.close()

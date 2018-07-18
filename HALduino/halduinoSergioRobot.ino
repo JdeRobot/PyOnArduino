@@ -3,6 +3,14 @@ void architecturalStop() {
     // Turn leds on
 }
 
+void stopMachine() {
+    architecturalStop();
+    for(;;){
+        //will stop here for sure
+        delay(5000);
+    }
+}
+
 int getUS() {
     int echoUS = A5;
     int triggerUS = A4;
