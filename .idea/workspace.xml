@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e72936ae-374a-42ae-8588-539f897332c5" name="Default" comment="Boolean variables are now DynType">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/HALduino/halduinoMBot.ino" />
+    <list default="true" id="e72936ae-374a-42ae-8588-539f897332c5" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/HALduino/halduinoComplubot.ino" afterPath="$PROJECT_DIR$/HALduino/halduinoComplubot.ino" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/HALduino/halduinoSergioRobot.ino" afterPath="$PROJECT_DIR$/HALduino/halduinoSergioRobot.ino" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/HALduino/variables_manager.ino" afterPath="$PROJECT_DIR$/HALduino/variables_manager.ino" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/translator/Translator.py" afterPath="$PROJECT_DIR$/translator/Translator.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -57,8 +53,8 @@
       <file leaf-file-name="halduinoSergioRobot.ino" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/HALduino/halduinoSergioRobot.ino">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="4" lean-forward="false" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="4" />
+            <state relative-caret-position="30">
+              <caret line="2" column="22" lean-forward="false" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -67,8 +63,8 @@
       <file leaf-file-name="halduinoComplubot.ino" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/HALduino/halduinoComplubot.ino">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="12" selection-end-column="5" />
+            <state relative-caret-position="163">
+              <caret line="54" column="0" lean-forward="false" selection-start-line="54" selection-start-column="0" selection-end-line="56" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -77,8 +73,8 @@
       <file leaf-file-name="output.ino" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/output/output.ino">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
+            <state relative-caret-position="270">
+              <caret line="18" column="14" lean-forward="true" selection-start-line="18" selection-start-column="14" selection-end-line="18" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -105,9 +101,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>is_built_in_func = False</find>
-      <find>is_built_in_func =</find>
-      <find>char</find>
       <find>float</find>
       <find>String</find>
       <find>function_def =</find>
@@ -135,6 +128,9 @@
       <find>archi</find>
       <find>stopM</find>
       <find>stopMachine</find>
+      <find>setSpeedEngine</find>
+      <find>setSpeedEngine1</find>
+      <find>speed</find>
     </findStrings>
     <replaceStrings>
       <replace>&gt;</replace>
@@ -208,9 +204,9 @@
         <option value="$PROJECT_DIR$/examples/Complubot/BeepTest.py" />
         <option value="$PROJECT_DIR$/HALduino/variables_manager.ino" />
         <option value="$PROJECT_DIR$/HALduino/halduinoComplubot.ino" />
-        <option value="$PROJECT_DIR$/HALduino/halduinoSergioRobot.ino" />
         <option value="$PROJECT_DIR$/translator/Translator.py" />
         <option value="$PROJECT_DIR$/output/output.ino" />
+        <option value="$PROJECT_DIR$/HALduino/halduinoSergioRobot.ino" />
       </list>
     </option>
   </component>
@@ -259,6 +255,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="output" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PyOnArduino" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PyOnArduino" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="HALduino" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -463,13 +473,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1526995742446</updated>
-    </task>
-    <task id="LOCAL-00036" summary="Translator adds library and special setup for the robot">
-      <created>1529328244792</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1529328244792</updated>
     </task>
     <task id="LOCAL-00037" summary="WIP translator refactor">
       <created>1529433183079</created>
@@ -807,7 +810,14 @@
       <option name="project" value="LOCAL" />
       <updated>1531751556181</updated>
     </task>
-    <option name="localTasksCounter" value="85" />
+    <task id="LOCAL-00085" summary="Stop Machine by architecture">
+      <created>1531897484049</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1531897484050</updated>
+    </task>
+    <option name="localTasksCounter" value="86" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -854,7 +864,7 @@
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23462088" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23748212" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891566" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41686746" sideWeight="0.5114449" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37831324" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -918,7 +928,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="No IDE needed to compile and upload to the board for any board supported" />
     <MESSAGE value="Complubot's beep control supported on halduino" />
     <MESSAGE value="Melody Test added and support to melodies for Complubot" />
     <MESSAGE value="Complubot's screen support and example" />
@@ -943,7 +952,8 @@
     <MESSAGE value="Tests updated" />
     <MESSAGE value="Char test added" />
     <MESSAGE value="Boolean variables are now DynType" />
-    <option name="LAST_COMMIT_MESSAGE" value="Boolean variables are now DynType" />
+    <MESSAGE value="Stop Machine by architecture" />
+    <option name="LAST_COMMIT_MESSAGE" value="Stop Machine by architecture" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1304,22 +1314,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/HALduino/halduinoComplubot.ino">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="12" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/HALduino/halduinoSergioRobot.ino">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="4" lean-forward="false" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/translator/Translator.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="10890">
@@ -1330,10 +1324,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/HALduino/halduinoComplubot.ino">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="54" column="0" lean-forward="false" selection-start-line="54" selection-start-column="0" selection-end-line="56" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HALduino/halduinoSergioRobot.ino">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="22" lean-forward="false" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/output/output.ino">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
+        <state relative-caret-position="270">
+          <caret line="18" column="14" lean-forward="true" selection-start-line="18" selection-start-column="14" selection-end-line="18" selection-end-column="14" />
           <folding />
         </state>
       </provider>
