@@ -716,7 +716,9 @@ if __name__ == "__main__":
             output.write('#include <ArduinoRobotMotorBoard.h> // include the robot library\n')
         else:
             output.write('#include <ArduinoRobot.h> // include the robot library\n')
-    elif robot == 'MBot':
+    elif robot == 'MBot' or robot == 'mBot':
+        halduino = open(halduino_directory + robot + '.ino', 'r')
+        MyVisitor().search_for_function(halduino, 'setLeds')
         output.write('#include <MeMCore.h>\n')
     for line in open('Halduino/variables_manager.ino', 'r'):
         output.write(line)
@@ -759,7 +761,7 @@ if __name__ == "__main__":
         else:
             board = 'robotControl'
             arduino_libs = 'Robot_Control Wire SPI'
-    elif robot == 'MBot':
+    elif robot == 'MBot' or robot == 'mBot':
         board = 'uno'
         arduino_libs = 'Makeblock-Libraries-master Wire SPI'
     else:
@@ -778,7 +780,7 @@ if __name__ == "__main__":
     makefile.write('ARDUINO_DIR   = ' + arduino_dir + '\n')
     if arduino_libs:
         makefile.write('ARDUINO_LIBS= ' + arduino_libs + '\n')
-    if robot == 'MBot':
+    if robot == 'MBot'  or robot == 'mBot':
         makefile.write('MONITOR_PORT  = /dev/cu.wchusbserial1420\n')
     else:
         makefile.write('MONITOR_PORT  = /dev/tty.usbmodem*\n')
