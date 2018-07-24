@@ -5,9 +5,34 @@ import translator.Translator as translator
 class TranslatorTests(unittest.TestCase):
     def setUp(self):
         global visitor
-        translator.function_def = ''
         translator.robot = 'Complubot'
+        translator.function_def = ''
+        translator.parentheses = 0
+        translator.brackets = 0
+        translator.functions = {}
+        translator.has_else_part = False
+        translator.direction = ''
+        translator.is_call = False
+        translator.is_call_parameter = False
+        translator.call_index = 0
+        translator.is_Comparision = False
+        translator.is_var_declaration = False
+        translator.is_array = False
+        translator.array_index = 0
+        translator.array_length = 0
+        translator.variable_def = ''
+        translator.is_for = False
+        translator.for_index = 0
+        translator.is_if = False
+        translator.bool_op = []
+        translator.bin_op = False
+        translator.global_vars = ''
         translator.halduino_directory = '../HALduino/halduino'
+        translator.is_variable = False
+        translator.call_def = ''
+        translator.variables_counter = 0
+        translator.is_built_in_func = False
+        translator.var_sign = ''
         visitor = translator.MyVisitor()
 
     def translate_string(self, text):
@@ -27,22 +52,27 @@ class TranslatorTests(unittest.TestCase):
 
     def test_boolean_true_var_declaration(self):
         self.translate_string('var = True')
-        expected_statement = 'boolean var = true;\n'
+        expected_statement = 'DynType var0;var0.tvar = BOOL;String har0 = "true";har0.toCharArray(var0.data, MinTypeSz);\n'
         self.assertEqual(expected_statement, translator.function_def)
 
     def test_boolean_false_var_declaration(self):
         self.translate_string('var = False')
-        expected_statement = 'boolean var = false;\n'
+        expected_statement = 'DynType var0;var0.tvar = BOOL;String har0 = "false";har0.toCharArray(var0.data, MinTypeSz);\n'
         self.assertEqual(expected_statement, translator.function_def)
 
     def test_integer_var_declaration(self):
         self.translate_string('var = 9')
-        expected_statement = 'int var = 9;\n'
+        expected_statement = 'DynType var0;var0.tvar = INT;String har0 = "9";har0.toCharArray(var0.data, MinTypeSz);\n'
         self.assertEqual(expected_statement, translator.function_def)
 
     def test_float_var_declaration(self):
         self.translate_string('var = 0.1')
-        expected_statement = 'float var = 0.1;\n'
+        expected_statement = 'DynType var0;var0.tvar = FLOAT;String har0 = "0.1";har0.toCharArray(var0.data, MinTypeSz);\n'
+        self.assertEqual(expected_statement, translator.function_def)
+
+    def test_char_var_declaration(self):
+        self.translate_string('var = \'a\'')
+        expected_statement = 'char var = \'a\';\n'
         self.assertEqual(expected_statement, translator.function_def)
 
     def test_string_var_declaration(self):
@@ -92,7 +122,7 @@ class TranslatorTests(unittest.TestCase):
 
     def test_operations_parentheses_9(self):
         self.translate_string('print(5 / 3)')
-        expected_statement = 'Serial.print((5 / 3));\n   '
+        expected_statement = '''Serial.print((5 / 3));\n   '''
         self.assertEqual(expected_statement, translator.function_def)
 
     def test_operations_parentheses_10(self):
@@ -129,12 +159,17 @@ class TranslatorTests(unittest.TestCase):
         self.translate_string('''for x in array:
         print(x)''')
         expected_statement =  '''for(int x = 0; sizeof(array); x++) {\nSerial.print(x);\n   }\n'''
+        '''
+        for(int  = 0; sizeof(); x++) {
+            Serial.print(x);
+       }
+        '''
         self.assertEqual(expected_statement, translator.function_def)
 
     def test_function_def_print_strings(self):
         self.translate_string('''def print_name_surname(name: str, surname: str, second: str, another, thrid: int):
     print(name + surname + second + another)''')
-        expected_statement = '''void print_name_surname(String name, String surname, String second, int another, int thrid) {
+        expected_statement = '''void print_name_surname(DynType name, DynType surname, DynType second, DynType another, DynType thrid) {
 Serial.print((((name + surname) + second) + another));
    }
 '''
@@ -142,7 +177,9 @@ Serial.print((((name + surname) + second) + another));
 
     def test_function_call(self):
         self.translate_string('print_name_surname(\'Name\', \'Surname\', \'Surname\', 2, array, array)')
-        expected_statement = 'print_name_surname("Name","Surname","Surname",2,array,array);\n   '
+        expected_statement = '''DynType var0;var0.tvar = INT;String har0 = "2";har0.toCharArray(var0.data, MinTypeSz);
+print_name_surname("Name","Surname","Surname",var0,array,array);
+   '''
         self.assertEqual(expected_statement, translator.function_def)
 
     def test_if_true_else_if_else_statement(self):
@@ -155,9 +192,11 @@ else:
         expected_statement = '''if (true) {
 Serial.print("HELLO");
    } else if ((getUS() <= 10)) {
-set_engine(0);
+DynType var0;var0.tvar = INT;String har0 = "0";har0.toCharArray(var0.data, MinTypeSz);
+set_engine(var0);
    } else {
-set_engine(1);
+DynType var1;var1.tvar = INT;String har1 = "1";har1.toCharArray(var1.data, MinTypeSz);
+set_engine(var1);
    }
 '''
         self.assertEqual(expected_statement, translator.function_def)

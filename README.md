@@ -10,10 +10,12 @@ Python.
 
 To execute the project 
 ```
-    python3 translator/Translator.py [input-file] [robot] [output-file]
     python3 translator/Translator.py [input-file] [robot]
 ```
-## Demo video
+## Robots supported
+* [Complubot](https://www.arduino.cc/en/Guide/Robot) (Arduino Robot) 
+* SergioRobot: This is an educational project not a real world development
+* More to be added soon...
 ## Features
 ### Sensors and actuators supported [WIP]
 Sensor/Actuator | Supported functions
@@ -41,4 +43,11 @@ Tuples | Future work
 
 ### Example
 
-Examples available in the repo, check them out!
+Examples available in [examples](https://github.com/JdeRobot/PyOnArduino/tree/master/examples) folder, check them out!
+
+### Problem with Complubot
+
+There is a problem with Arduino Robot(Complubot). Sometimes when you upload a project it can make 
+the usb port stop working. If you ever get to this point, the solution is quite simple. Write an 
+empty sketch and upload it. While it's being uploaded press the reset button on the board two times.
+This should fix the problem! [Source](http://forum.arduino.cc/index.php?topic=269822.0)

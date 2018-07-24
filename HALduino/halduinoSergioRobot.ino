@@ -1,4 +1,20 @@
 
+void architecturalStop() {
+    #define LIGHTPIN 8
+    pinMode(LIGHTPIN, OUTPUT);
+    digitalWrite(LIGHTPIN, HIGH);
+    delay(100);
+    digitalWrite(LIGHTPIN, LOW);
+}
+
+void stopMachine() {
+    architecturalStop();
+    for(;;){
+        //will stop here for sure
+        delay(5000);
+    }
+}
+
 int getUS() {
     int echoUS = A5;
     int triggerUS = A4;
@@ -14,52 +30,51 @@ int getUS() {
     return distanceUS;
 }
 
-void setSpeedEngine1(int speed) {
+void setSpeedEngine1(DynType speed) {
     int left_front_forward = 5;
     int left_front_backward = 4;
     pinMode(left_front_forward,OUTPUT);
     pinMode(left_front_backward,OUTPUT);
-    if (speed < 0) {
-        analogWrite(left_front_forward, speed);
+    if (atoi(speed.data) < 0) {
+        analogWrite(left_front_forward, atoi(speed.data));
     } else {
-        analogWrite(left_front_backward, speed);
+        analogWrite(left_front_backward, atoi(speed.data));
     }
 }
 
-void setSpeedEngine2(int speed) {
+void setSpeedEngine2(DynType speed) {
     int right_front_forward = 2;
     int right_front_backward = 6;
     pinMode(right_front_forward,OUTPUT);
     pinMode(right_front_backward,OUTPUT);
-    if (speed < 0) {
-        analogWrite(right_front_forward, speed);
+    if (atoi(speed.data) < 0) {
+        analogWrite(right_front_forward, atoi(speed.data));
     } else {
-        analogWrite(right_front_backward, speed);
+        analogWrite(right_front_backward, atoi(speed.data));
     }
 }
 
-}
-void setSpeedEngine3(int speed) {
+void setSpeedEngine3(DynType speed) {
     int left_back_forward = 9;
     int left_back_backward = 10;
     pinMode(left_back_forward,OUTPUT);
     pinMode(left_back_backward,OUTPUT);
-    if (speed < 0) {
-        analogWrite(left_back_forward, speed);
+    if (atoi(speed.data) < 0) {
+        analogWrite(left_back_forward, atoi(speed.data));
     } else {
-        analogWrite(left_back_backward, speed);
+        analogWrite(left_back_backward, atoi(speed.data));
     }
 }
 
-void setSpeedEngine4(int speed) {
+void setSpeedEngine4(DynType speed) {
     int right_back_forward = 11;
     int right_back_backward = 12;
     pinMode(right_back_forward,OUTPUT);
     pinMode(right_back_backward,OUTPUT);
-    if (speed < 0) {
-        analogWrite(right_back_forward, speed);
+    if (atoi(speed.data) < 0) {
+        analogWrite(right_back_forward, atoi(speed.data));
     } else {
-        analogWrite(right_back_backward, speed);
+        analogWrite(right_back_backward, atoi(speed.data));
     }
 }
 

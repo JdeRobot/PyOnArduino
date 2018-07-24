@@ -27,6 +27,11 @@ bool_op = []
 bin_op = False
 global_vars = ''
 halduino_directory = './HALduino/halduino'
+is_variable = False
+call_def = ''
+variables_counter = 0
+is_built_in_func = False
+var_sign = ''
 
 
 class MyVisitor(ast.NodeVisitor):
@@ -44,10 +49,16 @@ class MyVisitor(ast.NodeVisitor):
         global is_call_parameter
         global bin_op
         global global_vars
+        global call_def
         print('NODE Str: ' + str(type(node.s)))
-        str_var = '\"' + node.s + '\"'
+        var_type = 'String '
+        if len(node.s) == 1:
+            str_var = '\'' + node.s + '\''
+            var_type = 'char '
+        else:
+            str_var = '\"' + node.s + '\"'
         if bin_op:
-            global_vars += 'String ' + node.s + ' = ' + str_var + ';\n'
+            global_vars += var_type + node.s + ' = ' + str_var + ';\n'
         if is_array:
             if array_index == 0:
                 str_var = '{' + str_var
@@ -56,21 +67,24 @@ class MyVisitor(ast.NodeVisitor):
             array_index += 1
 
         if is_call_parameter:
-            if call_index >= 0:
-                str_var += ','
+            if call_index > 0:
+                call_def += ','
             call_index += 1
 
         if variable_def != '':
             if is_array:
-                variable_def = 'String ' + variable_def + str_var
+                variable_def = var_type + variable_def + str_var
             else:
-                variable_def = 'String ' + variable_def + ' = ' + str_var
+                variable_def = var_type + variable_def + ' = ' + str_var
             function_def += variable_def
         else:
             if bin_op:
                 function_def += node.s
             else:
-                function_def += str_var
+                if is_call_parameter:
+                    call_def += str_var
+                else:
+                    function_def += str_var
         variable_def = ''
 
     def visit_Name(self, node):
@@ -83,22 +97,32 @@ class MyVisitor(ast.NodeVisitor):
         global for_index
         global is_call_parameter
         global call_index
-        global is_call_parameter
-
+        global is_variable
+        global call_def
+        global is_built_in_func
+        print('NODE Name: ' + str(type(node)) + ' ' + node.id + str(is_call) + str(is_var_declaration) + str(is_for))
         if node.id == 'print':
-            function_def += 'Serial.' + node.id
+            call_def += 'Serial.' + node.id
+            is_built_in_func = True
         elif node.id == 'sleep':
-            function_def += 'delay'
+            call_def += 'delay'
+            is_built_in_func = True
         elif node.id != 'halduino' and is_var_declaration is False:
             if is_call_parameter:
-                if call_index >= 0:
-                    node.id += ','
-                call_index += 1
-            function_def += node.id
+                if call_index > 0:
+                    call_def += ','
+            if is_variable:
+                function_def += 'atoi(' + node.id + '.data)'
+                is_variable = False
+            elif is_call or is_call_parameter:
+                call_def += node.id
+            else:
+                function_def += node.id
 
         if is_call:
-            self.check_last_comma()
-            function_def += '('
+            if call_def != '':
+                call_def = self.check_last_comma(text=call_def)
+            call_def += '('
             is_call = False
             is_call_parameter = True
         elif is_var_declaration:
@@ -111,7 +135,7 @@ class MyVisitor(ast.NodeVisitor):
                 function_def += '); x++) {\n'
             for_index += 1
 
-        print('NODE Name: ' + str(type(node)) + ' ' + node.id)
+        print('NODE Name: ' + str(type(node)))
         ast.NodeVisitor.generic_visit(self, node)
 
     def visit_FunctionDef(self, node):
@@ -157,14 +181,19 @@ class MyVisitor(ast.NodeVisitor):
         global is_call_parameter
         global bool_op
         global bin_op
+        global call_def
+        global is_built_in_func
         is_call_parameter = True
         is_call = True
         call_index = 0
         parentheses += 1
         print('NODE Call: ' + str(type(node)))
         ast.NodeVisitor.generic_visit(self, node)
+        function_def += call_def
+        call_def = ''
         is_call = False
         is_call_parameter = False
+        is_built_in_func = False
         call_index = 0
         parentheses -= 1
         if parentheses == 0 and is_Comparision == False and not bool_op:
@@ -186,6 +215,11 @@ class MyVisitor(ast.NodeVisitor):
         global array_length
         global is_call_parameter
         global call_index
+        global call_def
+        global is_call
+        global variables_counter
+        global is_built_in_func
+        global var_sign
         print('NODE Num: ' + str(type(node)))
         num_var = str(node.n)
         if is_array:
@@ -196,18 +230,35 @@ class MyVisitor(ast.NodeVisitor):
             array_index += 1
 
         if is_call_parameter:
-            if call_index >= 0:
-                num_var += ','
-            call_index += 1
+            if not is_built_in_func:
+                function_def += 'DynType var' + str(variables_counter) + ';'
+                function_def += 'var' + str(variables_counter) + '.tvar = ' + str(type(node.n).__name__).upper() + ';'
+                function_def += 'String har' + str(variables_counter) + ' = "' + var_sign + str(node.n) + '";'
+                function_def += 'har' + str(variables_counter) + '.toCharArray(var' + str(variables_counter) + '.data, MinTypeSz);\n'
+                var_sign = ''
+            variables_counter += 1
 
         if variable_def != '':
             if is_array:
                 variable_def = type(node.n).__name__ + ' ' + variable_def + num_var
             else:
-                variable_def = type(node.n).__name__ + ' ' + variable_def + ' = ' + num_var
+                variable_def = 'DynType var' + str(variables_counter) + ';'
+                variable_def += 'var' + str(variables_counter) + '.tvar = ' + str(type(node.n).__name__).upper() + ';'
+                variable_def += 'String har' + str(variables_counter) + ' = "' + var_sign + str(node.n) + '";'
+                variable_def += 'har' + str(variables_counter) + '.toCharArray(var' + str(variables_counter) + '.data, MinTypeSz)'
+                variables_counter += 1
             function_def += variable_def
         else:
-            function_def += num_var
+            if is_call_parameter:
+                if not is_built_in_func:
+                    if call_index > 0:
+                        call_def += ','
+                    call_index += 1
+                    call_def += 'var' + str(variables_counter - 1)
+                else:
+                    call_def += num_var
+            else:
+                function_def += num_var
         variable_def = ''
         ast.NodeVisitor.generic_visit(self, node)
 
@@ -224,17 +275,8 @@ class MyVisitor(ast.NodeVisitor):
 
     def visit_arg(self, node):
         global function_def
-        if node.annotation is not None:
-            print('NODE Return: ' + str(type(node.annotation)))
-            ast.NodeVisitor.generic_visit(self, node.annotation)
-            var_type = node.annotation.id
-            if node.annotation.id == 'str':
-                var_type = 'String'
-            function_def += var_type + ' ' + node.arg
-            print('arg 1: ' + node.arg + ' ' + node.annotation.id)
-        else:
-            function_def += 'int ' + node.arg
-            print('arg 2: ' + node.arg)
+        function_def += 'DynType ' + node.arg
+        print('NODE ARG: ' + str(type(node.annotation)))
 
     def visit_Return(self, node):
         global function_def
@@ -248,13 +290,20 @@ class MyVisitor(ast.NodeVisitor):
         global function_def
         global variable_def
         global bin_op
+        global call_def
         print('BinOp')
         bin_op = True
-        function_def += '('
+        if call_def != '':
+            call_def += '('
+        else:
+            function_def += '('
         print('NODE BinOp: ' + str(type(node.left)) + ' ' + str(type(node.op)) + ' ' + str(type(node.right)))
         ast.NodeVisitor.generic_visit(self, node)
         self.check_last_comma()
-        function_def += ')'
+        if call_def != '':
+            call_def += ')'
+        else:
+            function_def += ')'
 
     def visit_While(self, node):
         print('NODE While 1: ' + str(type(node.test)))
@@ -288,12 +337,14 @@ class MyVisitor(ast.NodeVisitor):
         global array_length
         global is_if
         global bool_op
+        global variables_counter
+        global call_index
+        global call_def
         boolean_var = ''
         if node.value is True:
             boolean_var = 'true'
         elif node.value is False:
             boolean_var = 'false'
-
 
         if is_array:
             if array_index == 0:
@@ -307,27 +358,48 @@ class MyVisitor(ast.NodeVisitor):
             if is_array:
                 variable_def += boolean_var
             else:
-                variable_def += ' = ' + boolean_var
-                variable_def = 'boolean ' + variable_def
+                variable_def = 'DynType var' + str(variables_counter) + ';'
+                variable_def += 'var' + str(variables_counter) + '.tvar = BOOL;'
+                variable_def += 'String har' + str(variables_counter) + ' = "' + var_sign + boolean_var + '";'
+                variable_def += 'har' + str(variables_counter) + '.toCharArray(var' + str(variables_counter) + '.data, MinTypeSz)'
+                variables_counter += 1
+            function_def += variable_def
         else:
-            function_def += boolean_var
+            if is_call_parameter:
+                if not is_built_in_func:
+                    if call_index > 0:
+                        call_def += ','
+                    call_index += 1
+                    call_def += 'var' + str(variables_counter - 1)
+                else:
+                    call_def += boolean_var
+            else:
+                function_def += boolean_var
+        variable_def = ''
         print('NODE NameConstant: ' + str(type(node)))
         ast.NodeVisitor.generic_visit(self, node)
         if len(bool_op) > 0:
-            function_def += bool_op[len(bool_op)-1]
+            function_def += bool_op[len(bool_op) - 1]
             bool_op = bool_op[:-1]
 
     def visit_Index(self, node):
         global function_def
         global bool_op
+        global call_def
         self.check_last_comma()
-        function_def += '['
+        if call_def != '':
+            call_def += '['
+        else:
+            function_def += '['
         print('NODE Index: ' + str(type(node)))
         ast.NodeVisitor.generic_visit(self, node)
         self.check_last_comma()
-        function_def += ']'
+        if call_def != '':
+            call_def += ']'
+        else:
+            function_def += ']'
         if len(bool_op) > 0:
-            function_def += bool_op[len(bool_op)-1]
+            function_def += bool_op[len(bool_op) - 1]
             bool_op = bool_op[:-1]
 
     def visit_If(self, node):
@@ -348,7 +420,7 @@ class MyVisitor(ast.NodeVisitor):
             direction = node.orelse[0]
         else:
             has_else_part = False
-        print('NODE If: ' + str(type(node)) + ' ' + str(brackets) + ' ' + str(node.orelse) + ' ' + str(has_else_part)+ ' ' + str(node.body))
+        print('NODE If: ' + str(type(node)) + ' ' + str(brackets) + ' ' + str(node.orelse) + ' ' + str(has_else_part) + ' ' + str(node.body))
         ast.NodeVisitor.generic_visit(self, node)
         has_else_part = False
         brackets -= 1
@@ -360,18 +432,21 @@ class MyVisitor(ast.NodeVisitor):
         global function_def
         global is_Comparision
         global bool_op
+        global is_variable
         print('Comparision')
         # LEFT PART
         print('NODE Compare 1: ' + str(type(node.left)))
         if isinstance(node.left, ast.Call):
             is_Comparision = True
+        else:
+            is_variable = True
         print('NODE Compare 2: ' + str(type(node.ops[0])))
         print('NODE Compare 3: ' + str(type(node.comparators)))
         function_def += '('
         ast.NodeVisitor.generic_visit(self, node)
         function_def += ')'
         if len(bool_op) > 0:
-            function_def += bool_op[len(bool_op)-1]
+            function_def += bool_op[len(bool_op) - 1]
             bool_op = bool_op[:-1]
 
     def visit_Assign(self, node):
@@ -394,20 +469,24 @@ class MyVisitor(ast.NodeVisitor):
 
     def add_halduino_function(self, node):
         global function_def
-        function_def += node.attr
+        global call_def
+        call_def += node.attr
         print('Halduino found with call to function ' + node.attr)
         halduino = open(halduino_directory + robot + '.ino', 'r')
         print('NODE: ' + node.attr)
-        self.search_for_function(halduino, True, '', '', node.attr)
+        self.search_for_function(halduino, node.attr)
 
-    def search_for_function(self, halduino, not_found, function_line, declaration_name, searched_node):
+    def search_for_function(self, halduino, searched_node):
         global functions
+        function_line = ''
+        declaration_name = ''
+        not_found = True
         not_eof = True
         while not_eof:
             while not_found and not_eof:
                 function_line = halduino.readline()
                 if len(function_line) > 0:
-                    if len(function_line.split(searched_node)) > 1:
+                    if len(function_line.split(searched_node)) > 1 and function_line.split(searched_node)[len(function_line.split(searched_node))-1][-2:] == "{\n":
                         parts = function_line.split(' ')  # +|\([^\)]*\)
                         declaration_name = parts[1].split('(')[0]
                         not_found = False
@@ -454,48 +533,84 @@ class MyVisitor(ast.NodeVisitor):
 
     def visit_Gt(self, node):
         global function_def
-        function_def += ' > '
+        global call_def
+        if call_def != '':
+            call_def += ' > '
+        else:
+            function_def += ' > '
         print('Greater than')
 
     def visit_Lt(self, node):
         global function_def
-        function_def += ' < '
+        global call_def
+        if call_def != '':
+            call_def += ' < '
+        else:
+            function_def += ' < '
         print('Lower than')
 
     def visit_LtE(self, node):
         global function_def
-        function_def += ' <= '
+        global call_def
+        if call_def != '':
+            call_def += ' <= '
+        else:
+            function_def += ' <= '
         print('Lower than equal')
 
     def visit_Eq(self, node):
         global function_def
-        function_def += ' == '
+        global call_def
+        if call_def != '':
+            call_def += ' == '
+        else:
+            function_def += ' == '
         print('Equal')
 
     def visit_Div(self, node):
         global function_def
+        global call_def
         self.check_last_comma()
-        function_def += ' / '
+        if call_def != '':
+            call_def += ' / '
+        else:
+            function_def += ' / '
 
     def visit_Sub(self, node):
         global function_def
+        global call_def
         self.check_last_comma()
-        function_def += ' - '
+        if call_def != '':
+            call_def += ' - '
+        else:
+            function_def += ' - '
 
     def visit_Add(self, node):
         global function_def
+        global call_def
         self.check_last_comma()
-        function_def += ' + '
+        if call_def != '':
+            call_def += ' + '
+        else:
+            function_def += ' + '
 
     def visit_Mult(self, node):
         global function_def
+        global call_def
         self.check_last_comma()
-        function_def += ' * '
+        if call_def != '':
+            call_def += ' * '
+        else:
+            function_def += ' * '
 
     def visit_Mod(self, node):
         global function_def
+        global call_def
         self.check_last_comma()
-        function_def += ' % '
+        if call_def != '':
+            call_def += ' % '
+        else:
+            function_def += ' % '
 
     def visit_And(self, node):
         global bool_op
@@ -514,19 +629,29 @@ class MyVisitor(ast.NodeVisitor):
         print('NODE boolOp: ' + str(type(node)))
         ast.NodeVisitor.generic_visit(self, node)
 
-    def check_last_comma(self):
-        global function_def
-        if function_def[-1:] == ',':
-            function_def = function_def[:-1]
-
     def visit_Load(self, node):
         print('NODE Load: ' + str(type(node)))
         ast.NodeVisitor.generic_visit(self, node)
 
+    def visit_USub(self, node):
+        global var_sign
+        var_sign += '-'
+        print('NODE USub: ' + str(type(node)))
+        ast.NodeVisitor.generic_visit(self, node)
+
+    def check_last_comma(self, text=None):
+        global function_def
+        if text is not None:
+            if text[-1:] == ',':
+                return text[:-1]
+            return text
+        else:
+            if function_def[-1:] == ',':
+                function_def = function_def[:-1]
 
 
 def has_motor_functions():
-    return 'setSpeedEngines' in functions or 'getIR1' in functions or 'getIR2' in functions or 'getIR3' in functions or 'getIR4' in functions or 'getIR5' in functions
+    return 'setSpeedEnginesMotor' in functions or 'getIR1' in functions or 'getIR2' in functions or 'getIR3' in functions or 'getIR4' in functions or 'getIR5' in functions
 
 
 def uses_speaker():
@@ -547,20 +672,14 @@ if __name__ == "__main__":
     if len(sys.argv) == 3:
         input_filename = sys.argv[1]
         robot = sys.argv[2]
-    elif len(sys.argv) > 4:
-        input_filename = sys.argv[1]
-        robot = sys.argv[2]
-        output_filename = sys.argv[3]
     else:
         print('Usage: ')
-        print('python3 translator/Translator.py [input-file] [robot] [output-file]')
         print('python3 translator/Translator.py [input-file] [robot]')
         sys.exit(0)
 
     print('FILENAME: ' + input_filename)
     print('ROBOT: ' + robot)
-    print('OUTPUT FILENAME: ' + output_filename)
-    output = open(output_filename, 'w+')
+    output = open('output.ino', 'w+')
     controller_file = open(input_filename).read()
     parsed_file = ast.parse(controller_file)
     MyVisitor().visit(parsed_file)
@@ -575,6 +694,8 @@ if __name__ == "__main__":
 
     if robot == 'Complubot' or robot == 'CompluBot':
         # Modify setup to include Robot.begin()
+        halduino = open(halduino_directory + robot + '.ino', 'r')
+        MyVisitor().search_for_function(halduino, 'setScreenText')
         setup = '\n'
         for index, line in enumerate(functions['setup'].splitlines()):
             if index == 1:
@@ -589,16 +710,25 @@ if __name__ == "__main__":
                 if uses_screen():
                     setup += '\n   Robot.beginTFT();\n'
             setup += line
-
         setup += '\n'''
         functions['setup'] = setup
         if has_motor_functions():
             output.write('#include <ArduinoRobotMotorBoard.h> // include the robot library\n')
         else:
             output.write('#include <ArduinoRobot.h> // include the robot library\n')
+    for line in open('Halduino/variables_manager.ino', 'r'):
+        output.write(line)
     output.write(global_vars)
     for key, value in functions.items():
         output.write(value)
+
+    # Architectural stop declaration
+    halduino = open(halduino_directory + robot + '.ino', 'r')
+    MyVisitor().search_for_function(halduino, 'architecturalStop')
+    output.write(functions['architecturalStop'])
+    halduino = open(halduino_directory + robot + '.ino', 'r')
+    MyVisitor().search_for_function(halduino, 'stopMachine')
+    output.write(functions['stopMachine'])
 
     print()
     output.close()
@@ -619,8 +749,8 @@ if __name__ == "__main__":
         makefile_parameters.append('include $(ARDMK_DIR)/Arduino.mk\n')
         print('Linux')
 
-    arduino_libs =''
-    if robot == 'Complubot'  or robot == 'CompluBot':
+    arduino_libs = ''
+    if robot == 'Complubot' or robot == 'CompluBot':
         if has_motor_functions():
             board = 'robotMotor'
             arduino_libs = 'Robot_Motor Wire SPI'
@@ -630,7 +760,7 @@ if __name__ == "__main__":
     else:
         board = 'uno'
 
-    file_directory = getcwd()+'/'
+    file_directory = getcwd() + '/'
     try:
         rmtree('output')
     except FileNotFoundError:
@@ -638,11 +768,11 @@ if __name__ == "__main__":
 
     makedirs('output')
     chdir('output')
-    move(file_directory+output_filename, getcwd() + '/' + output_filename)
+    move(file_directory + output_filename, getcwd() + '/' + output_filename)
     makefile = open(getcwd() + '/' + 'Makefile', 'w+')
     makefile.write('ARDUINO_DIR   = ' + arduino_dir + '\n')
     if arduino_libs:
-        makefile.write('ARDUINO_LIBS= '+arduino_libs+'\n')
+        makefile.write('ARDUINO_LIBS= ' + arduino_libs + '\n')
     makefile.write('MONITOR_PORT  = /dev/tty.usbmodem*\n')
     makefile.write('BOARD_TAG = ' + board + '\n')
     for parameter in makefile_parameters:

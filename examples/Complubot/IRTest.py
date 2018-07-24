@@ -13,4 +13,4 @@ def loop():
     print(halduino.getIR4())
     print(' ')
     print(halduino.getIR5())
-    print()
+    print(' ')
