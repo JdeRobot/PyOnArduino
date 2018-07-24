@@ -24,6 +24,8 @@ def setSpeedEnginesMotor(speed1, speed2):
 def setSpeedEnginesControl(speed1, speed2):
     pass
 
+def setSpeedEngines(speed1, speed2):
+    pass
 
 def getIR1() -> int:
     pass
