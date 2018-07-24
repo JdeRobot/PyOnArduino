@@ -1,8 +1,8 @@
 
 void architecturalStop() {
-    DynType errorX;errorX.tvar = INT;String x = "0";x.toCharArray(errorX.data, MinTypeSz);
-    DynType errorY;errorY.tvar = INT;String y = "0";y.toCharArray(errorY.data, MinTypeSz);
-    setScreenText("ERROR!", errorX, errorY);
+    DynType errorX;errorX.tvar = INT;String x = "5";x.toCharArray(errorX.data, MinTypeSz);
+    DynType errorY;errorY.tvar = INT;String y = "5";y.toCharArray(errorY.data, MinTypeSz);
+    setScreenText("ERROR!!", errorX, errorY);
 }
 
 void stopMachine() {
