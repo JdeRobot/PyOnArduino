@@ -65,3 +65,7 @@ def setScreenText(text, x, y):
 
 def clearScreen():
     pass
+
+
+def setLeds(number, red, green, blue):
+    pass
