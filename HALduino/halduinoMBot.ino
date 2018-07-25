@@ -69,3 +69,9 @@ int getLightSensor() {
     MeLightSensor lightSensor(6);
     return lightSensor.read();
 }
+
+void sendMessage(String message) {
+    MeIR ir;
+    ir.begin();
+    ir.sendString(message);
+}

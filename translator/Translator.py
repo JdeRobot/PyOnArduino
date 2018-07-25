@@ -722,7 +722,7 @@ if __name__ == "__main__":
                 if uses_screen():
                     setup += '\n   Robot.beginTFT();\n'
             setup += line
-        setup += '\n'''
+        setup += '\n'
         functions['setup'] = setup
         if has_motor_functions():
             output.write('#include <ArduinoRobotMotorBoard.h> // include the robot library\n')

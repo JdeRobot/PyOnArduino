@@ -88,3 +88,7 @@ def isButtonReleased():
 
 def getLightSensor():
     pass
+
+
+def sendMessage(message):
+    pass
