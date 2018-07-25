@@ -35,6 +35,10 @@ Sensor/Actuator | Supported functions
 DC Engines      | setSpeedEngines (speed)
 Ultrasonic sensors | getUS()
 LEDs | setLeds(ledNumber, red, green, blue)
+Infrared sensors | getMessage(), sendMessage(message)
+Light sensor | getLightSensor()
+Button | isButtonPressed(), isButtonReleased()
+Buzzer | playBuzzer(tone, length)
 
 #### SergioRobot
 Sensor/Actuator | Supported functions
