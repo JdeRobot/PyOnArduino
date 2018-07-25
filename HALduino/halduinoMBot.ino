@@ -64,3 +64,8 @@ boolean isButtonPressed() {
 boolean isButtonReleased() {
     return (1^(analogRead(A7)>10?0:1));
 }
+
+int getLightSensor() {
+    MeLightSensor lightSensor(6);
+    return lightSensor.read();
+}

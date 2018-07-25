@@ -84,3 +84,7 @@ def isButtonPressed():
 
 def isButtonReleased():
     pass
+
+
+def getLightSensor():
+    pass
