@@ -92,3 +92,7 @@ def getLightSensor():
 
 def sendMessage(message):
     pass
+
+
+def getMessage():
+    pass

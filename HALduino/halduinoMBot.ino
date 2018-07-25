@@ -75,3 +75,9 @@ void sendMessage(String message) {
     ir.begin();
     ir.sendString(message);
 }
+
+String getMessage() {
+    MeIR ir;
+    ir.begin();
+    return ir.getString();
+}
