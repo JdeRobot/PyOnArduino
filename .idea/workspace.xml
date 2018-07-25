@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e72936ae-374a-42ae-8588-539f897332c5" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/examples/MBot/BuzzerTest.py" />
+    <list default="true" id="e72936ae-374a-42ae-8588-539f897332c5" name="Default" comment="Buzzer example">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/examples/MBot/ButtonTest.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/HALduino/halduino.py" afterPath="$PROJECT_DIR$/HALduino/halduino.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/HALduino/halduinoMBot.ino" afterPath="$PROJECT_DIR$/HALduino/halduinoMBot.ino" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/translator/Translator.py" afterPath="$PROJECT_DIR$/translator/Translator.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,7 +22,7 @@
         <entry file="file://$PROJECT_DIR$/examples/MBot/LedsTest.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="30">
-              <caret line="2" column="3" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+              <caret line="2" column="1" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -53,8 +54,8 @@
       <file leaf-file-name="halduino.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/HALduino/halduino.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="389">
-              <caret line="78" column="0" lean-forward="true" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+            <state relative-caret-position="374">
+              <caret line="83" column="0" lean-forward="false" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -63,18 +64,38 @@
       <file leaf-file-name="halduinoMBot.ino" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/HALduino/halduinoMBot.ino">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="443">
-              <caret line="55" column="20" lean-forward="false" selection-start-line="55" selection-start-column="20" selection-end-line="55" selection-end-column="20" />
+            <state relative-caret-position="442">
+              <caret line="66" column="0" lean-forward="false" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BuzzerTest.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ButtonTest.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/examples/MBot/ButtonTest.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="4" column="33" lean-forward="false" selection-start-line="4" selection-start-column="33" selection-end-line="4" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Translator.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/translator/Translator.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="322">
+              <caret line="747" column="0" lean-forward="false" selection-start-line="747" selection-start-column="0" selection-end-line="747" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BuzzerTest.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/examples/MBot/BuzzerTest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="26" column="12" lean-forward="true" selection-start-line="26" selection-start-column="12" selection-end-line="26" selection-end-column="12" />
+            <state relative-caret-position="90">
+              <caret line="6" column="27" lean-forward="false" selection-start-line="6" selection-start-column="24" selection-end-line="6" selection-end-column="27" />
               <folding>
                 <element signature="e#0#22#0" expanded="true" />
               </folding>
@@ -103,8 +124,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>variable_def</find>
-      <find>boolean</find>
       <find>halduino_directory</find>
       <find>search_for_function</find>
       <find>is_call</find>
@@ -133,6 +152,8 @@
       <find>MBot</find>
       <find>setLeds</find>
       <find>294</find>
+      <find>loop</find>
+      <find>;\n</find>
     </findStrings>
     <replaceStrings>
       <replace>&gt;</replace>
@@ -164,7 +185,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/examples/test.py" />
         <option value="$PROJECT_DIR$/examples/operations.py" />
         <option value="$PROJECT_DIR$/examples/IRtestRobotMotor.py" />
         <option value="$PROJECT_DIR$/examples/StopNGoRobotMotor.py" />
@@ -185,7 +205,6 @@
         <option value="$PROJECT_DIR$/examples/SergioRobot/test.py" />
         <option value="$PROJECT_DIR$/examples/SergioRobot/operations.py" />
         <option value="$PROJECT_DIR$/HALduino/general.ino" />
-        <option value="$PROJECT_DIR$/output.ino" />
         <option value="$PROJECT_DIR$/tests/SergioRobotExampleTests.py" />
         <option value="$PROJECT_DIR$/tests/ComplubotExampleTests.py" />
         <option value="$PROJECT_DIR$/tests/TranslatorTests.py" />
@@ -207,14 +226,16 @@
         <option value="$PROJECT_DIR$/examples/mBot/HitnRotateTest.py" />
         <option value="$PROJECT_DIR$/examples/mBot/LedsTest.py" />
         <option value="$PROJECT_DIR$/output/output.ino" />
-        <option value="$PROJECT_DIR$/translator/Translator.py" />
         <option value="$PROJECT_DIR$/examples/MBot/HitnRotateTest.py" />
         <option value="$PROJECT_DIR$/examples/MBot/LedsTest.py" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/HALduino/halduinoMBot.ino" />
         <option value="$PROJECT_DIR$/examples/MBot/BuzzerTest.py" />
-        <option value="$PROJECT_DIR$/HALduino/halduino.py" />
         <option value="$PROJECT_DIR$/examples/MBot/BuzzerTest2.py" />
+        <option value="$PROJECT_DIR$/HALduino/halduino.py" />
+        <option value="$PROJECT_DIR$/HALduino/halduinoMBot.ino" />
+        <option value="$PROJECT_DIR$/examples/MBot/ButtonTest.py" />
+        <option value="$PROJECT_DIR$/output.ino" />
+        <option value="$PROJECT_DIR$/translator/Translator.py" />
       </list>
     </option>
   </component>
@@ -262,7 +283,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="examples" />
+              <option name="myItemId" value="translator" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -277,10 +298,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="examples" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MBot" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -485,13 +502,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1526995742446</updated>
-    </task>
-    <task id="LOCAL-00044" summary="Array support refactored">
-      <created>1529754875971</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1529754875971</updated>
     </task>
     <task id="LOCAL-00045" summary="Array support refactored for more vari typess">
       <created>1529768204813</created>
@@ -829,7 +839,14 @@
       <option name="project" value="LOCAL" />
       <updated>1532502073517</updated>
     </task>
-    <option name="localTasksCounter" value="93" />
+    <task id="LOCAL-00093" summary="Buzzer example">
+      <created>1532505194517</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1532505194518</updated>
+    </task>
+    <option name="localTasksCounter" value="94" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -950,7 +967,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Boolean operations and or supported" />
     <MESSAGE value="Reformat translator" />
     <MESSAGE value="Support for Robot Motor libraries in Complubot" />
     <MESSAGE value="Concat Strings translation" />
@@ -975,7 +991,8 @@
     <MESSAGE value="LedsTest added with support for architecture stop using leds on mBot" />
     <MESSAGE value="mBot/Mbot support on command line" />
     <MESSAGE value="README.md updated" />
-    <option name="LAST_COMMIT_MESSAGE" value="README.md updated" />
+    <MESSAGE value="Buzzer example" />
+    <option name="LAST_COMMIT_MESSAGE" value="Buzzer example" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -998,13 +1015,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/examples/Complubot/StopnGoTest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="14" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/examples/Complubot/ScreenTextTest.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1183,7 +1193,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/output.ino" />
     <entry file="file://$PROJECT_DIR$/HALduino/variables_manager.ino">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="960">
@@ -1282,13 +1291,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/translator/Translator.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="514">
-          <caret line="782" column="42" lean-forward="false" selection-start-line="782" selection-start-column="42" selection-end-line="782" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/output/output.ino">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1605">
@@ -1323,34 +1325,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/examples/MBot/LedsTest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="3" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/HALduino/halduinoComplubot.ino">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="810">
           <caret line="54" column="27" lean-forward="false" selection-start-line="54" selection-start-column="5" selection-end-line="54" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/HALduino/halduinoMBot.ino">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="443">
-          <caret line="55" column="20" lean-forward="false" selection-start-line="55" selection-start-column="20" selection-end-line="55" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/HALduino/halduino.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="389">
-          <caret line="78" column="0" lean-forward="true" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1363,13 +1341,61 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/HALduino/halduino.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="83" column="0" lean-forward="false" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/MBot/LedsTest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="1" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HALduino/halduinoMBot.ino">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="66" column="0" lean-forward="false" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/output.ino">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="65">
+          <caret line="78" column="19" lean-forward="false" selection-start-line="78" selection-start-column="4" selection-end-line="78" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/translator/Translator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="747" column="0" lean-forward="false" selection-start-line="747" selection-start-column="0" selection-end-line="747" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/examples/MBot/BuzzerTest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="12" lean-forward="true" selection-start-line="26" selection-start-column="12" selection-end-line="26" selection-end-column="12" />
+        <state relative-caret-position="90">
+          <caret line="6" column="27" lean-forward="false" selection-start-line="6" selection-start-column="24" selection-end-line="6" selection-end-column="27" />
           <folding>
             <element signature="e#0#22#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/MBot/ButtonTest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="33" lean-forward="false" selection-start-line="4" selection-start-column="33" selection-end-line="4" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>

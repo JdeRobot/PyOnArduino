@@ -76,3 +76,11 @@ def setLeds(number, red, green, blue):
 
 def playBuzzer(frequency, length):
     pass
+
+
+def isButtonPressed():
+    pass
+
+
+def isButtonReleased():
+    pass

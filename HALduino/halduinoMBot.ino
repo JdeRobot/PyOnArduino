@@ -56,3 +56,11 @@ void playBuzzer(DynType tone, DynType length) {
     MeBuzzer buzzer;
     buzzer.tone(atoi(tone.data), atoi(length.data));
 }
+
+boolean isButtonPressed() {
+    return (0^(analogRead(A7)>10?0:1));
+}
+
+boolean isButtonReleased() {
+    return (1^(analogRead(A7)>10?0:1));
+}

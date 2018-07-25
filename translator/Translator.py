@@ -183,6 +183,7 @@ class MyVisitor(ast.NodeVisitor):
         global bin_op
         global call_def
         global is_built_in_func
+        global is_if
         is_call_parameter = True
         is_call = True
         call_index = 0
@@ -196,7 +197,7 @@ class MyVisitor(ast.NodeVisitor):
         is_built_in_func = False
         call_index = 0
         parentheses -= 1
-        if parentheses == 0 and is_Comparision == False and not bool_op:
+        if parentheses == 0 and is_Comparision == False and not bool_op and is_if == False:
             self.check_last_comma()
             print('PARENTHESES ' + str(parentheses))
             function_def += ');\n   '
@@ -625,7 +626,6 @@ class MyVisitor(ast.NodeVisitor):
         ast.NodeVisitor.generic_visit(self, node)
 
     def visit_BoolOp(self, node):
-        global function_def
         print('NODE boolOp: ' + str(type(node)))
         ast.NodeVisitor.generic_visit(self, node)
 
@@ -637,6 +637,18 @@ class MyVisitor(ast.NodeVisitor):
         global var_sign
         var_sign += '-'
         print('NODE USub: ' + str(type(node)))
+        ast.NodeVisitor.generic_visit(self, node)
+
+    def visit_Is(self, node):
+        global function_def
+        function_def += ' == '
+        print('NODE Is: ' + str(type(node)))
+        ast.NodeVisitor.generic_visit(self, node)
+
+    def visit_IsNot(self, node):
+        global function_def
+        function_def += ' != '
+        print('NODE IsNot: ' + str(type(node)))
         ast.NodeVisitor.generic_visit(self, node)
 
     def check_last_comma(self, text=None):
