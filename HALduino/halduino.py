@@ -21,11 +21,14 @@ def setSpeedEngine4(speed):
 def setSpeedEnginesMotor(speed1, speed2):
     pass
 
+
 def setSpeedEnginesControl(speed1, speed2):
     pass
 
+
 def setSpeedEngines(speed1, speed2):
     pass
+
 
 def getIR1() -> int:
     pass
@@ -68,4 +71,8 @@ def clearScreen():
 
 
 def setLeds(number, red, green, blue):
+    pass
+
+
+def playBuzzer(frequency, length):
     pass

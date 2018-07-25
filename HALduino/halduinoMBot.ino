@@ -51,3 +51,8 @@ void setLeds(DynType ledNumber, DynType red, DynType green, DynType blue) {
     rgbled.setColor(atoi(ledNumber.data),atoi(red.data),atoi(green.data),atoi(blue.data));
     rgbled.show();
 }
+
+void playBuzzer(DynType tone, DynType length) {
+    MeBuzzer buzzer;
+    buzzer.tone(atoi(tone.data), atoi(length.data));
+}
