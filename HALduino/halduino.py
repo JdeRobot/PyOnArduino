@@ -96,3 +96,11 @@ def sendMessage(message):
 
 def getMessage():
     pass
+
+
+def showClock(hour, min):
+    pass
+
+
+def drawString(string):
+    pass

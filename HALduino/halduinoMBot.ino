@@ -81,3 +81,18 @@ String getMessage() {
     ir.begin();
     return ir.getString();
 }
+
+void showClock(DynType hour, DynType min) {
+    MeLEDMatrix ledMtx(3);
+    ledMtx.showClock(atoi(hour.data), atoi(min.data), PointOn);
+    delay(500);
+    ledMtx.showClock(atoi(hour.data), atoi(min.data), PointOff);
+    delay(500);
+}
+
+void drawString(char* name) {
+    MeLEDMatrix ledMtx(3);
+    ledMtx.setColorIndex(1);
+    ledMtx.setBrightness(6);
+    ledMtx.drawStr(0,0+7, name);
+}
