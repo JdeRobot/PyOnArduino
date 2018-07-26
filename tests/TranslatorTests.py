@@ -62,12 +62,12 @@ class TranslatorTests(unittest.TestCase):
 
     def test_integer_var_declaration(self):
         self.translate_string('var = 9')
-        expected_statement = 'DynType var0;var0.tvar = INT;String har0 = "9";har0.toCharArray(var0.data, MinTypeSz);\n'
+        expected_statement = 'DynType var;var.tvar = INT;String har0 = "9";har0.toCharArray(var.data, MinTypeSz);\n'
         self.assertEqual(expected_statement, translator.function_def)
 
     def test_float_var_declaration(self):
         self.translate_string('var = 0.1')
-        expected_statement = 'DynType var0;var0.tvar = FLOAT;String har0 = "0.1";har0.toCharArray(var0.data, MinTypeSz);\n'
+        expected_statement = 'DynType var;var.tvar = FLOAT;String har0 = "0.1";har0.toCharArray(var.data, MinTypeSz);\n'
         self.assertEqual(expected_statement, translator.function_def)
 
     def test_char_var_declaration(self):

@@ -34,26 +34,26 @@ void stopMachine() {
     }
 }
 
+MeDCMotor motor_9(9);
+MeDCMotor motor_10(10);
 void setSpeedEngines(DynType speedLeft, DynType speedRight){
-    MeDCMotor motor_9(9);
-    MeDCMotor motor_10(10);
     motor_9.run(-atoi(speedLeft.data));
     motor_10.run(atoi(speedRight.data));
 }
 
+MeUltrasonicSensor ultrasonic(3);
 int getUS() {
-    MeUltrasonicSensor ultrasonic(3);
     return ultrasonic.distanceCm();
 }
 
+MeRGBLed rgbled(7, 2);
 void setLeds(DynType ledNumber, DynType red, DynType green, DynType blue) {
-    MeRGBLed rgbled(7, 2);
     rgbled.setColor(atoi(ledNumber.data),atoi(red.data),atoi(green.data),atoi(blue.data));
     rgbled.show();
 }
 
+MeBuzzer buzzer;
 void playBuzzer(DynType tone, DynType length) {
-    MeBuzzer buzzer;
     buzzer.tone(atoi(tone.data), atoi(length.data));
 }
 
@@ -65,33 +65,33 @@ boolean isButtonReleased() {
     return (1^(analogRead(A7)>10?0:1));
 }
 
+MeLightSensor lightSensor(6);
 int getLightSensor() {
-    MeLightSensor lightSensor(6);
     return lightSensor.read();
 }
 
+MeIR ir;
 void sendMessage(String message) {
-    MeIR ir;
     ir.begin();
     ir.sendString(message);
 }
 
+MeIR ir;
 String getMessage() {
-    MeIR ir;
     ir.begin();
     return ir.getString();
 }
 
+MeLEDMatrix ledMtx(3);
 void showClock(DynType hour, DynType min) {
-    MeLEDMatrix ledMtx(3);
     ledMtx.showClock(atoi(hour.data), atoi(min.data), PointOn);
     delay(500);
     ledMtx.showClock(atoi(hour.data), atoi(min.data), PointOff);
     delay(500);
 }
 
+MeLEDMatrix ledMtx(3);
 void drawString(char* name) {
-    MeLEDMatrix ledMtx(3);
     ledMtx.setColorIndex(1);
     ledMtx.setBrightness(6);
     ledMtx.drawStr(0,0+7, name);

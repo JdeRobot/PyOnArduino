@@ -2,4 +2,6 @@ import HALduino.halduino as halduino
 
 
 def loop():
-    halduino.showClock(10, 54)
+    hour = 17
+    min = 25
+    halduino.showClock(hour, min)
