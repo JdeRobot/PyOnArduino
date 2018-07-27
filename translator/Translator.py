@@ -768,6 +768,8 @@ if __name__ == "__main__":
     elif robot == 'MBot' or robot == 'mBot':
         halduino = open(halduino_directory + robot + '.ino', 'r')
         MyVisitor().search_for_function(halduino, 'setLeds')
+        halduino = open(halduino_directory + robot + '.ino', 'r')
+        MyVisitor().search_for_function(halduino, 'playBuzzer')
         libraries['MeMCore'] = '#include <MeMCore.h>\n'
 
     variables_manager = ''

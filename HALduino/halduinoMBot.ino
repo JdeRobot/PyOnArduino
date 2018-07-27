@@ -1,28 +1,30 @@
 
 void architecturalStop() {
     DynType var0;var0.tvar = INT;String har0 = "0";har0.toCharArray(var0.data, MinTypeSz);
-    DynType var1;var1.tvar = INT;String har1 = "1";har1.toCharArray(var1.data, MinTypeSz);
-    DynType var2;var2.tvar = INT;String har2 = "2";har2.toCharArray(var2.data, MinTypeSz);
-    DynType var3;var3.tvar = INT;String har3 = "150";har3.toCharArray(var3.data, MinTypeSz);
+    DynType var1;var1.tvar = INT;String har1 = "150";har1.toCharArray(var1.data, MinTypeSz);
+    DynType var2;var2.tvar = INT;String har2 = "330";har2.toCharArray(var2.data, MinTypeSz);
+    DynType var3;var3.tvar = INT;String har3 = "100";har3.toCharArray(var3.data, MinTypeSz);
+    DynType var4;var4.tvar = INT;String har4 = "300";har4.toCharArray(var4.data, MinTypeSz);
     for(int i = 0; i < 3; i++) {
-        for(int j = 0; j < 10; j++) {
-            setLeds(var1,var3,var0,var0);
-            delay(100);
-            setLeds(var2,var0,var3,var0);
+        for(int j = 0; j < 3; j++) {
+            playBuzzer(var2,var3);
             delay(100);
         }
-        for(int j = 0; j < 10; j++) {
-            setLeds(var0,var0,var3,var0);
-            delay(100);
-            setLeds(var0,var0,var0,var0);
+        for(int j = 0; j < 3; j++) {
+            playBuzzer(var2,var4);
             delay(100);
         }
-        for(int j = 0; j < 10; j++) {
-            setLeds(var0,var3,var0,var0);
-            delay(100);
-            setLeds(var0,var0,var0,var0);
+        for(int j = 0; j < 3; j++) {
+            playBuzzer(var2,var3);
             delay(100);
         }
+        delay(400);
+    }
+    for(int j = 0; j < 10; j++) {
+        setLeds(var0,var1,var0,var0);
+        delay(100);
+        setLeds(var0,var0,var0,var0);
+        delay(100);
     }
 }
 
