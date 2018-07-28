@@ -98,3 +98,8 @@ void drawString(char* name) {
     ledMtx.setBrightness(6);
     ledMtx.drawStr(0,0+7, name);
 }
+
+MeLineFollower lineFollower(2);
+int getLineFollowValue() {
+    return lineFollower.readSensors();
+}

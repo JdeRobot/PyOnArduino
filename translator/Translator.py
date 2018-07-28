@@ -35,6 +35,7 @@ is_built_in_func = False
 var_sign = ''
 function_start_line = 0
 function_variables_line = 0
+is_while = False
 
 
 class MyVisitor(ast.NodeVisitor):
@@ -188,6 +189,7 @@ class MyVisitor(ast.NodeVisitor):
         global call_def
         global is_built_in_func
         global is_if
+        global is_while
         is_call = True
         call_index = 0
         parentheses += 1
@@ -200,7 +202,7 @@ class MyVisitor(ast.NodeVisitor):
         is_built_in_func = False
         call_index = 0
         parentheses -= 1
-        if parentheses == 0 and is_Comparision == False and not bool_op and is_if == False:
+        if parentheses == 0 and is_Comparision == False and not bool_op and is_if == False and is_while == False:
             self.check_last_comma()
             print('PARENTHESES ' + str(parentheses))
             function_def += ');\n   '
@@ -238,7 +240,8 @@ class MyVisitor(ast.NodeVisitor):
                 function_def += 'DynType var' + str(variables_counter) + ';'
                 function_def += 'var' + str(variables_counter) + '.tvar = ' + str(type(node.n).__name__).upper() + ';'
                 function_def += 'String har' + str(variables_counter) + ' = "' + var_sign + str(node.n) + '";'
-                function_def += 'har' + str(variables_counter) + '.toCharArray(var' + str(variables_counter) + '.data, MinTypeSz);\n'
+                function_def += 'har' + str(variables_counter) + '.toCharArray(var' + str(
+                    variables_counter) + '.data, MinTypeSz);\n'
                 var_sign = ''
             variables_counter += 1
 
@@ -312,11 +315,18 @@ class MyVisitor(ast.NodeVisitor):
             function_def += ')'
 
     def visit_While(self, node):
+        global function_def
+        global is_while
+        function_def += 'while('
         print('NODE While 1: ' + str(type(node.test)))
+        is_while = True
         ast.NodeVisitor.generic_visit(self, node.test)
+        function_def += ') {'
         for body_part in node.body:
             print('NODE While 2: ' + str(type(body_part)))
             ast.NodeVisitor.generic_visit(self, body_part)
+        function_def += '}\n'
+        is_while = False
 
     def visit_List(self, node):
         global function_def
@@ -367,7 +377,8 @@ class MyVisitor(ast.NodeVisitor):
                 variable_def = 'DynType var' + str(variables_counter) + ';'
                 variable_def += 'var' + str(variables_counter) + '.tvar = BOOL;'
                 variable_def += 'String har' + str(variables_counter) + ' = "' + var_sign + boolean_var + '";'
-                variable_def += 'har' + str(variables_counter) + '.toCharArray(var' + str(variables_counter) + '.data, MinTypeSz)'
+                variable_def += 'har' + str(variables_counter) + '.toCharArray(var' + str(
+                    variables_counter) + '.data, MinTypeSz)'
                 variables_counter += 1
             function_def += variable_def
         else:
@@ -427,7 +438,8 @@ class MyVisitor(ast.NodeVisitor):
             direction = node.orelse[0]
         else:
             has_else_part = False
-        print('NODE If: ' + str(type(node)) + ' ' + str(brackets) + ' ' + str(node.orelse) + ' ' + str(has_else_part) + ' ' + str(node.body))
+        print('NODE If: ' + str(type(node)) + ' ' + str(brackets) + ' ' + str(node.orelse) + ' ' + str(
+            has_else_part) + ' ' + str(node.body))
         ast.NodeVisitor.generic_visit(self, node)
         has_else_part = False
         brackets -= 1
@@ -501,7 +513,8 @@ class MyVisitor(ast.NodeVisitor):
                 if is_first_non_empty_line:
                     function_variables_line = function_start_line
                     is_first_non_empty_line = False
-                if len(function_line.split(searched_node)) > 1 and function_line.split(searched_node)[len(function_line.split(searched_node))-1][-2:] == "{\n":
+                if len(function_line.split(searched_node)) > 1 and function_line.split(searched_node)[len(
+                        function_line.split(searched_node)) - 1][-2:] == "{\n":
                     parts = function_line.split(' ')  # +|\([^\)]*\)
                     declaration_name = parts[1].split('(')[0]
                     not_found = False
@@ -689,6 +702,10 @@ class MyVisitor(ast.NodeVisitor):
         print('NODE IsNot: ' + str(type(node)))
         ast.NodeVisitor.generic_visit(self, node)
 
+    def visit_Pass(self, node):
+        print('NODE Pass: ' + str(type(node)))
+        ast.NodeVisitor.generic_visit(self, node)
+
     def check_last_comma(self, text=None):
         global function_def
         if text is not None:
@@ -780,7 +797,6 @@ if __name__ == "__main__":
             variables_manager += line
     functions['variables_manager'] = variables_manager
 
-
     for key, value in libraries.items():
         output.write(value)
     output.write('\n')
@@ -847,7 +863,7 @@ if __name__ == "__main__":
     makefile.write('ARDUINO_DIR   = ' + arduino_dir + '\n')
     if arduino_libs:
         makefile.write('ARDUINO_LIBS= ' + arduino_libs + '\n')
-    if robot == 'MBot'  or robot == 'mBot':
+    if robot == 'MBot' or robot == 'mBot':
         makefile.write('MONITOR_PORT  = /dev/cu.wchusbserial1420\n')
     else:
         makefile.write('MONITOR_PORT  = /dev/tty.usbmodem*\n')

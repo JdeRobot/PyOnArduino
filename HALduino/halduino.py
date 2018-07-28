@@ -104,3 +104,7 @@ def showClock(hour, min):
 
 def drawString(string):
     pass
+
+
+def getLineFollowValue():
+    pass
