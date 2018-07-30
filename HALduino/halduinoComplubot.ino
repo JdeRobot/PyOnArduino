@@ -2,7 +2,8 @@
 void architecturalStop() {
     DynType errorX;errorX.tvar = INT;String x = "5";x.toCharArray(errorX.data, MinTypeSz);
     DynType errorY;errorY.tvar = INT;String y = "5";y.toCharArray(errorY.data, MinTypeSz);
-    setScreenText("ERROR!!", errorX, errorY);
+    DynType var;var.tvar = STR;String errorString = "ERROR!!";errorString.toCharArray(var.data, MinTypeSz);
+    setScreenText(var, errorX, errorY);
 }
 
 void stopMachine() {
@@ -71,16 +72,18 @@ void playBeep(DynType type) {
     Robot.beep(atoi(type.data));
 }
 
-void playMelody(String melody) {
-    char buffer[melody.length()];
-    melody.toCharArray(buffer, melody.length());
+void playMelody(DynType melody) {
+    String text = melody.data;
+    char buffer[VarTypesSz[STR]];
+    text.toCharArray(buffer, VarTypesSz[STR]);
     Robot.playMelody(buffer);
 }
 
-void setScreenText(String text, DynType x, DynType y) {
+void setScreenText(DynType textVar, DynType x, DynType y) {
     Robot.stroke(0, 0, 0);
-    char buffer[text.length()];
-    text.toCharArray(buffer, text.length());
+    String text = textVar.data;
+    char buffer[VarTypesSz[STR]];
+    text.toCharArray(buffer, VarTypesSz[STR]);
     Robot.text(buffer, atoi(x.data), atoi(y.data));
 }
 

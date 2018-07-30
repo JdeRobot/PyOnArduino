@@ -1,7 +1,7 @@
 #include <assert.h>
 
 enum {
-    MinTypeSz = 8,
+    MinTypeSz = 32,
 };
 
 struct DynType {
@@ -11,8 +11,8 @@ struct DynType {
 
 inline void checktype (DynType *d1, DynType *d2) {
     if(d1->tvar != d2->tvar) {
+        Serial.print("Error");
         // stopMachine();
-        Serial.print("Stops giving the line");
     }
 }
 
@@ -31,7 +31,7 @@ int VarTypesSz[] = {
     [INT] = 64,
     [FLOAT] = 64,
     [BOOL] = 1,
-    [STR] = -1,
+    [STR] = 32,
     [TUP]= -1,
     [ARRAY]= -1
 };

@@ -93,10 +93,10 @@ void showClock(DynType hour, DynType min) {
 }
 
 MeLEDMatrix ledMtx(3);
-void drawString(char* name) {
+void drawString(DynType name) {
     ledMtx.setColorIndex(1);
     ledMtx.setBrightness(6);
-    ledMtx.drawStr(0,0+7, name);
+    ledMtx.drawStr(0,0+7, name.data);
 }
 
 MeLineFollower lineFollower(2);

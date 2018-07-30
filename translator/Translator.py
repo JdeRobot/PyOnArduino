@@ -53,13 +53,24 @@ class MyVisitor(ast.NodeVisitor):
         global is_call_parameter
         global bin_op
         global call_def
+        global variables_counter
+        global is_built_in_func
         print('NODE Str: ' + str(type(node.s)))
-        var_type = 'String '
+        var_type = 'STR'
         if len(node.s) == 1:
             str_var = '\'' + node.s + '\''
-            var_type = 'char '
+            var_type = 'CHR'
         else:
-            str_var = '\"' + node.s + '\"'
+            if variable_def != '':
+                var_name = variable_def
+            else:
+                var_name = 'var' + str(variables_counter)
+            str_var = '(char*)' + var_name + '.data'
+            function_def += 'DynType ' + var_name + ';'
+            function_def += var_name + '.tvar = ' + var_type + ';'
+            function_def += 'String har' + str(variables_counter) + ' = "' + str(node.s) + '";'
+            function_def += 'har' + str(variables_counter) + '.toCharArray(' + var_name + '.data, MinTypeSz);\n'
+            variables_counter += 1
         if is_array:
             if array_index == 0:
                 str_var = '{' + str_var
@@ -76,15 +87,16 @@ class MyVisitor(ast.NodeVisitor):
         if variable_def != '':
             if is_array:
                 variable_def = var_type + variable_def + str_var
-            else:
-                variable_def = var_type + variable_def + ' = ' + str_var
-            function_def += variable_def
+                function_def += variable_def
         else:
             if bin_op:
                 function_def += node.s
             else:
                 if is_call_parameter:
-                    call_def += str_var
+                    if is_built_in_func:
+                        call_def += var_name + '.data'
+                    else:
+                        call_def += var_name
                 else:
                     function_def += str_var
         variable_def = ''
@@ -253,7 +265,7 @@ class MyVisitor(ast.NodeVisitor):
                 variable_def = 'DynType ' + var_name + ';'
                 variable_def += var_name + '.tvar = ' + str(type(node.n).__name__).upper() + ';'
                 variable_def += 'String har' + str(variables_counter) + ' = "' + var_sign + str(node.n) + '";'
-                variable_def += 'har' + str(variables_counter) + '.toCharArray(' + var_name + '.data, MinTypeSz)'
+                variable_def += 'har' + str(variables_counter) + '.toCharArray(' + var_name + '.data, MinTypeSz);\n'
                 variables_counter += 1
             function_def += variable_def
         else:
@@ -475,7 +487,6 @@ class MyVisitor(ast.NodeVisitor):
         print('Assign ' + str(node.targets) + ' ' + str(node.value))
         is_var_declaration = True
         ast.NodeVisitor.generic_visit(self, node)
-        variable_def += ';\n'
         function_def += variable_def
         variable_def = ''
 
