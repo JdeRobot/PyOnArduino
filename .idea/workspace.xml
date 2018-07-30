@@ -3,11 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e72936ae-374a-42ae-8588-539f897332c5" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/HALduino/halduinoComplubot.ino" afterPath="$PROJECT_DIR$/HALduino/halduinoComplubot.ino" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/HALduino/halduinoMBot.ino" afterPath="$PROJECT_DIR$/HALduino/halduinoMBot.ino" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/HALduino/variables_manager.ino" afterPath="$PROJECT_DIR$/HALduino/variables_manager.ino" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/examples/MBot/ShowTimeTest.py" afterPath="$PROJECT_DIR$/examples/MBot/ShowTimeTest.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/translator/Translator.py" afterPath="$PROJECT_DIR$/translator/Translator.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,8 +18,8 @@
       <file leaf-file-name="halduinoMBot.ino" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/HALduino/halduinoMBot.ino">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="303">
-              <caret line="98" column="35" lean-forward="false" selection-start-line="98" selection-start-column="35" selection-end-line="98" selection-end-column="35" />
+            <state relative-caret-position="474">
+              <caret line="75" column="16" lean-forward="false" selection-start-line="75" selection-start-column="5" selection-end-line="75" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -49,16 +45,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="halduino.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/HALduino/halduino.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1365">
-              <caret line="91" column="0" lean-forward="false" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Translator.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/translator/Translator.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -74,16 +60,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="75">
               <caret line="5" column="12" lean-forward="false" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="halduinoSergioRobot.ino" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/HALduino/halduinoSergioRobot.ino">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" column="19" lean-forward="false" selection-start-line="1" selection-start-column="18" selection-end-line="1" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -109,12 +85,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="output.ino" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/output/output.ino">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="31" column="14" lean-forward="false" selection-start-line="31" selection-start-column="4" selection-end-line="31" selection-end-column="14" />
-              <folding />
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="146">
+                <caret line="34" column="33" lean-forward="false" selection-start-line="34" selection-start-column="33" selection-end-line="34" selection-end-column="33" />
+                <folding />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -157,9 +136,9 @@
       <find>is_built_in_func</find>
       <find>str(variables_counter)</find>
       <find>atoi</find>
-      <find>draw</find>
       <find>visit_Num</find>
       <find>VarTypesSz</find>
+      <find>draw</find>
     </findStrings>
     <replaceStrings>
       <replace>&gt;</replace>
@@ -231,7 +210,6 @@
         <option value="$PROJECT_DIR$/examples/MBot/LightSensorTest.py" />
         <option value="$PROJECT_DIR$/examples/MBot/SendMessageTest.py" />
         <option value="$PROJECT_DIR$/examples/MBot/GetMessageTest.py" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/examples/MBot/ShowHourTest.py" />
         <option value="$PROJECT_DIR$/examples/MBot/DrawStringTest.py" />
         <option value="$PROJECT_DIR$/tests/TranslatorTests.py" />
@@ -245,6 +223,7 @@
         <option value="$PROJECT_DIR$/output/output.ino" />
         <option value="$PROJECT_DIR$/translator/Translator.py" />
         <option value="$PROJECT_DIR$/examples/MBot/ShowTimeTest.py" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -290,21 +269,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="output" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PyOnArduino" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PyOnArduino" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="examples" />
+              <option name="myItemId" value="HALduino" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -511,13 +476,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1526995742446</updated>
-    </task>
-    <task id="LOCAL-00055" summary="README.md updated">
-      <created>1530111666206</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1530111666206</updated>
     </task>
     <task id="LOCAL-00056" summary="Makefile creation on runtime getting system variables.">
       <created>1530113484163</created>
@@ -855,7 +813,14 @@
       <option name="project" value="LOCAL" />
       <updated>1532775251719</updated>
     </task>
-    <option name="localTasksCounter" value="104" />
+    <task id="LOCAL-00104" summary="String support first approach">
+      <created>1532972151648</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1532972151650</updated>
+    </task>
+    <option name="localTasksCounter" value="105" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -906,7 +871,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891566" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41686746" sideWeight="0.5114449" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.49638554" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3060241" sideWeight="0.49713877" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3060241" sideWeight="0.49713877" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891566" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3554217" sideWeight="0.48855507" order="10" side_tool="false" content_ui="tabs" />
@@ -976,7 +941,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="memove error fixed" />
     <MESSAGE value="Output file option deleted since it's no longer useful" />
     <MESSAGE value="Add variables_manager code to the output" />
     <MESSAGE value="Integer variables are now DynType" />
@@ -1001,7 +965,8 @@
     <MESSAGE value="SOS implemented for mBot on error" />
     <MESSAGE value="LineFollow example for mBot" />
     <MESSAGE value="Complubot LineFollow example updated" />
-    <option name="LAST_COMMIT_MESSAGE" value="Complubot LineFollow example updated" />
+    <MESSAGE value="String support first approach" />
+    <option name="LAST_COMMIT_MESSAGE" value="String support first approach" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1215,16 +1180,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="303">
-            <caret line="40" column="32" lean-forward="false" selection-start-line="40" selection-start-column="32" selection-end-line="40" selection-end-column="32" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Library/Caches/PyCharmCE2017.1/python_stubs/-2010535109/builtins.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -1341,14 +1296,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/HALduino/halduinoMBot.ino">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="98" column="35" lean-forward="false" selection-start-line="98" selection-start-column="35" selection-end-line="98" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/examples/MBot/LightSensorTest.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -1386,6 +1333,25 @@
         <state relative-caret-position="465">
           <caret line="31" column="14" lean-forward="false" selection-start-line="31" selection-start-column="4" selection-end-line="31" selection-end-column="14" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HALduino/halduinoMBot.ino">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="474">
+          <caret line="75" column="16" lean-forward="false" selection-start-line="75" selection-start-column="5" selection-end-line="75" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="146">
+            <caret line="34" column="33" lean-forward="false" selection-start-line="34" selection-start-column="33" selection-end-line="34" selection-end-column="33" />
+            <folding />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>

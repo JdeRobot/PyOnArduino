@@ -32,13 +32,14 @@ Screen write | setScreenText(text), clearScreen()
 #### mBot
 Sensor/Actuator | Supported functions
 ----------------|---------------------
-DC Engines      | setSpeedEngines (speed)
+DC Engines      | setSpeedEngines(speed), getLineFollowValue()
 Ultrasonic sensors | getUS()
 LEDs | setLeds(ledNumber, red, green, blue)
 Infrared sensors | getMessage(), sendMessage(message)
 Light sensor | getLightSensor()
 Button | isButtonPressed(), isButtonReleased()
 Buzzer | playBuzzer(tone, length)
+External screen | drawString(name), showClock(hour, min)
 
 #### SergioRobot
 Sensor/Actuator | Supported functions
