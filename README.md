@@ -18,14 +18,36 @@ To execute the project
 * More to be added soon...
 ## Features
 ### Sensors and actuators supported [WIP]
+
+#### Complubot
 Sensor/Actuator | Supported functions
 ----------------|---------------------
-DC Engines      | setSpeedEngine[1,2,3,4,5] (speed), setSpeedEngines(right,left)
+DC Engines      | setSpeedEnginesControl(left, right), setSpeedEnginesMotor(left, right)
 Ultrasonic sensors | getUS()
 Infrared sensors | getIR[1,2,3,4,5]
 Beep emitter | playBeep(type)
 Sound emitter | playMelody(melody)
 Screen write | setScreenText(text), clearScreen()
+
+#### mBot
+Sensor/Actuator | Supported functions
+----------------|---------------------
+DC Engines      | setSpeedEngines(speed), getLineFollowValue()
+Ultrasonic sensors | getUS()
+LEDs | setLeds(ledNumber, red, green, blue)
+Infrared sensors | getMessage(), sendMessage(message)
+Light sensor | getLightSensor()
+Button | isButtonPressed(), isButtonReleased()
+Buzzer | playBuzzer(tone, length)
+External screen | drawString(name), showClock(hour, min)
+
+#### SergioRobot
+Sensor/Actuator | Supported functions
+----------------|---------------------
+DC Engines      | setSpeedEngine[1,2,3,4] (speed)
+Ultrasonic sensors | getUS()
+Infrared sensors | getIR[1,2,3,4,5] ()
+
 ### Python features supported [WIP]
 Functionality we are currently working on giving support to
 

@@ -21,7 +21,12 @@ def setSpeedEngine4(speed):
 def setSpeedEnginesMotor(speed1, speed2):
     pass
 
+
 def setSpeedEnginesControl(speed1, speed2):
+    pass
+
+
+def setSpeedEngines(speed1, speed2):
     pass
 
 
@@ -62,4 +67,44 @@ def setScreenText(text, x, y):
 
 
 def clearScreen():
+    pass
+
+
+def setLeds(number, red, green, blue):
+    pass
+
+
+def playBuzzer(frequency, length):
+    pass
+
+
+def isButtonPressed():
+    pass
+
+
+def isButtonReleased():
+    pass
+
+
+def getLightSensor():
+    pass
+
+
+def sendMessage(message):
+    pass
+
+
+def getMessage():
+    pass
+
+
+def showClock(hour, min):
+    pass
+
+
+def drawString(string):
+    pass
+
+
+def getLineFollowValue():
     pass
