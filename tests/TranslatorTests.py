@@ -42,7 +42,9 @@ class TranslatorTests(unittest.TestCase):
 
     def test_print_hello_world(self):
         self.translate_string('print(\'Hello World!\')')
-        expected_statement = 'Serial.print("Hello World!");\n   '
+        expected_statement = '''DynType var0;var0.tvar = STR;String har0 = "Hello World!";har0.toCharArray(var0.data, MinTypeSz);
+Serial.print(var0.data);
+   '''
         self.assertEqual(expected_statement, translator.function_def)
 
     def test_sleep(self):
@@ -72,12 +74,12 @@ class TranslatorTests(unittest.TestCase):
 
     def test_char_var_declaration(self):
         self.translate_string('var = \'a\'')
-        expected_statement = 'char var = \'a\';\n'
+        expected_statement = 'DynType var0;var0.tvar = CHAR;String har0 = "a";har0.toCharArray(var0.data, MinTypeSz);\n'
         self.assertEqual(expected_statement, translator.function_def)
 
     def test_string_var_declaration(self):
         self.translate_string('var = \'Hello World\'')
-        expected_statement = 'String var = "Hello World";\n'
+        expected_statement ='DynType var;var.tvar = STR;String har0 = "Hello World";har0.toCharArray(var.data, MinTypeSz);\n'
         self.assertEqual(expected_statement, translator.function_def)
 
     def test_operations_parentheses_1(self):
@@ -133,6 +135,7 @@ class TranslatorTests(unittest.TestCase):
     def test_string_array_declaration(self):
         self.translate_string('array = [\'hello\', \'bye\']')
         expected_statement = 'String array[] = {"hello","bye"};\n'
+        function_def = translator.function_def
         self.assertEqual(expected_statement, translator.function_def)
 
     def test_boolean_array_declaration(self):
@@ -177,8 +180,11 @@ Serial.print((((name + surname) + second) + another));
 
     def test_function_call(self):
         self.translate_string('print_name_surname(\'Name\', \'Surname\', \'Surname\', 2, array, array)')
-        expected_statement = '''DynType var0;var0.tvar = INT;String har0 = "2";har0.toCharArray(var0.data, MinTypeSz);
-print_name_surname("Name","Surname","Surname",var0,array,array);
+        expected_statement = '''DynType var0;var0.tvar = STR;String har0 = "Name";har0.toCharArray(var0.data, MinTypeSz);
+DynType var1;var1.tvar = STR;String har1 = "Surname";har1.toCharArray(var1.data, MinTypeSz);
+DynType var2;var2.tvar = STR;String har2 = "Surname";har2.toCharArray(var2.data, MinTypeSz);
+DynType var3;var3.tvar = INT;String har3 = "2";har3.toCharArray(var3.data, MinTypeSz);
+print_name_surname(var0,var1,var2,var3,array,array);
    '''
         self.assertEqual(expected_statement, translator.function_def)
 
@@ -190,13 +196,14 @@ elif halduino.getUS() <= 10:
 else:
     set_engine(1)''')
         expected_statement = '''if (true) {
-Serial.print("HELLO");
+DynType var0;var0.tvar = STR;String har0 = "HELLO";har0.toCharArray(var0.data, MinTypeSz);
+Serial.print(var0.data);
    } else if ((getUS() <= 10)) {
-DynType var0;var0.tvar = INT;String har0 = "0";har0.toCharArray(var0.data, MinTypeSz);
-set_engine(var0);
-   } else {
-DynType var1;var1.tvar = INT;String har1 = "1";har1.toCharArray(var1.data, MinTypeSz);
+DynType var1;var1.tvar = INT;String har1 = "0";har1.toCharArray(var1.data, MinTypeSz);
 set_engine(var1);
+   } else {
+DynType var2;var2.tvar = INT;String har2 = "1";har2.toCharArray(var2.data, MinTypeSz);
+set_engine(var2);
    }
 '''
         self.assertEqual(expected_statement, translator.function_def)
@@ -211,10 +218,12 @@ set_engine(var1);
         expected_statement = '''void loop() {
 boolean array[] = {true,false,true};
 if (true && false) {
-Serial.print("Hello");
+DynType var0;var0.tvar = STR;String har0 = "Hello";har0.toCharArray(var0.data, MinTypeSz);
+Serial.print(var0.data);
    }
 if (array[0] && array[1]) {
-Serial.print("Hello");
+DynType var1;var1.tvar = STR;String har1 = "Hello";har1.toCharArray(var1.data, MinTypeSz);
+Serial.print(var1.data);
    }
 }
 '''

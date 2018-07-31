@@ -58,19 +58,21 @@ class MyVisitor(ast.NodeVisitor):
         print('NODE Str: ' + str(type(node.s)))
         var_type = 'STR'
         if len(node.s) == 1:
-            str_var = '\'' + node.s + '\''
-            var_type = 'CHR'
+            var_type = 'CHAR'
+            var_name = 'var' + str(variables_counter)
         else:
             if variable_def != '':
                 var_name = variable_def
             else:
                 var_name = 'var' + str(variables_counter)
-            str_var = '(char*)' + var_name + '.data'
-            function_def += 'DynType ' + var_name + ';'
-            function_def += var_name + '.tvar = ' + var_type + ';'
-            function_def += 'String har' + str(variables_counter) + ' = "' + str(node.s) + '";'
-            function_def += 'har' + str(variables_counter) + '.toCharArray(' + var_name + '.data, MinTypeSz);\n'
-            variables_counter += 1
+
+        str_var = '(char*)' + var_name + '.data'
+        function_def += 'DynType ' + var_name + ';'
+        function_def += var_name + '.tvar = ' + var_type + ';'
+        function_def += 'String har' + str(variables_counter) + ' = "' + str(node.s) + '";'
+        function_def += 'har' + str(variables_counter) + '.toCharArray(' + var_name + '.data, MinTypeSz);\n'
+        variables_counter += 1
+
         if is_array:
             if array_index == 0:
                 str_var = '{' + str_var
@@ -355,7 +357,7 @@ class MyVisitor(ast.NodeVisitor):
         ast.NodeVisitor.generic_visit(self, node)
         array_index = 0
         is_array = False
-        variable_def += '}'
+        variable_def += '};\n'
 
     def visit_NameConstant(self, node):
         global function_def
@@ -390,7 +392,7 @@ class MyVisitor(ast.NodeVisitor):
                 variable_def += 'var' + str(variables_counter) + '.tvar = BOOL;'
                 variable_def += 'String har' + str(variables_counter) + ' = "' + var_sign + boolean_var + '";'
                 variable_def += 'har' + str(variables_counter) + '.toCharArray(var' + str(
-                    variables_counter) + '.data, MinTypeSz)'
+                    variables_counter) + '.data, MinTypeSz);\n'
                 variables_counter += 1
             function_def += variable_def
         else:

@@ -58,17 +58,19 @@ setSpeedEngine2(var1);
 setSpeedEngine3(var2);
    DynType var3;var3.tvar = INT;String har3 = "0";har3.toCharArray(var3.data, MinTypeSz);
 setSpeedEngine4(var3);
-   Serial.print("STOP!");
+   DynType var4;var4.tvar = STR;String har4 = "STOP!";har4.toCharArray(var4.data, MinTypeSz);
+Serial.print(var4.data);
    } else if ((atoi(direction.data) == 1)) {
-DynType var4;var4.tvar = INT;String har4 = "255";har4.toCharArray(var4.data, MinTypeSz);
-setSpeedEngine1(var4);
-   DynType var5;var5.tvar = INT;String har5 = "255";har5.toCharArray(var5.data, MinTypeSz);
-setSpeedEngine2(var5);
+DynType var5;var5.tvar = INT;String har5 = "255";har5.toCharArray(var5.data, MinTypeSz);
+setSpeedEngine1(var5);
    DynType var6;var6.tvar = INT;String har6 = "255";har6.toCharArray(var6.data, MinTypeSz);
-setSpeedEngine3(var6);
+setSpeedEngine2(var6);
    DynType var7;var7.tvar = INT;String har7 = "255";har7.toCharArray(var7.data, MinTypeSz);
-setSpeedEngine4(var7);
-   Serial.print("Forward");
+setSpeedEngine3(var7);
+   DynType var8;var8.tvar = INT;String har8 = "255";har8.toCharArray(var8.data, MinTypeSz);
+setSpeedEngine4(var8);
+   DynType var9;var9.tvar = STR;String har9 = "Forward";har9.toCharArray(var9.data, MinTypeSz);
+Serial.print(var9.data);
    }
 }
 '''
@@ -82,11 +84,11 @@ def loop():
         set_engine(1)''')
         expected_statement = '''void loop() {
 if ((getUS() < 10)) {
-DynType var8;var8.tvar = INT;String har8 = "0";har8.toCharArray(var8.data, MinTypeSz);
-set_engine(var8);
+DynType var10;var10.tvar = INT;String har10 = "0";har10.toCharArray(var10.data, MinTypeSz);
+set_engine(var10);
    } else {
-DynType var9;var9.tvar = INT;String har9 = "1";har9.toCharArray(var9.data, MinTypeSz);
-set_engine(var9);
+DynType var11;var11.tvar = INT;String har11 = "1";har11.toCharArray(var11.data, MinTypeSz);
+set_engine(var11);
    }
 }
 '''
