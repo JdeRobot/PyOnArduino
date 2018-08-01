@@ -10,7 +10,6 @@ try:
 except ModuleNotFoundError:
     print('Absolute import failed')
 
-
 class MyVisitor(ast.NodeVisitor):
     def generic_visit(self, node):
         print('NODE generic: ' + str(type(node)))

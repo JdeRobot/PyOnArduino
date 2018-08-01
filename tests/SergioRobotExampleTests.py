@@ -1,14 +1,21 @@
 import ast
 import unittest
 import translator.Translator as translator
+try:
+    import translator.TranslatorVariables as vars
+    vars.Variables()
+except ModuleNotFoundError:
+    print('Absolute import failed')
 
 class ComplubotExamplesTests(unittest.TestCase):
     def setUp(self):
         global visitor
-        translator.function_def = ''
-        translator.variables_counter = 0
+        translator.vars = vars
+        vars.function_def = ''
+        vars.variables_counter = 0
+        translator.robot = 'Complubot'
+        vars.halduino_directory = '../HALduino/halduino'
         translator.robot = 'SergioRobot'
-        translator.halduino_directory = '../HALduino/halduino'
         visitor = translator.MyVisitor()
 
     def translate_string(self, text):
@@ -30,7 +37,7 @@ delay(100);
    Serial.print(getIR1());
    }
 '''
-        self.assertEqual(expected_statement, translator.function_def)
+        self.assertEqual(expected_statement, vars.function_def)
 
     def test_stopngo_test(self):
         self.translate_string('''import HALduino.halduino as halduino
@@ -74,7 +81,7 @@ Serial.print(var9.data);
    }
 }
 '''
-        self.assertEqual(expected_statement, translator.function_def)
+        self.assertEqual(expected_statement, vars.function_def)
         self.translate_string('''import HALduino.halduino as halduino
 
 def loop():
@@ -92,4 +99,4 @@ set_engine(var11);
    }
 }
 '''
-        self.assertEqual(expected_statement, translator.function_def)
+        self.assertEqual(expected_statement, vars.function_def)
