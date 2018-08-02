@@ -1,11 +1,14 @@
 import ast
 import unittest
 import translator.Translator as translator
+
 try:
     import translator.TranslatorVariables as vars
+
     vars.Variables()
 except ModuleNotFoundError:
     print('Absolute import failed')
+
 
 class ComplubotExamplesTests(unittest.TestCase):
     def setUp(self):
@@ -13,7 +16,7 @@ class ComplubotExamplesTests(unittest.TestCase):
         translator.vars = vars
         vars.function_def = ''
         vars.variables_counter = 0
-        translator.robot = 'Complubot'
+        translator.robot = 'ComplubotControl'
         vars.halduino_directory = '../HALduino/halduino'
         visitor = translator.MyVisitor()
 
@@ -110,6 +113,7 @@ set_engine(var14);
         self.assertEqual(expected_statement, vars.function_def)
 
     def test_ir_test(self):
+        translator.robot = 'ComplubotMotor'
         self.translate_string('''from time import sleep
 
 import HALduino.halduino as halduino
@@ -148,42 +152,71 @@ Serial.print(var5.data);
 '''
         self.assertEqual(expected_statement, vars.function_def)
 
-
     def test_line_follow_no_library_test(self):
+        translator.robot = 'ComplubotMotor'
         self.translate_string('''import HALduino.halduino as halduino
 
+
 def loop():
-    if halduino.getIR2() < halduino.getIR4() and halduino.getIR5() < 990:
-        halduino.setSpeedEngines(0,110)
-    else:
-        halduino.setSpeedEngines(110, 0)''')
+    if halduino.getIR3() < 300:
+        halduino.setSpeedEngines(110, 110)
+    if halduino.getIR2() < 300:
+        halduino.setSpeedEngines(110, 0)
+    if halduino.getIR4() < 300:
+        halduino.setSpeedEngines(0, 110)''')
         expected_statement = '''void loop() {
-if ((getIR2() < getIR4()) && (getIR5() < 990)) {
-DynType var0;var0.tvar = INT;String har0 = "0";har0.toCharArray(var0.data, MinTypeSz);
+if ((getIR3() < 300)) {
+DynType var0;var0.tvar = INT;String har0 = "110";har0.toCharArray(var0.data, MinTypeSz);
 DynType var1;var1.tvar = INT;String har1 = "110";har1.toCharArray(var1.data, MinTypeSz);
 setSpeedEngines(var0,var1);
-   } else {
+   }
+if ((getIR2() < 300)) {
 DynType var2;var2.tvar = INT;String har2 = "110";har2.toCharArray(var2.data, MinTypeSz);
 DynType var3;var3.tvar = INT;String har3 = "0";har3.toCharArray(var3.data, MinTypeSz);
 setSpeedEngines(var2,var3);
+   }
+if ((getIR4() < 300)) {
+DynType var4;var4.tvar = INT;String har4 = "0";har4.toCharArray(var4.data, MinTypeSz);
+DynType var5;var5.tvar = INT;String har5 = "110";har5.toCharArray(var5.data, MinTypeSz);
+setSpeedEngines(var4,var5);
    }
 }
 '''
         self.assertEqual(expected_statement, vars.function_def)
 
-
     def test_line_follow_test(self):
+        translator.robot = 'ComplubotMotor'
         self.translate_string('''import HALduino.halduino as halduino
 
-def setup():
-    halduino.lineFollow(11,5,50,10)''')
-        expected_statement = '''void setup() {
-DynType var0;var0.tvar = INT;String har0 = "11";har0.toCharArray(var0.data, MinTypeSz);
-DynType var1;var1.tvar = INT;String har1 = "5";har1.toCharArray(var1.data, MinTypeSz);
-DynType var2;var2.tvar = INT;String har2 = "50";har2.toCharArray(var2.data, MinTypeSz);
-DynType var3;var3.tvar = INT;String har3 = "10";har3.toCharArray(var3.data, MinTypeSz);
-lineFollow(var0,var1,var2,var3);
+
+def loop():
+    if halduino.getLineFollowValue() == 0:
+        halduino.setSpeedEngines(100, 100)
+    elif halduino.getLineFollowValue() == 1:
+        halduino.setSpeedEngines(0, 100)
+    elif halduino.getLineFollowValue() == 2:
+        halduino.setSpeedEngines(100, 0)
+    elif halduino.getLineFollowValue() == 3:
+        halduino.setSpeedEngines(-100, -100)''')
+        expected_statement = '''void loop() {
+if ((getLineFollowValue() == 0)) {
+DynType var0;var0.tvar = INT;String har0 = "100";har0.toCharArray(var0.data, MinTypeSz);
+DynType var1;var1.tvar = INT;String har1 = "100";har1.toCharArray(var1.data, MinTypeSz);
+setSpeedEngines(var0,var1);
+   } else if ((getLineFollowValue() == 1)) {
+DynType var2;var2.tvar = INT;String har2 = "0";har2.toCharArray(var2.data, MinTypeSz);
+DynType var3;var3.tvar = INT;String har3 = "100";har3.toCharArray(var3.data, MinTypeSz);
+setSpeedEngines(var2,var3);
+   } else if ((getLineFollowValue() == 2)) {
+DynType var4;var4.tvar = INT;String har4 = "100";har4.toCharArray(var4.data, MinTypeSz);
+DynType var5;var5.tvar = INT;String har5 = "0";har5.toCharArray(var5.data, MinTypeSz);
+setSpeedEngines(var4,var5);
+   } else if ((getLineFollowValue() == 3)) {
+DynType var6;var6.tvar = INT;String har6 = "-100";har6.toCharArray(var6.data, MinTypeSz);
+DynType var7;var7.tvar = INT;String har7 = "-100";har7.toCharArray(var7.data, MinTypeSz);
+setSpeedEngines(var6,var7);
    }
+}
 '''
         self.assertEqual(expected_statement, vars.function_def)
 
@@ -229,6 +262,7 @@ setScreenText(var4,var5,var6);
    clearScreen();
    }
 '''
+        function_def = vars.function_def
         self.assertEqual(expected_statement, vars.function_def)
 
     def test_stopngo_test(self):

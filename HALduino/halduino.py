@@ -18,14 +18,6 @@ def setSpeedEngine4(speed):
     pass
 
 
-def setSpeedEnginesMotor(speed1, speed2):
-    pass
-
-
-def setSpeedEnginesControl(speed1, speed2):
-    pass
-
-
 def setSpeedEngines(speed1, speed2):
     pass
 

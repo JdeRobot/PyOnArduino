@@ -7,23 +7,23 @@ void architecturalStop() {
     DynType var4;var4.tvar = INT;String har4 = "300";har4.toCharArray(var4.data, MinTypeSz);
     for(int i = 0; i < 3; i++) {
         for(int j = 0; j < 3; j++) {
-            playBuzzer(var2,var3);
+            playBuzzer(var2, var3);
             delay(100);
         }
         for(int j = 0; j < 3; j++) {
-            playBuzzer(var2,var4);
+            playBuzzer(var2, var4);
             delay(100);
         }
         for(int j = 0; j < 3; j++) {
-            playBuzzer(var2,var3);
+            playBuzzer(var2, var3);
             delay(100);
         }
         delay(400);
     }
     for(int j = 0; j < 10; j++) {
-        setLeds(var0,var1,var0,var0);
+        setLeds(var0, var1, var0, var0);
         delay(100);
-        setLeds(var0,var0,var0,var0);
+        setLeds(var0, var0, var0, var0);
         delay(100);
     }
 }

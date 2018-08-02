@@ -1,11 +1,14 @@
 import ast
 import unittest
 import translator.Translator as translator
+
 try:
     import translator.TranslatorVariables as vars
+
     vars.Variables()
 except ModuleNotFoundError:
     print('Absolute import failed')
+
 
 class ComplubotExamplesTests(unittest.TestCase):
     def setUp(self):

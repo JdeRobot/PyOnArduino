@@ -1,11 +1,14 @@
 import ast
 import unittest
 import translator.Translator as translator
+
 try:
     import translator.TranslatorVariables as vars
+
     vars.Variables()
 except ModuleNotFoundError:
     print('Absolute import failed')
+
 
 class TranslatorTests(unittest.TestCase):
     def setUp(self):
@@ -13,7 +16,7 @@ class TranslatorTests(unittest.TestCase):
         translator.vars = vars
         vars.function_def = ''
         vars.variables_counter = 0
-        translator.robot = 'Complubot'
+        translator.robot = 'ComplubotControl'
         vars.halduino_directory = '../HALduino/halduino'
         visitor = translator.MyVisitor()
 
@@ -61,7 +64,7 @@ Serial.print(var0.data);
 
     def test_string_var_declaration(self):
         self.translate_string('var = \'Hello World\'')
-        expected_statement ='DynType var;var.tvar = STR;String har0 = "Hello World";har0.toCharArray(var.data, MinTypeSz);\n'
+        expected_statement = 'DynType var;var.tvar = STR;String har0 = "Hello World";har0.toCharArray(var.data, MinTypeSz);\n'
         self.assertEqual(expected_statement, vars.function_def)
 
     def test_operations_parentheses_1(self):
@@ -142,7 +145,7 @@ Serial.print(var0.data);
     def test_for_print_array(self):
         self.translate_string('''for x in array:
         print(x)''')
-        expected_statement =  '''for(int x = 0; sizeof(array); x++) {\nSerial.print(x);\n   }\n'''
+        expected_statement = '''for(int x = 0; sizeof(array); x++) {\nSerial.print(x);\n   }\n'''
         '''
         for(int  = 0; sizeof(); x++) {
             Serial.print(x);

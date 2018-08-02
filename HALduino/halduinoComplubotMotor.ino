@@ -1,9 +1,9 @@
 
 void architecturalStop() {
-    DynType errorX;errorX.tvar = INT;String x = "5";x.toCharArray(errorX.data, MinTypeSz);
+    /*DynType errorX;errorX.tvar = INT;String x = "5";x.toCharArray(errorX.data, MinTypeSz);
     DynType errorY;errorY.tvar = INT;String y = "5";y.toCharArray(errorY.data, MinTypeSz);
     DynType var;var.tvar = STR;String errorString = "ERROR!!";errorString.toCharArray(var.data, MinTypeSz);
-    setScreenText(var, errorX, errorY);
+    setScreenText(var, errorX, errorY);*/
 }
 
 void stopMachine() {
@@ -53,40 +53,16 @@ int getIR5() {
     return RobotMotor.IRread(5);
 }
 
-void setSpeedEnginesControl(DynType speedLeft, DynType  speedRight) {
-    Robot.motorsWrite(atoi(speedLeft.data), atoi(speedRight.data));
-}
-
-void setSpeedEnginesMotor(DynType speedLeft, DynType  speedRight) {
+void setSpeedEngines(DynType speedLeft, DynType  speedRight) {
     RobotMotor.motorsWrite(atoi(speedLeft.data), atoi(speedRight.data));
 }
 
-void lineFollow(DynType KP, DynType KD, DynType robotSpeed, DynType integrationTime) {
-    Robot.lineFollowConfig(atoi(KP.data),atoi(KD.data),atoi(robotSpeed.data),atoi(integrationTime.data));//set PID parameters
-    Robot.setMode(MODE_LINE_FOLLOW);
-    while(!Robot.isActionDone()){
-    }
-}
-
-void playBeep(DynType type) {
-    Robot.beep(atoi(type.data));
-}
-
-void playMelody(DynType melody) {
-    String text = melody.data;
-    char buffer[VarTypesSz[STR]];
-    text.toCharArray(buffer, VarTypesSz[STR]);
-    Robot.playMelody(buffer);
-}
-
-void setScreenText(DynType textVar, DynType x, DynType y) {
-    Robot.stroke(0, 0, 0);
-    String text = textVar.data;
-    char buffer[VarTypesSz[STR]];
-    text.toCharArray(buffer, VarTypesSz[STR]);
-    Robot.text(buffer, atoi(x.data), atoi(y.data));
-}
-
-void clearScreen() {
-    Robot.clearScreen();
+int getLineFollowValue() {
+    if (getIR3() < 300)
+        return 0;
+    if (getIR4() < 300)
+        return 1;
+    if (getIR2() < 300)
+        return 2;
+    return 3;
 }
