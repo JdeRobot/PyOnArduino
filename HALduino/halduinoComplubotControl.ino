@@ -1,3 +1,5 @@
+Robot.begin();
+
 
 void architecturalStop() {
     DynType errorX;errorX.tvar = INT;String x = "5";x.toCharArray(errorX.data, MinTypeSz);
@@ -8,7 +10,7 @@ void architecturalStop() {
 
 void stopMachine() {
     architecturalStop();
-    for(;;){
+    for(;;) {
         //will stop here for sure
         delay(5000);
     }
@@ -40,14 +42,16 @@ void setSpeedEngines(DynType speedLeft, DynType  speedRight) {
 void lineFollow(DynType KP, DynType KD, DynType robotSpeed, DynType integrationTime) {
     Robot.lineFollowConfig(atoi(KP.data),atoi(KD.data),atoi(robotSpeed.data),atoi(integrationTime.data));//set PID parameters
     Robot.setMode(MODE_LINE_FOLLOW);
-    while(!Robot.isActionDone()){
+    while(!Robot.isActionDone()) {
     }
 }
 
+Robot.beginSpeaker();
 void playBeep(DynType type) {
     Robot.beep(atoi(type.data));
 }
 
+Robot.beginSpeaker();
 void playMelody(DynType melody) {
     String text = melody.data;
     char buffer[VarTypesSz[STR]];
@@ -55,6 +59,7 @@ void playMelody(DynType melody) {
     Robot.playMelody(buffer);
 }
 
+Robot.beginTFT();
 void setScreenText(DynType textVar, DynType x, DynType y) {
     Robot.stroke(0, 0, 0);
     String text = textVar.data;
@@ -63,6 +68,7 @@ void setScreenText(DynType textVar, DynType x, DynType y) {
     Robot.text(buffer, atoi(x.data), atoi(y.data));
 }
 
+Robot.beginTFT();
 void clearScreen() {
     Robot.clearScreen();
 }

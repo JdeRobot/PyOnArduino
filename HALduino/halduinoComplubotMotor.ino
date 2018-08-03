@@ -1,3 +1,5 @@
+RobotMotor.begin();
+
 
 void architecturalStop() {
     /*DynType errorX;errorX.tvar = INT;String x = "5";x.toCharArray(errorX.data, MinTypeSz);

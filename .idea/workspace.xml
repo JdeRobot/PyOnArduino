@@ -2,20 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e72936ae-374a-42ae-8588-539f897332c5" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/HALduino/halduinoComplubotControl.ino" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/HALduino/halduinoComplubotMotor.ino" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/HALduino/halduinoComplubot.ino" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/HALduino/halduino.py" afterPath="$PROJECT_DIR$/HALduino/halduino.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/HALduino/halduinoComplubotControl.ino" afterPath="$PROJECT_DIR$/HALduino/halduinoComplubotControl.ino" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/HALduino/halduinoComplubotMotor.ino" afterPath="$PROJECT_DIR$/HALduino/halduinoComplubotMotor.ino" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/HALduino/halduinoMBot.ino" afterPath="$PROJECT_DIR$/HALduino/halduinoMBot.ino" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/HALduino/halduinoSergioRobot.ino" afterPath="$PROJECT_DIR$/HALduino/halduinoSergioRobot.ino" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/examples/Complubot/HitnRotateTest.py" afterPath="$PROJECT_DIR$/examples/Complubot/HitnRotateTest.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/examples/Complubot/LineFollowNoLibraryTest.py" afterPath="$PROJECT_DIR$/examples/Complubot/LineFollowNoLibraryTest.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/examples/Complubot/LineFollowTest.py" afterPath="$PROJECT_DIR$/examples/Complubot/LineFollowTest.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/examples/Complubot/StopnGoTest.py" afterPath="$PROJECT_DIR$/examples/Complubot/StopnGoTest.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/ComplubotExampleTests.py" afterPath="$PROJECT_DIR$/tests/ComplubotExampleTests.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/SergioRobotExampleTests.py" afterPath="$PROJECT_DIR$/tests/SergioRobotExampleTests.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/TranslatorTests.py" afterPath="$PROJECT_DIR$/tests/TranslatorTests.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/translator/Translator.py" afterPath="$PROJECT_DIR$/translator/Translator.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -31,33 +21,50 @@
       <file leaf-file-name="halduinoMBot.ino" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/HALduino/halduinoMBot.ino">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="58" column="52" lean-forward="false" selection-start-line="58" selection-start-column="4" selection-end-line="58" selection-end-column="52" />
+            <state relative-caret-position="186">
+              <caret line="50" column="22" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="22" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Translator.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Translator.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/translator/Translator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="94">
-              <caret line="689" column="22" lean-forward="false" selection-start-line="689" selection-start-column="22" selection-end-line="689" selection-end-column="22" />
+            <state relative-caret-position="353">
+              <caret line="681" column="21" lean-forward="true" selection-start-line="681" selection-start-column="21" selection-end-line="681" selection-end-column="21" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
-                <marker date="1533226504565" expanded="true" signature="17926:18176" ph="..." />
-                <marker date="1533226504565" expanded="true" signature="18019:18176" ph="..." />
-                <marker date="1533226504565" expanded="true" signature="18112:18176" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="output.ino" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/output/output.ino">
+      <file leaf-file-name="StopnGoTest.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/examples/MBot/StopnGoTest.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="8" column="32" lean-forward="false" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="halduinoComplubotControl.ino" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/HALduino/halduinoComplubotControl.ino">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="45">
-              <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+              <caret line="3" column="22" lean-forward="false" selection-start-line="3" selection-start-column="5" selection-end-line="3" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LineFollowTest.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/examples/Complubot/LineFollowTest.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="195">
+              <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -66,7 +73,7 @@
       <file leaf-file-name="TranslatorVariables.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/translator/TranslatorVariables.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-436">
+            <state relative-caret-position="30">
               <caret line="2" column="16" lean-forward="false" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
               <folding />
             </state>
@@ -84,24 +91,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>functions</find>
-      <find>sear</find>
-      <find>halduino.</find>
-      <find>halduino =</find>
-      <find>draw</find>
-      <find>getU</find>
-      <find>drawString</find>
-      <find>tvar = INT;String har0 = &quot;0&quot;;har0.toCharArray(var0.data, MinTypeSz);</find>
-      <find>ledMtx.setColorIndex</find>
-      <find>scree</find>
-      <find>architecturalStop</find>
-      <find>setSpeedEngine1</find>
-      <find>delay</find>
-      <find>halduino</find>
-      <find>lineFollower.readSensors</find>
-      <find>playB</find>
-      <find>incl</find>
-      <find>FOUN</find>
       <find>vars.functions</find>
       <find>setLeds</find>
       <find>output</find>
@@ -113,6 +102,24 @@
       <find>function_variables_line</find>
       <find>vars.global_variables</find>
       <find>pinMode</find>
+      <find>declaration</find>
+      <find>function_string</find>
+      <find>stopMachinestopMachine</find>
+      <find>split</find>
+      <find>getIR4</find>
+      <find>getIR3</find>
+      <find>halduino</find>
+      <find>Halduino</find>
+      <find>setSpeedEngines</find>
+      <find>global_variables</find>
+      <find>void setup() {\n</find>
+      <find>void setup() {\</find>
+      <find>){</find>
+      <find>setup</find>
+      <find>Robot.beginTFT();</find>
+      <find>vars.functions['setup']</find>
+      <find>setScreenText</find>
+      <find>architecturalStop</find>
       <find>print</find>
     </findStrings>
     <replaceStrings>
@@ -185,7 +192,6 @@
         <option value="$PROJECT_DIR$/examples/MBot/ButtonTest.py" />
         <option value="$PROJECT_DIR$/examples/MBot/LedsTest.py" />
         <option value="$PROJECT_DIR$/translator/TranslatorVariables.py" />
-        <option value="$PROJECT_DIR$/HALduino/halduinoComplubotControl.ino" />
         <option value="$PROJECT_DIR$/HALduino/halduinoComplubot.ino" />
         <option value="$PROJECT_DIR$/HALduino/halduino.py" />
         <option value="$PROJECT_DIR$/examples/Complubot/HitnRotateTest.py" />
@@ -193,15 +199,16 @@
         <option value="$PROJECT_DIR$/examples/Complubot/StopnGoTest.py" />
         <option value="$PROJECT_DIR$/examples/MBot/LineFollowTest.py" />
         <option value="$PROJECT_DIR$/examples/Complubot/LineFollowTest.py" />
-        <option value="$PROJECT_DIR$/HALduino/halduinoComplubotMotor.ino" />
         <option value="$PROJECT_DIR$/tests/SergioRobotExampleTests.py" />
         <option value="$PROJECT_DIR$/tests/TranslatorTests.py" />
         <option value="$PROJECT_DIR$/tests/ComplubotExampleTests.py" />
         <option value="$PROJECT_DIR$/HALduino/halduinoSergioRobot.ino" />
         <option value="$PROJECT_DIR$/HALduino/halduinoMBot.ino" />
+        <option value="$PROJECT_DIR$/HALduino/halduinoComplubotControl.ino" />
+        <option value="$PROJECT_DIR$/HALduino/halduinoComplubotMotor.ino" />
         <option value="$PROJECT_DIR$/output.ino" />
-        <option value="$PROJECT_DIR$/translator/Translator.py" />
         <option value="$PROJECT_DIR$/output/output.ino" />
+        <option value="$PROJECT_DIR$/translator/Translator.py" />
       </list>
     </option>
   </component>
@@ -225,6 +232,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -247,14 +256,12 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="output" />
+              <option name="myItemId" value="HALduino" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -455,13 +462,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1526995742446</updated>
-    </task>
-    <task id="LOCAL-00059" summary="Melody Test added and support to melodies for Complubot">
-      <created>1530518664421</created>
-      <option name="number" value="00059" />
-      <option name="presentableId" value="LOCAL-00059" />
-      <option name="project" value="LOCAL" />
-      <updated>1530518664423</updated>
     </task>
     <task id="LOCAL-00060" summary="Complubot's screen support and example">
       <created>1530521288492</created>
@@ -799,7 +799,14 @@
       <option name="project" value="LOCAL" />
       <updated>1533128514210</updated>
     </task>
-    <option name="localTasksCounter" value="108" />
+    <task id="LOCAL-00108" summary="Line follow example unified. Complubot's halduino splitted in two and translator updated">
+      <created>1533226546065</created>
+      <option name="number" value="00108" />
+      <option name="presentableId" value="LOCAL-00108" />
+      <option name="project" value="LOCAL" />
+      <updated>1533226546065</updated>
+    </task>
+    <option name="localTasksCounter" value="109" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -846,7 +853,7 @@
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20028612" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21459228" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891566" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41686746" sideWeight="0.5114449" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3698795" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -920,7 +927,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add variables_manager code to the output" />
     <MESSAGE value="Integer variables are now DynType" />
     <MESSAGE value="Char test added" />
     <MESSAGE value="Boolean variables are now DynType" />
@@ -945,7 +951,8 @@
     <MESSAGE value="README.md updated" />
     <MESSAGE value="Global variables to a new file" />
     <MESSAGE value="Tests updated" />
-    <option name="LAST_COMMIT_MESSAGE" value="Tests updated" />
+    <MESSAGE value="Line follow example unified. Complubot's halduino splitted in two and translator updated" />
+    <option name="LAST_COMMIT_MESSAGE" value="Line follow example unified. Complubot's halduino splitted in two and translator updated" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -961,23 +968,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="105">
-            <caret line="7" column="64" lean-forward="false" selection-start-line="7" selection-start-column="64" selection-end-line="7" selection-end-column="64" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/examples/SergioRobot/StopnGo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="20" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/examples/Complubot/StopnGoTest.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1008,13 +998,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="1" column="21" lean-forward="false" selection-start-line="1" selection-start-column="14" selection-end-line="1" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/examples/MBot/StopnGoTest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="8" column="41" lean-forward="false" selection-start-line="8" selection-start-column="41" selection-end-line="8" selection-end-column="41" />
         </state>
       </provider>
     </entry>
@@ -1185,13 +1168,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/HALduino/halduinoComplubotMotor.ino">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="65" column="17" lean-forward="false" selection-start-line="65" selection-start-column="17" selection-end-line="65" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/TranslatorTests.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -1203,7 +1179,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1211,7 +1186,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="8" column="32" lean-forward="false" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1219,7 +1193,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="166">
           <caret line="628" column="0" lean-forward="false" selection-start-line="628" selection-start-column="0" selection-end-line="628" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1227,15 +1200,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="9" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/examples/Complubot/LineFollowTest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="11" selection-end-column="44" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1243,7 +1207,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="106">
           <caret line="66" column="81" lean-forward="false" selection-start-line="66" selection-start-column="81" selection-end-line="66" selection-end-column="81" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1251,9 +1214,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="149">
           <caret line="235" column="19" lean-forward="false" selection-start-line="235" selection-start-column="13" selection-end-line="235" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1261,15 +1221,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="101" column="8" lean-forward="false" selection-start-line="101" selection-start-column="8" selection-end-line="101" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/HALduino/halduinoComplubotControl.ino">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="22" lean-forward="false" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1277,52 +1228,95 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="101">
           <caret line="27" column="27" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/translator/TranslatorVariables.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="16" lean-forward="false" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/python-skeletons/re.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3780">
+          <caret line="252" column="8" lean-forward="false" selection-start-line="252" selection-start-column="8" selection-end-line="252" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/Complubot/LineFollowTest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HALduino/halduinoComplubotMotor.ino">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="19" lean-forward="false" selection-start-line="0" selection-start-column="19" selection-end-line="0" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/MBot/StopnGoTest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="32" lean-forward="false" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HALduino/halduinoComplubotControl.ino">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="22" lean-forward="false" selection-start-line="3" selection-start-column="5" selection-end-line="3" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/HALduino/halduinoMBot.ino">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="58" column="52" lean-forward="false" selection-start-line="58" selection-start-column="4" selection-end-line="58" selection-end-column="52" />
+        <state relative-caret-position="186">
+          <caret line="50" column="22" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/translator/TranslatorVariables.py">
+    <entry file="file://$PROJECT_DIR$/output/output.ino">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-436">
-          <caret line="2" column="16" lean-forward="false" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
+        <state relative-caret-position="245">
+          <caret line="66" column="1" lean-forward="true" selection-start-line="66" selection-start-column="1" selection-end-line="66" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/output.ino">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1080">
-          <caret line="72" column="15" lean-forward="false" selection-start-line="72" selection-start-column="5" selection-end-line="72" selection-end-column="15" />
+        <state relative-caret-position="15">
+          <caret line="124" column="1" lean-forward="false" selection-start-line="124" selection-start-column="1" selection-end-line="124" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/translator/Translator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="94">
-          <caret line="689" column="22" lean-forward="false" selection-start-line="689" selection-start-column="22" selection-end-line="689" selection-end-column="22" />
+        <state relative-caret-position="353">
+          <caret line="681" column="21" lean-forward="true" selection-start-line="681" selection-start-column="21" selection-end-line="681" selection-end-column="21" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
-            <marker date="1533226504565" expanded="true" signature="17926:18176" ph="..." />
-            <marker date="1533226504565" expanded="true" signature="18019:18176" ph="..." />
-            <marker date="1533226504565" expanded="true" signature="18112:18176" ph="..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/output/output.ino">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>

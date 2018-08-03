@@ -390,7 +390,6 @@ class MyVisitor(ast.NodeVisitor):
 
     def search_for_function(self, halduino, searched_node, is_first_search=True):
         function_line = ''
-        declaration_name = ''
         not_found = True
         not_eof = True
         is_first_non_empty_line = True
@@ -404,10 +403,7 @@ class MyVisitor(ast.NodeVisitor):
                     if is_first_non_empty_line:
                         function_variables_line = function_start_line
                         is_first_non_empty_line = False
-                    if len(function_line.split(searched_node)) > 1 and function_line.split(searched_node)[len(
-                            function_line.split(searched_node)) - 1][-2:] == "{\n":
-                        parts = function_line.split(' ')  # +|\([^\)]*\)
-                        declaration_name = parts[1].split('(')[0]
+                    if re.search('\w+ '+searched_node+'\(.*\) {', function_line):
                         not_found = False
                         not_eof = False
                 else:
@@ -415,35 +411,47 @@ class MyVisitor(ast.NodeVisitor):
                         not_eof = False
                     function_variables_line = function_start_line
                     is_first_non_empty_line = True
-
             if not_found is False:
-                function_string = ''
-                end_of_function = False
-                while not end_of_function:
-                    function_string += function_line
-                    function_line = halduino.readline()
-                    if re.search('\w+\(((\w+, )*\w+)*\)', function_line) and not re.search('\.', function_line):
-                        function_name = re.search('\w+\(', function_line)
-                        function_name = re.search('\w+', function_name.group(0))
-                        if function_name.group(0) not in vars.functions:
-                            new_halduino = open(vars.halduino_directory + robot + '.ino', 'r')
-                            self.search_for_function(new_halduino, function_name.group(0), is_first_search=False)
-                    l = function_line.rstrip()
-                    if not l or len(function_line) <= 0:
-                        end_of_function = True
-                vars.functions[declaration_name] = function_string
-                if function_variables_line < function_start_line:
-                    halduino.seek(0)
-                    for i, line in enumerate(halduino):
-                        if i >= function_variables_line - 1 and i < function_start_line - 1:
-                            vars.global_variables[line] = line
-                if is_first_search:
-                    halduino.close()
+                self.add_function(function_line, searched_node, function_variables_line, function_start_line, is_first_search, halduino)
             else:
                 if is_first_search:
                     print('Function not found for this robot! ' + searched_node)
                     halduino.close()
                     exit()
+
+    def add_function(self, function_line, searched_node, function_variables_line, function_start_line, is_first_search, halduino):
+        function_string = ''
+        end_of_function = False
+        while not end_of_function:
+            function_string += function_line
+            function_line = halduino.readline()
+            if re.search('\w+\(((\w+, )*\w+)*\)', function_line) and not re.search('\.', function_line):
+                function_name = re.search('\w+\(', function_line)
+                function_name = re.search('\w+', function_name.group(0))
+                if function_name.group(0) not in vars.functions:
+                    new_halduino = open(vars.halduino_directory + robot + '.ino', 'r')
+                    self.search_for_function(new_halduino, function_name.group(0), is_first_search=False)
+            l = function_line.rstrip()
+            if not l or len(function_line) <= 0:
+                end_of_function = True
+        vars.functions[searched_node] = function_string
+        if function_variables_line < function_start_line:
+            halduino.seek(0)
+            for i, line in enumerate(halduino):
+                if function_variables_line - 1 <= i < function_start_line - 1:
+                    if re.search('[^ ]\w+\(', line) and not re.search('\w+ \w+\(', line):
+                        if 'setup' in vars.functions:
+                            setup = vars.functions['setup']
+                            setup += line
+                            vars.functions['setup'] = setup
+                        else:
+                            setup = 'void setup() {\n'
+                            setup += line
+                            vars.functions['setup'] = setup
+                    else:
+                        vars.global_variables[line] = line
+        if is_first_search:
+            halduino.close()
 
     def visit_For(self, node):
         print('For!')
@@ -462,7 +470,7 @@ class MyVisitor(ast.NodeVisitor):
         ast.NodeVisitor.generic_visit(self, node)
 
     def visit_Slice(self, node):
-        print('NODE Unray 2: ' + str(type(node.value)))
+        print('NODE Slice: ' + str(type(node.value)))
         ast.NodeVisitor.generic_visit(self, node)
 
     def visit_Gt(self, node):
@@ -580,14 +588,6 @@ class MyVisitor(ast.NodeVisitor):
             if vars.function_def[-1:] == ',':
                 vars.function_def = vars.function_def[:-1]
 
-def uses_speaker():
-    return 'playBeep' in vars.functions or 'playMelody' in vars.functions
-
-
-def uses_screen():
-    return 'clearIt' in vars.functions or 'setScreenText' in vars.functions
-
-
 if __name__ == "__main__":
     robot = ''
     input_filename = ''
@@ -611,52 +611,34 @@ if __name__ == "__main__":
     vars.Variables()
     MyVisitor().visit(parsed_file)
 
+    if robot == 'ComplubotMotor' or robot == 'CompluBotMotor':
+        vars.libraries['ArduinoRobotMotorBoard'] = '#include <ArduinoRobotMotorBoard.h>\n'
+    elif robot == 'ComplubotControl' or robot == 'CompluBotControl':
+        vars.libraries['ArduinoRobot'] = '#include <ArduinoRobot.h>\n'
+    elif robot == 'MBot' or robot == 'mBot':
+        vars.libraries['MeMCore'] = '#include <MeMCore.h>\n'
+
+    # Architectural stop declaration
+    halduino = open(vars.halduino_directory + robot + '.ino', 'r')
+    MyVisitor().search_for_function(halduino, 'architecturalStop')
+
     if 'setup' not in vars.functions:
         vars.functions['setup'] = '''void setup() {
 }\n'''
+    else:
+        vars.functions['setup'] += '}\n'
 
     if 'loop' not in vars.functions:
         vars.functions['loop'] = '''void loop() {
 }\n'''
 
-    if robot == 'ComplubotMotor' or robot == 'CompluBotMotor':
-        setup = '\n'
-        for index, line in enumerate(vars.functions['setup'].splitlines()):
-            if index == 1:
-                setup += '\n   RobotMotor.begin();\n'
-            setup += line
-        setup += '\n'
-        vars.functions['setup'] = setup
-        vars.libraries['ArduinoRobotMotorBoard'] = '#include <ArduinoRobotMotorBoard.h>\n'
-    elif robot == 'ComplubotControl' or robot == 'CompluBotControl':
-        setup = '\n'
-        for index, line in enumerate(vars.functions['setup'].splitlines()):
-            if index == 1:
-                setup += '\n   Robot.begin();\n'
-
-                if uses_speaker():
-                    setup += '\n   Robot.beginSpeaker();\n'
-
-                if uses_screen():
-                    setup += '\n   Robot.beginTFT();\n'
-            setup += line
-        setup += '\n'
-        vars.functions['setup'] = setup
-        vars.libraries['ArduinoRobot'] = '#include <ArduinoRobot.h>\n'
-    elif robot == 'MBot' or robot == 'mBot':
-        vars.libraries['MeMCore'] = '#include <MeMCore.h>\n'
-
     variables_manager = ''
     for line in open('Halduino/variables_manager.ino', 'r'):
-        if len(line.split('#include')) > 1:
+        if re.search('#include', line):
             vars.libraries[line] = line
         else:
             variables_manager += line
     vars.functions['variables_manager'] = variables_manager
-
-    # Architectural stop declaration
-    halduino = open(vars.halduino_directory + robot + '.ino', 'r')
-    MyVisitor().search_for_function(halduino, 'architecturalStop')
 
     for key, value in vars.libraries.items():
         output.write(value)
