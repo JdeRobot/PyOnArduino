@@ -1,3 +1,5 @@
+#include <MeMCore.h>
+
 
 void architecturalStop() {
     DynType var0;var0.tvar = INT;String har0 = "0";har0.toCharArray(var0.data, MinTypeSz);

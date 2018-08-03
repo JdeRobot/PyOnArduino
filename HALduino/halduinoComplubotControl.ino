@@ -1,3 +1,4 @@
+#include <ArduinoRobot.h>
 
 
 void architecturalStop() {

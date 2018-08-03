@@ -397,6 +397,8 @@ class MyVisitor(ast.NodeVisitor):
         function_variables_line = 0
         if searched_node not in vars.functions:
             while not_found and not_eof:
+                if re.search('#include', function_line):
+                    vars.libraries[function_line] = function_line
                 function_line = halduino.readline()
                 function_start_line += 1
                 if function_line.strip():
@@ -407,8 +409,7 @@ class MyVisitor(ast.NodeVisitor):
                         not_found = False
                         not_eof = False
                 else:
-                    if function_line == '':
-                        not_eof = False
+                    not_eof = function_line != ''
                     function_variables_line = function_start_line
                     is_first_non_empty_line = True
             if not_found is False:
@@ -432,8 +433,7 @@ class MyVisitor(ast.NodeVisitor):
                     new_halduino = open(vars.halduino_directory + robot + '.ino', 'r')
                     self.search_for_function(new_halduino, function_name.group(0), is_first_search=False)
             l = function_line.rstrip()
-            if not l or len(function_line) <= 0:
-                end_of_function = True
+            end_of_function = not l or len(function_line) <= 0
         vars.functions[searched_node] = function_string
         if function_variables_line < function_start_line:
             halduino.seek(0)
@@ -582,8 +582,6 @@ class MyVisitor(ast.NodeVisitor):
                 vars.function_def = vars.function_def[:-1]
 
 if __name__ == "__main__":
-    robot = ''
-    input_filename = ''
     output_filename = 'output.ino'
 
     print('ARGS: ' + str(len(sys.argv)))
@@ -603,13 +601,6 @@ if __name__ == "__main__":
     parsed_file = ast.parse(controller_file)
     vars.Variables()
     MyVisitor().visit(parsed_file)
-
-    if robot == 'ComplubotMotor' or robot == 'CompluBotMotor':
-        vars.libraries['ArduinoRobotMotorBoard'] = '#include <ArduinoRobotMotorBoard.h>\n'
-    elif robot == 'ComplubotControl' or robot == 'CompluBotControl':
-        vars.libraries['ArduinoRobot'] = '#include <ArduinoRobot.h>\n'
-    elif robot == 'MBot' or robot == 'mBot':
-        vars.libraries['MeMCore'] = '#include <MeMCore.h>\n'
 
     # Architectural stop declaration
     halduino = open(vars.halduino_directory + robot + '.ino', 'r')
