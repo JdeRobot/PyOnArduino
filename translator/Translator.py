@@ -365,11 +365,11 @@ class MyVisitor(ast.NodeVisitor):
     def add_halduino_function(self, node):
         vars.call_def += vars.node_attr
         print('Halduino found with call to function ' + vars.node_attr)
-        halduino = open(vars.halduino_directory + robot + '.ino', 'r')
         print('NODE: ' + vars.node_attr)
-        self.search_for_function(halduino, vars.node_attr)
+        self.search_for_function(vars.halduino_directory + robot, vars.node_attr)
 
-    def search_for_function(self, halduino, searched_node, is_first_search=True):
+    def search_for_function(self, directory, searched_node, is_first_search=True):
+        halduino = open(directory + '.ino', 'r')
         function_line = ''
         not_found = True
         not_eof = True
@@ -411,8 +411,7 @@ class MyVisitor(ast.NodeVisitor):
                 function_name = re.search('\w+\(', function_line)
                 function_name = re.search('\w+', function_name.group(0))
                 if function_name.group(0) not in vars.functions:
-                    new_halduino = open(vars.halduino_directory + robot + '.ino', 'r')
-                    self.search_for_function(new_halduino, function_name.group(0), is_first_search=False)
+                    self.search_for_function(vars.halduino_directory + robot, function_name.group(0), is_first_search=False)
             l = function_line.rstrip()
             end_of_function = not l or len(function_line) <= 0
         vars.functions[searched_node] = function_string
@@ -591,11 +590,8 @@ if __name__ == "__main__":
     MyVisitor().visit(parsed_file)
 
     # Architectural stop declaration
-    halduino = open(vars.halduino_directory + robot + '.ino', 'r')
-    MyVisitor().search_for_function(halduino, 'architecturalStop')
-
-    halduino = open(vars.halduino_directory + robot + '.ino', 'r')
-    MyVisitor().search_for_function(halduino, 'setup')
+    MyVisitor().search_for_function(vars.halduino_directory + robot, 'architecturalStop')
+    MyVisitor().search_for_function(vars.halduino_directory + robot, 'setup')
 
     if 'setup' not in vars.functions:
         vars.functions['setup'] = 'void setup() {\n'
