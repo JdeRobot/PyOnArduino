@@ -1,4 +1,3 @@
-Robot.begin();
 
 
 void architecturalStop() {
@@ -71,4 +70,8 @@ void setScreenText(DynType textVar, DynType x, DynType y) {
 Robot.beginTFT();
 void clearScreen() {
     Robot.clearScreen();
+}
+
+void setup() {
+    Robot.begin();
 }

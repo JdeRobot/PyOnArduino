@@ -1,4 +1,3 @@
-RobotMotor.begin();
 
 
 void architecturalStop() {
@@ -67,4 +66,8 @@ int getLineFollowValue() {
     if (getIR2() < 300)
         return 2;
     return 3;
+}
+
+void setup() {
+    RobotMotor.begin();
 }

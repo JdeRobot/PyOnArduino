@@ -414,7 +414,7 @@ class MyVisitor(ast.NodeVisitor):
             if not_found is False:
                 self.add_function(function_line, searched_node, function_variables_line, function_start_line, is_first_search, halduino)
             else:
-                if is_first_search:
+                if is_first_search and not searched_node == 'setup':
                     print('Function not found for this robot! ' + searched_node)
                     halduino.close()
                     exit()
@@ -440,14 +440,7 @@ class MyVisitor(ast.NodeVisitor):
             for i, line in enumerate(halduino):
                 if function_variables_line - 1 <= i < function_start_line - 1:
                     if re.search('[^ ]\w+\(', line) and not re.search('\w+ \w+\(', line):
-                        if 'setup' in vars.functions:
-                            setup = vars.functions['setup']
-                            setup += line
-                            vars.functions['setup'] = setup
-                        else:
-                            setup = 'void setup() {\n'
-                            setup += line
-                            vars.functions['setup'] = setup
+                        vars.setup_statements[line] = line
                     else:
                         vars.global_variables[line] = line
         if is_first_search:
@@ -622,11 +615,27 @@ if __name__ == "__main__":
     halduino = open(vars.halduino_directory + robot + '.ino', 'r')
     MyVisitor().search_for_function(halduino, 'architecturalStop')
 
+    halduino = open(vars.halduino_directory + robot + '.ino', 'r')
+    MyVisitor().search_for_function(halduino, 'setup')
+
     if 'setup' not in vars.functions:
-        vars.functions['setup'] = '''void setup() {
-}\n'''
-    else:
+        vars.functions['setup'] = 'void setup() {\n'
+        for key, value in vars.setup_statements.items():
+            vars.functions['setup'] += value
         vars.functions['setup'] += '}\n'
+    elif vars.setup_statements:
+        setup = vars.functions['setup']
+        counter = 0
+        setup = setup.split("\n")
+        new_setup = ''
+        while setup[counter] != '}':
+            new_setup += setup[counter] + '\n'
+            counter += 1
+        for key, value in vars.setup_statements.items():
+            new_setup += value + '\n'
+        new_setup += '}\n'
+        print(new_setup)
+        vars.functions['setup'] = new_setup
 
     if 'loop' not in vars.functions:
         vars.functions['loop'] = '''void loop() {

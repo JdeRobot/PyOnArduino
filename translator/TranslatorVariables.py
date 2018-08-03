@@ -30,6 +30,7 @@ class Variables:
         global is_while
         global libraries
         global parentheses
+        global setup_statements
         global variable_def
         global variables_counter
         global var_sign
@@ -62,6 +63,7 @@ class Variables:
         is_while = False
         libraries = {}
         parentheses = 0
+        setup_statements = {}
         variable_def = ''
         variables_counter = 0
         var_sign = ''
