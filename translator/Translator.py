@@ -622,18 +622,15 @@ if __name__ == "__main__":
             vars.libraries[line] = line
         else:
             variables_manager += line
-    vars.functions['variables_manager'] = variables_manager
 
     for key, value in vars.libraries.items():
         output.write(value)
     output.write('\n')
     for key, value in vars.global_variables.items():
         output.write(value)
-    output.write('\n')
-    output.write(vars.functions['variables_manager'])
+    output.write(variables_manager)
     for key, value in vars.functions.items():
-        if key != 'variables_manager':
-            output.write(value)
+        output.write(value)
         output.write('\n')
 
     print()
