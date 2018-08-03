@@ -29,10 +29,7 @@ class MyVisitor(ast.NodeVisitor):
                 var_name = 'var' + str(vars.variables_counter)
 
         str_var = '(char*)' + var_name + '.data'
-        vars.function_def += 'DynType ' + var_name + ';'
-        vars.function_def += var_name + '.tvar = ' + var_type + ';'
-        vars.function_def += 'String har' + str(vars.variables_counter) + ' = "' + str(node.s) + '";'
-        vars.function_def += 'har' + str(vars.variables_counter) + '.toCharArray(' + var_name + '.data, MinTypeSz);\n'
+        vars.function_def += self.dyn_variable_creation(var_name, var_type, str(node.s))
         vars.variables_counter += 1
 
         if vars.is_array:
@@ -170,13 +167,7 @@ class MyVisitor(ast.NodeVisitor):
 
         if vars.is_call_parameter:
             if not vars.is_built_in_func:
-                vars.function_def += 'DynType var' + str(vars.variables_counter) + ';'
-                vars.function_def += 'var' + str(vars.variables_counter) + '.tvar = ' + str(
-                    type(node.n).__name__).upper() + ';'
-                vars.function_def += 'String har' + str(vars.variables_counter) + ' = "' + vars.var_sign + str(
-                    node.n) + '";'
-                vars.function_def += 'har' + str(vars.variables_counter) + '.toCharArray(var' + str(
-                    vars.variables_counter) + '.data, MinTypeSz);\n'
+                vars.function_def += self.dyn_variable_creation('var'+str(vars.variables_counter), str(type(node.n).__name__).upper(), vars.var_sign + str(node.n))
                 vars.var_sign = ''
             vars.variables_counter += 1
 
@@ -185,12 +176,7 @@ class MyVisitor(ast.NodeVisitor):
                 vars.variable_def = type(node.n).__name__ + ' ' + vars.variable_def + vars.num_var
             else:
                 var_name = vars.variable_def
-                vars.variable_def = 'DynType ' + var_name + ';'
-                vars.variable_def += var_name + '.tvar = ' + str(type(node.n).__name__).upper() + ';'
-                vars.variable_def += 'String har' + str(vars.variables_counter) + ' = "' + vars.var_sign + str(
-                    node.n) + '";'
-                vars.variable_def += 'har' + str(
-                    vars.variables_counter) + '.toCharArray(' + var_name + '.data, MinTypeSz);\n'
+                vars.variable_def = self.dyn_variable_creation(var_name, str(type(node.n).__name__).upper(), vars.var_sign + str(node.n))
                 vars.variables_counter += 1
             vars.function_def += vars.variable_def
         else:
@@ -285,12 +271,7 @@ class MyVisitor(ast.NodeVisitor):
             if vars.is_array:
                 vars.variable_def += boolean_var
             else:
-                vars.variable_def = 'DynType var' + str(vars.variables_counter) + ';'
-                vars.variable_def += 'var' + str(vars.variables_counter) + '.tvar = BOOL;'
-                vars.variable_def += 'String har' + str(
-                    vars.variables_counter) + ' = "' + vars.var_sign + boolean_var + '";'
-                vars.variable_def += 'har' + str(vars.variables_counter) + '.toCharArray(var' + str(
-                    vars.variables_counter) + '.data, MinTypeSz);\n'
+                vars.variable_def = self.dyn_variable_creation('var'+str(vars.variables_counter), 'BOOL', vars.var_sign + boolean_var)
                 vars.variables_counter += 1
             vars.function_def += vars.variable_def
         else:
@@ -571,6 +552,13 @@ class MyVisitor(ast.NodeVisitor):
     def visit_Pass(self, node):
         print('NODE Pass: ' + str(type(node)))
         ast.NodeVisitor.generic_visit(self, node)
+
+    def dyn_variable_creation(self, var_name, var_type, value):
+        definition = 'DynType ' + var_name + ';'
+        definition += var_name + '.tvar = ' + var_type + ';'
+        definition += 'String har' + str(vars.variables_counter) + ' = "' + value + '";'
+        definition += 'har' + str(vars.variables_counter) + '.toCharArray(' + var_name + '.data, MinTypeSz);\n'
+        return definition
 
     def check_last_comma(self, text=None):
         if text is not None:
