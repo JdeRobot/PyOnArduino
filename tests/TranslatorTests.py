@@ -4,7 +4,7 @@ import translator.Translator as translator
 
 try:
     import translator.TranslatorVariables as vars
-
+    import translator.strings.TranslatorStrings as strings
     vars.Variables()
 except ModuleNotFoundError:
     print('Absolute import failed')
@@ -14,11 +14,12 @@ class TranslatorTests(unittest.TestCase):
     def setUp(self):
         global visitor
         translator.vars = vars
+        translator.strings = strings
         vars.function_def = ''
         vars.variables_counter = 0
         translator.robot = 'ComplubotControl'
         vars.halduino_directory = '../HALduino/halduino'
-        visitor = translator.MyVisitor()
+        visitor = translator.TranslatorVisitor()
 
     def translate_string(self, text):
         parsed_statement = ast.parse(text)

@@ -8,16 +8,18 @@ import re
 
 try:
     import TranslatorVariables as vars
+    import strings.TranslatorStrings as strings
 except ModuleNotFoundError:
     print('Absolute import failed')
 
-class MyVisitor(ast.NodeVisitor):
+
+class TranslatorVisitor(ast.NodeVisitor):
     def generic_visit(self, node):
-        print('NODE generic: ' + str(type(node)))
+        print(strings.GENERIC_NODE + str(type(node)))
         ast.NodeVisitor.generic_visit(self, node)
 
     def visit_Str(self, node):
-        print('NODE Str: ' + str(type(node.s)))
+        print(strings.STR_NODE + str(type(node.s)))
         var_type = 'STR'
         if len(node.s) == 1:
             var_type = 'CHAR'
@@ -63,7 +65,7 @@ class MyVisitor(ast.NodeVisitor):
         vars.variable_def = ''
 
     def visit_Name(self, node):
-        print('NODE Name: ' + str(type(node)) + ' ' + node.id)
+        print(strings.NAME_NODE + str(type(node)) + ' ' + node.id)
         if node.id == 'print':
             vars.call_def += 'Serial.' + node.id
             vars.is_built_in_func = True
@@ -107,8 +109,8 @@ class MyVisitor(ast.NodeVisitor):
     def visit_FunctionDef(self, node):
         vars.variable_def = ''
         vars.function_def = node.name + '('
-        print('Function Definition: ' + str(node.name))
-        print('NODE arguments: ' + str(type(node.args)))
+        print(strings.FUNCTION_DEF + str(node.name))
+        print(strings.NODE_ARGS + str(type(node.args)))
         ast.NodeVisitor.generic_visit(self, node)
         vars.brackets -= 1
         vars.function_def += '}\n'
@@ -128,14 +130,14 @@ class MyVisitor(ast.NodeVisitor):
         if vars.is_if:
             vars.function_def += ') {\n'
             vars.is_if = False
-        print('NODE Expr: ' + str(type(node)))
+        print(strings.NODE_EXPR + str(type(node)))
         ast.NodeVisitor.generic_visit(self, node)
 
     def visit_Call(self, node):
         vars.is_call = True
         vars.call_index = 0
         vars.parentheses += 1
-        print('NODE Call: ' + str(type(node)))
+        print(strings.NODE_CALL + str(type(node)))
         ast.NodeVisitor.generic_visit(self, node)
         vars.function_def += vars.call_def
         vars.call_def = ''
@@ -146,17 +148,17 @@ class MyVisitor(ast.NodeVisitor):
         vars.parentheses -= 1
         if vars.parentheses == 0 and vars.is_comparision == False and not vars.bool_op and vars.is_if == False and vars.is_while == False:
             self.check_last_comma()
-            print('PARENTHESES ' + str(vars.parentheses))
+            print(strings.PARENTHESES + str(vars.parentheses))
             vars.function_def += ');\n   '
         else:
-            print('PARENTHESES ' + str(vars.parentheses))
+            print(strings.PARENTHESES + str(vars.parentheses))
             vars.function_def += ')'
             vars.is_comparision = False
         if vars.bin_op:
             vars.bin_op = False
 
     def visit_Num(self, node):
-        print('NODE Num: ' + str(type(node)))
+        print(strings.NODE_NUM + str(type(node)))
         vars.num_var = str(node.n)
         if vars.is_array:
             if vars.array_index == 0:
@@ -167,7 +169,9 @@ class MyVisitor(ast.NodeVisitor):
 
         if vars.is_call_parameter:
             if not vars.is_built_in_func:
-                vars.function_def += self.dyn_variable_creation('var'+str(vars.variables_counter), str(type(node.n).__name__).upper(), vars.var_sign + str(node.n))
+                vars.function_def += self.dyn_variable_creation('var' + str(vars.variables_counter),
+                                                                str(type(node.n).__name__).upper(),
+                                                                vars.var_sign + str(node.n))
                 vars.var_sign = ''
             vars.variables_counter += 1
 
@@ -176,7 +180,8 @@ class MyVisitor(ast.NodeVisitor):
                 vars.variable_def = type(node.n).__name__ + ' ' + vars.variable_def + vars.num_var
             else:
                 var_name = vars.variable_def
-                vars.variable_def = self.dyn_variable_creation(var_name, str(type(node.n).__name__).upper(), vars.var_sign + str(node.n))
+                vars.variable_def = self.dyn_variable_creation(var_name, str(type(node.n).__name__).upper(),
+                                                               vars.var_sign + str(node.n))
                 vars.variables_counter += 1
             vars.function_def += vars.variable_def
         else:
@@ -201,27 +206,26 @@ class MyVisitor(ast.NodeVisitor):
                 vars.function_def += ', '
         vars.brackets += 1
         vars.function_def += ') {\n'
-        print('arguments: ' + str(node.args))
+        print(strings.NODE_ARGS + str(node.args))
 
     def visit_arg(self, node):
         vars.function_def += 'DynType ' + node.arg
-        print('NODE ARG: ' + str(type(node.annotation)))
+        print(strings.NODE_ARG + str(type(node.annotation)))
 
     def visit_Return(self, node):
         vars.function_def += '  return '
         print(node.value)
         vars.function_def += ';\n'
-        print('NODE Return: ' + str(type(node.value)))
+        print(strings.NODE_RETURN + str(type(node.value)))
         ast.NodeVisitor.generic_visit(self, node.value)
 
     def visit_BinOp(self, node):
-        print('BinOp')
         vars.bin_op = True
         if vars.call_def != '':
             vars.call_def += '('
         else:
             vars.function_def += '('
-        print('NODE BinOp: ' + str(type(node.left)) + ' ' + str(type(node.op)) + ' ' + str(type(node.right)))
+        print(strings.NODE_BINOP + str(type(node.left)) + ' ' + str(type(node.op)) + ' ' + str(type(node.right)))
         ast.NodeVisitor.generic_visit(self, node)
         self.check_last_comma()
         if vars.call_def != '':
@@ -231,18 +235,18 @@ class MyVisitor(ast.NodeVisitor):
 
     def visit_While(self, node):
         vars.function_def += 'while('
-        print('NODE While 1: ' + str(type(node.test)))
+        print(strings.NODE_WHILE + str(type(node.test)))
         vars.is_while = True
         ast.NodeVisitor.generic_visit(self, node.test)
         vars.function_def += ') {'
         for body_part in node.body:
-            print('NODE While 2: ' + str(type(body_part)))
+            print(strings.NODE_WHILE_BODY + str(type(body_part)))
             ast.NodeVisitor.generic_visit(self, body_part)
         vars.function_def += '}\n'
         vars.is_while = False
 
     def visit_List(self, node):
-        print('NODE List: ' + str(type(node)) + ' ' + str(type(node.elts)) + ' ' + str(type(node.ctx)) + ' ')
+        print(strings.NODE_LIST + str(type(node)) + ' ' + str(type(node.elts)) + ' ' + str(type(node.ctx)) + ' ')
         vars.is_array = True
         vars.array_index = 0
         vars.array_length = len(node.elts)
@@ -271,7 +275,8 @@ class MyVisitor(ast.NodeVisitor):
             if vars.is_array:
                 vars.variable_def += boolean_var
             else:
-                vars.variable_def = self.dyn_variable_creation('var'+str(vars.variables_counter), 'BOOL', vars.var_sign + boolean_var)
+                vars.variable_def = self.dyn_variable_creation('var' + str(vars.variables_counter), 'BOOL',
+                                                               vars.var_sign + boolean_var)
                 vars.variables_counter += 1
             vars.function_def += vars.variable_def
         else:
@@ -287,7 +292,7 @@ class MyVisitor(ast.NodeVisitor):
             else:
                 vars.function_def += boolean_var
         vars.variable_def = ''
-        print('NODE NameConstant: ' + str(type(node)))
+        print(strings.NODE_NAME_CONSTANT + str(type(node)))
         ast.NodeVisitor.generic_visit(self, node)
         if len(vars.bool_op) > 0:
             vars.function_def += vars.bool_op[len(vars.bool_op) - 1]
@@ -299,7 +304,7 @@ class MyVisitor(ast.NodeVisitor):
             vars.call_def += '['
         else:
             vars.function_def += '['
-        print('NODE Index: ' + str(type(node)))
+        print(strings.NODE_INDEX + str(type(node)))
         ast.NodeVisitor.generic_visit(self, node)
         self.check_last_comma()
         if vars.call_def != '':
@@ -323,7 +328,7 @@ class MyVisitor(ast.NodeVisitor):
             vars.direction = node.orelse[0]
         else:
             vars.has_else_part = False
-        print('NODE If: ' + str(type(node)) + ' ' + str(vars.brackets) + ' ' + str(node.orelse) + ' ' + str(
+        print(strings.NODE_IF + str(type(node)) + ' ' + str(vars.brackets) + ' ' + str(node.orelse) + ' ' + str(
             vars.has_else_part) + ' ' + str(node.body))
         ast.NodeVisitor.generic_visit(self, node)
         vars.has_else_part = False
@@ -333,15 +338,11 @@ class MyVisitor(ast.NodeVisitor):
             vars.function_def += '}\n'
 
     def visit_Compare(self, node):
-        print('Comparision')
-        # LEFT PART
-        print('NODE Compare 1: ' + str(type(node.left)))
+        print('NODE Compare 1: ' + str(type(node.left)) +  ' ' + str(type(node.ops[0])) +  ' ' + str(type(node.comparators)))
         if isinstance(node.left, ast.Call):
             vars.is_comparision = True
         else:
             vars.is_variable = True
-        print('NODE Compare 2: ' + str(type(node.ops[0])))
-        print('NODE Compare 3: ' + str(type(node.comparators)))
         vars.function_def += '('
         ast.NodeVisitor.generic_visit(self, node)
         vars.function_def += ')'
@@ -350,22 +351,20 @@ class MyVisitor(ast.NodeVisitor):
             vars.bool_op = vars.bool_op[:-1]
 
     def visit_Assign(self, node):
-        print('Assign ' + str(node.targets) + ' ' + str(node.value))
+        print(strings.NODE_ASSIGN + str(node.targets) + ' ' + str(node.value))
         vars.is_var_declaration = True
         ast.NodeVisitor.generic_visit(self, node)
         vars.function_def += vars.variable_def
         vars.variable_def = ''
 
     def visit_Attribute(self, node):
-        print('Attribute: ' + str(node.value) + str(node.ctx) + str(node.attr))
+        print(strings.NODE_ATTRIBUTE + str(node.value) + str(node.ctx) + str(node.attr))
         vars.node_attr = node.attr
-        print('NODE Atribute 1: ' + str(type(node)))
         ast.NodeVisitor.generic_visit(self, node)
 
     def add_halduino_function(self, node):
         vars.call_def += vars.node_attr
         print('Halduino found with call to function ' + vars.node_attr)
-        print('NODE: ' + vars.node_attr)
         self.search_for_function(vars.halduino_directory + robot, vars.node_attr)
 
     def search_for_function(self, directory, searched_node, is_first_search=True):
@@ -386,7 +385,7 @@ class MyVisitor(ast.NodeVisitor):
                     if is_first_non_empty_line:
                         function_variables_line = function_start_line
                         is_first_non_empty_line = False
-                    if re.search('\w+ '+searched_node+'\(.*\) {', function_line):
+                    if re.search('\w+ ' + searched_node + '\(.*\) {', function_line):
                         not_found = False
                         not_eof = False
                 else:
@@ -394,14 +393,16 @@ class MyVisitor(ast.NodeVisitor):
                     function_variables_line = function_start_line
                     is_first_non_empty_line = True
             if not_found is False:
-                self.add_function(function_line, searched_node, function_variables_line, function_start_line, is_first_search, halduino)
+                self.add_function(function_line, searched_node, function_variables_line, function_start_line,
+                                  is_first_search, halduino)
             else:
-                if is_first_search and not searched_node == 'setup':
+                if is_first_search and not searched_node == strings.SETUP:
                     print('Function not found for this robot! ' + searched_node)
                     halduino.close()
                     exit()
 
-    def add_function(self, function_line, searched_node, function_variables_line, function_start_line, is_first_search, halduino):
+    def add_function(self, function_line, searched_node, function_variables_line, function_start_line, is_first_search,
+                     halduino):
         function_string = ''
         end_of_function = False
         while not end_of_function:
@@ -411,7 +412,8 @@ class MyVisitor(ast.NodeVisitor):
                 function_name = re.search('\w+\(', function_line)
                 function_name = re.search('\w+', function_name.group(0))
                 if function_name.group(0) not in vars.functions:
-                    self.search_for_function(vars.halduino_directory + robot, function_name.group(0), is_first_search=False)
+                    self.search_for_function(vars.halduino_directory + robot, function_name.group(0),
+                                             is_first_search=False)
             l = function_line.rstrip()
             end_of_function = not l or len(function_line) <= 0
         vars.functions[searched_node] = function_string
@@ -427,23 +429,21 @@ class MyVisitor(ast.NodeVisitor):
             halduino.close()
 
     def visit_For(self, node):
-        print('For!')
-        print('Target: ' + str(node.target))
         vars.function_def += 'for(int '
         vars.is_for = True
         vars.for_index = 0
-        print('NODE For : ' + str(type(node)))
+        print(strings.NODE_FOR + str(type(node)))
         ast.NodeVisitor.generic_visit(self, node)
         vars.function_def += '}\n'
         vars.for_index = 0
         vars.is_for = False
 
     def visit_UnaryOp(self, node):
-        print('NODE UnaryOp: ' + str(type(node)))
+        print(strings.NODE_UNARYOP + str(type(node)))
         ast.NodeVisitor.generic_visit(self, node)
 
     def visit_Slice(self, node):
-        print('NODE Slice: ' + str(type(node.value)))
+        print(strings.NODE_SLICE + str(type(node.value)))
         ast.NodeVisitor.generic_visit(self, node)
 
     def visit_Gt(self, node):
@@ -451,21 +451,18 @@ class MyVisitor(ast.NodeVisitor):
             vars.call_def += ' > '
         else:
             vars.function_def += ' > '
-        print('Greater than')
 
     def visit_Lt(self, node):
         if vars.call_def != '':
             vars.call_def += ' < '
         else:
             vars.function_def += ' < '
-        print('Lower than')
 
     def visit_LtE(self, node):
         if vars.call_def != '':
             vars.call_def += ' <= '
         else:
             vars.function_def += ' <= '
-        print('Lower than equal')
 
     def visit_Eq(self, node):
         vars.call_index = 0
@@ -473,7 +470,6 @@ class MyVisitor(ast.NodeVisitor):
             vars.call_def += ' == '
         else:
             vars.function_def += ' == '
-        print('Equal')
 
     def visit_Div(self, node):
         vars.call_index = 0
@@ -516,40 +512,40 @@ class MyVisitor(ast.NodeVisitor):
             vars.function_def += ' % '
 
     def visit_And(self, node):
+        print(strings.NODE_AND + str(type(node)) + str(len(vars.bool_op)))
         vars.bool_op.append(' && ')
-        print('NODE And: ' + str(type(node)) + str(len(vars.bool_op)))
         ast.NodeVisitor.generic_visit(self, node)
 
     def visit_Or(self, node):
+        print(strings.NODE_OR + str(type(node)) + str(len(vars.bool_op)))
         vars.bool_op.append(' || ')
-        print('NODE Or: ' + str(type(node)) + str(len(vars.bool_op)))
         ast.NodeVisitor.generic_visit(self, node)
 
     def visit_BoolOp(self, node):
-        print('NODE boolOp: ' + str(type(node)))
+        print(strings.NODE_BOOLOP + str(type(node)))
         ast.NodeVisitor.generic_visit(self, node)
 
     def visit_Load(self, node):
-        print('NODE Load: ' + str(type(node)))
+        print(strings.NODE_LOAD + str(type(node)))
         ast.NodeVisitor.generic_visit(self, node)
 
     def visit_USub(self, node):
+        print(strings.NODE_USUB + str(type(node)))
         vars.var_sign += '-'
-        print('NODE USub: ' + str(type(node)))
         ast.NodeVisitor.generic_visit(self, node)
 
     def visit_Is(self, node):
+        print(strings.NODE_IS + str(type(node)))
         vars.function_def += ' == '
-        print('NODE Is: ' + str(type(node)))
         ast.NodeVisitor.generic_visit(self, node)
 
     def visit_IsNot(self, node):
+        print(strings.NODE_IS_NOT + str(type(node)))
         vars.function_def += ' != '
-        print('NODE IsNot: ' + str(type(node)))
         ast.NodeVisitor.generic_visit(self, node)
 
     def visit_Pass(self, node):
-        print('NODE Pass: ' + str(type(node)))
+        print(strings.NODE_PASS + str(type(node)))
         ast.NodeVisitor.generic_visit(self, node)
 
     def dyn_variable_creation(self, var_name, var_type, value):
@@ -568,61 +564,9 @@ class MyVisitor(ast.NodeVisitor):
             if vars.function_def[-1:] == ',':
                 vars.function_def = vars.function_def[:-1]
 
-if __name__ == "__main__":
-    output_filename = 'output.ino'
 
-    print('ARGS: ' + str(len(sys.argv)))
-
-    if len(sys.argv) == 3:
-        input_filename = sys.argv[1]
-        robot = sys.argv[2]
-    else:
-        print('Usage: ')
-        print('python3 translator/Translator.py [input-file] [robot]')
-        sys.exit(0)
-
-    print('FILENAME: ' + input_filename)
-    print('ROBOT: ' + robot)
+def create_output():
     output = open('output.ino', 'w+')
-    controller_file = open(input_filename).read()
-    parsed_file = ast.parse(controller_file)
-    vars.Variables()
-    MyVisitor().visit(parsed_file)
-
-    # Architectural stop declaration
-    MyVisitor().search_for_function(vars.halduino_directory + robot, 'architecturalStop')
-    MyVisitor().search_for_function(vars.halduino_directory + robot, 'setup')
-
-    if 'setup' not in vars.functions:
-        vars.functions['setup'] = 'void setup() {\n'
-        for key, value in vars.setup_statements.items():
-            vars.functions['setup'] += value
-        vars.functions['setup'] += '}\n'
-    elif vars.setup_statements:
-        setup = vars.functions['setup']
-        counter = 0
-        setup = setup.split("\n")
-        new_setup = ''
-        while setup[counter] != '}':
-            new_setup += setup[counter] + '\n'
-            counter += 1
-        for key, value in vars.setup_statements.items():
-            new_setup += value + '\n'
-        new_setup += '}\n'
-        print(new_setup)
-        vars.functions['setup'] = new_setup
-
-    if 'loop' not in vars.functions:
-        vars.functions['loop'] = '''void loop() {
-}\n'''
-
-    variables_manager = ''
-    for line in open('Halduino/variables_manager.ino', 'r'):
-        if re.search('#include', line):
-            vars.libraries[line] = line
-        else:
-            variables_manager += line
-
     for key, value in vars.libraries.items():
         output.write(value)
     output.write('\n')
@@ -632,9 +576,10 @@ if __name__ == "__main__":
     for key, value in vars.functions.items():
         output.write(value)
         output.write('\n')
-
-    print()
     output.close()
+
+
+def create_makefile(robot):
     operating_system = platform.system()
     makefile_parameters = []
     if operating_system == 'Darwin':
@@ -653,38 +598,96 @@ if __name__ == "__main__":
         print('Linux')
 
     arduino_libs = ''
-    if robot == 'ComplubotMotor' or robot == 'CompluBotMotor':
+    if robot in strings.complubot_motor:
         board = 'robotMotor'
         arduino_libs = 'Robot_Motor Wire SPI'
-    elif robot == 'ComplubotControl' or robot == 'CompluBotControl':
+        port = '/dev/tty.usbmodem*'
+    elif robot in strings.complubot_control:
         board = 'robotControl'
         arduino_libs = 'Robot_Control Wire SPI'
-    elif robot == 'MBot' or robot == 'mBot':
+        port = '/dev/tty.usbmodem*'
+    elif robot in strings.mbot:
         board = 'uno'
         arduino_libs = 'Makeblock-Libraries-master Wire SPI'
+        port = '/dev/cu.wchusbserial1420'
     else:
         board = 'uno'
-
-    file_directory = getcwd() + '/'
-    try:
-        rmtree('output')
-    except FileNotFoundError:
-        print('Folder doesn\'t exists')
-
-    makedirs('output')
-    chdir('output')
-    move(file_directory + output_filename, getcwd() + '/' + output_filename)
+        port = '/dev/tty.usbmodem*'
     makefile = open(getcwd() + '/' + 'Makefile', 'w+')
     makefile.write('ARDUINO_DIR   = ' + arduino_dir + '\n')
     if arduino_libs:
         makefile.write('ARDUINO_LIBS= ' + arduino_libs + '\n')
-    if robot == 'MBot' or robot == 'mBot':
-        makefile.write('MONITOR_PORT  = /dev/cu.wchusbserial1420\n')
-    else:
-        makefile.write('MONITOR_PORT  = /dev/tty.usbmodem*\n')
+    makefile.write('MONITOR_PORT= ' + port + '\n')
     makefile.write('BOARD_TAG = ' + board + '\n')
     for parameter in makefile_parameters:
         makefile.write(parameter)
     makefile.close()
+
+
+if __name__ == "__main__":
+    output_filename = 'output.ino'
+
+    print('ARGS: ' + str(len(sys.argv)))
+
+    if len(sys.argv) == 3:
+        input_filename = sys.argv[1]
+        robot = sys.argv[2]
+    else:
+        print('Usage: ')
+        print('python3 translator/Translator.py [input-file] [robot]')
+        sys.exit(0)
+
+    print('FILENAME: ' + input_filename)
+    print('ROBOT: ' + robot)
+    controller_file = open(input_filename).read()
+    parsed_file = ast.parse(controller_file)
+    vars.Variables()
+    TranslatorVisitor().visit(parsed_file)
+
+    # Architectural stop declaration
+    TranslatorVisitor().search_for_function(vars.halduino_directory + robot, 'architecturalStop')
+    TranslatorVisitor().search_for_function(vars.halduino_directory + robot, strings.SETUP)
+
+    if strings.SETUP not in vars.functions:
+        vars.functions[strings.SETUP] = 'void setup() {\n'
+        for key, value in vars.setup_statements.items():
+            vars.functions[strings.SETUP] += value
+        vars.functions[strings.SETUP] += '}\n'
+    elif vars.setup_statements:
+        setup = vars.functions[strings.SETUP]
+        counter = 0
+        setup = setup.split("\n")
+        new_setup = ''
+        while setup[counter] != '}':
+            new_setup += setup[counter] + '\n'
+            counter += 1
+        for key, value in vars.setup_statements.items():
+            new_setup += value + '\n'
+        new_setup += '}\n'
+        print(new_setup)
+        vars.functions[strings.SETUP] = new_setup
+
+    if strings.LOOP not in vars.functions:
+        vars.functions[strings.LOOP] = '''void loop() {
+}\n'''
+
+    variables_manager = ''
+    for line in open('Halduino/variables_manager.ino', 'r'):
+        if re.search('#include', line):
+            vars.libraries[line] = line
+        else:
+            variables_manager += line
+
+    create_output()
+    file_directory = getcwd() + '/'
+    try:
+        rmtree(strings.OUTPUT)
+    except FileNotFoundError:
+        print('Folder doesn\'t exists')
+
+    makedirs(strings.OUTPUT)
+    chdir(strings.OUTPUT)
+    move(file_directory + output_filename, getcwd() + '/' + output_filename)
+    create_makefile(robot)
     call(['make'])
     call(['make', 'upload'])
