@@ -30,6 +30,7 @@ class Variables:
         global is_while
         global libraries
         global parentheses
+        global scope_variables
         global setup_statements
         global variable_def
         global variables_counter
@@ -63,6 +64,7 @@ class Variables:
         is_while = False
         libraries = {}
         parentheses = 0
+        scope_variables = []
         setup_statements = {}
         variable_def = ''
         variables_counter = 0

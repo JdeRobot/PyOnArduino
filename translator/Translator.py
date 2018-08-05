@@ -111,6 +111,7 @@ class TranslatorVisitor(ast.NodeVisitor):
         vars.function_def = node.name + '('
         print(strings.FUNCTION_DEF + str(node.name))
         print(strings.NODE_ARGS + str(type(node.args)))
+        vars.scope_variables = []
         ast.NodeVisitor.generic_visit(self, node)
         vars.brackets -= 1
         vars.function_def += '}\n'
@@ -549,7 +550,11 @@ class TranslatorVisitor(ast.NodeVisitor):
         ast.NodeVisitor.generic_visit(self, node)
 
     def dyn_variable_creation(self, var_name, var_type, value):
-        definition = 'DynType ' + var_name + ';'
+        if var_name in vars.scope_variables:
+            definition = ''
+        else:
+            vars.scope_variables.append(var_name)
+            definition = 'DynType ' + var_name + ';'
         definition += var_name + '.tvar = ' + var_type + ';'
         definition += 'String har' + str(vars.variables_counter) + ' = "' + value + '";'
         definition += 'har' + str(vars.variables_counter) + '.toCharArray(' + var_name + '.data, MinTypeSz);\n'
@@ -577,6 +582,15 @@ def create_output():
         output.write(value)
         output.write('\n')
     output.close()
+    file_directory = getcwd() + '/'
+    try:
+        rmtree(strings.OUTPUT)
+    except FileNotFoundError:
+        print('Folder doesn\'t exists')
+
+    makedirs(strings.OUTPUT)
+    chdir(strings.OUTPUT)
+    move(file_directory + output_filename, getcwd() + '/' + output_filename)
 
 
 def create_makefile(robot):
@@ -646,7 +660,6 @@ if __name__ == "__main__":
         for key, value in vars.setup_statements.items():
             new_setup += value + '\n'
         new_setup += '}\n'
-        print(new_setup)
         vars.functions[strings.SETUP] = new_setup
 
     if strings.LOOP not in vars.functions:
@@ -654,22 +667,13 @@ if __name__ == "__main__":
 }\n'''
 
     variables_manager = ''
-    for line in open('Halduino/variables_manager.ino', 'r'):
+    for line in open('Halduino/variablesManager.ino', 'r'):
         if re.search('#include', line):
             vars.libraries[line] = line
         else:
             variables_manager += line
 
     create_output()
-    file_directory = getcwd() + '/'
-    try:
-        rmtree(strings.OUTPUT)
-    except FileNotFoundError:
-        print('Folder doesn\'t exists')
-
-    makedirs(strings.OUTPUT)
-    chdir(strings.OUTPUT)
-    move(file_directory + output_filename, getcwd() + '/' + output_filename)
     create_makefile(robot)
     call(['make'])
     call(['make', 'upload'])

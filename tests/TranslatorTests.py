@@ -5,7 +5,6 @@ import translator.Translator as translator
 try:
     import translator.TranslatorVariables as vars
     import translator.strings.TranslatorStrings as strings
-    vars.Variables()
 except ModuleNotFoundError:
     print('Absolute import failed')
 
@@ -13,10 +12,9 @@ except ModuleNotFoundError:
 class TranslatorTests(unittest.TestCase):
     def setUp(self):
         global visitor
+        vars.Variables()
         translator.vars = vars
         translator.strings = strings
-        vars.function_def = ''
-        vars.variables_counter = 0
         translator.robot = 'ComplubotControl'
         vars.halduino_directory = '../HALduino/halduino'
         visitor = translator.TranslatorVisitor()
@@ -210,6 +208,17 @@ if (array[0] && array[1]) {
 DynType var1;var1.tvar = STR;String har1 = "Hello";har1.toCharArray(var1.data, MinTypeSz);
 Serial.print(var1.data);
    }
+}
+'''
+        self.assertEqual(expected_statement, vars.function_def)
+
+    def test_variable_reassignment(self):
+        self.translate_string('''def loop():
+            melody = "8eF-FFga4b.a.g.F.8beee-d2e.1-"
+            melody = 1''')
+        expected_statement = '''void loop() {
+DynType melody;melody.tvar = STR;String har0 = "8eF-FFga4b.a.g.F.8beee-d2e.1-";har0.toCharArray(melody.data, MinTypeSz);
+melody.tvar = INT;String har1 = "1";har1.toCharArray(melody.data, MinTypeSz);
 }
 '''
         self.assertEqual(expected_statement, vars.function_def)
