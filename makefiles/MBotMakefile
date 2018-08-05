@@ -1,0 +1,3 @@
+ARDUINO_LIBS= Makeblock-Libraries-master Wire SPI
+MONITOR_PORT= /dev/cu.wchusbserial1420
+BOARD_TAG = uno

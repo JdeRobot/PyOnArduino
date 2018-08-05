@@ -2,12 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e72936ae-374a-42ae-8588-539f897332c5" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/translator/strings/TranslatorStrings.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/makefiles/ComplubotControlMakefile" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/makefiles/ComplubotMotorMakefile" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/makefiles/MBotMakefile" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/makefiles/SergioRobotMakefile" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/ComplubotExampleTests.py" afterPath="$PROJECT_DIR$/tests/ComplubotExampleTests.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/SergioRobotExampleTests.py" afterPath="$PROJECT_DIR$/tests/SergioRobotExampleTests.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/TranslatorTests.py" afterPath="$PROJECT_DIR$/tests/TranslatorTests.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/translator/Translator.py" afterPath="$PROJECT_DIR$/translator/Translator.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/translator/strings/TranslatorStrings.py" afterPath="$PROJECT_DIR$/translator/strings/TranslatorStrings.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -29,11 +30,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Translator.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Translator.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/translator/Translator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="10320">
-              <caret line="688" column="18" lean-forward="false" selection-start-line="688" selection-start-column="18" selection-end-line="688" selection-end-column="18" />
+            <state relative-caret-position="15">
+              <caret line="629" column="103" lean-forward="false" selection-start-line="629" selection-start-column="103" selection-end-line="629" selection-end-column="103" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -41,81 +42,21 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="ComplubotControlMakefile" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/makefiles/ComplubotControlMakefile">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="TranslatorStrings.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/translator/strings/TranslatorStrings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="34" column="9" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="9" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SergioRobotExampleTests.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/SergioRobotExampleTests.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="12" column="12" lean-forward="false" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ComplubotExampleTests.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/ComplubotExampleTests.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="33">
-              <caret line="6" column="58" lean-forward="true" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="58" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TranslatorTests.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/TranslatorTests.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="16" column="36" lean-forward="false" selection-start-line="16" selection-start-column="36" selection-end-line="16" selection-end-column="36" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TranslatorVariables.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/translator/TranslatorVariables.py">
-          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="60">
-              <caret line="4" column="26" lean-forward="true" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="26" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Makefile" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/output/Makefile">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="halduinoComplubotMotor.ino" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/HALduino/halduinoComplubotMotor.ino">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="halduinoComplubotControl.ino" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/HALduino/halduinoComplubotControl.ino">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+              <caret line="4" column="18" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -132,7 +73,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>setSpeedEngines</find>
       <find>global_variables</find>
       <find>void setup() {\n</find>
       <find>void setup() {\</find>
@@ -162,6 +102,7 @@
       <find>MyVisitor</find>
       <find>CALL_INDEX_NUM</find>
       <find>vars</find>
+      <find>open</find>
     </findStrings>
     <replaceStrings>
       <replace>&gt;</replace>
@@ -199,10 +140,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/examples/Complubot/lineFollow2Test.py" />
-        <option value="$PROJECT_DIR$/examples/Complubot/lineFollowNoLibraryTest.py" />
-        <option value="$PROJECT_DIR$/examples/SergioRobot/test.py" />
-        <option value="$PROJECT_DIR$/examples/SergioRobot/operations.py" />
         <option value="$PROJECT_DIR$/HALduino/general.ino" />
         <option value="$PROJECT_DIR$/examples/Complubot/BeepTest.py" />
         <option value="$PROJECT_DIR$/examples/Complubot/ScreenTextTest.py" />
@@ -242,14 +179,18 @@
         <option value="$PROJECT_DIR$/output/output.ino" />
         <option value="$PROJECT_DIR$/makefiles/MBot" />
         <option value="$PROJECT_DIR$/makefiles/ComplubotRobot" />
-        <option value="$PROJECT_DIR$/output/Makefile" />
         <option value="$PROJECT_DIR$/makefiles/ComplubotControl" />
         <option value="$PROJECT_DIR$/makefiles/SergioRobot" />
-        <option value="$PROJECT_DIR$/translator/strings/TranslatorStrings.py" />
-        <option value="$PROJECT_DIR$/translator/Translator.py" />
         <option value="$PROJECT_DIR$/tests/ComplubotExampleTests.py" />
         <option value="$PROJECT_DIR$/tests/SergioRobotExampleTests.py" />
         <option value="$PROJECT_DIR$/tests/TranslatorTests.py" />
+        <option value="$PROJECT_DIR$/makefiles/ComplubotMotorMakefile" />
+        <option value="$PROJECT_DIR$/output/Makefile" />
+        <option value="$PROJECT_DIR$/makefiles/ComplubotControlMakefile" />
+        <option value="$PROJECT_DIR$/makefiles/MBotMakefile" />
+        <option value="$PROJECT_DIR$/makefiles/SergioRobotMakefile" />
+        <option value="$PROJECT_DIR$/translator/strings/TranslatorStrings.py" />
+        <option value="$PROJECT_DIR$/translator/Translator.py" />
       </list>
     </option>
   </component>
@@ -489,13 +430,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1526995742446</updated>
-    </task>
-    <task id="LOCAL-00066" summary="Support for Robot Motor libraries in Complubot">
-      <created>1530795199847</created>
-      <option name="number" value="00066" />
-      <option name="presentableId" value="LOCAL-00066" />
-      <option name="project" value="LOCAL" />
-      <updated>1530795199848</updated>
     </task>
     <task id="LOCAL-00067" summary="Concat Strings translation">
       <created>1530797615979</created>
@@ -833,7 +767,14 @@
       <option name="project" value="LOCAL" />
       <updated>1533314722989</updated>
     </task>
-    <option name="localTasksCounter" value="115" />
+    <task id="LOCAL-00115" summary="Global strings to a new file">
+      <created>1533379465245</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL-00115" />
+      <option name="project" value="LOCAL" />
+      <updated>1533379465246</updated>
+    </task>
+    <option name="localTasksCounter" value="116" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -880,7 +821,7 @@
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21745351" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22031474" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891566" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41686746" sideWeight="0.5114449" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3698795" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -954,7 +895,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="StopnGo example for mBot implemented with support for the engines and ultrasonic sensor given" />
     <MESSAGE value="HitnRotate test added to mBot examples" />
     <MESSAGE value="LedsTest added with support for architecture stop using leds on mBot" />
     <MESSAGE value="mBot/Mbot support on command line" />
@@ -979,7 +919,8 @@
     <MESSAGE value="DynTypes creation to a separated function" />
     <MESSAGE value="unnecessary open call deleted" />
     <MESSAGE value="Unnecessary code deleted" />
-    <option name="LAST_COMMIT_MESSAGE" value="Unnecessary code deleted" />
+    <MESSAGE value="Global strings to a new file" />
+    <option name="LAST_COMMIT_MESSAGE" value="Global strings to a new file" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -995,28 +936,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/examples/Complubot/ScreenTextTest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="11" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/examples/SergioRobot/StopnGo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="22" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/examples/MBot/BuzzerTest2.py" />
-    <entry file="file://$PROJECT_DIR$/examples/MBot/SendMessageTest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="36" lean-forward="false" selection-start-line="6" selection-start-column="36" selection-end-line="6" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/examples/MBot/GetMessageTest.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -1235,30 +1154,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/output/output.ino">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="73" column="18" lean-forward="false" selection-start-line="73" selection-start-column="18" selection-end-line="73" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/makefiles/Generic" />
     <entry file="file://$PROJECT_DIR$/makefiles/MBot" />
-    <entry file="file://$PROJECT_DIR$/output/Makefile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/makefiles/SergioRobot" />
     <entry file="file://$PROJECT_DIR$/makefiles/ComplubotMotor" />
     <entry file="file://$PROJECT_DIR$/makefiles/ComplubotControl" />
     <entry file="file://$PROJECT_DIR$/translator/TranslatorVariables.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
-          <caret line="4" column="26" lean-forward="true" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="26" />
+          <caret line="4" column="26" lean-forward="false" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="26" />
           <folding />
         </state>
       </provider>
@@ -1271,18 +1175,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/translator/strings/TranslatorStrings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="34" column="9" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/ComplubotExampleTests.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="33">
-          <caret line="6" column="58" lean-forward="true" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="58" />
+        <state relative-caret-position="60">
+          <caret line="6" column="58" lean-forward="false" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="58" />
           <folding />
         </state>
       </provider>
@@ -1303,13 +1199,69 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/output/output.ino">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="73" column="18" lean-forward="false" selection-start-line="73" selection-start-column="18" selection-end-line="73" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/output/Makefile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/makefiles/ComplubotMotorMakefile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/makefiles/MBotMakefile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/makefiles/SergioRobotMakefile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/translator/strings/TranslatorStrings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="18" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/translator/Translator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="10320">
-          <caret line="688" column="18" lean-forward="false" selection-start-line="688" selection-start-column="18" selection-end-line="688" selection-end-column="18" />
+        <state relative-caret-position="15">
+          <caret line="629" column="103" lean-forward="false" selection-start-line="629" selection-start-column="103" selection-end-line="629" selection-end-column="103" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/makefiles/ComplubotControlMakefile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

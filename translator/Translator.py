@@ -597,28 +597,10 @@ def create_makefile(robot):
         makefile_parameters.append('include $(ARDMK_DIR)/Arduino.mk\n')
         print('Linux')
 
-    arduino_libs = ''
-    if robot in strings.complubot_motor:
-        board = 'robotMotor'
-        arduino_libs = 'Robot_Motor Wire SPI'
-        port = '/dev/tty.usbmodem*'
-    elif robot in strings.complubot_control:
-        board = 'robotControl'
-        arduino_libs = 'Robot_Control Wire SPI'
-        port = '/dev/tty.usbmodem*'
-    elif robot in strings.mbot:
-        board = 'uno'
-        arduino_libs = 'Makeblock-Libraries-master Wire SPI'
-        port = '/dev/cu.wchusbserial1420'
-    else:
-        board = 'uno'
-        port = '/dev/tty.usbmodem*'
     makefile = open(getcwd() + '/' + 'Makefile', 'w+')
+    for line in open('../makefiles/' + robot + 'Makefile', 'r'):
+        makefile.write(line)
     makefile.write('ARDUINO_DIR   = ' + arduino_dir + '\n')
-    if arduino_libs:
-        makefile.write('ARDUINO_LIBS= ' + arduino_libs + '\n')
-    makefile.write('MONITOR_PORT= ' + port + '\n')
-    makefile.write('BOARD_TAG = ' + board + '\n')
     for parameter in makefile_parameters:
         makefile.write(parameter)
     makefile.close()
@@ -645,7 +627,7 @@ if __name__ == "__main__":
     TranslatorVisitor().visit(parsed_file)
 
     # Architectural stop declaration
-    TranslatorVisitor().search_for_function(vars.halduino_directory + robot, 'architecturalStop')
+    TranslatorVisitor().search_for_function(vars.halduino_directory + robot, strings.ARCHITECTURAL_STOP)
     TranslatorVisitor().search_for_function(vars.halduino_directory + robot, strings.SETUP)
 
     if strings.SETUP not in vars.functions:

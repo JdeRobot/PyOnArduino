@@ -1,0 +1,3 @@
+ARDUINO_LIBS= Robot_Motor Wire SPI
+MONITOR_PORT= /dev/tty.usbmodem*
+BOARD_TAG = robotMotor

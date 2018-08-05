@@ -2,6 +2,7 @@
 SETUP = 'setup'
 LOOP = 'loop'
 OUTPUT = 'output'
+ARCHITECTURAL_STOP = 'architecturalStop'
 GENERIC_NODE = 'NODE generic: '
 STR_NODE = 'NODE Str: '
 NAME_NODE = 'NODE Name: '
