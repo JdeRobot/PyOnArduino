@@ -7,7 +7,11 @@ Python.
 Example of PyOnArduino in action. On this example, the same Python + PyOnArduino code is compiled and 
 uploaded to the robots and the behaviour is the same
 
-[![LINE_FOLLOW_EXAMPLE](https://img.youtube.com/vi/gK-LwSBi6co/0.jpg)](https://www.youtube.com/watch?v=gK-LwSBi6co)
+<p align="center">
+    <a href="https://www.youtube.com/watch?v=gK-LwSBi6co">
+    <img src="https://img.youtube.com/vi/gK-LwSBi6co/0.jpg" alt="Sublime's custom image"/>
+    </a>
+</p>
 
 ## Requirements and installation
 + Python 3.6 [Download](https://www.python.org/downloads/)
