@@ -3,6 +3,11 @@ The purpose of PyOnArduino is to create a tool that can translate Python-like co
 pursue this target in order to program an educational robot that uses an Arduino microprocessor using 
 Python.
 
+##Example
+Example of PyOnArduino in action. On this example, the same Python + PyOnArduino code is compiled and 
+uploaded to the robots and the behaviour is the same
+[![LINE_FOLLOW_EXAMPLE](https://img.youtube.com/vi/gK-LwSBi6co/0.jpg)](https://www.youtube.com/watch?v=gK-LwSBi6co)
+
 ## Requirements and installation
 + Python 3.6 [Download](https://www.python.org/downloads/)
 + Arduino IDE [Download](https://www.arduino.cc/en/Main/Software)

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e72936ae-374a-42ae-8588-539f897332c5" name="Default" comment="">
+    <list default="true" id="e72936ae-374a-42ae-8588-539f897332c5" name="Default" comment="Example video ad">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
@@ -19,8 +19,8 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="288">
-                <caret line="83" column="110" lean-forward="false" selection-start-line="83" selection-start-column="110" selection-end-line="83" selection-end-column="110" />
+              <first_editor relative-caret-position="105">
+                <caret line="7" column="52" lean-forward="false" selection-start-line="7" selection-start-column="52" selection-end-line="7" selection-end-column="52" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -451,13 +451,6 @@
       <option name="presentableId" value="Default" />
       <updated>1526995742446</updated>
     </task>
-    <task id="LOCAL-00070" summary="Makefile improved support for Linux and Windows">
-      <created>1531133117296</created>
-      <option name="number" value="00070" />
-      <option name="presentableId" value="LOCAL-00070" />
-      <option name="project" value="LOCAL" />
-      <updated>1531133117296</updated>
-    </task>
     <task id="LOCAL-00071" summary="Makefile improved support for Linux and Windows">
       <created>1531133579296</created>
       <option name="number" value="00071" />
@@ -794,7 +787,14 @@
       <option name="project" value="LOCAL" />
       <updated>1533568817254</updated>
     </task>
-    <option name="localTasksCounter" value="119" />
+    <task id="LOCAL-00119" summary="README.md updated">
+      <created>1533568933503</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
+      <option name="project" value="LOCAL" />
+      <updated>1533568933503</updated>
+    </task>
+    <option name="localTasksCounter" value="120" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -840,6 +840,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2067239" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891566" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1277,8 +1278,8 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="288">
-            <caret line="83" column="110" lean-forward="false" selection-start-line="83" selection-start-column="110" selection-end-line="83" selection-end-column="110" />
+          <first_editor relative-caret-position="105">
+            <caret line="7" column="52" lean-forward="false" selection-start-line="7" selection-start-column="52" selection-end-line="7" selection-end-column="52" />
             <folding />
           </first_editor>
           <second_editor />
