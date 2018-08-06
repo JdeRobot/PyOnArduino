@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e72936ae-374a-42ae-8588-539f897332c5" name="Default" comment="Example video ad">
+    <list default="true" id="e72936ae-374a-42ae-8588-539f897332c5" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
@@ -19,8 +19,8 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="105">
-                <caret line="7" column="52" lean-forward="false" selection-start-line="7" selection-start-column="52" selection-end-line="7" selection-end-column="52" />
+              <first_editor relative-caret-position="120">
+                <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -451,13 +451,6 @@
       <option name="presentableId" value="Default" />
       <updated>1526995742446</updated>
     </task>
-    <task id="LOCAL-00071" summary="Makefile improved support for Linux and Windows">
-      <created>1531133579296</created>
-      <option name="number" value="00071" />
-      <option name="presentableId" value="LOCAL-00071" />
-      <option name="project" value="LOCAL" />
-      <updated>1531133579296</updated>
-    </task>
     <task id="LOCAL-00072" summary="Makefile improved support for Linux">
       <created>1531134391708</created>
       <option name="number" value="00072" />
@@ -794,7 +787,14 @@
       <option name="project" value="LOCAL" />
       <updated>1533568933503</updated>
     </task>
-    <option name="localTasksCounter" value="120" />
+    <task id="LOCAL-00120" summary="Example video added README.md">
+      <created>1533569334259</created>
+      <option name="number" value="00120" />
+      <option name="presentableId" value="LOCAL-00120" />
+      <option name="project" value="LOCAL" />
+      <updated>1533569334260</updated>
+    </task>
+    <option name="localTasksCounter" value="121" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -916,7 +916,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="mBot/Mbot support on command line" />
     <MESSAGE value="Buzzer example" />
     <MESSAGE value="ButtonTest and support for is and isnot in translator" />
     <MESSAGE value="Light sensor support and example for mBot" />
@@ -941,7 +940,8 @@
     <MESSAGE value="Makefiles separed from main script" />
     <MESSAGE value="Custom architecture for robots" />
     <MESSAGE value="README.md updated" />
-    <option name="LAST_COMMIT_MESSAGE" value="README.md updated" />
+    <MESSAGE value="Example video added README.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="Example video added README.md" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1278,8 +1278,8 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="105">
-            <caret line="7" column="52" lean-forward="false" selection-start-line="7" selection-start-column="52" selection-end-line="7" selection-end-column="52" />
+          <first_editor relative-caret-position="120">
+            <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
             <folding />
           </first_editor>
           <second_editor />

@@ -6,6 +6,7 @@ Python.
 ##Example
 Example of PyOnArduino in action. On this example, the same Python + PyOnArduino code is compiled and 
 uploaded to the robots and the behaviour is the same
+
 [![LINE_FOLLOW_EXAMPLE](https://img.youtube.com/vi/gK-LwSBi6co/0.jpg)](https://www.youtube.com/watch?v=gK-LwSBi6co)
 
 ## Requirements and installation
