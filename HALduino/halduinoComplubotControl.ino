@@ -16,6 +16,7 @@ void stopMachine() {
     }
 }
 
+unsigned char ultrasonicSensor = TK2;
 int getUS() {
   long anVolt, inches, cm;
   int sum = 0; //Create sum variable so it can be averaged
@@ -25,7 +26,7 @@ int getUS() {
     //Used to read in the analog voltage output that is being sent by the MaxSonar device.
     //Scale factor is (Vcc/512) per inch. A 5V supply yields ~9.8mV/in
     //Arduino analog pin goes from 0 to 1024, so the value has to be divided by 2 to get the actual inches
-    anVolt = Robot.analogRead(TK2) / 2;
+    anVolt = Robot.analogRead(ultrasonicSensor) / 2;
     sum += anVolt;
     delay(10);
   }

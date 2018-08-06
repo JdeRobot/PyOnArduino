@@ -339,7 +339,8 @@ class TranslatorVisitor(ast.NodeVisitor):
             vars.function_def += '}\n'
 
     def visit_Compare(self, node):
-        print('NODE Compare 1: ' + str(type(node.left)) +  ' ' + str(type(node.ops[0])) +  ' ' + str(type(node.comparators)))
+        print(strings.NODE_COMPARE + str(type(node.left)) + ' ' + str(type(node.ops[0])) + ' ' + str(
+            type(node.comparators)))
         if isinstance(node.left, ast.Call):
             vars.is_comparision = True
         else:
@@ -401,6 +402,7 @@ class TranslatorVisitor(ast.NodeVisitor):
                     print('Function not found for this robot! ' + searched_node)
                     halduino.close()
                     exit()
+        halduino.close()
 
     def add_function(self, function_line, searched_node, function_variables_line, function_start_line, is_first_search,
                      halduino):
@@ -409,12 +411,11 @@ class TranslatorVisitor(ast.NodeVisitor):
         while not end_of_function:
             function_string += function_line
             function_line = halduino.readline()
-            if re.search('\w+\(((\w+, )*\w+)*\)', function_line) and not re.search('\.', function_line):
-                function_name = re.search('\w+\(', function_line)
-                function_name = re.search('\w+', function_name.group(0))
-                if function_name.group(0) not in vars.functions:
-                    self.search_for_function(vars.halduino_directory + robot, function_name.group(0),
-                                             is_first_search=False)
+            if re.search(strings.REGEX_IS_FUNCTION, function_line) and not re.search(strings.REGEX_HAS_DOT,
+                                                                                     function_line):
+                function_name = re.search(strings.REGEX_FUNCTION_NAME, function_line).group(0)[:-1]
+                if function_name not in vars.functions:
+                    self.search_for_function(vars.halduino_directory + robot, function_name, is_first_search=False)
             l = function_line.rstrip()
             end_of_function = not l or len(function_line) <= 0
         vars.functions[searched_node] = function_string
@@ -422,12 +423,33 @@ class TranslatorVisitor(ast.NodeVisitor):
             halduino.seek(0)
             for i, line in enumerate(halduino):
                 if function_variables_line - 1 <= i < function_start_line - 1:
-                    if re.search('[^ ]\w+\(', line) and not re.search('\w+ \w+\(', line):
+                    if re.search(strings.REGEX_SETUP_STATEMENT, line) and not re.search(strings.REGEX_VARIABLE, line):
                         vars.setup_statements[line] = line
                     else:
-                        vars.global_variables[line] = line
+                        vars.global_variables[line] = self.search_architecture(line)
         if is_first_search:
             halduino.close()
+
+    def search_architecture(self, line):
+        if robot_architecture:
+            architecture_variable = re.search(strings.REGEX_ARCHITECTURE_VARIABLE, line)
+            if architecture_variable:
+                match = re.search(strings.REGEX_ARCHITECTURE_VARIABLE_2, architecture_variable.group(0))
+                for architecture_line in open(robot_architecture, 'r'):
+                    if (re.search(match.group(0), architecture_line)):
+                        value = re.search(strings.REGEX_VARIABLE_VALUE, architecture_line)
+                        new_line = ''
+                        for letter in line:
+                            if letter != '(' and letter != '=':
+                                new_line += letter
+                            else:
+                                if letter == '(':
+                                    new_line += '(' + value.group(0)[1:] + ');\n'
+                                else:
+                                    new_line += '= ' + value.group(0)[1:] + ';\n'
+                                break
+                        line = new_line
+        return line
 
     def visit_For(self, node):
         vars.function_def += 'for(int '
@@ -628,6 +650,11 @@ if __name__ == "__main__":
     if len(sys.argv) == 3:
         input_filename = sys.argv[1]
         robot = sys.argv[2]
+        robot_architecture = ''
+    elif len(sys.argv) == 4:
+        input_filename = sys.argv[1]
+        robot = sys.argv[2]
+        robot_architecture = sys.argv[3]
     else:
         print('Usage: ')
         print('python3 translator/Translator.py [input-file] [robot]')

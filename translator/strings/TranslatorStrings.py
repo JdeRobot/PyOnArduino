@@ -34,6 +34,15 @@ NODE_USUB = 'NODE USub: '
 NODE_IS = 'NODE Is: '
 NODE_IS_NOT = 'NODE IsNot: '
 NODE_PASS = 'NODE Pass: '
+NODE_COMPARE = 'NODE Compare: '
+REGEX_IS_FUNCTION = '\w+\(((\w+, )*\w+)*\)'
+REGEX_HAS_DOT = '\.'
+REGEX_FUNCTION_NAME = '\w+\('
+REGEX_SETUP_STATEMENT = '[^ ]\w+\('
+REGEX_VARIABLE = '\w+ \w+\('
+REGEX_ARCHITECTURE_VARIABLE = '(\w+\()|(\w+ =)'
+REGEX_ARCHITECTURE_VARIABLE_2 = '\w+'
+REGEX_VARIABLE_VALUE = ' \w+'
 complubot_motor = {'ComplubotMotor', 'CompluBotMotor'}
 complubot_control = {'ComplubotControl', 'CompluBotControl'}
 mbot = {'MBot', 'mBot'}

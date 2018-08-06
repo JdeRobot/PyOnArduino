@@ -1,0 +1,8 @@
+
+leftMotor = 9
+rightMotor = 10
+ultrasonic = 3
+rgbled = 7
+lightSensor = 6
+ledMtx = 3
+lineFollower = 2

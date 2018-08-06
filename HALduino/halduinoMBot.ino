@@ -38,11 +38,11 @@ void stopMachine() {
     }
 }
 
-MeDCMotor motor_9(9);
-MeDCMotor motor_10(10);
+MeDCMotor leftMotor(9);
+MeDCMotor rightMotor(10);
 void setSpeedEngines(DynType speedLeft, DynType speedRight) {
-    motor_9.run(-atoi(speedLeft.data));
-    motor_10.run(atoi(speedRight.data));
+    leftMotor.run(-atoi(speedLeft.data));
+    rightMotor.run(atoi(speedRight.data));
 }
 
 MeUltrasonicSensor ultrasonic(3);
@@ -50,7 +50,7 @@ int getUS() {
     return ultrasonic.distanceCm();
 }
 
-MeRGBLed rgbled(7, 2);
+MeRGBLed rgbled(7);
 void setLeds(DynType ledNumber, DynType red, DynType green, DynType blue) {
     rgbled.setColor(atoi(ledNumber.data),atoi(red.data),atoi(green.data),atoi(blue.data));
     rgbled.show();

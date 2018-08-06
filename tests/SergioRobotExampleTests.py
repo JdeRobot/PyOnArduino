@@ -16,6 +16,7 @@ class SergioExamplesTests(unittest.TestCase):
         translator.vars = vars
         translator.strings = strings
         vars.halduino_directory = '../HALduino/halduino'
+        translator.robot_architecture = ''
         translator.robot = 'SergioRobot'
         visitor = translator.TranslatorVisitor()
 

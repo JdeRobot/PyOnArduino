@@ -16,6 +16,7 @@ class ComplubotExamplesTests(unittest.TestCase):
         translator.vars = vars
         translator.strings = strings
         translator.robot = 'ComplubotControl'
+        translator.robot_architecture = ''
         vars.halduino_directory = '../HALduino/halduino'
         visitor = translator.TranslatorVisitor()
 
