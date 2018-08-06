@@ -4,6 +4,7 @@ pursue this target in order to program an educational robot that uses an Arduino
 Python.
 
 ##Example
+
 Example of PyOnArduino in action. On this example, the same Python + PyOnArduino code is compiled and 
 uploaded to the robots and the behaviour is the same
 
