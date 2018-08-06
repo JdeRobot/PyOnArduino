@@ -79,6 +79,9 @@ so PyOnArduino can understand where to link them. Example:
     rgbled = 7
 ```
 To declare a sensor's port, just add the name + '=' + port name. 
+Example files:
+* [mBot](https://github.com/JdeRobot/PyOnArduino/blob/master/HALduino/mBotGeneralArchitecture)
+* [Complubot](https://github.com/JdeRobot/PyOnArduino/blob/master/HALduino/ComplubotControlGeneralArchitecture)
 #### Complubot port names
 * ultrasonicSensor
 
