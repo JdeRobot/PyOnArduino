@@ -3,7 +3,7 @@ The purpose of PyOnArduino is to create a tool that can translate Python-like co
 pursue this target in order to program an educational robot that uses an Arduino microprocessor using 
 Python.
 
-##Example
+## Example
 
 Example of PyOnArduino in action. On this example, the same Python + PyOnArduino code is compiled and 
 uploaded to the robots and the behaviour is the same
@@ -74,8 +74,6 @@ Pass | SUPPORTED
 Loops | for, while
 sleep() | SUPPORTED
 If | If/elif/else
-For | Working on it
-While | If/elif/else
 Arrays | Working on it
 Boolean operations | and or
 Tuples | Future work

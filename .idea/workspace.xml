@@ -19,8 +19,8 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="61">
-                <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+              <first_editor relative-caret-position="217">
+                <caret line="75" column="17" lean-forward="false" selection-start-line="75" selection-start-column="17" selection-end-line="75" selection-end-column="17" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -451,13 +451,6 @@
       <option name="presentableId" value="Default" />
       <updated>1526995742446</updated>
     </task>
-    <task id="LOCAL-00074" summary="README.md updated">
-      <created>1531157146609</created>
-      <option name="number" value="00074" />
-      <option name="presentableId" value="LOCAL-00074" />
-      <option name="project" value="LOCAL" />
-      <updated>1531157146610</updated>
-    </task>
     <task id="LOCAL-00075" summary="Dynamic types. Check type and try to stop machine">
       <created>1531497836553</created>
       <option name="number" value="00075" />
@@ -794,7 +787,14 @@
       <option name="project" value="LOCAL" />
       <updated>1533569633218</updated>
     </task>
-    <option name="localTasksCounter" value="123" />
+    <task id="LOCAL-00123" summary="README.md updated">
+      <created>1533569682219</created>
+      <option name="number" value="00123" />
+      <option name="presentableId" value="LOCAL-00123" />
+      <option name="project" value="LOCAL" />
+      <updated>1533569682219</updated>
+    </task>
+    <option name="localTasksCounter" value="124" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -939,9 +939,9 @@
     <MESSAGE value="Makefiles separed from main script" />
     <MESSAGE value="Custom architecture for robots" />
     <MESSAGE value="Example video added README.md" />
-    <MESSAGE value="README.md updated" />
     <MESSAGE value="README.md video centered" />
-    <option name="LAST_COMMIT_MESSAGE" value="README.md video centered" />
+    <MESSAGE value="README.md updated" />
+    <option name="LAST_COMMIT_MESSAGE" value="README.md updated" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1278,8 +1278,8 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="61">
-            <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <first_editor relative-caret-position="217">
+            <caret line="75" column="17" lean-forward="false" selection-start-line="75" selection-start-column="17" selection-end-line="75" selection-end-column="17" />
             <folding />
           </first_editor>
           <second_editor />
