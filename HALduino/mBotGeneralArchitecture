@@ -1,7 +1,7 @@
 
 leftMotor = 9
 rightMotor = 10
-ultrasonic = 3
+ultrasonicSensor = 3
 rgbled = 7
 lightSensor = 6
 ledMtx = 3

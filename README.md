@@ -11,11 +11,12 @@ Python.
 To execute the project 
 ```
     python3 translator/Translator.py [input-file] [robot]
+    python3 translator/Translator.py [input-file] [robot] [architecture-file]
 ```
 ## Robots supported
-* [Complubot](https://www.arduino.cc/en/Guide/Robot) (Arduino Robot) 
+* [Complubot](https://www.arduino.cc/en/Guide/Robot) (Arduino Robot)
+* [MBot](https://www.makeblock.com/steam-kits/mbot)
 * SergioRobot: This is an educational project not a real world development
-* More to be added soon...
 ## Features
 ### Sensors and actuators supported [WIP]
 
@@ -53,15 +54,42 @@ Functionality we are currently working on giving support to
 
 Feature | Limitations/Comments
 ----------------|---------------------
-Variable declaration      | Working on giving support to integer, boolean, float and double types. INPUT/OUTPUT variables have to be declared on top
-Function definition with return type | Argument types must be added on class definition. If no return type is provided, void is expected. This is made to be easier to understand by the translator
+Variable declaration      | SUPPORTED
+Function definition | With/without return statement 
 Operators | + - / * ^ %
+Comparators | < <= >= == != 
+Logic operators | and or is not
+Pass | SUPPORTED 
 Loops | for, while
 sleep() | SUPPORTED
 If | If/elif/else
-Arrays | Arrays can be defined given the types we already supported
+For | Working on it
+While | If/elif/else
+Arrays | Working on it
 Boolean operations | and or
 Tuples | Future work
+Range | Future work
+
+
+### Architecture file
+A robot's architecture file can be added when executing PyOnArduino. On this file, added sensors' port can be added, 
+so PyOnArduino can understand where to link them. Example: 
+```
+    ultrasonicSensor = TK2
+    rgbled = 7
+```
+To declare a sensor's port, just add the name + '=' + port name. 
+#### Complubot port names
+* ultrasonicSensor
+
+#### mBot port names
+* leftMotor
+* rightMotor
+* ultrasonicSensor
+* rgbled
+* lightSensor
+* ledMtx
+* lineFollower
 
 ### Example
 

@@ -45,9 +45,9 @@ void setSpeedEngines(DynType speedLeft, DynType speedRight) {
     rightMotor.run(atoi(speedRight.data));
 }
 
-MeUltrasonicSensor ultrasonic(3);
+MeUltrasonicSensor ultrasonicSensor(3);
 int getUS() {
-    return ultrasonic.distanceCm();
+    return ultrasonicSensor.distanceCm();
 }
 
 MeRGBLed rgbled(7);
