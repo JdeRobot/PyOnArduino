@@ -29,7 +29,7 @@ To execute the project
 * [MBot](https://www.makeblock.com/steam-kits/mbot)
 * SergioRobot: This is an educational project not a real world development
 ## Features
-### Sensors and actuators supported [WIP]
+### Sensors and actuators supported 
 
 #### Complubot
 Sensor/Actuator | Supported functions
@@ -60,7 +60,7 @@ DC Engines      | setSpeedEngine[1,2,3,4] (speed)
 Ultrasonic sensors | getUS()
 Infrared sensors | getIR[1,2,3,4,5] ()
 
-### Python features supported [WIP]
+### Python features supported
 Functionality we are currently working on giving support to
 
 Feature | Limitations/Comments
@@ -74,10 +74,10 @@ Pass | SUPPORTED
 Loops | for, while
 sleep() | SUPPORTED
 If | If/elif/else
-Arrays | Working on it
 Boolean operations | and or
-Tuples | Future work
-Range | Future work
+Arrays | Future proposal
+Tuples | Future proposal
+Range | Future proposal
 
 
 ### Architecture file
@@ -107,7 +107,7 @@ Example files:
 
 Examples available in [examples](https://github.com/JdeRobot/PyOnArduino/tree/master/examples) folder, check them out!
 
-### Problem with Complubot
+## Problem with Complubot
 
 There is a problem with Arduino Robot(Complubot). Sometimes when you upload a project it can make 
 the usb port stop working. If you ever get to this point, the solution is quite simple. Write an 
