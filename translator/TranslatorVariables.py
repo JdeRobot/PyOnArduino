@@ -10,7 +10,6 @@ class Variables:
         global call_def
         global call_index
         global direction
-        global for_index
         global functions
         global function_def
         global function_start_line
@@ -24,7 +23,6 @@ class Variables:
         global is_var_declaration
         global is_array
         global is_built_in_func
-        global is_for
         global is_if
         global is_variable
         global is_while
@@ -44,7 +42,6 @@ class Variables:
         call_def = ''
         call_index = 0
         direction = ''
-        for_index = 0
         functions = {}
         function_def = ''
         function_start_line = 0
@@ -58,7 +55,6 @@ class Variables:
         is_var_declaration = False
         is_array = False
         is_built_in_func = False
-        is_for = False
         is_if = False
         is_variable = False
         is_while = False

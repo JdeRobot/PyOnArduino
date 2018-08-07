@@ -71,7 +71,7 @@ Operators | + - / * ^ %
 Comparators | < <= >= == != 
 Logic operators | and or is not
 Pass | SUPPORTED 
-Loops | for, while
+Loops | while, for (future proposal)
 sleep() | SUPPORTED
 If | If/elif/else
 Boolean operations | and or

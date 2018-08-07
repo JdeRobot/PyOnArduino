@@ -97,12 +97,6 @@ class TranslatorVisitor(ast.NodeVisitor):
         elif vars.is_var_declaration:
             vars.variable_def += node.id
             vars.is_var_declaration = False
-        elif vars.is_for:
-            if vars.for_index == 0:
-                vars.function_def += ' = 0; sizeof('
-            elif vars.for_index == 1:
-                vars.function_def += '); x++) {\n'
-            vars.for_index += 1
 
         ast.NodeVisitor.generic_visit(self, node)
 
@@ -452,14 +446,8 @@ class TranslatorVisitor(ast.NodeVisitor):
         return line
 
     def visit_For(self, node):
-        vars.function_def += 'for(int '
-        vars.is_for = True
-        vars.for_index = 0
-        print(strings.NODE_FOR + str(type(node)))
-        ast.NodeVisitor.generic_visit(self, node)
-        vars.function_def += '}\n'
-        vars.for_index = 0
-        vars.is_for = False
+        print('For statements are not supported yet')
+        exit(0)
 
     def visit_UnaryOp(self, node):
         print(strings.NODE_UNARYOP + str(type(node)))
@@ -570,6 +558,14 @@ class TranslatorVisitor(ast.NodeVisitor):
     def visit_Pass(self, node):
         print(strings.NODE_PASS + str(type(node)))
         ast.NodeVisitor.generic_visit(self, node)
+
+    def visit_Set(self, node):
+        print('Arrays are not supported yet')
+        exit(0)
+
+    def visit_Tuple(self, node):
+        print('Tuples are not supported yet')
+        exit(0)
 
     def dyn_variable_creation(self, var_name, var_type, value):
         if var_name in vars.scope_variables:

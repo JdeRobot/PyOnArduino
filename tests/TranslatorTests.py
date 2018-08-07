@@ -117,41 +117,19 @@ Serial.print(var0.data);
         expected_statement = 'Serial.print((5 % 3));\n   '
         self.assertEqual(expected_statement, vars.function_def)
 
-    def test_string_array_declaration(self):
-        self.translate_string('array = [\'hello\', \'bye\']')
-        expected_statement = 'String array[] = {"hello","bye"};\n'
-        self.assertEqual(expected_statement, vars.function_def)
-
-    def test_boolean_array_declaration(self):
-        self.translate_string('array = [True, False, True]')
-        expected_statement = 'boolean array[] = {true,false,true};\n'
-        self.assertEqual(expected_statement, vars.function_def)
-
-    def test_float_array_declaration(self):
-        self.translate_string('array = [2.2, 3.4]')
-        expected_statement = 'float array[] = {2.2,3.4};\n'
-        self.assertEqual(expected_statement, vars.function_def)
 
     def test_integer_array_declaration(self):
         self.translate_string('array = [1,2,3,4]')
         expected_statement = 'int array[] = {1,2,3,4};\n'
         self.assertEqual(expected_statement, vars.function_def)
 
-    def test_print_string_array_index_0(self):
-        self.translate_string('print(array[0])')
-        expected_statement = 'Serial.print(array[0]);\n   '
-        self.assertEqual(expected_statement, vars.function_def)
 
     def test_for_print_array(self):
-        self.translate_string('''for x in array:
-        print(x)''')
-        expected_statement = '''for(int x = 0; sizeof(array); x++) {\nSerial.print(x);\n   }\n'''
-        '''
-        for(int  = 0; sizeof(); x++) {
-            Serial.print(x);
-       }
-        '''
-        self.assertEqual(expected_statement, vars.function_def)
+        with self.assertRaises(SystemExit) as error:
+            self.translate_string('''for x in array:
+                    print(x)''')
+
+        self.assertEqual(error.exception.code, 0)
 
     def test_function_def_print_strings(self):
         self.translate_string('''def print_name_surname(name: str, surname: str, second: str, another, thrid: int):
