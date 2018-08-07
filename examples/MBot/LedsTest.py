@@ -2,6 +2,7 @@ from time import sleep
 
 import HALduino.halduino as halduino
 
+
 def loop():
     halduino.setLeds(0, 150, 0, 0)
     sleep(500)

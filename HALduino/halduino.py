@@ -2,23 +2,23 @@ def getUS() -> int:
     pass
 
 
-def setSpeedEngine1(speed):
+def setSpeedEngine1(speed: int):
     pass
 
 
-def setSpeedEngine2(speed):
+def setSpeedEngine2(speed: int):
     pass
 
 
-def setSpeedEngine3(speed):
+def setSpeedEngine3(speed: int):
     pass
 
 
-def setSpeedEngine4(speed):
+def setSpeedEngine4(speed: int):
     pass
 
 
-def setSpeedEngines(speed1, speed2):
+def setSpeedEngines(leftSpeed: int, rightSpeed: int):
     pass
 
 
@@ -42,19 +42,19 @@ def getIR5() -> int:
     pass
 
 
-def lineFollow(KP, KD, robotSpeed, integrationTime):
+def lineFollow(KP: int, KD: int, robotSpeed: int, integrationTime: int):
     pass
 
 
-def playBeep(type):
+def playBeep(type: int):
     pass
 
 
-def playMelody(melody):
+def playMelody(melody: str):
     pass
 
 
-def setScreenText(text, x, y):
+def setScreenText(text: str, x: int, y: int):
     pass
 
 
@@ -62,41 +62,41 @@ def clearScreen():
     pass
 
 
-def setLeds(number, red, green, blue):
+def setLeds(number: int, red: int, green: int, blue: int):
     pass
 
 
-def playBuzzer(frequency, length):
+def playBuzzer(frequency: int, length: int):
     pass
 
 
-def isButtonPressed():
+def isButtonPressed() -> bool:
     pass
 
 
-def isButtonReleased():
+def isButtonReleased() -> bool:
     pass
 
 
-def getLightSensor():
+def getLightSensor() -> int:
     pass
 
 
-def sendMessage(message):
+def sendMessage(message: str):
     pass
 
 
-def getMessage():
+def getMessage() -> str:
     pass
 
 
-def showClock(hour, min):
+def showClock(hour: int, min: int):
     pass
 
 
-def drawString(string):
+def drawString(text: str):
     pass
 
 
-def getLineFollowValue():
+def getLineFollowValue() -> int:
     pass
