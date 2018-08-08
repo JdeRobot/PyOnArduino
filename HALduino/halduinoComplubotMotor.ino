@@ -2,10 +2,7 @@
 
 
 void architecturalStop() {
-    /*DynType errorX;errorX.tvar = INT;String x = "5";x.toCharArray(errorX.data, MinTypeSz);
-    DynType errorY;errorY.tvar = INT;String y = "5";y.toCharArray(errorY.data, MinTypeSz);
-    DynType var;var.tvar = STR;String errorString = "ERROR!!";errorString.toCharArray(var.data, MinTypeSz);
-    setScreenText(var, errorX, errorY);*/
+    Serial.println("ERROR");
 }
 
 void stopMachine() {
