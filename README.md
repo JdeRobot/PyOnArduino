@@ -58,10 +58,10 @@ Sensor/Actuator | Supported functions
 ----------------|---------------------
 DC Engines      | setSpeedEngine[1,2,3,4] (speed)
 Ultrasonic sensors | getUS()
-Infrared sensors | getIR[1,2,3,4,5] ()
+Infrared sensors | getIR[1,2] ()
 
 ### Python features supported
-Functionality we are currently working on giving support to
+Supported functionality
 
 Feature | Limitations/Comments
 ----------------|---------------------
