@@ -18,6 +18,7 @@ uploaded to the robots and the behaviour is the same
 + Python 3.6 [Download](https://www.python.org/downloads/)
 + Arduino IDE [Download](https://www.arduino.cc/en/Main/Software)
 + Arduino Makefile [Download and installation](https://github.com/sudar/Arduino-Makefile)
++ To execute on mBot you need to add Makeblock libraries to the Arduino IDE following [this repo](https://github.com/Makeblock-official/Makeblock-Libraries)
 
 To execute the project 
 ```
