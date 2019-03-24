@@ -120,11 +120,6 @@ class TranslatorVisitor(ast.NodeVisitor):
             vars.functions[node.name] = vars.function_def
 
     def visit_Expr(self, node):
-        if node == vars.direction:
-            vars.function_def += '} else {\n'
-        if vars.is_if:
-            vars.function_def += ') {\n'
-            vars.is_if = False
         print(strings.NODE_EXPR + str(type(node)))
         ast.NodeVisitor.generic_visit(self, node)
 
@@ -311,26 +306,21 @@ class TranslatorVisitor(ast.NodeVisitor):
             vars.bool_op = vars.bool_op[:-1]
 
     def visit_If(self, node):
-        vars.is_if = True
-        global_if = True
-        if vars.has_else_part:
-            global_if = False
-            vars.function_def += '} else '
         vars.function_def += 'if ('
-        vars.brackets += 1
-        if len(node.orelse) > 0:
-            vars.has_else_part = True
-            vars.direction = node.orelse[0]
-        else:
-            vars.has_else_part = False
+        vars.is_if = True # visit_Call inserts a ';' if NOT set to True.
+        self.visit (node.test)
+        vars.is_if = False
+        vars.function_def += ') {\n'
+        for statement in node.body:
+            self.visit (statement)
+        vars.function_def += '}\n'
+        if (len (node.orelse) > 0):
+            vars.function_def += 'else {'
+            for statement in node.orelse:
+                self.visit (statement)
+            vars.function_def += '}\n'
         print(strings.NODE_IF + str(type(node)) + ' ' + str(vars.brackets) + ' ' + str(node.orelse) + ' ' + str(
             vars.has_else_part) + ' ' + str(node.body))
-        ast.NodeVisitor.generic_visit(self, node)
-        vars.has_else_part = False
-        vars.brackets -= 1
-        vars.is_if = False
-        if global_if:
-            vars.function_def += '}\n'
 
     def visit_Compare(self, node):
         print(strings.NODE_COMPARE + str(type(node.left)) + ' ' + str(type(node.ops[0])) + ' ' + str(
@@ -690,7 +680,7 @@ if __name__ == "__main__":
 }\n'''
 
     variables_manager = ''
-    for line in open('Halduino/variablesManager.ino', 'r'):
+    for line in open('HALduino/variablesManager.ino', 'r'):
         if re.search('#include', line):
             vars.libraries[line] = line
         else:
