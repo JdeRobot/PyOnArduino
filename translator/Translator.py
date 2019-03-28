@@ -690,7 +690,7 @@ if __name__ == "__main__":
 }\n'''
 
     variables_manager = ''
-    for line in open('Halduino/variablesManager.ino', 'r'):
+    for line in open('HALduino/variablesManager.ino', 'r'):
         if re.search('#include', line):
             vars.libraries[line] = line
         else:
