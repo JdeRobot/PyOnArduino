@@ -1,8 +1,10 @@
 import ast
 import unittest
-import translator.Translator as translator
+import sys
 
 try:
+    sys.path.append (".")
+    import translator.Translator as translator
     import translator.TranslatorVariables as vars
     import translator.strings.TranslatorStrings as strings
 except ModuleNotFoundError:
@@ -17,13 +19,17 @@ class ComplubotExamplesTests(unittest.TestCase):
         translator.strings = strings
         translator.robot = 'ComplubotControl'
         translator.robot_architecture = ''
-        vars.halduino_directory = '../HALduino/halduino'
+        vars.halduino_directory = 'HALduino/halduino'
         visitor = translator.TranslatorVisitor()
 
     def translate_string(self, text):
         parsed_statement = ast.parse(text)
         visitor.visit(parsed_statement)
         return parsed_statement
+
+    # splits spaces uniformly and removes new lines
+    def trim (self, st : str):
+        return ' '.join(st.replace('\n', ' ').split())
 
     def test_beep_test(self):
         self.translate_string('''from time import sleep
@@ -49,7 +55,7 @@ playBeep(var4);
    delay(100);
    }
 '''
-        self.assertEqual(expected_statement, vars.function_def)
+        self.assertEqual(self.trim(expected_statement), self.trim(vars.function_def))
 
     def test_hitnrotate_test(self):
         self.translate_string('''from time import sleep
@@ -93,7 +99,16 @@ Serial.print(var12.data);
    }
 }
 '''
-        self.assertEqual(expected_statement, vars.function_def)
+        print (len(vars.function_def))
+        for i in range (0, min (len(expected_statement), len(vars.function_def))):
+           if (expected_statement[i] != vars.function_def[i]):
+              print ("got:"+vars.function_def [i:])
+              print ("exp:"+expected_statement[i:])
+              print ('done')
+              break
+
+        
+        self.assertEqual(self.trim(expected_statement), self.trim(vars.function_def))
         self.translate_string('''
 def loop():
     if halduino.getUS() < 30:
@@ -110,7 +125,7 @@ set_engine(var14);
    }
 }
 '''
-        self.assertEqual(expected_statement, vars.function_def)
+        self.assertEqual(self.trim(expected_statement), self.trim(vars.function_def))
 
     def test_ir_test(self):
         translator.robot = 'ComplubotMotor'
@@ -150,7 +165,7 @@ Serial.print(var4.data);
 Serial.print(var5.data);
    }
 '''
-        self.assertEqual(expected_statement, vars.function_def)
+        self.assertEqual(self.trim(expected_statement), self.trim(vars.function_def))
 
     def test_line_follow_no_library_test(self):
         translator.robot = 'ComplubotMotor'
@@ -182,7 +197,7 @@ setSpeedEngines(var4,var5);
    }
 }
 '''
-        self.assertEqual(expected_statement, vars.function_def)
+        self.assertEqual(self.trim(expected_statement), self.trim(vars.function_def))
 
     def test_line_follow_test(self):
         translator.robot = 'ComplubotMotor'
@@ -218,7 +233,8 @@ setSpeedEngines(var6,var7);
    }
 }
 '''
-        self.assertEqual(expected_statement, vars.function_def)
+        print (vars.function_def)
+        self.assertEqual(self.trim(expected_statement), self.trim(vars.function_def))
 
     def test_melody_test(self):
         self.translate_string('''import HALduino.halduino as halduino
@@ -231,7 +247,7 @@ DynType melody;melody.tvar = STR;String har0 = "8eF-FFga4b.a.g.F.8beee-d2e.1-";h
 playMelody(melody);
    }
 '''
-        self.assertEqual(expected_statement, vars.function_def)
+        self.assertEqual(self.trim(expected_statement), self.trim(vars.function_def))
 
     def test_screen_test_test(self):
         self.translate_string('''from time import sleep
@@ -262,8 +278,7 @@ setScreenText(var4,var5,var6);
    clearScreen();
    }
 '''
-        function_def = vars.function_def
-        self.assertEqual(expected_statement, vars.function_def)
+        self.assertEqual(self.trim(expected_statement), self.trim(vars.function_def))
 
     def test_stopngo_test(self):
         self.translate_string('''import HALduino.halduino as halduino
@@ -291,7 +306,7 @@ Serial.print(var5.data);
    }
 }
 '''
-        self.assertEqual(expected_statement, vars.function_def)
+        self.assertEqual(self.trim(expected_statement), self.trim(vars.function_def))
         self.translate_string('''import HALduino.halduino as halduino
 
 def loop():
@@ -309,4 +324,10 @@ set_engine(var7);
    }
 }
 '''
-        self.assertEqual(expected_statement, vars.function_def)
+        self.assertEqual(self.trim(expected_statement), self.trim(vars.function_def))
+
+
+if __name__ == '__main__':
+   c = ComplubotExamplesTests()
+   c.setUp()
+   c.test_stopngo_test()

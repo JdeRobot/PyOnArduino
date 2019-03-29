@@ -1,8 +1,10 @@
 import ast
 import unittest
-import translator.Translator as translator
+import os, sys
 
 try:
+    sys.path.append (".")
+    import translator.Translator as translator
     import translator.TranslatorVariables as vars
     import translator.strings.TranslatorStrings as strings
 except ModuleNotFoundError:
@@ -15,7 +17,7 @@ class SergioExamplesTests(unittest.TestCase):
         vars.Variables()
         translator.vars = vars
         translator.strings = strings
-        vars.halduino_directory = '../HALduino/halduino'
+        vars.halduino_directory = 'HALduino/halduino'
         translator.robot_architecture = ''
         translator.robot = 'SergioRobot'
         visitor = translator.TranslatorVisitor()
@@ -24,6 +26,9 @@ class SergioExamplesTests(unittest.TestCase):
         parsed_statement = ast.parse(text)
         visitor.visit(parsed_statement)
         return parsed_statement
+        
+    def trim (self, st : str):
+        return ' '.join(st.replace('\n', ' ').split())
 
     def test_ir_test(self):
         self.translate_string('''from time import sleep
@@ -83,7 +88,7 @@ Serial.print(var9.data);
    }
 }
 '''
-        self.assertEqual(expected_statement, vars.function_def)
+        self.assertEqual(self.trim(expected_statement), self.trim(vars.function_def))
         self.translate_string('''import HALduino.halduino as halduino
 
 def loop():
@@ -101,4 +106,10 @@ set_engine(var11);
    }
 }
 '''
-        self.assertEqual(expected_statement, vars.function_def)
+        self.assertEqual(self.trim(expected_statement), self.trim(vars.function_def))
+
+
+if __name__ == '__main__':
+   s = SergioExamplesTests()
+   s.setUp()
+   s.test_stopngo_test()

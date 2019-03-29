@@ -7,8 +7,9 @@ import platform
 import re
 
 try:
-    import TranslatorVariables as vars
-    import strings.TranslatorStrings as strings
+    sys.path.append(".")
+    import translator.TranslatorVariables as vars
+    import translator.strings.TranslatorStrings as strings
 except ModuleNotFoundError:
     print('Absolute import failed')
 
@@ -205,9 +206,9 @@ class TranslatorVisitor(ast.NodeVisitor):
     def visit_Return(self, node):
         vars.function_def += '  return '
         print(node.value)
-        vars.function_def += ';\n'
         print(strings.NODE_RETURN + str(type(node.value)))
-        ast.NodeVisitor.generic_visit(self, node.value)
+        ast.NodeVisitor.visit(self, node.value)
+        vars.function_def += ';\n'
 
     def visit_BinOp(self, node):
         vars.bin_op = True
@@ -313,12 +314,20 @@ class TranslatorVisitor(ast.NodeVisitor):
         vars.function_def += ') {\n'
         for statement in node.body:
             self.visit (statement)
-        vars.function_def += '}\n'
+        vars.function_def += '} '
         if (len (node.orelse) > 0):
-            vars.function_def += 'else {'
-            for statement in node.orelse:
-                self.visit (statement)
-            vars.function_def += '}\n'
+            for i in range (0, len (node.orelse)):
+                statement = node.orelse[i]
+                if (type(statement) == ast.If):
+                    vars.function_def += 'else '
+                    self.visit (statement)
+                    if (i == len(node.orelse) - 1):
+                        vars.function_def += '\n'
+                    
+                else:
+                    vars.function_def += 'else {\n'
+                    self.visit (statement)
+                    vars.function_def += '}\n'
         print(strings.NODE_IF + str(type(node)) + ' ' + str(vars.brackets) + ' ' + str(node.orelse) + ' ' + str(
             vars.has_else_part) + ' ' + str(node.body))
 
