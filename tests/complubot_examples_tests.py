@@ -3,7 +3,7 @@ import unittest
 import translator.translator as translator
 
 try:
-    import translator.translator_variables as vars
+    import translator.translator_variables as variables
     import translator.strings.translator_strings as strings
 except ModuleNotFoundError:
     print('Import failed')
@@ -12,12 +12,12 @@ except ModuleNotFoundError:
 class ComplubotExamplesTests(unittest.TestCase):
     def setUp(self):
         global visitor
-        vars.Variables()
-        translator.vars = vars
+        variables.Variables()
+        translator.variables = variables
         translator.strings = strings
         translator.robot = 'ComplubotControl'
         translator.robot_architecture = ''
-        vars.halduino_directory = './halduino/halduino'
+        variables.halduino_directory = './halduino/halduino'
         visitor = translator.TranslatorVisitor()
 
     def translate_string(self, text):
@@ -49,7 +49,7 @@ playBeep(var4);
    delay(100);
    }
 '''
-        self.assertEqual(expected_statement, vars.function_def)
+        self.assertEqual(expected_statement, variables.function_def)
 
     def test_hitnrotate_test(self):
         self.translate_string('''from time import sleep
@@ -93,7 +93,7 @@ Serial.print(var12.data);
    }
 }
 '''
-        self.assertEqual(expected_statement, vars.function_def)
+        self.assertEqual(expected_statement, variables.function_def)
         self.translate_string('''
 def loop():
     if halduino.getUS() < 30:
@@ -110,7 +110,7 @@ set_engine(var14);
    }
 }
 '''
-        self.assertEqual(expected_statement, vars.function_def)
+        self.assertEqual(expected_statement, variables.function_def)
 
     def test_ir_test(self):
         translator.robot = 'ComplubotMotor'
@@ -150,7 +150,7 @@ Serial.print(var4.data);
 Serial.print(var5.data);
    }
 '''
-        self.assertEqual(expected_statement, vars.function_def)
+        self.assertEqual(expected_statement, variables.function_def)
 
     def test_line_follow_no_library_test(self):
         translator.robot = 'ComplubotMotor'
@@ -182,7 +182,7 @@ setSpeedEngines(var4,var5);
    }
 }
 '''
-        self.assertEqual(expected_statement, vars.function_def)
+        self.assertEqual(expected_statement, variables.function_def)
 
     def test_line_follow_test(self):
         translator.robot = 'ComplubotMotor'
@@ -218,7 +218,7 @@ setSpeedEngines(var6,var7);
    }
 }
 '''
-        self.assertEqual(expected_statement, vars.function_def)
+        self.assertEqual(expected_statement, variables.function_def)
 
     def test_melody_test(self):
         self.translate_string('''import halduino.halduino as halduino
@@ -231,7 +231,7 @@ DynType melody;melody.tvar = STR;String har0 = "8eF-FFga4b.a.g.F.8beee-d2e.1-";h
 playMelody(melody);
    }
 '''
-        self.assertEqual(expected_statement, vars.function_def)
+        self.assertEqual(expected_statement, variables.function_def)
 
     def test_screen_test_test(self):
         self.translate_string('''from time import sleep
@@ -262,8 +262,8 @@ setScreenText(var4,var5,var6);
    clearScreen();
    }
 '''
-        function_def = vars.function_def
-        self.assertEqual(expected_statement, vars.function_def)
+        function_def = variables.function_def
+        self.assertEqual(expected_statement, variables.function_def)
 
     def test_stopngo_test(self):
         self.translate_string('''import halduino.halduino as halduino
@@ -291,7 +291,7 @@ Serial.print(var5.data);
    }
 }
 '''
-        self.assertEqual(expected_statement, vars.function_def)
+        self.assertEqual(expected_statement, variables.function_def)
         self.translate_string('''import halduino.halduino as halduino
 
 def loop():
@@ -309,4 +309,4 @@ set_engine(var7);
    }
 }
 '''
-        self.assertEqual(expected_statement, vars.function_def)
+        self.assertEqual(expected_statement, variables.function_def)

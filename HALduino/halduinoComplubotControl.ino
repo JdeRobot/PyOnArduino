@@ -48,8 +48,8 @@ void lineFollow(DynType KP, DynType KD, DynType robotSpeed, DynType integrationT
 }
 
 Robot.beginSpeaker();
-void playBeep(DynType type) {
-    Robot.beep(atoi(type.data));
+void playBeep(DynType beepType) {
+    Robot.beep(atoi(beepType.data));
 }
 
 Robot.beginSpeaker();

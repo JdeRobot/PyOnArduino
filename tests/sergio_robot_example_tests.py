@@ -3,7 +3,7 @@ import unittest
 import translator.translator as translator
 
 try:
-    import translator.translator_variables as vars
+    import translator.translator_variables as variables
     import translator.strings.translator_strings as strings
 except ModuleNotFoundError:
     print('Absolute import failed')
@@ -12,10 +12,10 @@ except ModuleNotFoundError:
 class SergioExamplesTests(unittest.TestCase):
     def setUp(self):
         global visitor
-        vars.Variables()
-        translator.vars = vars
+        variables.Variables()
+        translator.variables = variables
         translator.strings = strings
-        vars.halduino_directory = './halduino/halduino'
+        variables.halduino_directory = './halduino/halduino'
         translator.robot_architecture = ''
         translator.robot = 'SergioRobot'
         visitor = translator.TranslatorVisitor()
@@ -39,7 +39,7 @@ delay(100);
    Serial.print(getIR1());
    }
 '''
-        self.assertEqual(expected_statement, vars.function_def)
+        self.assertEqual(expected_statement, variables.function_def)
 
     def test_stopngo_test(self):
         self.translate_string('''import halduino.halduino as halduino
@@ -83,7 +83,7 @@ Serial.print(var9.data);
    }
 }
 '''
-        self.assertEqual(expected_statement, vars.function_def)
+        self.assertEqual(expected_statement, variables.function_def)
         self.translate_string('''import halduino.halduino as halduino
 
 def loop():
@@ -101,4 +101,4 @@ set_engine(var11);
    }
 }
 '''
-        self.assertEqual(expected_statement, vars.function_def)
+        self.assertEqual(expected_statement, variables.function_def)

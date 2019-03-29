@@ -46,7 +46,7 @@ def lineFollow(KP: int, KD: int, robotSpeed: int, integrationTime: int):
     pass
 
 
-def playBeep(type: int):
+def playBeep(beepType: int):
     pass
 
 
@@ -90,7 +90,7 @@ def getMessage() -> str:
     pass
 
 
-def showClock(hour: int, min: int):
+def showClock(hour: int, minute: int):
     pass
 
 

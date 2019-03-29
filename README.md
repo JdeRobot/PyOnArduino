@@ -38,7 +38,7 @@ Sensor/Actuator | Supported functions
 DC Engines      | setSpeedEnginesControl(left, right), setSpeedEnginesMotor(left, right)
 Ultrasonic sensors | getUS()
 Infrared sensors | getIR[1,2,3,4,5]
-Beep emitter | playBeep(type)
+Beep emitter | playBeep(beepType)
 Sound emitter | playMelody(melody)
 Screen write | setScreenText(text), clearScreen()
 
@@ -52,7 +52,7 @@ Infrared sensors | getMessage(), sendMessage(message)
 Light sensor | getLightSensor()
 Button | isButtonPressed(), isButtonReleased()
 Buzzer | playBuzzer(tone, length)
-External screen | drawString(name), showClock(hour, min)
+External screen | drawString(name), showClock(hour, minute)
 
 #### SergioRobot
 Sensor/Actuator | Supported functions
