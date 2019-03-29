@@ -1,10 +1,10 @@
 import ast
 import unittest
-import translator.Translator as translator
+import translator.translator as translator
 
 try:
-    import translator.TranslatorVariables as vars
-    import translator.strings.TranslatorStrings as strings
+    import translator.translator_variables as vars
+    import translator.strings.translator_strings as strings
 except ModuleNotFoundError:
     print('Absolute import failed')
 
@@ -15,7 +15,7 @@ class SergioExamplesTests(unittest.TestCase):
         vars.Variables()
         translator.vars = vars
         translator.strings = strings
-        vars.halduino_directory = '../HALduino/halduino'
+        vars.halduino_directory = './halduino/halduino'
         translator.robot_architecture = ''
         translator.robot = 'SergioRobot'
         visitor = translator.TranslatorVisitor()
@@ -28,7 +28,7 @@ class SergioExamplesTests(unittest.TestCase):
     def test_ir_test(self):
         self.translate_string('''from time import sleep
 
-import HALduino.halduino as halduino
+import halduino.halduino as halduino
 
 def loop():
     sleep(100)
@@ -42,7 +42,7 @@ delay(100);
         self.assertEqual(expected_statement, vars.function_def)
 
     def test_stopngo_test(self):
-        self.translate_string('''import HALduino.halduino as halduino
+        self.translate_string('''import halduino.halduino as halduino
 
 def set_engine(direction: int):
     if direction == 0:
@@ -84,7 +84,7 @@ Serial.print(var9.data);
 }
 '''
         self.assertEqual(expected_statement, vars.function_def)
-        self.translate_string('''import HALduino.halduino as halduino
+        self.translate_string('''import halduino.halduino as halduino
 
 def loop():
     if halduino.getUS() < 10:

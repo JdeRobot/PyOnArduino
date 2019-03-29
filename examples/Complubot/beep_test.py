@@ -1,5 +1,5 @@
 from time import sleep
-import HALduino.halduino as halduino
+import halduino.halduino as halduino
 
 
 def loop():

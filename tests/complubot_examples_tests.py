@@ -1,10 +1,10 @@
 import ast
 import unittest
-import translator.Translator as translator
+import translator.translator as translator
 
 try:
-    import translator.TranslatorVariables as vars
-    import translator.strings.TranslatorStrings as strings
+    import translator.translator_variables as vars
+    import translator.strings.translator_strings as strings
 except ModuleNotFoundError:
     print('Import failed')
 
@@ -17,7 +17,7 @@ class ComplubotExamplesTests(unittest.TestCase):
         translator.strings = strings
         translator.robot = 'ComplubotControl'
         translator.robot_architecture = ''
-        vars.halduino_directory = '../HALduino/halduino'
+        vars.halduino_directory = './halduino/halduino'
         visitor = translator.TranslatorVisitor()
 
     def translate_string(self, text):
@@ -27,7 +27,7 @@ class ComplubotExamplesTests(unittest.TestCase):
 
     def test_beep_test(self):
         self.translate_string('''from time import sleep
-import HALduino.halduino as halduino
+import halduino.halduino as halduino
 
 
 def loop():
@@ -54,7 +54,7 @@ playBeep(var4);
     def test_hitnrotate_test(self):
         self.translate_string('''from time import sleep
 
-import HALduino.halduino as halduino
+import halduino.halduino as halduino
 
 def set_engine(direction: int):
     if direction == 0:
@@ -116,7 +116,7 @@ set_engine(var14);
         translator.robot = 'ComplubotMotor'
         self.translate_string('''from time import sleep
 
-import HALduino.halduino as halduino
+import halduino.halduino as halduino
 
 def loop():
     sleep(100)
@@ -154,7 +154,7 @@ Serial.print(var5.data);
 
     def test_line_follow_no_library_test(self):
         translator.robot = 'ComplubotMotor'
-        self.translate_string('''import HALduino.halduino as halduino
+        self.translate_string('''import halduino.halduino as halduino
 
 
 def loop():
@@ -186,7 +186,7 @@ setSpeedEngines(var4,var5);
 
     def test_line_follow_test(self):
         translator.robot = 'ComplubotMotor'
-        self.translate_string('''import HALduino.halduino as halduino
+        self.translate_string('''import halduino.halduino as halduino
 
 
 def loop():
@@ -221,7 +221,7 @@ setSpeedEngines(var6,var7);
         self.assertEqual(expected_statement, vars.function_def)
 
     def test_melody_test(self):
-        self.translate_string('''import HALduino.halduino as halduino
+        self.translate_string('''import halduino.halduino as halduino
 
 def loop():
     melody = "8eF-FFga4b.a.g.F.8beee-d2e.1-"
@@ -236,7 +236,7 @@ playMelody(melody);
     def test_screen_test_test(self):
         self.translate_string('''from time import sleep
 
-import HALduino.halduino as halduino
+import halduino.halduino as halduino
 
 
 def loop():
@@ -266,7 +266,7 @@ setScreenText(var4,var5,var6);
         self.assertEqual(expected_statement, vars.function_def)
 
     def test_stopngo_test(self):
-        self.translate_string('''import HALduino.halduino as halduino
+        self.translate_string('''import halduino.halduino as halduino
 
 def set_engine(direction: int):
     if direction == 0:
@@ -292,7 +292,7 @@ Serial.print(var5.data);
 }
 '''
         self.assertEqual(expected_statement, vars.function_def)
-        self.translate_string('''import HALduino.halduino as halduino
+        self.translate_string('''import halduino.halduino as halduino
 
 def loop():
     if halduino.getUS() < 30:

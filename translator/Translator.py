@@ -653,7 +653,7 @@ if __name__ == "__main__":
         robot_architecture = sys.argv[3]
     else:
         print('Usage: ')
-        print('python3 translator/Translator.py [input-file] [robot]')
+        print('python3 translator/translator.py [input-file] [robot]')
         sys.exit(0)
 
     print('FILENAME: ' + input_filename)

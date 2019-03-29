@@ -1,4 +1,4 @@
-import HALduino.halduino as halduino
+import halduino.halduino as halduino
 
 
 def set_engine(direction: int):
@@ -11,7 +11,7 @@ def set_engine(direction: int):
 
 
 def loop():
-    if halduino.getUS() < 10:
+    if halduino.getUS() < 30:
         set_engine(0)
     else:
         set_engine(1)

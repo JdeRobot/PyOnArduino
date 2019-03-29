@@ -1,10 +1,10 @@
 import ast
 import unittest
-import translator.Translator as translator
+import translator.translator as translator
 
 try:
-    import translator.TranslatorVariables as vars
-    import translator.strings.TranslatorStrings as strings
+    import translator.translator_variables as vars
+    import translator.strings.translator_strings as strings
 except ModuleNotFoundError:
     print('Absolute import failed')
 
@@ -17,7 +17,7 @@ class TranslatorTests(unittest.TestCase):
         translator.strings = strings
         translator.robot = 'ComplubotControl'
         translator.robot_architecture = ''
-        vars.halduino_directory = '../HALduino/halduino'
+        vars.halduino_directory = './halduino/halduino'
         visitor = translator.TranslatorVisitor()
 
     def translate_string(self, text):

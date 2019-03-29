@@ -1,10 +1,10 @@
 import ast
 import unittest
-import translator.Translator as translator
+import translator.translator as translator
 
 try:
-    import translator.TranslatorVariables as vars
-    import translator.strings.TranslatorStrings as strings
+    import translator.translator_variables as vars
+    import translator.strings.translator_strings as strings
 except ModuleNotFoundError:
     print('Import failed')
 
@@ -17,7 +17,7 @@ class MBotExamplesTests(unittest.TestCase):
         translator.strings = strings
         translator.robot = 'mBot'
         translator.robot_architecture = ''
-        vars.halduino_directory = '../HALduino/halduino'
+        vars.halduino_directory = './halduino/halduino'
         visitor = translator.TranslatorVisitor()
 
     def translate_string(self, text):
@@ -48,7 +48,7 @@ playBuzzer(var2,var3);
     def test_buzzer_test(self):
         self.translate_string('''from time import sleep
 
-import HALduino.halduino as halduino
+import halduino.halduino as halduino
 
 def loop():
     halduino.playBuzzer(330, 1000)

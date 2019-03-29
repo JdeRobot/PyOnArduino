@@ -1,6 +1,6 @@
 from time import sleep
 
-import HALduino.halduino as halduino
+import halduino.halduino as halduino
 
 def loop():
     halduino.playBuzzer(330, 1000)

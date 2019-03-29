@@ -1,4 +1,4 @@
-# TranslatorVariables.py
+# translator_variables.py
 
 class Variables:
     def __init__(self):
@@ -47,7 +47,7 @@ class Variables:
         function_start_line = 0
         function_variables_line = 0
         global_variables = {}
-        halduino_directory = './HALduino/halduino'
+        halduino_directory = './halduino/halduino'
         has_else_part = False
         is_call = False
         is_call_parameter = False
