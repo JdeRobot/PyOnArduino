@@ -17,7 +17,7 @@ class TranslatorTests(unittest.TestCase):
         translator.strings = strings
         translator.robot = 'ComplubotControl'
         translator.robot_architecture = ''
-        vars.halduino_directory = '../HALduino/halduino'
+        vars.halduino_directory = 'HALduino/halduino'
         visitor = translator.TranslatorVisitor()
 
     def translate_string(self, text):

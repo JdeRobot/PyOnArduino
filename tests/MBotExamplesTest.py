@@ -15,9 +15,9 @@ class MBotExamplesTests(unittest.TestCase):
         vars.Variables()
         translator.vars = vars
         translator.strings = strings
-        translator.robot = 'mBot'
+        translator.robot = 'MBot'
         translator.robot_architecture = ''
-        vars.halduino_directory = '../HALduino/halduino'
+        vars.halduino_directory = 'HALduino/halduino'
         visitor = translator.TranslatorVisitor()
 
     def translate_string(self, text):
