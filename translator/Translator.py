@@ -7,8 +7,8 @@ import platform
 import re
 
 try:
-    import TranslatorVariables as variables
-    import strings.TranslatorStrings as strings
+    import translator_variables as variables
+    import strings.translator_strings as strings
 except ModuleNotFoundError:
     print('Absolute import failed')
 

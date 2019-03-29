@@ -262,7 +262,6 @@ setScreenText(var4,var5,var6);
    clearScreen();
    }
 '''
-        function_def = variables.function_def
         self.assertEqual(expected_statement, variables.function_def)
 
     def test_stopngo_test(self):

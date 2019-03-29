@@ -376,7 +376,6 @@ setSpeedEngines(var6,var7);
    }
 }
 '''
-        function_def = variables.function_def
         self.assertEqual(expected_statement, variables.function_def)
         self.translate_string('''def setup():
     while halduino.isButtonPressed() is False:
