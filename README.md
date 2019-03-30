@@ -25,6 +25,11 @@ To execute the project
     python3 translator/Translator.py [input-file] [robot]
     python3 translator/Translator.py [input-file] [robot] [architecture-file]
 ```
+To execute the tests
+``` 
+    python3 setup.py test
+```
+
 ## Robots supported
 * [Complubot](https://www.arduino.cc/en/Guide/Robot) (Arduino Robot)
 * [MBot](https://www.makeblock.com/steam-kits/mbot)
