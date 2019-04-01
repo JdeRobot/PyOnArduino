@@ -571,11 +571,20 @@ class TranslatorVisitor(ast.NodeVisitor):
         if var_name in vars.scope_variables:
             definition = ''
         else:
-            vars.scope_variables.append(var_name)
-            definition = 'DynType ' + var_name + ';'
-        definition += var_name + '.tvar = ' + var_type + ';'
-        definition += 'String har' + str(vars.variables_counter) + ' = "' + value + '";'
-        definition += 'har' + str(vars.variables_counter) + '.toCharArray(' + var_name + '.data, MinTypeSz);\n'
+            if var_type == "INT":
+                vars.scope_variables.append(var_name)
+                definition = 'DynType* ' + var_name + ' = '
+            else:
+                vars.scope_variables.append(var_name)
+                definition = 'DynType* ' + var_name + ';\n'
+
+        if var_type == "INT":
+            definition += var_name + '->newDynTypeInt(' + value + ');\n'
+        else:
+            definition += var_name + '.tvar = ' + var_type + ';'
+            definition += 'String har' + str(vars.variables_counter) + ' = "' + value + '";'
+            definition += 'har' + str(vars.variables_counter) + '.toCharArray(' + var_name + '.data, MinTypeSz);\n'
+
         return definition
 
     def check_last_comma(self, text=None):
@@ -690,7 +699,7 @@ if __name__ == "__main__":
 }\n'''
 
     variables_manager = ''
-    for line in open('Halduino/variablesManager.ino', 'r'):
+    for line in open('HALduino/variablesManager.ino', 'r'):
         if re.search('#include', line):
             vars.libraries[line] = line
         else:
