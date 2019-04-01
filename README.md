@@ -18,7 +18,9 @@ uploaded to the robots and the behaviour is the same
 + Python 3.6 [Download](https://www.python.org/downloads/)
 + Arduino IDE [Download](https://www.arduino.cc/en/Main/Software)
 + Arduino Makefile [Download and installation](https://github.com/sudar/Arduino-Makefile)
++ pySerial [Documentation](https://pythonhosted.org/pyserial/pyserial.html#installation)
 + To execute on mBot you need to add Makeblock libraries to the Arduino IDE following [this repo](https://github.com/Makeblock-official/Makeblock-Libraries)
++ If you use MacOS and you want to execute on mBot, you'll probably new ch340 driver [Download](https://github.com/adrianmihalko/ch340g-ch34g-ch34x-mac-os-x-driver)
 
 To execute the project 
 ```
