@@ -3,7 +3,7 @@ import unittest
 import os, sys
 
 try:
-    sys.path.append (".")
+    sys.path.append(".")
     import translator.Translator as translator
     import translator.TranslatorVariables as vars
     import translator.strings.TranslatorStrings as strings
@@ -26,8 +26,8 @@ class SergioExamplesTests(unittest.TestCase):
         parsed_statement = ast.parse(text)
         visitor.visit(parsed_statement)
         return parsed_statement
-        
-    def trim (self, st : str):
+
+    def trim(self, st: str):
         return ' '.join(st.replace('\n', ' ').split())
 
     def test_ir_test(self):
@@ -110,6 +110,8 @@ set_engine(var11);
 
 
 if __name__ == '__main__':
-   s = SergioExamplesTests()
-   s.setUp()
-   s.test_stopngo_test()
+    sergio_test = SergioExamplesTests()
+    sergio_test.setUp()
+    sergio_test.test_ir_test()
+    sergio_test.setUp()
+    sergio_test.test_stopngo_test()

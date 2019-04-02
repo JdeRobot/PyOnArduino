@@ -3,7 +3,7 @@ import unittest
 import sys
 
 try:
-    sys.path.append (".")
+    sys.path.append(".")
     import translator.Translator as translator
     import translator.TranslatorVariables as vars
     import translator.strings.TranslatorStrings as strings
@@ -22,7 +22,7 @@ class MBotExamplesTests(unittest.TestCase):
         vars.halduino_directory = 'HALduino/halduino'
         visitor = translator.TranslatorVisitor()
 
-    def trim (self, st : str):
+    def trim(self, st: str):
         return ' '.join(st.replace('\n', ' ').split())
 
     def translate_string(self, text):
@@ -48,7 +48,7 @@ playBuzzer(var2,var3);
    }
 }
 '''
-        self.assertEqual(self.trim (expected_statement), self.trim (vars.function_def))
+        self.assertEqual(self.trim(expected_statement), self.trim(vars.function_def))
 
     def test_buzzer_test(self):
         self.translate_string('''from time import sleep
@@ -466,6 +466,26 @@ set_engine(var7);
 
 
 if __name__ == '__main__':
-   m = MBotExamplesTests()
-   m.setUp()
-   m.test_buzzer_test()
+    mbot_test = MBotExamplesTests()
+    mbot_test.setUp()
+    mbot_test.test_button_test()
+    mbot_test.setUp()
+    mbot_test.test_draw_string_test()
+    mbot_test.setUp()
+    mbot_test.test_get_message_test()
+    mbot_test.setUp()
+    mbot_test.test_hitnrotate_test()
+    mbot_test.setUp()
+    mbot_test.test_leds_test()
+    mbot_test.setUp()
+    mbot_test.test_light_sensor_test()
+    mbot_test.setUp()
+    mbot_test.test_line_follow_test()
+    mbot_test.setUp()
+    mbot_test.test_send_message_test()
+    mbot_test.setUp()
+    mbot_test.test_show_time_test()
+    mbot_test.setUp()
+    mbot_test.test_buzzer_test()
+    mbot_test.setUp()
+    mbot_test.test_stopngo_test()

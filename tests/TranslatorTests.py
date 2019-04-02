@@ -3,7 +3,7 @@ import unittest
 import os, sys
 
 try:
-    sys.path.append (".")
+    sys.path.append(".")
     import translator.Translator as translator
     import translator.TranslatorVariables as vars
     import translator.strings.TranslatorStrings as strings
@@ -27,7 +27,7 @@ class TranslatorTests(unittest.TestCase):
         visitor.visit(parsed_statement)
         return parsed_statement
 
-    def trim (self, st : str):
+    def trim(self, st: str):
         return ' '.join(st.replace('\n', ' ').split())
 
     def test_print_hello_world(self):
@@ -122,12 +122,10 @@ Serial.print(var0.data);
         expected_statement = 'Serial.print((5 % 3));\n   '
         self.assertEqual(self.trim(expected_statement), self.trim(vars.function_def))
 
-
     def test_integer_array_declaration(self):
         self.translate_string('array = [1,2,3,4]')
         expected_statement = 'int array[] = {1,2,3,4};\n'
         self.assertEqual(self.trim(expected_statement), self.trim(vars.function_def))
-
 
     def test_for_print_array(self):
         with self.assertRaises(SystemExit) as error:
@@ -206,10 +204,10 @@ melody.tvar = INT;String har1 = "1";har1.toCharArray(melody.data, MinTypeSz);
 }
 '''
         self.assertEqual(self.trim(expected_statement), self.trim(vars.function_def))
-    
-    def test_parentheses (self):
+
+    def test_parentheses(self):
         self.translate_string(
-'''
+            '''
 if (1+1 == 2):
     pass
 elif (False):
@@ -218,10 +216,61 @@ else:
     pass
 ''')
         expected_statement = 'if (((1 + 1) == 2)) { } else if (false) { } else { }'
-        
-        self.assertEqual (self.trim (expected_statement), self.trim (vars.function_def))
+
+        self.assertEqual(self.trim(expected_statement), self.trim(vars.function_def))
+
 
 if __name__ == '__main__':
-    t = TranslatorTests()
-    t.setUp()
-    t.test_function_call()
+    translator_test = TranslatorTests()
+    translator_test.setUp()
+    translator_test.test_print_hello_world()
+    translator_test.setUp()
+    translator_test.test_sleep()
+    translator_test.setUp()
+    translator_test.test_boolean_true_var_declaration()
+    translator_test.setUp()
+    translator_test.test_boolean_false_var_declaration()
+    translator_test.setUp()
+    translator_test.test_integer_var_declaration()
+    translator_test.setUp()
+    translator_test.test_float_var_declaration()
+    translator_test.setUp()
+    translator_test.test_char_var_declaration()
+    translator_test.setUp()
+    translator_test.test_string_var_declaration()
+    translator_test.setUp()
+    translator_test.test_operations_parentheses_1()
+    translator_test.setUp()
+    translator_test.test_operations_parentheses_2()
+    translator_test.setUp()
+    translator_test.test_operations_parentheses_3()
+    translator_test.setUp()
+    translator_test.test_operations_parentheses_4()
+    translator_test.setUp()
+    translator_test.test_operations_parentheses_5()
+    translator_test.setUp()
+    translator_test.test_operations_parentheses_6()
+    translator_test.setUp()
+    translator_test.test_operations_parentheses_7()
+    translator_test.setUp()
+    translator_test.test_operations_parentheses_8()
+    translator_test.setUp()
+    translator_test.test_operations_parentheses_9()
+    translator_test.setUp()
+    translator_test.test_operations_parentheses_10()
+    translator_test.setUp()
+    translator_test.test_integer_array_declaration()
+    translator_test.setUp()
+    translator_test.test_for_print_array()
+    translator_test.setUp()
+    translator_test.test_function_def_print_strings()
+    translator_test.setUp()
+    translator_test.test_function_call()
+    translator_test.setUp()
+    translator_test.test_if_true_else_if_else_statement()
+    translator_test.setUp()
+    translator_test.test_and_or_if()
+    translator_test.setUp()
+    translator_test.test_variable_reassignment()
+    translator_test.setUp()
+    translator_test.test_parentheses()

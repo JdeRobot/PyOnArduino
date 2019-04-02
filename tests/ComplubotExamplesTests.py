@@ -3,7 +3,7 @@ import unittest
 import sys
 
 try:
-    sys.path.append (".")
+    sys.path.append(".")
     import translator.Translator as translator
     import translator.TranslatorVariables as vars
     import translator.strings.TranslatorStrings as strings
@@ -28,7 +28,7 @@ class ComplubotExamplesTests(unittest.TestCase):
         return parsed_statement
 
     # splits spaces uniformly and removes new lines
-    def trim (self, st : str):
+    def trim(self, st: str):
         return ' '.join(st.replace('\n', ' ').split())
 
     def test_beep_test(self):
@@ -99,15 +99,7 @@ Serial.print(var12.data);
    }
 }
 '''
-        print (len(vars.function_def))
-        for i in range (0, min (len(expected_statement), len(vars.function_def))):
-           if (expected_statement[i] != vars.function_def[i]):
-              print ("got:"+vars.function_def [i:])
-              print ("exp:"+expected_statement[i:])
-              print ('done')
-              break
 
-        
         self.assertEqual(self.trim(expected_statement), self.trim(vars.function_def))
         self.translate_string('''
 def loop():
@@ -233,7 +225,7 @@ setSpeedEngines(var6,var7);
    }
 }
 '''
-        print (vars.function_def)
+        print(vars.function_def)
         self.assertEqual(self.trim(expected_statement), self.trim(vars.function_def))
 
     def test_melody_test(self):
@@ -328,6 +320,20 @@ set_engine(var7);
 
 
 if __name__ == '__main__':
-   c = ComplubotExamplesTests()
-   c.setUp()
-   c.test_stopngo_test()
+    complubot_test = ComplubotExamplesTests()
+    complubot_test.setUp()
+    complubot_test.test_stopngo_test()
+    complubot_test.setUp()
+    complubot_test.test_beep_test()
+    complubot_test.setUp()
+    complubot_test.test_hitnrotate_test()
+    complubot_test.setUp()
+    complubot_test.test_ir_test()
+    complubot_test.setUp()
+    complubot_test.test_line_follow_no_library_test()
+    complubot_test.setUp()
+    complubot_test.test_line_follow_test()
+    complubot_test.setUp()
+    complubot_test.test_melody_test()
+    complubot_test.setUp()
+    complubot_test.test_screen_test_test()
