@@ -116,3 +116,12 @@ There is a problem with Arduino Robot(Complubot). Sometimes when you upload a pr
 the usb port stop working. If you ever get to this point, the solution is quite simple. Write an 
 empty sketch and upload it. While it's being uploaded press the reset button on the board two times.
 This should fix the problem! [Source](http://forum.arduino.cc/index.php?topic=269822.0)
+
+
+## Running Tests
+
+To run the tests, run the following
+```
+python3 tests/<test-file>
+```
+To run specific tests for a bot, call the function in main and run the above command.

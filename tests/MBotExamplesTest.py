@@ -1,8 +1,10 @@
 import ast
 import unittest
-import translator.Translator as translator
+import sys
 
 try:
+    sys.path.append(".")
+    import translator.Translator as translator
     import translator.TranslatorVariables as vars
     import translator.strings.TranslatorStrings as strings
 except ModuleNotFoundError:
@@ -15,10 +17,13 @@ class MBotExamplesTests(unittest.TestCase):
         vars.Variables()
         translator.vars = vars
         translator.strings = strings
-        translator.robot = 'mBot'
+        translator.robot = 'MBot'
         translator.robot_architecture = ''
-        vars.halduino_directory = '../HALduino/halduino'
+        vars.halduino_directory = 'HALduino/halduino'
         visitor = translator.TranslatorVisitor()
+
+    def trim(self, st: str):
+        return ' '.join(st.replace('\n', ' ').split())
 
     def translate_string(self, text):
         parsed_statement = ast.parse(text)
@@ -43,7 +48,7 @@ playBuzzer(var2,var3);
    }
 }
 '''
-        self.assertEqual(expected_statement, vars.function_def)
+        self.assertEqual(self.trim(expected_statement), self.trim(vars.function_def))
 
     def test_buzzer_test(self):
         self.translate_string('''from time import sleep
@@ -176,7 +181,7 @@ playBuzzer(var58,var59);
    delay(1000);
    }
 '''
-        self.assertEqual(expected_statement, vars.function_def)
+        self.assertEqual(self.trim(expected_statement), self.trim(vars.function_def))
 
     def test_draw_string_test(self):
         self.translate_string('''def loop():
@@ -186,7 +191,7 @@ DynType var0;var0.tvar = STR;String har0 = "Hi!";har0.toCharArray(var0.data, Min
 drawString(var0);
    }
 '''
-        self.assertEqual(expected_statement, vars.function_def)
+        self.assertEqual(self.trim(expected_statement), self.trim(vars.function_def))
 
     def test_get_message_test(self):
         self.translate_string('''def loop():
@@ -195,7 +200,7 @@ drawString(var0);
 Serial.print(getMessage());
    }
 '''
-        self.assertEqual(expected_statement, vars.function_def)
+        self.assertEqual(self.trim(expected_statement), self.trim(vars.function_def))
 
     def test_hitnrotate_test(self):
         self.translate_string('''def set_engine(direction: int):
@@ -235,7 +240,7 @@ Serial.print(var12.data);
    }
 }
 '''
-        self.assertEqual(expected_statement, vars.function_def)
+        self.assertEqual(self.trim(expected_statement), self.trim(vars.function_def))
         self.translate_string('''def loop():
     if halduino.getUS() < 30:
         set_engine(0)
@@ -251,7 +256,7 @@ set_engine(var14);
    }
 }
 '''
-        self.assertEqual(expected_statement, vars.function_def)
+        self.assertEqual(self.trim(expected_statement), self.trim(vars.function_def))
 
     def test_leds_test(self):
         self.translate_string('''def loop():
@@ -290,7 +295,7 @@ setLeds(var15,var16,var17,var18);
    delay(500);
    }
 '''
-        self.assertEqual(expected_statement, vars.function_def)
+        self.assertEqual(self.trim(expected_statement), self.trim(vars.function_def))
 
     def test_light_sensor_test(self):
         self.translate_string('''def set_engine(direction: int):
@@ -328,7 +333,7 @@ setSpeedEngines(var11,var12);
    }
 }
 '''
-        self.assertEqual(expected_statement, vars.function_def)
+        self.assertEqual(self.trim(expected_statement), self.trim(vars.function_def))
         self.translate_string('''def loop():
     if halduino.getLightSensor() < 100:
         set_engine(0)
@@ -344,7 +349,7 @@ set_engine(var14);
    }
 }
 '''
-        self.assertEqual(expected_statement, vars.function_def)
+        self.assertEqual(self.trim(expected_statement), self.trim(vars.function_def))
 
     def test_line_follow_test(self):
         self.translate_string('''def loop():
@@ -377,7 +382,7 @@ setSpeedEngines(var6,var7);
 }
 '''
         function_def = vars.function_def
-        self.assertEqual(expected_statement, vars.function_def)
+        self.assertEqual(self.trim(expected_statement), self.trim(vars.function_def))
         self.translate_string('''def setup():
     while halduino.isButtonPressed() is False:
         pass''')
@@ -385,7 +390,7 @@ setSpeedEngines(var6,var7);
 while(isButtonPressed() == false) {}
 }
 '''
-        self.assertEqual(expected_statement, vars.function_def)
+        self.assertEqual(self.trim(expected_statement), self.trim(vars.function_def))
 
     def test_send_message_test(self):
         self.translate_string('''def loop():
@@ -402,7 +407,7 @@ playBuzzer(var1,var2);
    }
 }
 '''
-        self.assertEqual(expected_statement, vars.function_def)
+        self.assertEqual(self.trim(expected_statement), self.trim(vars.function_def))
 
     def test_show_time_test(self):
         self.translate_string('''def loop():
@@ -415,7 +420,7 @@ DynType min;min.tvar = INT;String har1 = "20";har1.toCharArray(min.data, MinType
 showClock(hour,min);
    }
 '''
-        self.assertEqual(expected_statement, vars.function_def)
+        self.assertEqual(self.trim(expected_statement), self.trim(vars.function_def))
 
     def test_stopngo_test(self):
         self.translate_string('''def set_engine(direction: int):
@@ -441,7 +446,7 @@ Serial.print(var5.data);
    }
 }
 '''
-        self.assertEqual(expected_statement, vars.function_def)
+        self.assertEqual(self.trim(expected_statement), self.trim(vars.function_def))
         self.translate_string('''def loop():
     if halduino.getUS() < 10:
         set_engine(0)
@@ -457,4 +462,30 @@ set_engine(var7);
    }
 }
 '''
-        self.assertEqual(expected_statement, vars.function_def)
+        self.assertEqual(self.trim(expected_statement), self.trim(vars.function_def))
+
+
+if __name__ == '__main__':
+    mbot_test = MBotExamplesTests()
+    mbot_test.setUp()
+    mbot_test.test_button_test()
+    mbot_test.setUp()
+    mbot_test.test_draw_string_test()
+    mbot_test.setUp()
+    mbot_test.test_get_message_test()
+    mbot_test.setUp()
+    mbot_test.test_hitnrotate_test()
+    mbot_test.setUp()
+    mbot_test.test_leds_test()
+    mbot_test.setUp()
+    mbot_test.test_light_sensor_test()
+    mbot_test.setUp()
+    mbot_test.test_line_follow_test()
+    mbot_test.setUp()
+    mbot_test.test_send_message_test()
+    mbot_test.setUp()
+    mbot_test.test_show_time_test()
+    mbot_test.setUp()
+    mbot_test.test_buzzer_test()
+    mbot_test.setUp()
+    mbot_test.test_stopngo_test()
