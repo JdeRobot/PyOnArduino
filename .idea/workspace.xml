@@ -293,6 +293,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
@@ -416,11 +417,11 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Python tests.Unittests for ComplubotExamplesTests.ComplubotExamplesTests.test_hitnrotate_test" />
       <item itemvalue="Python tests.Unittests in ComplubotExamplesTests.py" />
       <item itemvalue="Python tests.Unittests in MBotExamplesTest.py" />
       <item itemvalue="Python tests.Unittests in SergioRobotExampleTests.py" />
       <item itemvalue="Python tests.Unittests in TranslatorTests.py" />
-      <item itemvalue="Python tests.Unittests for ComplubotExamplesTests.ComplubotExamplesTests.test_hitnrotate_test" />
     </list>
     <recent_temporary>
       <list>
