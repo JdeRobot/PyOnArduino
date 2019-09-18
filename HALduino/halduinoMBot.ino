@@ -68,6 +68,13 @@ void retroceder(DynType speed) {
 
 MeDCMotor leftMotor(9);
 MeDCMotor rightMotor(10);
+void stopEngines() {
+    leftMotor.run(0);
+    rightMotor.run(0);
+}
+
+MeDCMotor leftMotor(9);
+MeDCMotor rightMotor(10);
 void parar() {
     leftMotor.run(0);
     rightMotor.run(0);
