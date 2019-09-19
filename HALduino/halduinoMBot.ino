@@ -47,6 +47,34 @@ void setSpeedEngines(DynType speedLeft, DynType speedRight) {
 
 MeDCMotor leftMotor(9);
 MeDCMotor rightMotor(10);
+void setSpeed(DynType speed) {
+    leftMotor.run(-atoi(speed.data));
+    rightMotor.run(atoi(speed.data));
+}
+
+MeDCMotor leftMotor(9);
+MeDCMotor rightMotor(10);
+void avanzar(DynType speed) {
+    leftMotor.run(-atoi(speed.data));
+    rightMotor.run(atoi(speed.data));
+}
+
+MeDCMotor leftMotor(9);
+MeDCMotor rightMotor(10);
+void retroceder(DynType speed) {
+    leftMotor.run(atoi(speed.data));
+    rightMotor.run(-atoi(speed.data));
+}
+
+MeDCMotor leftMotor(9);
+MeDCMotor rightMotor(10);
+void parar() {
+    leftMotor.run(0);
+    rightMotor.run(0);
+}
+
+MeDCMotor leftMotor(9);
+MeDCMotor rightMotor(10);
 void stopEngines() {
     leftMotor.run(0);
     rightMotor.run(0);
@@ -54,6 +82,11 @@ void stopEngines() {
 
 MeUltrasonicSensor ultrasonicSensor(3);
 int getUS() {
+    return ultrasonicSensor.distanceCm();
+}
+
+MeUltrasonicSensor ultrasonicSensor(3);
+int leerUltrasonido() {
     return ultrasonicSensor.distanceCm();
 }
 
@@ -110,5 +143,10 @@ void drawString(DynType name) {
 
 MeLineFollower lineFollower(2);
 int getLineFollowValue() {
+    return lineFollower.readSensors();
+}
+
+MeLineFollower lineFollower(2);
+String leerIRsiguelineas() {
     return lineFollower.readSensors();
 }
