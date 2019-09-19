@@ -11,7 +11,7 @@ struct DynType {
 
 inline void checktype (DynType *d1, DynType *d2) {
     if(d1->tvar != d2->tvar) {
-        Serial.print("Error");
+        // Serial.print("Error");
         // stopMachine();
     }
 }
