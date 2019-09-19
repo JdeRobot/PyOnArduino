@@ -46,6 +46,12 @@ def setSpeedEngines(leftSpeed: int, rightSpeed: int):
     """
     pass
 
+def stopEngines():
+    """
+        Set engines speed to 0.
+    """
+    pass
+
 
 def setSpeed(speed: int):
     """
