@@ -1,5 +1,5 @@
 # mBot Makefile
 
 ARDUINO_LIBS= Makeblock-Libraries-master Wire SPI
-MONITOR_PORT= /dev/cu.wchusbserial1420
+MONITOR_PORT= /dev/cu.wchusbserial14330
 BOARD_TAG = uno
