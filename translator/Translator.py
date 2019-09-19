@@ -7,9 +7,8 @@ import platform
 import re
 
 try:
-    sys.path.append(".")
-    import translator.TranslatorVariables as vars
-    import translator.strings.TranslatorStrings as strings
+    import TranslatorVariables as vars
+    import strings.TranslatorStrings as strings
 except ModuleNotFoundError:
     print('Absolute import failed')
 
@@ -121,6 +120,11 @@ class TranslatorVisitor(ast.NodeVisitor):
             vars.functions[node.name] = vars.function_def
 
     def visit_Expr(self, node):
+        if node == vars.direction:
+            vars.function_def += '} else {\n'
+        if vars.is_if:
+            vars.function_def += ') {\n'
+            vars.is_if = False
         print(strings.NODE_EXPR + str(type(node)))
         ast.NodeVisitor.generic_visit(self, node)
 
@@ -206,9 +210,9 @@ class TranslatorVisitor(ast.NodeVisitor):
     def visit_Return(self, node):
         vars.function_def += '  return '
         print(node.value)
-        print(strings.NODE_RETURN + str(type(node.value)))
-        ast.NodeVisitor.visit(self, node.value)
         vars.function_def += ';\n'
+        print(strings.NODE_RETURN + str(type(node.value)))
+        ast.NodeVisitor.generic_visit(self, node.value)
 
     def visit_BinOp(self, node):
         vars.bin_op = True
@@ -307,29 +311,26 @@ class TranslatorVisitor(ast.NodeVisitor):
             vars.bool_op = vars.bool_op[:-1]
 
     def visit_If(self, node):
+        vars.is_if = True
+        global_if = True
+        if vars.has_else_part:
+            global_if = False
+            vars.function_def += '} else '
         vars.function_def += 'if ('
-        vars.is_if = True # visit_Call inserts a ';' if NOT set to True.
-        self.visit (node.test)
-        vars.is_if = False
-        vars.function_def += ') {\n'
-        for statement in node.body:
-            self.visit (statement)
-        vars.function_def += '} '
-        if (len (node.orelse) > 0):
-            for i in range (0, len (node.orelse)):
-                statement = node.orelse[i]
-                if (type(statement) == ast.If):
-                    vars.function_def += 'else '
-                    self.visit (statement)
-                    if (i == len(node.orelse) - 1):
-                        vars.function_def += '\n'
-                    
-                else:
-                    vars.function_def += 'else {\n'
-                    self.visit (statement)
-                    vars.function_def += '}\n'
+        vars.brackets += 1
+        if len(node.orelse) > 0:
+            vars.has_else_part = True
+            vars.direction = node.orelse[0]
+        else:
+            vars.has_else_part = False
         print(strings.NODE_IF + str(type(node)) + ' ' + str(vars.brackets) + ' ' + str(node.orelse) + ' ' + str(
             vars.has_else_part) + ' ' + str(node.body))
+        ast.NodeVisitor.generic_visit(self, node)
+        vars.has_else_part = False
+        vars.brackets -= 1
+        vars.is_if = False
+        if global_if:
+            vars.function_def += '}\n'
 
     def visit_Compare(self, node):
         print(strings.NODE_COMPARE + str(type(node.left)) + ' ' + str(type(node.ops[0])) + ' ' + str(
@@ -587,8 +588,8 @@ class TranslatorVisitor(ast.NodeVisitor):
                 vars.function_def = vars.function_def[:-1]
 
 
-def create_output():
-    output = open('output.ino', 'w+')
+def create_output(output_filename):
+    output = open(output_filename, 'w+')
     for key, value in vars.libraries.items():
         output.write(value)
     output.write('\n')
@@ -610,7 +611,7 @@ def create_output():
     move(file_directory + output_filename, getcwd() + '/' + output_filename)
 
 
-def create_makefile(robot):
+def create_makefile(robot, file_path):
     operating_system = platform.system()
     makefile_parameters = []
     if operating_system == 'Darwin':
@@ -629,12 +630,47 @@ def create_makefile(robot):
         print('Linux')
 
     makefile = open(getcwd() + '/' + 'Makefile', 'w+')
-    for line in open('../makefiles/' + robot + 'Makefile', 'r'):
+    for line in open(file_path + robot + 'Makefile', 'r'):
         makefile.write(line)
     makefile.write('ARDUINO_DIR   = ' + arduino_dir + '\n')
     for parameter in makefile_parameters:
         makefile.write(parameter)
     makefile.close()
+
+
+def create_setup():
+    if strings.SETUP not in vars.functions:
+        vars.functions[strings.SETUP] = 'void setup() {\n'
+        for key, value in vars.setup_statements.items():
+            vars.functions[strings.SETUP] += value
+        vars.functions[strings.SETUP] += '}\n'
+    elif vars.setup_statements:
+        setup = vars.functions[strings.SETUP]
+        counter = 0
+        setup = setup.split("\n")
+        new_setup = ''
+        while setup[counter] != '}':
+            new_setup += setup[counter] + '\n'
+            counter += 1
+        for key, value in vars.setup_statements.items():
+            new_setup += value + '\n'
+        new_setup += '}\n'
+        vars.functions[strings.SETUP] = new_setup
+
+        if strings.LOOP not in vars.functions:
+            vars.functions[strings.LOOP] = '''void loop() {
+    }\n'''
+
+
+def create_variables_manager(file):
+    variables_manager = ''
+    for line in open(file, 'r'):
+        if re.search('#include', line):
+            vars.libraries[line] = line
+        else:
+            variables_manager += line
+
+    return variables_manager
 
 
 if __name__ == "__main__":
@@ -666,36 +702,9 @@ if __name__ == "__main__":
     TranslatorVisitor().search_for_function(vars.halduino_directory + robot, strings.ARCHITECTURAL_STOP)
     TranslatorVisitor().search_for_function(vars.halduino_directory + robot, strings.SETUP)
 
-    if strings.SETUP not in vars.functions:
-        vars.functions[strings.SETUP] = 'void setup() {\n'
-        for key, value in vars.setup_statements.items():
-            vars.functions[strings.SETUP] += value
-        vars.functions[strings.SETUP] += '}\n'
-    elif vars.setup_statements:
-        setup = vars.functions[strings.SETUP]
-        counter = 0
-        setup = setup.split("\n")
-        new_setup = ''
-        while setup[counter] != '}':
-            new_setup += setup[counter] + '\n'
-            counter += 1
-        for key, value in vars.setup_statements.items():
-            new_setup += value + '\n'
-        new_setup += '}\n'
-        vars.functions[strings.SETUP] = new_setup
-
-    if strings.LOOP not in vars.functions:
-        vars.functions[strings.LOOP] = '''void loop() {
-}\n'''
-
-    variables_manager = ''
-    for line in open('HALduino/variablesManager.ino', 'r'):
-        if re.search('#include', line):
-            vars.libraries[line] = line
-        else:
-            variables_manager += line
-
-    create_output()
-    create_makefile(robot)
+    create_setup()
+    variables_manager = create_variables_manager(file='HALduino/variablesManager.ino')
+    create_output(output_filename)
+    create_makefile(robot, '../makefiles/')
     call(['make'])
     call(['make', 'upload'])
