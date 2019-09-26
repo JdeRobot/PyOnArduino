@@ -1,5 +1,5 @@
 # mBot Makefile
 
 ARDUINO_LIBS= Makeblock-Libraries-master Wire SPI
-MONITOR_PORT= /dev/cu.wchusbserial14340
 BOARD_TAG = uno
+AVRDUDE_CONF=/etc/avrdude.conf

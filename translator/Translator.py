@@ -597,8 +597,13 @@ def create_output(output_filename):
         output.write(value)
     output.write(variables_manager)
     for key, value in vars.functions.items():
-        output.write(value)
-        output.write('\n')
+        if key != 'loop' and key != 'setup':
+            output.write(value)
+            output.write('\n')
+    output.write(vars.functions['loop'])
+    output.write('\n')
+    output.write(vars.functions['setup'])
+    output.write('\n')
     output.close()
     file_directory = getcwd() + '/'
     try:
@@ -613,28 +618,25 @@ def create_output(output_filename):
 
 def create_makefile(robot, file_path):
     operating_system = platform.system()
-    makefile_parameters = []
+    makefile = open(getcwd() + '/' + 'Makefile', 'w+')
+    for line in open(file_path + 'robot/' + robot + 'Makefile', 'r'):
+        makefile.write(line)
     if operating_system == 'Darwin':
         arduino_dir = '/Applications/Arduino.app/Contents/Java'
-        makefile_parameters.append('include /usr/local/opt/arduino-mk/Arduino.mk\n')
+        makefile.write('ARDUINO_DIR   = ' + arduino_dir + '\n')
         print('macOS')
     elif operating_system == 'Windows':
         arduino_dir = 'C:/Arduino'
-        makefile_parameters.append('ARDMK_DIR = ../Makefile/Arduino.mk\n')
+        makefile.write('ARDUINO_DIR   = ' + arduino_dir + '\n')
         print('Windows')
     else:
-        arduino_dir = '/usr/share/arduino'
-        makefile_parameters.append('ARDMK_DIR =  /usr/share/arduino\n')
-        makefile_parameters.append('AVR_TOOLS_DIR =  /usr/\n')
-        makefile_parameters.append('include $(ARDMK_DIR)/Arduino.mk\n')
+        arduino_dir = '/home/$(USER)/Downloads/arduino-1.8.10'
+        makefile.write('ARDUINO_DIR   = ' + arduino_dir + '\n')
+        for line in open(file_path + '/platform/linux' + 'Makefile', 'r'):
+            makefile.write(line)
+            print(line)
         print('Linux')
 
-    makefile = open(getcwd() + '/' + 'Makefile', 'w+')
-    for line in open(file_path + robot + 'Makefile', 'r'):
-        makefile.write(line)
-    makefile.write('ARDUINO_DIR   = ' + arduino_dir + '\n')
-    for parameter in makefile_parameters:
-        makefile.write(parameter)
     makefile.close()
 
 
