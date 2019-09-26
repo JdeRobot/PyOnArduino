@@ -1,0 +1,2 @@
+MONITOR_PORT =  /dev/cu.wchusbserial14430
+include /usr/local/opt/arduino-mk/Arduino.mk
