@@ -632,10 +632,10 @@ def create_makefile(robot, file_path):
     else:
         arduino_dir = '/home/$(USER)/Downloads/arduino-1.8.10'
         makefile.write('ARDUINO_DIR   = ' + arduino_dir + '\n')
-        for line in open(file_path + '/platform/linux' + 'Makefile', 'r'):
-            makefile.write(line)
-            print(line)
         print('Linux')
+
+    for line in open(file_path + 'platform/' + operating_system + 'Makefile', 'r'):
+        makefile.write(line)
 
     makefile.close()
 
