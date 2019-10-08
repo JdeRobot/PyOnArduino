@@ -9,7 +9,7 @@ import re
 try:
     import TranslatorVariables as vars
     import strings.TranslatorStrings as strings
-except ModuleNotFoundError:
+except NameError:
     print('Absolute import failed')
 
 
@@ -608,7 +608,7 @@ def create_output(output_filename):
     file_directory = getcwd() + '/'
     try:
         rmtree(strings.OUTPUT)
-    except FileNotFoundError:
+    except OSError:
         print('Folder doesn\'t exists')
 
     makedirs(strings.OUTPUT)

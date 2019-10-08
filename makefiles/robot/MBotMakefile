@@ -2,4 +2,3 @@
 
 ARDUINO_LIBS= Makeblock-Libraries-master Wire SPI
 BOARD_TAG = uno
-AVRDUDE_CONF=/etc/avrdude.conf
